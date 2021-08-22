@@ -1,47 +1,52 @@
 {
-    "name": "ruszkowski",
-    "version": "1.0.0",
-    "private": true,
-    "description": "Ruszkowski",
-    "author": "Jakub Dolata",
-    "keywords": [
-        "gatsby"
-    ],
-    "scripts": {
-        "develop": "gatsby develop",
-        "start": "gatsby develop",
-        "build": "gatsby build",
-        "serve": "gatsby serve",
-        "clean": "gatsby clean"
-    },
-    "dependencies": {
-        "autoprefixer": "^10.3.1",
-        "gatsby": "^3.11.1",
-        "gatsby-plugin-google-analytics": "^3.11.0",
-        "gatsby-plugin-image": "^1.11.0",
-        "gatsby-plugin-manifest": "^3.11.0",
-        "gatsby-plugin-postcss": "^4.12.0",
-        "gatsby-plugin-prettier-eslint": "^1.0.6",
-        "gatsby-plugin-react-helmet": "^4.11.0",
-        "gatsby-plugin-sass": "^4.11.0",
-        "gatsby-plugin-sharp": "^3.11.0",
-        "gatsby-plugin-sitemap": "^4.7.0",
-        "gatsby-source-filesystem": "^3.11.0",
-        "gatsby-transformer-sharp": "^3.11.0",
-        "postcss": "^8.3.6",
-        "postcss-import": "^14.0.2",
-        "postcss-preset-env": "^6.7.0",
-        "prettier": "^2.3.2",
-        "react": "^17.0.1",
-        "react-dom": "^17.0.1",
-        "react-helmet": "^6.1.0",
-        "sass": "^1.38.0"
-    },
-    "devDependencies": {
-        "eslint-config-react-app": "^6.0.0",
-        "resolve-url-loader": "^3.1.4"
-    },
-    "browserslist": [
-        "defaults"
-    ]
+  "name": "ruszkowski",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Ruszkowski",
+  "author": "Jakub Dolata",
+  "keywords": [
+    "gatsby"
+  ],
+  "scripts": {
+    "develop": "gatsby develop",
+    "start": "gatsby develop",
+    "build": "gatsby build",
+    "serve": "gatsby serve",
+    "clean": "gatsby clean"
+  },
+  "dependencies": {
+    "autoprefixer": "^10.3.1",
+    "dotenv": "^10.0.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "gatsby": "^3.11.1",
+    "gatsby-plugin-google-analytics": "^3.11.0",
+    "gatsby-plugin-image": "^1.11.0",
+    "gatsby-plugin-manifest": "^3.11.0",
+    "gatsby-plugin-postcss": "^4.12.0",
+    "gatsby-plugin-prettier-eslint": "^1.0.6",
+    "gatsby-plugin-react-helmet": "^4.11.0",
+    "gatsby-plugin-sass": "^4.11.0",
+    "gatsby-plugin-sharp": "^3.11.0",
+    "gatsby-plugin-sitemap": "^4.7.0",
+    "gatsby-source-filesystem": "^3.11.0",
+    "gatsby-transformer-sharp": "^3.11.0",
+    "postcss": "^8.3.6",
+    "postcss-import": "^14.0.2",
+    "postcss-preset-env": "^6.7.0",
+    "prettier": "^2.3.2",
+    "prop-types": "^15.7.2",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-helmet": "^6.1.0",
+    "sass": "^1.38.0"
+  },
+  "devDependencies": {
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-config-react-app": "^6.0.0",
+    "gatsby-plugin-root-import": "^2.0.7",
+    "resolve-url-loader": "^3.1.4"
+  },
+  "browserslist": [
+    "defaults"
+  ]
 }

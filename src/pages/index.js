@@ -1,10 +1,11 @@
-import * as React from 'react'
+import * as React from 'react';
+import Navbar from '../components/layout/navbar/navbar';
 
-const IndexPage = () => {
-    return (
-        <h1>test</h1>
-        // <Navbar>Test children</Navbar>
-    )
-}
+const IndexPage = () => (
+  <>
+    <h1>test</h1>
+    <Navbar />
+  </>
+);
 
-export default IndexPage
+export default IndexPage;
