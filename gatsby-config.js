@@ -9,6 +9,13 @@ module.exports = {
   },
   plugins: [
     {
+      resolve: `gatsby-plugin-google-fonts`,
+      options: {
+        fonts: [`oswald\:400,700`, `mulish\:300,400,500,600,700,900`],
+        display: 'swap',
+      },
+    },
+    {
       resolve: 'gatsby-plugin-root-import',
       options: {
         resolveModules: [path.join(__dirname, 'libs')],

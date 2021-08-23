@@ -1,10 +1,11 @@
 import * as React from 'react';
-import Navbar from '../components/layout/navbar/navbar';
+import Theme from '../theme/Theme';
 
 const IndexPage = () => (
   <>
-    <h1>test</h1>
-    <Navbar />
+    <Theme>
+      <h1>children</h1>
+    </Theme>
   </>
 );
 
