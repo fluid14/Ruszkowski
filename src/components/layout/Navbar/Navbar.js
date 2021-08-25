@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'gatsby';
 import * as styles from './Navbar.module.sass';
 
 const Navbar = () => (
@@ -17,7 +18,9 @@ const Navbar = () => (
         <li>O nas</li>
         <li>Produkty</li>
         <li>Współpraca</li>
-        <li>Blog</li>
+        <li>
+          <Link to="/blog">Blog</Link>
+        </li>
       </ul>
     </main>
   </nav>

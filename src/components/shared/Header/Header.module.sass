@@ -1,0 +1,28 @@
+@import './src/styles/config'
+
+$marginTop: 115px
+
+.header
+  position: relative
+  height: 100vh
+  padding-top: $marginTop
+  @include backgroundImage()
+  @include overlayImage(linear-gradient(to top, $bg 0%, $bg 26%, rgba(39, 39, 39, 0.6) 100%), 1, 1)
+  max-height: 1240px
+  min-height: 720px
+
+  &Wrap
+    display: flex
+    justify-content: flex-end
+    position: relative
+    z-index: 3
+    color: $white
+    padding-top: calc(18.5vw - #{$marginTop})
+
+    .title
+      text-align: right
+
+@media screen and (max-width: 767px)
+  .header
+    max-height: 100vh
+    min-height: 450px
