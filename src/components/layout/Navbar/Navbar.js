@@ -1,28 +1,41 @@
 import React from 'react';
 import { Link } from 'gatsby';
+import cx from 'classnames';
 import * as styles from './Navbar.module.sass';
 
 const Navbar = () => (
   <nav className={styles.navbar}>
-    <img
-      className={styles.logo}
-      src="./images/logo_ruszkowski.png"
-      alt="Ruszkowski.biz"
-    />
-    <main className={styles.main}>
+    <div className={styles.logoWrap}>
+      <Link to="/" title="Strona główna">
+        <img
+          className={styles.logo}
+          src="./images/logo_ruszkowski.png"
+          alt="Ruszkowski.biz"
+        />
+      </Link>
+    </div>
+    <div className={styles.main}>
       <a className={styles.phone} href="tel: +48 692 615 555">
         +48 692 615 555
       </a>
       <ul className={styles.mainMenu}>
-        <li>Home</li>
-        <li>O nas</li>
-        <li>Produkty</li>
-        <li>Współpraca</li>
-        <li>
+        <li className={styles.menuItem}>
+          <Link to="/blog">Home</Link>
+        </li>
+        <li className={styles.menuItem}>
+          <Link to="/blog">O nas</Link>
+        </li>
+        <li className={styles.menuItem}>
+          <Link to="/blog">Produkty</Link>
+        </li>
+        <li className={styles.menuItem}>
+          <Link to="/blog">Współpraca</Link>
+        </li>
+        <li className={styles.menuItem}>
           <Link to="/blog">Blog</Link>
         </li>
       </ul>
-    </main>
+    </div>
   </nav>
 );
 

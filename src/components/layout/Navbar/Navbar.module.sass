@@ -2,15 +2,44 @@
 
 .navbar
   position: fixed
+  width: 100%
   display: flex
-  padding: 20px
+  align-items: center
+  padding: 50px 320px 50px 90px
   z-index: 10
+
+  .logoWrap
+    width: 20%
+
+    .logo
+      max-height: 40px
+
 
   .main
     display: flex
+    justify-content: space-between
+    width: 80%
+    padding-left: 100px
 
-  .logo,
-  .mainMenu,
-  .phone
-    display: flex
-    padding: 0
+    .phone
+      font-size: 16px
+      font-weight: $medium
+      line-height: 1
+      text-transform: uppercase
+      letter-spacing: 5px
+
+    .mainMenu
+      display: flex
+      text-transform: uppercase
+
+      .menuItem
+        font-size: 13px
+        font-weight: $light
+        letter-spacing: 4px
+        margin-left: 30px
+
+
+
+
+
+

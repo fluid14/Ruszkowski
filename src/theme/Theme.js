@@ -7,7 +7,7 @@ const Theme = ({ children }) => (
   <>
     <Navbar />
     <PageOrnament />
-    {children}
+    <main>{children}</main>
   </>
 );
 
