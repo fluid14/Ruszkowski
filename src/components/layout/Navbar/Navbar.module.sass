@@ -5,7 +5,7 @@
   width: 100%
   display: flex
   align-items: center
-  padding: 50px 320px 50px 90px
+  padding: 50px 15vw 50px 90px
   z-index: 10
 
   .logoWrap
@@ -38,8 +38,37 @@
         letter-spacing: 4px
         margin-left: 30px
 
+@media screen and (max-width: 1599px)
+  .navbar
+    padding: 40px
+    margin: 0 auto
+
+    .logoWrap
+      width: 20%
+
+      .logo
+        max-height: 40px
 
 
+    .main
+      display: flex
+      justify-content: space-between
+      width: 80%
+      padding-left: 100px
 
+      .phone
+        font-size: 16px
+        font-weight: $medium
+        line-height: 1
+        text-transform: uppercase
+        letter-spacing: 5px
 
+      .mainMenu
+        display: flex
+        text-transform: uppercase
 
+        .menuItem
+          font-size: 13px
+          font-weight: $light
+          letter-spacing: 4px
+          margin-left: 30px
