@@ -9,6 +9,19 @@ module.exports = {
   },
   plugins: [
     {
+      resolve: `gatsby-source-prismic`,
+      options: {
+        repositoryName: `ruszkowski`,
+        accessToken: `${process.env.API_KEY}`,
+        linkResolver: () => (post) => `/${post.uid}`,
+        schemas: {
+          blog: require('./customTypes/blog.json'),
+          blog_lista: require('./customTypes/blog_lista.json'),
+          page: require('./customTypes/page.json'),
+        },
+      },
+    },
+    {
       resolve: `gatsby-plugin-google-fonts`,
       options: {
         fonts: [`oswald\:400,700`, `mulish\:300,400,500,600,700,900`],

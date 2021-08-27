@@ -1,0 +1,35 @@
+{
+  "Main": {},
+  "Blog": {
+    "blog_banner_title": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading1",
+        "label": "Tytuł bannera",
+        "placeholder": "Tytuł wyświetlany na banerze"
+      }
+    },
+    "blog_banner": {
+      "type": "Image",
+      "config": {
+        "constraint": {},
+        "thumbnails": [],
+        "label": "Banner"
+      }
+    },
+    "blog_description_title": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading2",
+        "label": "Tytuł opisu"
+      }
+    },
+    "blog_description": {
+      "type": "StructuredText",
+      "config": {
+        "multi": "paragraph, strong, em",
+        "label": "Opis"
+      }
+    }
+  }
+}

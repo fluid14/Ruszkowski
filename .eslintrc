@@ -18,6 +18,7 @@
     "react/state-in-constructor": 0,
     "react/jsx-props-no-spreading": 0,
     "import/no-extraneous-dependencies": 0,
+    "global-require": 0,
     "react/jsx-filename-extension": [
       1,
       {
