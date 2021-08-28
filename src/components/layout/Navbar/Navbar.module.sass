@@ -1,5 +1,7 @@
 @import './src/styles/config'
 
+$burgerBarHeight: 2px
+
 .navbar
   position: fixed
   width: 100%
@@ -9,8 +11,6 @@
   z-index: 10
 
   .logoWrap
-    width: 20%
-
     .logo
       max-height: 40px
 
@@ -18,8 +18,8 @@
   .main
     display: flex
     justify-content: space-between
-    width: 80%
     padding-left: 100px
+    flex-grow: 1
 
     .phone
       font-size: 16px
@@ -27,6 +27,9 @@
       line-height: 1
       text-transform: uppercase
       letter-spacing: 5px
+
+    .burger
+      display: none
 
     .mainMenu
       display: flex
@@ -43,29 +46,59 @@
     padding: 40px
     margin: 0 auto
 
+    .main
+      padding-left: 40px
+
+@media screen and (max-width: 1199px)
+  .navbar
+    padding: 20px
+
     .logoWrap
-      width: 20%
-
       .logo
-        max-height: 40px
-
+        max-height: 30px
 
     .main
-      display: flex
-      justify-content: space-between
-      width: 80%
-      padding-left: 100px
-
       .phone
-        font-size: 16px
-        font-weight: $medium
-        line-height: 1
-        text-transform: uppercase
-        letter-spacing: 5px
+        font-size: 14px
+
+      .burger
+        display: block
+        width: 25px
+
+        &.active
+          .burgerBar
+            background-color: red
+
+        &:hover
+          .burgerBar,
+          .burgerBar:nth-child(2),
+          .burgerBar:nth-child(3)
+            width: 100%
+
+        .burgerBar
+          position: relative
+          display: block
+          width: 90%
+          height: $burgerBarHeight
+          background-color: $white
+          border-radius: 3px
+          transition: .3s ease
+          margin-bottom: 4px
+
+          &:nth-child(2)
+            width: 70%
+
+          &:nth-child(3)
+            width: 80%
 
       .mainMenu
-        display: flex
-        text-transform: uppercase
+        display: none
+        position: absolute
+        top: 0
+        left: 0
+        right: 0
+        bottom: 0
+        background-color: $main
 
         .menuItem
           font-size: 13px
