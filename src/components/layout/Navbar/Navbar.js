@@ -4,11 +4,10 @@ import cx from 'classnames';
 import * as styles from './Navbar.module.sass';
 
 const Navbar = () => {
-  const [isBurgerActive, changeBurgerState] = useState(false);
+  const [isMenuActive, changeMenuState] = useState(false);
 
-  const handleBurgerClick = (e) => {
-    e.preventDefault;
-    changeBurgerState(!isBurgerActive);
+  const handleBurgerClick = () => {
+    changeMenuState(!isMenuActive);
   };
 
   return (
@@ -26,16 +25,16 @@ const Navbar = () => {
         <a className={styles.phone} href="tel: +48 692 615 555">
           +48 692 615 555
         </a>
-        <a
-          href="#"
-          className={cx(styles.burger, { styles.active: isBurgerActive })}
+        <button
+          type="button"
+          className={cx(styles.burger, { [styles.active]: isMenuActive })}
           onClick={(e) => handleBurgerClick(e)}
         >
           <span className={styles.burgerBar} />
           <span className={styles.burgerBar} />
           <span className={styles.burgerBar} />
-        </a>
-        <ul className={styles.mainMenu}>
+        </button>
+        <ul className={cx(styles.mainMenu, { [styles.active]: isMenuActive })}>
           <li className={styles.menuItem}>
             <Link to="/blog">Home</Link>
           </li>
@@ -50,6 +49,11 @@ const Navbar = () => {
           </li>
           <li className={styles.menuItem}>
             <Link to="/blog">Blog</Link>
+          </li>
+          <li className={cx(styles.menuItem, styles.menuPhone)}>
+            <a className={styles.phone} href="tel: +48 692 615 555">
+              +48 692 615 555
+            </a>
           </li>
         </ul>
       </div>
