@@ -5,6 +5,8 @@ import Theme from '../theme/Theme';
 import Header from '../components/shared/Header/Header';
 import headerImg from '../../static/images/blog/header.png';
 import * as styles from './Blog.module.sass';
+import SectionTitle from '../components/layout/Text/SectionTitle/SectionTitle';
+import Article from '../components/layout/Text/Article/Article';
 
 const BlogComponent = ({ data }) => {
   const {
@@ -22,10 +24,8 @@ const BlogComponent = ({ data }) => {
         {/* /> */}
         <Header title="Blog" bgc={headerImg} />
         <main className={(styles.blogWrap, 'wrap')}>
-          <h1>
-            NASZE <span>TREŚCI</span>
-          </h1>
-          {/* <ReactMarkdown children={blogDescription} /> */}
+          <SectionTitle>{blogDescriptionTitle}</SectionTitle>
+          <Article>{blogDescription}</Article>
         </main>
       </Theme>
     </>
