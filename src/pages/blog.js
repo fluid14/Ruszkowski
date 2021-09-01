@@ -7,6 +7,7 @@ import headerImg from '../../static/images/blog/header.png';
 import * as styles from './Blog.module.sass';
 import SectionTitle from '../components/layout/Text/SectionTitle/SectionTitle';
 import Article from '../components/layout/Text/Article/Article';
+import Section from '../components/shared/Section/Section';
 
 const BlogComponent = ({ data }) => {
   const {
@@ -24,8 +25,10 @@ const BlogComponent = ({ data }) => {
         {/* /> */}
         <Header title="Blog" bgc={headerImg} />
         <main className={(styles.blogWrap, 'wrap')}>
-          <SectionTitle>{blogDescriptionTitle}</SectionTitle>
-          <Article>{blogDescription}</Article>
+          <Section className={styles.description}>
+            <SectionTitle>{blogDescriptionTitle}</SectionTitle>
+            <Article xl>{blogDescription}</Article>
+          </Section>
         </main>
       </Theme>
     </>
