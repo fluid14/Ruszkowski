@@ -3,31 +3,35 @@ import { graphql, StaticQuery } from 'gatsby';
 import PropTypes from 'prop-types';
 import Theme from '../theme/Theme';
 import Header from '../components/shared/Header/Header';
-import headerImg from '../../static/images/blog/header.png';
 import * as styles from './Blog.module.sass';
 import SectionTitle from '../components/layout/Text/SectionTitle/SectionTitle';
 import Article from '../components/layout/Text/Article/Article';
 import Section from '../components/shared/Section/Section';
 
 const BlogComponent = ({ data }) => {
+  console.log(data);
   const {
+    blog_banner: { alt: bannerAlt, fluid: bannerImg },
     blog_banner_title: { html: bannerTitle },
     blog_description_title: { html: blogDescriptionTitle },
     blog_description: { html: blogDescription },
+    last_article_title: { html: lastArticleTitle },
   } = data.prismicPage.data;
 
   return (
     <>
       <Theme>
-        {/* <Header */}
-        {/*  title={['Realizacje', <br />, <span>Indywidualne</span>]} */}
-        {/*  bgc={headerImg} */}
-        {/* /> */}
-        <Header title="Blog" bgc={headerImg} />
+        <Header title={bannerTitle} bgc={bannerImg} bgcAlt={bannerAlt} />
         <main className={(styles.blogWrap, 'wrap')}>
           <Section className={styles.description}>
             <SectionTitle>{blogDescriptionTitle}</SectionTitle>
             <Article xl>{blogDescription}</Article>
+          </Section>
+
+          <Section className={styles.lastArticles}>
+            <SectionTitle center shadowText="Wpisy z bloga">
+              {lastArticleTitle}
+            </SectionTitle>
           </Section>
         </main>
       </Theme>
@@ -41,6 +45,12 @@ const Blog = (props) => (
       query HeaderQuery {
         prismicPage {
           data {
+            blog_banner {
+              alt
+              fluid {
+                ...GatsbyImgixFluid
+              }
+            }
             blog_description_title {
               html
             }
@@ -48,6 +58,9 @@ const Blog = (props) => (
               html
             }
             blog_banner_title {
+              html
+            }
+            last_article_title {
               html
             }
           }
@@ -62,6 +75,13 @@ BlogComponent.propTypes = {
   data: PropTypes.shape({
     prismicPage: PropTypes.shape({
       data: PropTypes.shape({
+        blog_banner: PropTypes.shape({
+          alt: PropTypes.string.isRequired,
+          fluid: PropTypes.oneOfType([
+            PropTypes.shape({}),
+            PropTypes.arrayOf(PropTypes.shape({})),
+          ]),
+        }).isRequired,
         blog_description_title: PropTypes.shape({
           html: PropTypes.string.isRequired,
         }).isRequired,
@@ -69,6 +89,9 @@ BlogComponent.propTypes = {
           html: PropTypes.string.isRequired,
         }).isRequired,
         blog_banner_title: PropTypes.shape({
+          html: PropTypes.string.isRequired,
+        }).isRequired,
+        last_article_title: PropTypes.shape({
           html: PropTypes.string.isRequired,
         }).isRequired,
       }).isRequired,

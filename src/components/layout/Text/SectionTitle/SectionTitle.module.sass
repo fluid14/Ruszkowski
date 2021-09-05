@@ -1,4 +1,69 @@
 @import './src/styles/config'
 
-.sectionTitle
-  margin-bottom: 75px
+.sectionTitleWrap
+  position: relative
+  //overflow-x: hidden
+
+  .sectionTitle
+    margin-bottom: 75px
+
+    &.center
+      text-align: center
+
+    &.left
+      text-align: left
+
+    &.right
+      text-align: right
+
+  .shadowText
+    position: absolute
+    top: 0
+    left: 35%
+    transform: translateY(-50%)
+    font-size: 173px
+    font-weight: $black
+    white-space: nowrap
+    opacity: .1
+    color: $gray
+
+@media screen and (max-width: 1599px)
+  .sectionTitleWrap
+    .sectionTitle
+      margin-bottom: 60px
+
+    .shadowText
+      font-size: 130px
+
+@media screen and (max-width: 1199px)
+  .sectionTitleWrap
+    .sectionTitle
+      margin-bottom: 50px
+
+    .shadowText
+      font-size: 80px
+
+@media screen and (max-width: 767px)
+  .sectionTitleWrap
+    .sectionTitle
+      margin-bottom: 40px
+
+    .shadowText
+      left: 50%
+      transform: translate(-50%, -50%)
+
+@media screen and (max-width: 599px)
+  .sectionTitleWrap
+    .sectionTitle
+      margin-bottom: 35px
+
+    .shadowText
+      font-size: 70px
+
+@media screen and (max-width: 359px)
+  .sectionTitleWrap
+    .sectionTitle
+      margin-bottom: 30px
+
+    .shadowText
+      font-size: 60px

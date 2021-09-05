@@ -6,21 +6,25 @@ $marginTop: 115px
   position: relative
   height: 100vh
   padding-top: $marginTop
-  @include backgroundImage()
   @include overlayImage(linear-gradient(to top, $bg 0%, $bg 26%, rgba(39, 39, 39, 0.6) 100%), 1, 1)
   max-height: 1240px
   min-height: 720px
+  overflow: hidden
 
-  &Wrap
+  .bgcImg
+    position: absolute
+    top: calc(50% - #{$marginTop})
+    left: 50%
+    transform: translate(-50%, -50%)
+    height: calc(100% + #{$marginTop})
+
+  .headerWrap
     display: flex
     justify-content: flex-end
     position: relative
     z-index: 3
     color: $white
     padding-top: calc(18.5vw - #{$marginTop})
-
-    .title
-      text-align: right
 
 @media screen and (max-width: 767px)
   .header

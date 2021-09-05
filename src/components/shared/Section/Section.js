@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import cx from 'classnames';
+import * as styles from './Section.module.sass';
 
 const Section = ({ children, className }) => (
-  <section className={className}>{children}</section>
+  <section className={cx(className, styles.section)}>{children}</section>
 );
 
 Section.propTypes = {

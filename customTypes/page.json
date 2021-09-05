@@ -20,15 +20,22 @@
     "blog_description_title": {
       "type": "StructuredText",
       "config": {
-        "single": "heading2",
+        "multi": "heading2,strong",
         "label": "Tytuł opisu"
       }
     },
     "blog_description": {
       "type": "StructuredText",
       "config": {
-        "multi": "paragraph, strong, em",
+        "multi": "paragraph,strong,em",
         "label": "Opis"
+      }
+    },
+    "last_article_title": {
+      "type": "StructuredText",
+      "config": {
+        "multi": "heading3,strong",
+        "label": "Ostatnie wpisy tytuł"
       }
     }
   }
