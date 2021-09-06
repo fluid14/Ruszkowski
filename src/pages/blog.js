@@ -7,6 +7,7 @@ import * as styles from './Blog.module.sass';
 import SectionTitle from '../components/layout/Text/SectionTitle/SectionTitle';
 import Article from '../components/layout/Text/Article/Article';
 import Section from '../components/shared/Section/Section';
+import ArticleList from '../components/Article/ArticleList/ArticleList';
 
 const BlogComponent = ({ data }) => {
   console.log(data);
@@ -32,6 +33,7 @@ const BlogComponent = ({ data }) => {
             <SectionTitle center shadowText="Wpisy z bloga">
               {lastArticleTitle}
             </SectionTitle>
+            <ArticleList />
           </Section>
         </main>
       </Theme>

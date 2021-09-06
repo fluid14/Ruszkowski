@@ -5,7 +5,7 @@
   -webkit-line-clamp: $lineNumber
   -webkit-box-orient: vertical
 
-@mixin overlay($color: $black, $opacity: 0.7, $z-index: 0)
+@mixin overlay($color: $black, $opacity: 0.7, $z-index: 0, $blend-mode: multiply)
   &::after
     content: ''
     display: block
@@ -14,7 +14,7 @@
     left: 0
     right: 0
     bottom: 0
-    mix-blend-mode: multiply
+    mix-blend-mode: $blend-mode
     background-color: $color
     opacity: $opacity
     z-index: $z-index
