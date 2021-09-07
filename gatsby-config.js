@@ -18,6 +18,7 @@ module.exports = {
           blog: require('./customTypes/blog.json'),
           blog_lista: require('./customTypes/blog_lista.json'),
           page: require('./customTypes/page.json'),
+          article: require('./customTypes/article.json'),
         },
       },
     },

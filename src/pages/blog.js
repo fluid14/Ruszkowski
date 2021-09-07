@@ -10,7 +10,6 @@ import Section from '../components/shared/Section/Section';
 import ArticleList from '../components/Article/ArticleList/ArticleList';
 
 const BlogComponent = ({ data }) => {
-  console.log(data);
   const {
     blog_banner: { alt: bannerAlt, fluid: bannerImg },
     blog_banner_title: { html: bannerTitle },

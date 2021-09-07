@@ -7,37 +7,20 @@ import * as styles from './Tags.module.sass';
 const Tags = ({ tags, className }) => (
   <>
     <ul className={cx(className, styles.tagList)}>
-      <li className={styles.tagItem}>
-        <Link to="#" className={styles.tag}>
-          Marketing
-        </Link>
-      </li>
-      <li className={styles.tagItem}>
-        <Link to="#" className={styles.tag}>
-          technology
-        </Link>
-      </li>
-      <li className={styles.tagItem}>
-        <Link to="#" className={styles.tag}>
-          design
-        </Link>
-      </li>
-      <li className={styles.tagItem}>
-        <Link to="#" className={styles.tag}>
-          technology
-        </Link>
-      </li>
-      <li className={styles.tagItem}>
-        <Link to="#" className={styles.tag}>
-          design
-        </Link>
-      </li>
+      {tags.map(({ tag }) => (
+        <li className={styles.tagItem}>
+          <Link to="#" className={styles.tag}>
+            {tag}
+          </Link>
+        </li>
+      ))}
     </ul>
   </>
 );
 
 Tags.propTypes = {
-  tags: PropTypes.node,
+  tags: PropTypes.arrayOf(PropTypes.shape({ tag: PropTypes.string.isRequired }))
+    .isRequired,
   className: PropTypes.string,
 };
 

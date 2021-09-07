@@ -1,0 +1,47 @@
+{
+  "Main": {
+    "article_miniature": {
+      "type": "Image",
+      "config": {
+        "constraint": {},
+        "thumbnails": [],
+        "label": "Miniaturka"
+      }
+    },
+    "article_title": {
+      "type": "StructuredText",
+      "config": {
+        "multi": "strong",
+        "label": "Tytuł wpisu"
+      }
+    },
+    "short_description": {
+      "type": "StructuredText",
+      "config": {
+        "multi": "paragraph,strong",
+        "label": "Skrócony opis"
+      }
+    },
+    "bloc_article": {
+      "type": "StructuredText",
+      "config": {
+        "multi": "paragraph,heading3,heading4,heading5,heading6,strong,em,hyperlink,image",
+        "label": "Wpis"
+      }
+    },
+    "tags": {
+      "type": "Group",
+      "config": {
+        "fields": {
+          "tag": {
+            "type": "Text",
+            "config": {
+              "label": "Tag"
+            }
+          }
+        },
+        "label": "Tagi"
+      }
+    }
+  }
+}
