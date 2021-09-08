@@ -4,10 +4,22 @@ import { graphql, StaticQuery } from 'gatsby';
 import * as styles from './ArticleList.module.sass';
 import ArticleTile from '../ArticleTile/ArticleTile';
 
-const ArticleListComponent = ({ data }) => {
-  const { nodes: articles } = data.allPrismicArticle;
-  return <>{articles && articles.map((data) => <ArticleTile data={data} />)}</>;
-};
+const ArticleListComponent = ({
+  data: {
+    allPrismicArticle: { nodes: articles },
+  },
+}) => (
+  <>
+    {articles &&
+      articles.map((article) => (
+        <ArticleTile
+          key={article.id}
+          className={styles.articleTile}
+          data={article.data}
+        />
+      ))}
+  </>
+);
 
 const ArticleList = (props) => (
   <StaticQuery
@@ -28,6 +40,7 @@ const ArticleList = (props) => (
                 }
               }
             }
+            id
           }
         }
       }
@@ -36,20 +49,25 @@ const ArticleList = (props) => (
   />
 );
 
-ArticleList.propTypes = {
+ArticleListComponent.propTypes = {
   data: PropTypes.shape({
     allPrismicArticle: PropTypes.shape({
-      nodes: PropTypes.shape({
-        data: PropTypes.shape({
-          tags: PropTypes.arrayOf({
-            tag: PropTypes.string.isRequired,
+      nodes: PropTypes.arrayOf(
+        PropTypes.shape({
+          data: PropTypes.shape({
+            tags: PropTypes.arrayOf(
+              PropTypes.shape({
+                tag: PropTypes.string.isRequired,
+              })
+            ).isRequired,
+            short_description: PropTypes.shape({
+              html: PropTypes.string.isRequired,
+            }).isRequired,
+            article_miniature: PropTypes.shape.isRequired,
           }).isRequired,
-          short_description: PropTypes.shape({
-            html: PropTypes.string.isRequired,
-          }).isRequired,
-          article_miniature: PropTypes.string.isRequired,
-        }).isRequired,
-      }),
+          id: PropTypes.string.isRequired,
+        })
+      ),
     }),
   }).isRequired,
 };

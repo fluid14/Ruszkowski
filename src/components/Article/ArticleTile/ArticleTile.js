@@ -1,24 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'gatsby';
+import cx from 'classnames';
+import Img from 'gatsby-image';
 import * as styles from './ArticleTile.module.sass';
 import Tags from '../../shared/Tags/Tags';
-import img from '../../../../static/images/blog/blogMiniature.png';
 import Article from '../../layout/Text/Article/Article';
 
-const ArticleTile = ({ data: { data } }) => {
+const ArticleTile = ({ data, className }) => {
   const {
     short_description: { html: description },
     tags,
-    miniature,
+    article_miniature: miniature,
   } = data;
-  console.log(description);
 
   return (
     <>
-      <div className={styles.articleTileWrap}>
+      <div className={cx(className, styles.articleTileWrap)}>
         <div className={styles.imgWrap}>
-          <img className={styles.img} src={img} alt="Artykuł miniaturka" />
+          <Img fluid={miniature.fluid} alt="alt" />
         </div>
         <div className={styles.descriptionWrap}>
           <Tags tags={tags} className={styles.tags} />
@@ -36,14 +36,21 @@ const ArticleTile = ({ data: { data } }) => {
 
 ArticleTile.propTypes = {
   data: PropTypes.shape({
-    tags: PropTypes.arrayOf({
-      tag: PropTypes.string.isRequired,
-    }).isRequired,
+    tags: PropTypes.arrayOf(
+      PropTypes.shape({
+        tag: PropTypes.string.isRequired,
+      })
+    ).isRequired,
     short_description: PropTypes.shape({
       html: PropTypes.string.isRequired,
     }).isRequired,
-    article_miniature: PropTypes.string.isRequired,
+    article_miniature: PropTypes.shape.isRequired,
   }).isRequired,
+  className: PropTypes.string,
+};
+
+ArticleTile.defaultProps = {
+  className: '',
 };
 
 export default ArticleTile;

@@ -7,8 +7,8 @@ import * as styles from './Tags.module.sass';
 const Tags = ({ tags, className }) => (
   <>
     <ul className={cx(className, styles.tagList)}>
-      {tags.map(({ tag }) => (
-        <li className={styles.tagItem}>
+      {tags.map(({ tag }, i) => (
+        <li key={i} className={styles.tagItem}>
           <Link to="#" className={styles.tag}>
             {tag}
           </Link>
