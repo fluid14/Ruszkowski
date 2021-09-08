@@ -18,6 +18,6 @@ export default Header;
 
 Header.propTypes = {
   title: PropTypes.string.isRequired,
-  bgc: PropTypes.shape.isRequired,
+  bgc: PropTypes.any.isRequired,
   bgcAlt: PropTypes.string.isRequired,
 };

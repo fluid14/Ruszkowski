@@ -1,0 +1,26 @@
+.link
+  color: $main
+
+  &.uppercase
+    text-transform: uppercase
+
+  &.more
+    position: relative
+    padding-right: 32px
+
+    &::after
+      content: ''
+      display: block
+      position: absolute
+      top: 50%
+      right: 0
+      transform: translate(0, -50%)
+      width: 14px
+      height: 12px
+      background: url('../../../static/assets/arrow_right.svg') center center / 13px no-repeat
+      transition: .3s ease
+
+    &:hover
+      opacity: .8
+      &::after
+        transform: translate(-20%, -50%)

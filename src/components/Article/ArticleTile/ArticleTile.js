@@ -24,7 +24,7 @@ const ArticleTile = ({ data, className }) => {
           <Tags tags={tags} className={styles.tags} />
           <Article l>{description}</Article>
           <div className={styles.tileFooter}>
-            <Link to="#" className="link more">
+            <Link to="#" className="link uppercase more">
               Czytaj więcej
             </Link>
           </div>
