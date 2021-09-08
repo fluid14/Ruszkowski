@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'gatsby';
 import cx from 'classnames';
 import * as styles from './Tags.module.sass';
 
@@ -9,9 +8,7 @@ const Tags = ({ tags, className }) => (
     <ul className={cx(className, styles.tagList)}>
       {tags.map(({ tag }, i) => (
         <li key={i} className={styles.tagItem}>
-          <Link to="#" className={styles.tag}>
-            {tag}
-          </Link>
+          <div className={styles.tag}>{tag}</div>
         </li>
       ))}
     </ul>
@@ -25,7 +22,6 @@ Tags.propTypes = {
 };
 
 Tags.defaultProps = {
-  tags: {},
   className: '',
 };
 

@@ -22,7 +22,7 @@ const BlogComponent = ({ data }) => {
     <>
       <Theme>
         <Header title={bannerTitle} bgc={bannerImg} bgcAlt={bannerAlt} />
-        <main className={(styles.blogWrap, 'wrap')}>
+        <main className="wrap">
           <Section className={styles.description}>
             <SectionTitle>{blogDescriptionTitle}</SectionTitle>
             <Article xl>{blogDescription}</Article>
