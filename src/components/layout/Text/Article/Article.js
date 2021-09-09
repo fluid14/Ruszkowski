@@ -5,7 +5,7 @@ import * as styles from './Article.module.sass';
 
 const Article = ({ children, xl, l, className }) => (
   <article
-    className={cx(...className, styles.article, {
+    className={cx(className, styles.article, {
       [styles.xl]: xl,
       [styles.l]: l,
     })}

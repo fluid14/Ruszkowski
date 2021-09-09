@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'gatsby';
 import cx from 'classnames';
 import Img from 'gatsby-image';
+import BackgroundImage from 'gatsby-background-image';
 import * as styles from './ArticleTile.module.sass';
 import Tags from '../../shared/Tags/Tags';
 import Article from '../../layout/Text/Article/Article';
@@ -18,11 +19,17 @@ const ArticleTile = ({ data, className }) => {
     <>
       <div className={cx(className, styles.articleTileWrap)}>
         <div className={styles.imgWrap}>
-          <Img fluid={miniature.fluid} alt="alt" />
+          <BackgroundImage
+            Tag="section"
+            className={styles.img}
+            fluid={miniature.fluid}
+          />
         </div>
         <div className={styles.descriptionWrap}>
           <Tags tags={tags} className={styles.tags} />
-          <Article l>{description}</Article>
+          <Article className={styles.text} l>
+            {description}
+          </Article>
           <div className={styles.tileFooter}>
             <Link to="#" className="link uppercase more">
               Czytaj więcej

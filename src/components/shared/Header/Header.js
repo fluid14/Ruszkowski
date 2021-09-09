@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import Img from 'gatsby-image';
+import BackgroundImage from 'gatsby-background-image';
 import * as styles from './Header.module.sass';
 
 const Header = ({ title, bgc, bgcAlt }) => (
@@ -10,7 +11,12 @@ const Header = ({ title, bgc, bgcAlt }) => (
       className={cx(styles.headerWrap, 'wrap')}
       dangerouslySetInnerHTML={{ __html: title }}
     />
-    <Img fluid={bgc} alt={bgcAlt} className={styles.bgcImg} />
+    <BackgroundImage
+      Tag="section"
+      className={styles.bgcImg}
+      fluid={bgc}
+      alt={bgcAlt}
+    />
   </header>
 );
 
