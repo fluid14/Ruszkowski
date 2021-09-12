@@ -1,15 +1,24 @@
 @import './src/styles/config'
 
-.articleTile
-  margin-bottom: 125px
+.articleList
+  .articleTile
+    margin-bottom: 125px
 
-  &:nth-last-child(1)
+  .articleTile:nth-last-child(1)
     margin-bottom: 0
 
+  .buttonWrap
+    display: flex
+    align-items: center
+    justify-content: center
+    margin-top: 55px
+
 @media screen and (max-width: 1266px)
-  .articleTile
-    margin-bottom: 9.87vw
+  .articleList
+    .articleTile
+      margin-bottom: 9.87vw
 
 @media screen and (max-width: 599px)
-  .articleTile
-    margin-bottom: 30px
+  .articleList
+    .articleTile
+      margin-bottom: 30px

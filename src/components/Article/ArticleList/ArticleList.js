@@ -3,13 +3,14 @@ import PropTypes from 'prop-types';
 import { graphql, StaticQuery } from 'gatsby';
 import * as styles from './ArticleList.module.sass';
 import ArticleTile from '../ArticleTile/ArticleTile';
+import Button from '../../layout/Button/Button';
 
 const ArticleListComponent = ({
   data: {
     allPrismicArticle: { nodes: articles },
   },
 }) => (
-  <>
+  <div className={styles.articleList}>
     {articles &&
       articles.map((article) => (
         <ArticleTile
@@ -18,7 +19,10 @@ const ArticleListComponent = ({
           data={article.data}
         />
       ))}
-  </>
+    <div className={styles.buttonWrap}>
+      <Button>Więcej treści</Button>
+    </div>
+  </div>
 );
 
 const ArticleList = (props) => (
