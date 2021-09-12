@@ -14,7 +14,7 @@ const SectionTitle = ({ children, shadowText, center, left, right }) => (
       )}
       dangerouslySetInnerHTML={{ __html: children }}
     />
-    {shadowText && <p className={styles.shadowText}>{shadowText}</p>}
+    {/* {shadowText && <p className={styles.shadowText}>{shadowText}</p>} */}
   </div>
 );
 
