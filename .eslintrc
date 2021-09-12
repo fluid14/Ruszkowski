@@ -12,6 +12,7 @@
     "window": true
   },
   "rules": {
+    "react/button-has-type": 0,
     "react/no-array-index-key": 0,
     "react/no-danger": 0,
     "react/forbid-prop-types": 0,

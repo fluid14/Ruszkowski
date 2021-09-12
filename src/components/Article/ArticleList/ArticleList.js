@@ -9,21 +9,33 @@ const ArticleListComponent = ({
   data: {
     allPrismicArticle: { nodes: articles },
   },
-}) => (
-  <div className={styles.articleList}>
-    {articles &&
-      articles.map((article) => (
-        <ArticleTile
-          key={article.id}
-          className={styles.articleTile}
-          data={article.data}
-        />
-      ))}
-    <div className={styles.buttonWrap}>
-      <Button>Więcej treści</Button>
+}) => {
+  let count = 2;
+
+  const addArticles = () => {
+    count += 2;
+  };
+
+  return (
+    <div className={styles.articleList}>
+      {articles &&
+        articles.map((article, i) => {
+          if (i <= count) {
+            return (
+              <ArticleTile
+                key={article.id}
+                className={styles.articleTile}
+                data={article.data}
+              />
+            );
+          }
+        })}
+      <div className={styles.buttonWrap}>
+        <Button onClick={addArticles}>Więcej treści</Button>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 const ArticleList = (props) => (
   <StaticQuery
