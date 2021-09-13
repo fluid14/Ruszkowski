@@ -38,5 +38,51 @@
         "label": "Ostatnie wpisy tytuł"
       }
     }
+  },
+  "Ustawienia": {
+    "logo": {
+      "type": "Image",
+      "config": {
+        "constraint": {},
+        "thumbnails": [],
+        "label": "Logo"
+      }
+    },
+    "email": {
+      "type": "Text",
+      "config": {
+        "label": "E-mail"
+      }
+    },
+    "phone_number": {
+      "type": "Text",
+      "config": {
+        "label": "Numer telefonu"
+      }
+    },
+    "city": {
+      "type": "Text",
+      "config": {
+        "label": "Miasto"
+      }
+    },
+    "street": {
+      "type": "Text",
+      "config": {
+        "label": "Ulica i numer"
+      }
+    },
+    "facebook": {
+      "type": "Link",
+      "config": {
+        "label": "Facebook"
+      }
+    },
+    "instagram": {
+      "type": "Link",
+      "config": {
+        "label": "Instagram"
+      }
+    }
   }
 }

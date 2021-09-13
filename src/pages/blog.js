@@ -8,6 +8,7 @@ import SectionTitle from '../components/layout/Text/SectionTitle/SectionTitle';
 import Article from '../components/layout/Text/Article/Article';
 import Section from '../components/shared/Section/Section';
 import ArticleList from '../components/Article/ArticleList/ArticleList';
+import Contact from '../components/shared/Contact/Contact';
 
 const BlogComponent = ({ data }) => {
   const {
@@ -28,12 +29,13 @@ const BlogComponent = ({ data }) => {
             <Article xl>{blogDescription}</Article>
           </Section>
 
-          <Section className={styles.lastArticles}>
+          <Section>
             <SectionTitle center shadowText="Wpisy z bloga">
               {lastArticleTitle}
             </SectionTitle>
             <ArticleList />
           </Section>
+          <Contact />
         </main>
       </Theme>
     </>

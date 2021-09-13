@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
-import Img from 'gatsby-image';
 import BackgroundImage from 'gatsby-background-image';
 import * as styles from './Header.module.sass';
 

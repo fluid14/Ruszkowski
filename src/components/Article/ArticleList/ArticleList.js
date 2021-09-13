@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { graphql, StaticQuery } from 'gatsby';
 import * as styles from './ArticleList.module.sass';
@@ -7,20 +7,19 @@ import Button from '../../layout/Button/Button';
 
 const ArticleListComponent = ({
   data: {
-    allPrismicArticle: { nodes: articles },
+    allPrismicArticle: { nodes: articles, totalCount },
   },
 }) => {
-  let count = 2;
-
+  const [count, setCount] = useState(2);
   const addArticles = () => {
-    count += 2;
+    setCount(count + 2);
   };
 
   return (
     <div className={styles.articleList}>
       {articles &&
         articles.map((article, i) => {
-          if (i <= count) {
+          if (i < count) {
             return (
               <ArticleTile
                 key={article.id}
@@ -29,10 +28,14 @@ const ArticleListComponent = ({
               />
             );
           }
+
+          return false;
         })}
-      <div className={styles.buttonWrap}>
-        <Button onClick={addArticles}>Więcej treści</Button>
-      </div>
+      {totalCount > count && (
+        <div className={styles.buttonWrap}>
+          <Button onClick={addArticles}>Więcej treści</Button>
+        </div>
+      )}
     </div>
   );
 };
@@ -58,6 +61,7 @@ const ArticleList = (props) => (
             }
             id
           }
+          totalCount
         }
       }
     `}
@@ -84,6 +88,7 @@ ArticleListComponent.propTypes = {
           id: PropTypes.string.isRequired,
         })
       ),
+      totalCount: PropTypes.number.isRequired,
     }),
   }).isRequired,
 };

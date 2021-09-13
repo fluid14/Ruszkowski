@@ -22,13 +22,6 @@
         "label": "Skrócony opis"
       }
     },
-    "bloc_article": {
-      "type": "StructuredText",
-      "config": {
-        "multi": "paragraph,heading3,heading4,heading5,heading6,strong,em,hyperlink,image",
-        "label": "Wpis"
-      }
-    },
     "tags": {
       "type": "Group",
       "config": {
@@ -41,6 +34,50 @@
           }
         },
         "label": "Tagi"
+      }
+    },
+    "body": {
+      "type": "Slices",
+      "fieldset": "Slice zone",
+      "config": {
+        "labels": null,
+        "choices": {
+          "paragraf": {
+            "type": "Slice",
+            "fieldset": "Paragraf",
+            "description": "Paragraf",
+            "icon": "text_fields",
+            "display": "list",
+            "non-repeat": {},
+            "repeat": {
+              "paragraph": {
+                "type": "StructuredText",
+                "config": {
+                  "multi": "paragraph, strong, em, hyperlink",
+                  "label": "Paragraf"
+                }
+              }
+            }
+          },
+          "zdjecie": {
+            "type": "Slice",
+            "fieldset": "Zdjęcie",
+            "description": "Zjęcie",
+            "icon": "add_a_photo",
+            "display": "list",
+            "non-repeat": {},
+            "repeat": {
+              "photo": {
+                "type": "Image",
+                "config": {
+                  "constraint": {},
+                  "thumbnails": [],
+                  "label": "Zdjęcie"
+                }
+              }
+            }
+          }
+        }
       }
     }
   }
