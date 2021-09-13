@@ -66,6 +66,12 @@
         "label": "Miasto"
       }
     },
+    "zip_code": {
+      "type": "Text",
+      "config": {
+        "label": "Kod pocztowy"
+      }
+    },
     "street": {
       "type": "Text",
       "config": {
@@ -75,13 +81,15 @@
     "facebook": {
       "type": "Link",
       "config": {
-        "label": "Facebook"
+        "label": "Facebook",
+        "select": null
       }
     },
     "instagram": {
       "type": "Link",
       "config": {
-        "label": "Instagram"
+        "label": "Instagram",
+        "select": null
       }
     }
   }
