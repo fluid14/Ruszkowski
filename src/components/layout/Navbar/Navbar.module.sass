@@ -9,6 +9,13 @@ $burgerBarHeight: 2px
   align-items: center
   padding: 50px 15vw 50px 90px
   z-index: 10
+  transition: .4s ease
+
+  &.active
+    padding: 25px 10vw 25px 70px
+
+  &.hide
+    transform: translateY(-100%)
 
   .logoWrap
     .logo

@@ -1,17 +1,40 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'gatsby';
 import cx from 'classnames';
 import * as styles from './Navbar.module.sass';
 
 const Navbar = () => {
   const [isMenuActive, changeMenuState] = useState(false);
+  const prevScrollY = useRef(0);
+  const [goingUp, setGoingUp] = useState(true);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      if (
+        prevScrollY.current < currentScrollY &&
+        currentScrollY > 150 &&
+        goingUp
+      ) {
+        setGoingUp(false);
+      } else if (prevScrollY.current > currentScrollY && !goingUp) {
+        setGoingUp(true);
+      }
+
+      prevScrollY.current = currentScrollY;
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [goingUp]);
 
   const handleBurgerClick = () => {
     changeMenuState(!isMenuActive);
   };
 
   return (
-    <nav className={styles.navbar}>
+    <nav className={cx(styles.navbar, { [styles.hide]: !goingUp })}>
       <div className={styles.logoWrap}>
         <Link to="/" title="Strona główna">
           <img
