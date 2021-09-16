@@ -13,6 +13,7 @@ $burgerBarHeight: 2px
 
   &.active
     padding: 25px 10vw 25px 70px
+    background-color: rgba($bg, .9)
 
   &.hide
     transform: translateY(-100%)
@@ -56,12 +57,18 @@ $burgerBarHeight: 2px
     padding: 40px
     margin: 0 auto
 
+    &.active
+      padding: 20px 40px
+
     .main
       padding-left: 40px
 
 @media screen and (max-width: 1199px)
   .navbar
     padding: 20px
+
+    &.active
+      padding: 20px
 
     .logoWrap
       .logo
@@ -156,6 +163,9 @@ $burgerBarHeight: 2px
   .navbar
     padding: 15px
 
+    &.active
+      padding: 15px
+
     .logoWrap
       .logo
         max-height: 25px
@@ -177,6 +187,3 @@ $burgerBarHeight: 2px
           display: block
           margin-top: 20px
           font-size: 16px
-
-
-

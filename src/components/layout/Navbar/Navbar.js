@@ -7,6 +7,7 @@ const Navbar = () => {
   const [isMenuActive, changeMenuState] = useState(false);
   const prevScrollY = useRef(0);
   const [goingUp, setGoingUp] = useState(true);
+  const [active, setActive] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -19,6 +20,12 @@ const Navbar = () => {
         setGoingUp(false);
       } else if (prevScrollY.current > currentScrollY && !goingUp) {
         setGoingUp(true);
+      }
+
+      if (currentScrollY > 170) {
+        setActive(true);
+      } else if (currentScrollY < 170) {
+        setActive(false);
       }
 
       prevScrollY.current = currentScrollY;
@@ -34,7 +41,12 @@ const Navbar = () => {
   };
 
   return (
-    <nav className={cx(styles.navbar, { [styles.hide]: !goingUp })}>
+    <nav
+      className={cx(styles.navbar, {
+        [styles.hide]: !goingUp,
+        [styles.active]: active,
+      })}
+    >
       <div className={styles.logoWrap}>
         <Link to="/" title="Strona główna">
           <img
