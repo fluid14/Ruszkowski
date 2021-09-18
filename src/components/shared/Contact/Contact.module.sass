@@ -8,6 +8,8 @@
   .contactInfo
     display: flex
     flex-direction: column
+    min-width: 220px
+    margin-right: 50px
 
     a,
     p
@@ -27,4 +29,10 @@
       letter-spacing: 5.12px
       font-weight: $bold
 
+@media screen and (max-width: 992px)
+  .contactWrap
+    flex-direction: column
 
+    .contactInfo
+      margin-right: unset
+      margin-bottom: 30px

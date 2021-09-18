@@ -38,9 +38,19 @@ const ContactComponent = ({
         </div>
         <div className="formWrap">
           <form className="contactForm">
-            <input type="text" />
+            <div className="inputWrap">
+              <div className="inputsWrap">
+                <input type="text" placeholder="Imię" />
+                <input type="email" placeholder="Email" />
+              </div>
+              <div className="inputsWrap">
+                <input type="text" placeholder="Telefon" />
+                <input type="text" placeholder="Miasto" />
+              </div>
+              <textarea placeholder="Twoja wiadomość" />
+            </div>
+            <Button type="submit">Wyślij</Button>
           </form>
-          <Button type="submit">Wyślij</Button>
         </div>
       </div>
     </Section>

@@ -15,10 +15,15 @@
     "clean": "gatsby clean"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.36",
+    "@fortawesome/free-brands-svg-icons": "^5.15.4",
+    "@fortawesome/free-solid-svg-icons": "^5.15.4",
+    "@fortawesome/react-fontawesome": "^0.1.15",
     "autoprefixer": "^10.3.1",
     "classnames": "^2.3.1",
     "dotenv": "^10.0.0",
     "eslint-config-airbnb": "^18.2.1",
+    "formik": "^2.2.9",
     "gatsby": "^3.11.1",
     "gatsby-background-image": "^1.5.3",
     "gatsby-image": "^3.11.0",
