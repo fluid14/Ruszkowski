@@ -49,7 +49,9 @@ const ContactComponent = ({
               </div>
               <textarea placeholder="Twoja wiadomość" />
             </div>
-            <Button type="submit">Wyślij</Button>
+            <Button type="submit" send>
+              Wyślij
+            </Button>
           </form>
         </div>
       </div>
