@@ -1,0 +1,50 @@
+@import './src/styles/config'
+
+.footer
+  display: flex
+  flex-wrap: wrap
+  justify-content: space-between
+  padding-top: 40px
+  padding-bottom: 160px
+  gap: 20px
+
+  .logoWrap
+    display: block
+    max-width: 215px
+    width: 100%
+
+  .linksWrap
+    display: flex
+    flex-direction: column
+    align-items: flex-end
+    flex-grow: 1
+    padding: 10px 0
+
+    .link
+      color: $gray8
+      margin-bottom: 3px
+
+      &:nth-last-child(1)
+        margin: 0
+
+@media screen and (max-width: 1599px)
+  .footer
+    padding-bottom: 120px
+
+@media screen and (max-width: 1399px)
+  .footer
+    padding-bottom: 80px
+
+@media screen and (max-width: 992px)
+  .footer
+    padding-bottom: 60px
+
+    .logoWrap
+      max-width: 180px
+
+@media screen and (max-width: 767px)
+  .footer
+    padding-bottom: 40px
+
+    .logoWrap
+      max-width: 160px

@@ -91,6 +91,27 @@
         "label": "Instagram",
         "select": null
       }
+    },
+    "footer_links": {
+      "type": "Group",
+      "config": {
+        "fields": {
+          "footer_link_title": {
+            "type": "Text",
+            "config": {
+              "label": "Tytuł linku"
+            }
+          },
+          "footer_link": {
+            "type": "Link",
+            "config": {
+              "label": "Link",
+              "select": null
+            }
+          }
+        },
+        "label": "Stopka - Linki"
+      }
     }
   }
 }

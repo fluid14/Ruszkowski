@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'gatsby';
 import cx from 'classnames';
-import Img from 'gatsby-image';
 import BackgroundImage from 'gatsby-background-image';
 import * as styles from './ArticleTile.module.sass';
 import Tags from '../../shared/Tags/Tags';
