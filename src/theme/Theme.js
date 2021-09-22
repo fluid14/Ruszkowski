@@ -9,7 +9,7 @@ import Footer from '../components/layout/Footer/Footer';
 const ThemeComponent = ({
   children,
   data: {
-    prismicPage: {
+    prismicSettings: {
       data: { logo, footer_links: footerLinks },
     },
   },
@@ -26,7 +26,7 @@ const Theme = (props) => (
   <StaticQuery
     query={graphql`
       query FooterQuery {
-        prismicPage {
+        prismicSettings {
           data {
             logo {
               alt
@@ -54,7 +54,7 @@ ThemeComponent.propTypes = {
     PropTypes.node,
   ]).isRequired,
   data: PropTypes.shape({
-    prismicPage: PropTypes.shape({
+    prismicSettings: PropTypes.shape({
       data: PropTypes.shape({
         logo: PropTypes.shape.isRequired,
         footer_links: PropTypes.arrayOf.isRequired,

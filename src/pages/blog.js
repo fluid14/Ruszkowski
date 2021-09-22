@@ -12,12 +12,12 @@ import Contact from '../components/shared/Contact/Contact';
 
 const BlogComponent = ({ data }) => {
   const {
-    blog_banner: { alt: bannerAlt, fluid: bannerImg },
-    blog_banner_title: { html: bannerTitle },
-    blog_description_title: { html: blogDescriptionTitle },
-    blog_description: { html: blogDescription },
+    banner: { alt: bannerAlt, fluid: bannerImg },
+    banner_title: { html: bannerTitle },
+    description_title: { html: blogDescriptionTitle },
+    description: { html: blogDescription },
     last_article_title: { html: lastArticleTitle },
-  } = data.prismicPage.data;
+  } = data.prismicBlogPage.data;
 
   return (
     <>
@@ -45,22 +45,22 @@ const BlogComponent = ({ data }) => {
 const Blog = (props) => (
   <StaticQuery
     query={graphql`
-      query HeaderQuery {
-        prismicPage {
+      query HeaderQuery($lang: String) {
+        prismicBlogPage(lang: { eq: $lang }) {
           data {
-            blog_banner {
+            banner {
               alt
               fluid {
                 ...GatsbyImgixFluid
               }
             }
-            blog_description_title {
+            description_title {
               html
             }
-            blog_description {
+            description {
               html
             }
-            blog_banner_title {
+            banner_title {
               html
             }
             last_article_title {
@@ -76,22 +76,22 @@ const Blog = (props) => (
 
 BlogComponent.propTypes = {
   data: PropTypes.shape({
-    prismicPage: PropTypes.shape({
+    prismicBlogPage: PropTypes.shape({
       data: PropTypes.shape({
-        blog_banner: PropTypes.shape({
+        banner: PropTypes.shape({
           alt: PropTypes.string.isRequired,
           fluid: PropTypes.oneOfType([
             PropTypes.shape({}),
             PropTypes.arrayOf(PropTypes.shape({})),
           ]),
         }).isRequired,
-        blog_description_title: PropTypes.shape({
+        description_title: PropTypes.shape({
           html: PropTypes.string.isRequired,
         }).isRequired,
-        blog_description: PropTypes.shape({
+        description: PropTypes.shape({
           html: PropTypes.string.isRequired,
         }).isRequired,
-        blog_banner_title: PropTypes.shape({
+        banner_title: PropTypes.shape({
           html: PropTypes.string.isRequired,
         }).isRequired,
         last_article_title: PropTypes.shape({

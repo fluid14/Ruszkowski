@@ -1,0 +1,27 @@
+{
+  "Main": {
+    "navigation_link": {
+      "type": "Group",
+      "config": {
+        "fields": {
+          "link": {
+            "type": "Link",
+            "config": {
+              "select": "document",
+              "customtypes": ["article", "page"],
+              "label": "Link"
+            }
+          },
+          "link_title": {
+            "type": "StructuredText",
+            "config": {
+              "multi": "paragraph",
+              "label": "Tytuł"
+            }
+          }
+        },
+        "label": "Link"
+      }
+    }
+  }
+}

@@ -8,7 +8,7 @@ import Button from '../../layout/Button/Button';
 
 const ContactComponent = ({
   data: {
-    prismicPage: { data },
+    prismicSettings: { data },
   },
 }) => {
   const {
@@ -63,7 +63,7 @@ const Contact = (props) => (
   <StaticQuery
     query={graphql`
       query ContactQuery {
-        prismicPage {
+        prismicSettings {
           data {
             city
             email
@@ -80,7 +80,7 @@ const Contact = (props) => (
 
 ContactComponent.propTypes = {
   data: PropTypes.shape({
-    prismicPage: PropTypes.shape({
+    prismicSettings: PropTypes.shape({
       data: PropTypes.shape({
         city: PropTypes.string.isRequired,
         email: PropTypes.string.isRequired,

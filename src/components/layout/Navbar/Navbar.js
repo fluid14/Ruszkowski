@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'gatsby';
 import cx from 'classnames';
 import * as styles from './Navbar.module.sass';
+import LanguageSwitcher from '../LanguageSwitcher/LanguageSwitcher';
 
 const Navbar = () => {
   const [isMenuActive, changeMenuState] = useState(false);
@@ -60,6 +61,8 @@ const Navbar = () => {
         <a className={styles.phone} href="tel: +48 692 615 555">
           +48 692 615 555
         </a>
+        <LanguageSwitcher />
+
         <button
           type="button"
           className={cx(styles.burger, { [styles.active]: isMenuActive })}

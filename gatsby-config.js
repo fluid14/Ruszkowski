@@ -13,12 +13,15 @@ module.exports = {
       options: {
         repositoryName: `ruszkowski`,
         accessToken: `${process.env.API_KEY}`,
-        linkResolver: () => (post) => `/${post.uid}`,
+        linkResolver: require('./src/utils/linkResolver').linkResolver,
         schemas: {
+          blog_page: require('./customTypes/blog_page.json'),
           blog: require('./customTypes/blog.json'),
           blog_lista: require('./customTypes/blog_lista.json'),
           page: require('./customTypes/page.json'),
           article: require('./customTypes/article.json'),
+          navigation: require('./customTypes/navigation.json'),
+          settings: require('./customTypes/settings.json'),
         },
       },
     },

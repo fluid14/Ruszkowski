@@ -1,0 +1,41 @@
+{
+  "Main": {
+    "banner_title": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading1",
+        "label": "Tytuł bannera",
+        "placeholder": "Tytuł wyświetlany na banerze"
+      }
+    },
+    "banner": {
+      "type": "Image",
+      "config": {
+        "constraint": {},
+        "thumbnails": [],
+        "label": "Banner"
+      }
+    },
+    "description_title": {
+      "type": "StructuredText",
+      "config": {
+        "multi": "heading2,strong",
+        "label": "Tytuł opisu"
+      }
+    },
+    "description": {
+      "type": "StructuredText",
+      "config": {
+        "multi": "paragraph, strong, em",
+        "label": "Opis"
+      }
+    },
+    "last_article_title": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading3,strong",
+        "label": "Ostatnie wpisy tytuł"
+      }
+    }
+  }
+}
