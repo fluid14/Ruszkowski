@@ -47,6 +47,9 @@ const ArticleList = (props) => (
         allPrismicArticle {
           nodes {
             data {
+              article_title {
+                text
+              }
               tags {
                 tag
               }
@@ -75,6 +78,9 @@ ArticleListComponent.propTypes = {
       nodes: PropTypes.arrayOf(
         PropTypes.shape({
           data: PropTypes.shape({
+            article_title: PropTypes.shape({
+              text: PropTypes.string.isRequired,
+            }).isRequired,
             tags: PropTypes.arrayOf(
               PropTypes.shape({
                 tag: PropTypes.string.isRequired,

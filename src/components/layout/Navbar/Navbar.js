@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Link } from 'gatsby';
+import { graphql, Link, StaticQuery } from 'gatsby';
 import cx from 'classnames';
 import * as styles from './Navbar.module.sass';
 import LanguageSwitcher from '../LanguageSwitcher/LanguageSwitcher';
 
-const Navbar = () => {
+const NavbarComponent = () => {
   const [isMenuActive, changeMenuState] = useState(false);
   const prevScrollY = useRef(0);
   const [goingUp, setGoingUp] = useState(true);
@@ -98,5 +98,29 @@ const Navbar = () => {
     </nav>
   );
 };
+
+const Navbar = (props) => (
+  <StaticQuery
+    query={graphql`
+      query NavigationQuery {
+        allPrismicNavigation {
+          nodes {
+            data {
+              navigation_link {
+                link {
+                  slug
+                }
+                link_title {
+                  text
+                }
+              }
+            }
+          }
+        }
+      }
+    `}
+    render={(data) => <NavbarComponent data={data} {...props} />}
+  />
+);
 
 export default Navbar;
