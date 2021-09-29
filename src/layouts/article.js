@@ -1,7 +1,7 @@
 import React from 'react';
 
-const Article = (props) => {
-  console.log(this.props);
+const Article = ({ context }) => {
+  console.log(context);
   return <h1>artykul</h1>;
 };
 
