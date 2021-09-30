@@ -3,8 +3,15 @@ exports.linkResolver = (doc) => {
     case 'blog': {
       return `/${doc.lang}`;
     }
+    case 'page': {
+      return `/${doc.lang}`;
+    }
+    case 'artykul': {
+      xw;
+      return `/${doc.lang}/artykul/${doc.uid}`;
+    }
 
     default:
-      return '/';
+      return `/${doc.lang}`;
   }
 };

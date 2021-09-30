@@ -48,7 +48,7 @@ exports.createPages = async ({ graphql, actions }) => {
     });
     createPage({
       path: `/artykul/${title}`,
-      component: path.resolve(`./src/layouts/article.js`),
+      component: path.resolve(`./src/layouts/Article/article.js`),
       context: {
         id: article.id,
       },

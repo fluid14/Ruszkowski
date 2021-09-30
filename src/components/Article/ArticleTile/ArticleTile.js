@@ -8,13 +8,15 @@ import * as styles from './ArticleTile.module.sass';
 import Tags from '../../shared/Tags/Tags';
 import Article from '../../layout/Text/Article/Article';
 
-const ArticleTile = ({ data, className }) => {
+const ArticleTile = ({ article, className }) => {
   const {
-    article_title: { text: title },
-    short_description: { html: description },
+    data: {
+      article_title: { text: title },
+      short_description: { html: description },
+      article_miniature: miniature,
+    },
     tags,
-    article_miniature: miniature,
-  } = data;
+  } = article;
 
   return (
     <>
@@ -48,18 +50,15 @@ const ArticleTile = ({ data, className }) => {
 };
 
 ArticleTile.propTypes = {
-  data: PropTypes.shape({
-    article_title: PropTypes.shape({ text: PropTypes.string.isRequired })
-      .isRequired,
-    tags: PropTypes.arrayOf(
-      PropTypes.shape({
-        tag: PropTypes.string.isRequired,
-      })
-    ).isRequired,
-    short_description: PropTypes.shape({
-      html: PropTypes.string.isRequired,
+  article: PropTypes.shape({
+    data: PropTypes.shape({
+      article_title: PropTypes.shape({ text: PropTypes.string.isRequired })
+        .isRequired,
+      short_description: PropTypes.shape({
+        html: PropTypes.string.isRequired,
+      }).isRequired,
+      article_miniature: PropTypes.shape.isRequired,
     }).isRequired,
-    article_miniature: PropTypes.shape.isRequired,
   }).isRequired,
   className: PropTypes.string,
 };

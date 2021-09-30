@@ -6,18 +6,18 @@ import * as styles from './Tags.module.sass';
 const Tags = ({ tags, className }) => (
   <>
     <ul className={cx(className, styles.tagList)}>
-      {tags.map(({ tag }, i) => (
-        <li key={i} className={styles.tagItem}>
-          <div className={styles.tag}>{tag}</div>
-        </li>
-      ))}
+      {tags &&
+        tags.map((tag, i) => (
+          <li key={i} className={styles.tagItem}>
+            <div className={styles.tag}>{tag}</div>
+          </li>
+        ))}
     </ul>
   </>
 );
 
 Tags.propTypes = {
-  tags: PropTypes.arrayOf(PropTypes.shape({ tag: PropTypes.string.isRequired }))
-    .isRequired,
+  tags: PropTypes.arrayOf(PropTypes.string).isRequired,
   className: PropTypes.string,
 };
 

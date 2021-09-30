@@ -22,20 +22,6 @@
         "label": "Skrócony opis"
       }
     },
-    "tags": {
-      "type": "Group",
-      "config": {
-        "fields": {
-          "tag": {
-            "type": "Text",
-            "config": {
-              "label": "Tag"
-            }
-          }
-        },
-        "label": "Tagi"
-      }
-    },
     "body": {
       "type": "Slices",
       "fieldset": "Slice zone",
@@ -53,7 +39,7 @@
               "paragraph": {
                 "type": "StructuredText",
                 "config": {
-                  "multi": "paragraph, strong, em, hyperlink",
+                  "multi": "paragraph,strong,em,hyperlink",
                   "label": "Paragraf"
                 }
               }

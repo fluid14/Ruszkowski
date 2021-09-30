@@ -24,7 +24,7 @@ const ArticleListComponent = ({
               <ArticleTile
                 key={article.id}
                 className={styles.articleTile}
-                data={article.data}
+                article={article}
               />
             );
           }
@@ -50,9 +50,6 @@ const ArticleList = (props) => (
               article_title {
                 text
               }
-              tags {
-                tag
-              }
               short_description {
                 html
               }
@@ -62,6 +59,7 @@ const ArticleList = (props) => (
                 }
               }
             }
+            tags
             id
           }
           totalCount
@@ -81,17 +79,13 @@ ArticleListComponent.propTypes = {
             article_title: PropTypes.shape({
               text: PropTypes.string.isRequired,
             }).isRequired,
-            tags: PropTypes.arrayOf(
-              PropTypes.shape({
-                tag: PropTypes.string.isRequired,
-              })
-            ).isRequired,
             short_description: PropTypes.shape({
               html: PropTypes.string.isRequired,
             }).isRequired,
             article_miniature: PropTypes.shape.isRequired,
           }).isRequired,
           id: PropTypes.string.isRequired,
+          tags: PropTypes.arrayOf(PropTypes.string).isRequired,
         })
       ),
       totalCount: PropTypes.number.isRequired,
