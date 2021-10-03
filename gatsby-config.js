@@ -22,6 +22,7 @@ module.exports = {
           article: require('./customTypes/article.json'),
           navigation: require('./customTypes/navigation.json'),
           settings: require('./customTypes/settings.json'),
+          main_page: require('./customTypes/main_page.json'),
         },
       },
     },

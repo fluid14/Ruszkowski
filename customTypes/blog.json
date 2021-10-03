@@ -1,27 +1,26 @@
 {
   "Main": {
-    "title_banner": {
+    "banner_title": {
       "type": "StructuredText",
       "config": {
         "single": "heading1",
-        "label": "Title banner",
-        "placeholder": "Tytuł wyświetlany na głównym zdjęciu"
+        "label": "Tytuł bannera",
+        "placeholder": "Tytuł wyświetlany na banerze"
       }
     },
-    "banner_image": {
+    "banner": {
       "type": "Image",
       "config": {
         "constraint": {},
         "thumbnails": [],
-        "label": "Zdjęcie bannera"
+        "label": "Banner"
       }
     },
     "description_title": {
       "type": "StructuredText",
       "config": {
-        "single": "heading2",
-        "label": "Tytuł opisu",
-        "placeholder": "Tytuł opisu"
+        "multi": "heading2,strong",
+        "label": "Tytuł opisu"
       }
     },
     "description": {
@@ -30,20 +29,12 @@
         "multi": "paragraph,strong,em",
         "label": "Opis"
       }
-    }
-  },
-  "New": {
-    "date": {
-      "type": "Date",
-      "config": {
-        "label": "date"
-      }
     },
-    "title": {
+    "last_article_title": {
       "type": "StructuredText",
       "config": {
-        "single": "heading1,heading2,heading3,heading4,heading5,heading6",
-        "label": "title"
+        "single": "heading3,strong",
+        "label": "Ostatnie wpisy tytuł"
       }
     }
   }

@@ -1,10 +1,17 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { graphql, Link, StaticQuery } from 'gatsby';
 import cx from 'classnames';
+import PropTypes from 'prop-types';
 import * as styles from './Navbar.module.sass';
 import LanguageSwitcher from '../LanguageSwitcher/LanguageSwitcher';
 
-const NavbarComponent = () => {
+const NavbarComponent = ({
+  data: {
+    prismicNavigation: {
+      data: { navigation_link: navigation },
+    },
+  },
+}) => {
   const [isMenuActive, changeMenuState] = useState(false);
   const prevScrollY = useRef(0);
   const [goingUp, setGoingUp] = useState(true);
@@ -73,21 +80,12 @@ const NavbarComponent = () => {
           <span className={styles.burgerBar} />
         </button>
         <ul className={cx(styles.mainMenu, { [styles.active]: isMenuActive })}>
-          <li className={styles.menuItem}>
-            <Link to="/blog">Home</Link>
-          </li>
-          <li className={styles.menuItem}>
-            <Link to="/blog">O nas</Link>
-          </li>
-          <li className={styles.menuItem}>
-            <Link to="/blog">Produkty</Link>
-          </li>
-          <li className={styles.menuItem}>
-            <Link to="/blog">Współpraca</Link>
-          </li>
-          <li className={styles.menuItem}>
-            <Link to="/blog">Blog</Link>
-          </li>
+          {navigation &&
+            navigation.map((nav) => (
+              <li className={styles.menuItem} key={nav.link.slug}>
+                <Link to={nav.link.url}>{nav.link_title.text}</Link>
+              </li>
+            ))}
           <li className={cx(styles.menuItem, styles.menuPhone)}>
             <a className={styles.phone} href="tel: +48 692 615 555">
               +48 692 615 555
@@ -103,16 +101,16 @@ const Navbar = (props) => (
   <StaticQuery
     query={graphql`
       query NavigationQuery {
-        allPrismicNavigation {
-          nodes {
-            data {
-              navigation_link {
-                link {
-                  slug
-                }
-                link_title {
-                  text
-                }
+        prismicNavigation {
+          data {
+            navigation_link {
+              link {
+                url
+                slug
+                type
+              }
+              link_title {
+                text
               }
             }
           }
@@ -122,5 +120,26 @@ const Navbar = (props) => (
     render={(data) => <NavbarComponent data={data} {...props} />}
   />
 );
+
+NavbarComponent.propTypes = {
+  data: PropTypes.shape({
+    prismicNavigation: PropTypes.shape({
+      data: PropTypes.arrayOf(
+        PropTypes.shape({
+          navigation_link: PropTypes.shape({
+            link: PropTypes.shape({
+              url: PropTypes.string.isRequired,
+              slug: PropTypes.string.isRequired,
+              type: PropTypes.string.isRequired,
+            }).isRequired,
+            link_title: PropTypes.shape({
+              text: PropTypes.string.isRequired,
+            }).isRequired,
+          }).isRequired,
+        })
+      ).isRequired,
+    }).isRequired,
+  }).isRequired,
+};
 
 export default Navbar;

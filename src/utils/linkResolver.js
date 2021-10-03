@@ -1,14 +1,14 @@
 exports.linkResolver = (doc) => {
   switch (doc.type) {
-    case 'blog': {
-      return `/${doc.lang}`;
+    case 'blog_page': {
+      return `/${doc.lang}/blog`;
     }
-    case 'page': {
-      return `/${doc.lang}`;
+    case 'article': {
+      return `/${doc.lang}/article`;
     }
-    case 'artykul': {
-      xw;
-      return `/${doc.lang}/artykul/${doc.uid}`;
+
+    case 'main_page': {
+      return `/${doc.lang}`;
     }
 
     default:

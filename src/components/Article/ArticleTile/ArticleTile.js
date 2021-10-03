@@ -16,6 +16,7 @@ const ArticleTile = ({ article, className }) => {
       article_miniature: miniature,
     },
     tags,
+    url,
   } = article;
 
   return (
@@ -35,7 +36,7 @@ const ArticleTile = ({ article, className }) => {
           </Article>
           <div className={styles.tileFooter}>
             <Link
-              to={`/artykul/${slugify(title, {
+              to={`${url}/${slugify(title, {
                 lower: true,
               })}`}
               className="link uppercase more"
