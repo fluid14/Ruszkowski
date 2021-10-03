@@ -19,11 +19,12 @@ const Blog = ({ data }) => {
     last_article_title: { html: lastArticleTitle },
   } = data.prismicBlogPage.data;
 
-  const { nodes: articles, totalCount } = data.allPrismicArticle;
+  const { lang } = data.prismicBlogPage;
 
+  const { nodes: articles, totalCount } = data.allPrismicArticle;
   return (
     <>
-      <Theme>
+      <Theme lang={lang}>
         <Header title={bannerTitle} bgc={bannerImg} bgcAlt={bannerAlt} />
         <main className="wrap">
           <Section className={styles.description}>
@@ -97,6 +98,7 @@ export const query = graphql`
 Blog.propTypes = {
   data: PropTypes.shape({
     prismicBlogPage: PropTypes.shape({
+      lang: PropTypes.string.isRequired,
       data: PropTypes.shape({
         banner: PropTypes.shape({
           alt: PropTypes.string.isRequired,

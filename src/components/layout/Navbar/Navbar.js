@@ -100,8 +100,8 @@ const NavbarComponent = ({
 const Navbar = (props) => (
   <StaticQuery
     query={graphql`
-      query NavigationQuery {
-        prismicNavigation {
+      query NavigationQuery($lang: String) {
+        prismicNavigation(lang: { eq: ${props.lang} }) {
           data {
             navigation_link {
               link {
@@ -121,7 +121,12 @@ const Navbar = (props) => (
   />
 );
 
+Navbar.propTypes = {
+  lang: PropTypes.string.isRequired,
+};
+
 NavbarComponent.propTypes = {
+  lang: PropTypes.string.isRequired,
   data: PropTypes.shape({
     prismicNavigation: PropTypes.shape({
       data: PropTypes.arrayOf(

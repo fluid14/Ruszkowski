@@ -8,19 +8,23 @@ import Footer from '../components/layout/Footer/Footer';
 
 const ThemeComponent = ({
   children,
+  lang,
   data: {
     prismicSettings: {
       data: { logo, footer_links: footerLinks },
     },
   },
-}) => (
-  <>
-    <Navbar />
-    <PageOrnament />
-    <main>{children}</main>
-    <Footer logo={logo} links={footerLinks} />
-  </>
-);
+}) => {
+  console.log(lang);
+  return (
+    <>
+      <Navbar lang={lang} />
+      <PageOrnament />
+      <main>{children}</main>
+      <Footer logo={logo} links={footerLinks} />
+    </>
+  );
+};
 
 const Theme = (props) => (
   <StaticQuery
@@ -53,6 +57,7 @@ ThemeComponent.propTypes = {
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
   ]).isRequired,
+  lang: PropTypes.string.isRequired,
   data: PropTypes.shape({
     prismicSettings: PropTypes.shape({
       data: PropTypes.shape({
