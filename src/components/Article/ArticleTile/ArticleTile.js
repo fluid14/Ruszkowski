@@ -60,6 +60,8 @@ ArticleTile.propTypes = {
       }).isRequired,
       article_miniature: PropTypes.shape.isRequired,
     }).isRequired,
+    tags: PropTypes.array.isRequired,
+    url: PropTypes.string.isRequired,
   }).isRequired,
   className: PropTypes.string,
 };

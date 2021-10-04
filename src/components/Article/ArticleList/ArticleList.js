@@ -50,7 +50,7 @@ ArticleList.propTypes = {
       id: PropTypes.string.isRequired,
       tags: PropTypes.arrayOf(PropTypes.string).isRequired,
     })
-  ),
+  ).isRequired,
   totalCount: PropTypes.number.isRequired,
 };
 

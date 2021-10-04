@@ -14,17 +14,14 @@ const ThemeComponent = ({
       data: { logo, footer_links: footerLinks },
     },
   },
-}) => {
-  console.log(lang);
-  return (
-    <>
-      <Navbar lang={lang} />
-      <PageOrnament />
-      <main>{children}</main>
-      <Footer logo={logo} links={footerLinks} />
-    </>
-  );
-};
+}) => (
+  <>
+    <Navbar lang={lang} />
+    <PageOrnament />
+    <main>{children}</main>
+    <Footer logo={logo} links={footerLinks} />
+  </>
+);
 
 const Theme = (props) => (
   <StaticQuery

@@ -1,11 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import * as styles from './article.module.sass';
+// import PropTypes from 'prop-types';
+// import * as styles from './article.module.sass';
 
-const Article = (props) => <h1>artykul</h1>;
+const Article = () => <h1>artykul</h1>;
 
-Article.propTypes = {
-  context: PropTypes.shape.isRequired,
-};
+// Article.propTypes = {
+//   context: PropTypes.shape.isRequired,
+// };
 
 export default Article;

@@ -6,12 +6,14 @@ import * as styles from './Navbar.module.sass';
 import LanguageSwitcher from '../LanguageSwitcher/LanguageSwitcher';
 
 const NavbarComponent = ({
+  lang,
   data: {
-    prismicNavigation: {
-      data: { navigation_link: navigation },
-    },
+    allPrismicNavigation: { nodes },
   },
 }) => {
+  const navigation = nodes.filter((node) => node.lang === lang)[0]?.data
+    ?.navigation_link;
+
   const [isMenuActive, changeMenuState] = useState(false);
   const prevScrollY = useRef(0);
   const [goingUp, setGoingUp] = useState(true);
@@ -68,7 +70,7 @@ const NavbarComponent = ({
         <a className={styles.phone} href="tel: +48 692 615 555">
           +48 692 615 555
         </a>
-        <LanguageSwitcher />
+        <LanguageSwitcher lang={lang} />
 
         <button
           type="button"
@@ -82,7 +84,7 @@ const NavbarComponent = ({
         <ul className={cx(styles.mainMenu, { [styles.active]: isMenuActive })}>
           {navigation &&
             navigation.map((nav) => (
-              <li className={styles.menuItem} key={nav.link.slug}>
+              <li className={styles.menuItem} key={nav.link}>
                 <Link to={nav.link.url}>{nav.link_title.text}</Link>
               </li>
             ))}
@@ -100,17 +102,19 @@ const NavbarComponent = ({
 const Navbar = (props) => (
   <StaticQuery
     query={graphql`
-      query NavigationQuery($lang: String) {
-        prismicNavigation(lang: { eq: ${props.lang} }) {
-          data {
-            navigation_link {
-              link {
-                url
-                slug
-                type
-              }
-              link_title {
-                text
+      query NavigationQuery {
+        allPrismicNavigation {
+          nodes {
+            lang
+            data {
+              navigation_link {
+                link {
+                  url
+                  lang
+                }
+                link_title {
+                  text
+                }
               }
             }
           }
@@ -121,25 +125,23 @@ const Navbar = (props) => (
   />
 );
 
-Navbar.propTypes = {
-  lang: PropTypes.string.isRequired,
-};
-
 NavbarComponent.propTypes = {
   lang: PropTypes.string.isRequired,
   data: PropTypes.shape({
-    prismicNavigation: PropTypes.shape({
-      data: PropTypes.arrayOf(
+    allPrismicNavigation: PropTypes.shape({
+      nodes: PropTypes.arrayOf(
         PropTypes.shape({
-          navigation_link: PropTypes.shape({
-            link: PropTypes.shape({
-              url: PropTypes.string.isRequired,
-              slug: PropTypes.string.isRequired,
-              type: PropTypes.string.isRequired,
-            }).isRequired,
-            link_title: PropTypes.shape({
-              text: PropTypes.string.isRequired,
-            }).isRequired,
+          data: PropTypes.shape({
+            navigation_link: PropTypes.arrayOf(
+              PropTypes.shape({
+                link: PropTypes.shape({
+                  url: PropTypes.string.isRequired,
+                }).isRequired,
+                link_title: PropTypes.shape({
+                  text: PropTypes.string.isRequired,
+                }).isRequired,
+              }).isRequired
+            ).isRequired,
           }).isRequired,
         })
       ).isRequired,

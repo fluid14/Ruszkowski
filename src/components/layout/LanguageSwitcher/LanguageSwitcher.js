@@ -1,32 +1,38 @@
 import * as React from 'react';
 import { graphql, navigate, StaticQuery } from 'gatsby';
 import PropTypes from 'prop-types';
-import { linkResolver } from '../../../utils/linkResolver';
 
 const LanguageSwitcherComponent = ({
+  lang,
   data: {
     allPrismicPage: { nodes },
-    prismicPage: { lang },
   },
 }) => {
   const handleLangChange = (event) => {
-    console.log(event);
     navigate(event.target.value);
   };
 
+  const mapLang = (language) =>
+    language.length > 2
+      ? language.slice(0, -3).toUpperCase()
+      : language.toUpperCase();
+
   return (
     <select value={lang} onChange={handleLangChange}>
-      <option value={lang}>{lang.slice(0, 2).toUpperCase()}</option>
-      {nodes.map((altLang, index) => (
-        <option value={altLang.url} key={`alt-lang-${index}`}>
-          {altLang.lang}
-        </option>
-      ))}
+      <option value={lang}>{mapLang(lang)}</option>
+      {nodes.map(
+        (altLang, index) =>
+          altLang.lang !== lang && (
+            <option value={altLang.url} key={`alt-lang-${index}`}>
+              {mapLang(altLang.lang)}
+            </option>
+          )
+      )}
     </select>
   );
 };
 
-const LanguageSwitcher = () => (
+const LanguageSwitcher = (props) => (
   <StaticQuery
     query={graphql`
       query LanguageSwitcherQuery {
@@ -41,11 +47,12 @@ const LanguageSwitcher = () => (
         }
       }
     `}
-    render={(data) => <LanguageSwitcherComponent data={data} />}
+    render={(data) => <LanguageSwitcherComponent data={data} {...props} />}
   />
 );
 
 LanguageSwitcherComponent.propTypes = {
+  lang: PropTypes.string.isRequired,
   data: PropTypes.shape({
     prismicPage: PropTypes.shape({ lang: PropTypes.string.isRequired })
       .isRequired,
