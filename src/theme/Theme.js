@@ -19,7 +19,7 @@ const ThemeComponent = ({
     <Navbar lang={lang} />
     <PageOrnament />
     <main>{children}</main>
-    <Footer logo={logo} links={footerLinks} />
+    <Footer lang={lang} logo={logo} links={footerLinks} />
   </>
 );
 

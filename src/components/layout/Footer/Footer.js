@@ -5,9 +5,12 @@ import { Link } from 'gatsby';
 import cx from 'classnames';
 import * as styles from './Footer.module.sass';
 
-const Footer = ({ logo: { alt, fluid }, links }) => (
+const Footer = ({ lang, logo: { alt, fluid }, links }) => (
   <footer className={cx(styles.footer, 'wrap')}>
-    <Link to="/" className={styles.logoWrap}>
+    <Link
+      to={lang === 'pl' ? '/' : `/${lang.slice(0, -3)}`}
+      className={styles.logoWrap}
+    >
       <GatsbyImage fluid={fluid} alt={alt} />
     </Link>
 
@@ -29,6 +32,7 @@ const Footer = ({ logo: { alt, fluid }, links }) => (
 );
 
 Footer.propTypes = {
+  lang: PropTypes.string.isRequired,
   logo: PropTypes.shape({
     alt: PropTypes.string.isRequired,
     fluid: PropTypes.shape.isRequired,
