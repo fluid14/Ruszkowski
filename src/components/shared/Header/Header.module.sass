@@ -53,14 +53,17 @@ $marginTop: 115px
 
   .headerWrap
     display: flex
-    justify-content: flex-end
+    flex-direction: column
+    align-items: flex-end
     position: relative
     z-index: 3
     color: $white
     padding-top: calc(18.5vw - #{$marginTop})
 
     h1
+      text-align: right
       transform: translateX(9%)
+      margin: 0
 
 @media screen and (max-width: 1599px)
   .header

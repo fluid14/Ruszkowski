@@ -4,7 +4,7 @@
     "blog_banner_title": {
       "type": "StructuredText",
       "config": {
-        "single": "heading1",
+        "single": "heading1,heading2,heading3,heading4,heading5,heading6",
         "label": "Tytuł bannera",
         "placeholder": "Tytuł wyświetlany na banerze"
       }
@@ -20,7 +20,7 @@
     "blog_description_title": {
       "type": "StructuredText",
       "config": {
-        "multi": "heading2,strong",
+        "multi": "heading1,heading2,heading3,heading4,heading5,heading6,strong",
         "label": "Tytuł opisu"
       }
     },
@@ -34,7 +34,7 @@
     "last_article_title": {
       "type": "StructuredText",
       "config": {
-        "multi": "heading3,strong",
+        "multi": "heading1,heading2,heading3,heading4,heading5,heading6,strong",
         "label": "Ostatnie wpisy tytuł"
       }
     }

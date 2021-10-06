@@ -11,7 +11,7 @@
     "article_title": {
       "type": "StructuredText",
       "config": {
-        "multi": "strong",
+        "multi": "heading1, heading2, heading3, heading4, heading5, heading6, strong",
         "label": "Tytuł wpisu"
       }
     },

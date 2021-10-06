@@ -21,7 +21,7 @@ const ContactComponent = ({
   return (
     <Section>
       <SectionTitle center shadowText="kontakt">
-        {'<h3>BĄDŹMY w <strong>kontakcie</strong></h3>'}
+        {'<h4>BĄDŹMY w <strong>kontakcie</strong></h4>'}
       </SectionTitle>
       <div className={styles.contactWrap}>
         <div className={styles.contactInfo}>
