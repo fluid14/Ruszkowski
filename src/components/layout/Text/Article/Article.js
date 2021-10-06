@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
+import GatsbyImage from 'gatsby-image';
 import * as styles from './Article.module.sass';
 
 const Article = ({ children, xl, l, className, object }) => (
@@ -14,6 +15,7 @@ const Article = ({ children, xl, l, className, object }) => (
         dangerouslySetInnerHTML={{ __html: children }}
       />
     )}
+
     {object && (
       <article
         className={cx(className, styles.article, {
@@ -22,8 +24,16 @@ const Article = ({ children, xl, l, className, object }) => (
         })}
       >
         {children.map(({ slice_type: type, items }) => {
-          console.log(items);
-          return <p>{items}</p>;
+          if (type === 'paragraf') {
+            return items.map((item) => (
+              <div dangerouslySetInnerHTML={{ __html: item.paragraph.html }} />
+            ));
+          }
+          if (type === 'zdjecie') {
+            return items.map((item) => (
+              <GatsbyImage fluid={item.photo.fluid} alt={item.photo.alt} />
+            ));
+          }
         })}
       </article>
     )}
