@@ -31,7 +31,9 @@ const Article = ({ children, xl, l, className, object }) => (
           }
           if (type === 'zdjecie') {
             return items.map((item) => (
-              <GatsbyImage fluid={item.photo.fluid} alt={item.photo.alt} />
+              <div className={styles.imgWrap}>
+                <GatsbyImage fluid={item.photo.fluid} alt={item.photo.alt} />
+              </div>
             ));
           }
         })}

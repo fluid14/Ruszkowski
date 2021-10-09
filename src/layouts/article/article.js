@@ -7,10 +7,9 @@ import Theme from '../../theme/Theme';
 import Header from '../../components/shared/Header/Header';
 import * as styles from './article.module.sass';
 import Article from '../../components/layout/Text/Article/Article';
+import Contact from '../../components/shared/Contact/Contact';
 
 const ArticlePage = ({ pageContext: { lang }, data: { prismicArticle } }) => {
-  console.log(prismicArticle);
-
   const {
     first_publication_date: firstPublicationDate,
     data: {
@@ -20,8 +19,6 @@ const ArticlePage = ({ pageContext: { lang }, data: { prismicArticle } }) => {
     },
   } = prismicArticle;
 
-  console.log(article);
-
   return (
     <>
       <Theme lang={lang}>
@@ -29,11 +26,14 @@ const ArticlePage = ({ pageContext: { lang }, data: { prismicArticle } }) => {
         <main className="wrap">
           <div className={styles.content}>
             <Section className={styles.article}>
-              <SectionTitle>{title}</SectionTitle>
+              <SectionTitle transformNone>{title}</SectionTitle>
+              <div className={styles.metaArticle}>
+                <p className={styles.data}>{firstPublicationDate}</p>
+              </div>
               <Article object>{article}</Article>
             </Section>
           </div>
-          {/* <Contact /> */}
+          <Contact />
         </main>
       </Theme>
     </>
