@@ -1,5 +1,80 @@
+@import './src/styles/config'
+
+.main
+  display: flex
+  align-items: flex-start
+  justify-content: flex-start
+
 .content
+  width: 100%
   max-width: 750px
 
   .article
-    margin-bottom: 50px
+    margin-bottom: 125px
+    position: relative
+    margin-top: -262px
+    z-index: 2
+
+    .title
+      margin-bottom: 35px
+
+  .metaArticle
+    display: flex
+    align-items: center
+    justify-content: flex-end
+    color: $second
+    margin-bottom: 80px
+    font-size: 14px
+    font-weight: $light
+    text-align: right
+
+  .tags
+    margin-bottom: 270px
+
+.aside
+  flex-grow: 1
+  height: 500px
+  background-color: red
+  margin-top: -17px
+  margin-left: 30px
+
+@media screen and (max-width: 1599px)
+  .content
+    .tags
+      margin-bottom: 200px
+
+@media screen and (max-width: 1266px)
+  .content
+    max-width: 59.2vw
+
+@media screen and (max-width: 992px)
+  .main
+    flex-direction: column
+
+  .content
+    max-width: 100%
+
+    .article
+      margin-bottom: 50px
+
+    .metaArticle
+      margin-bottom: 40px
+
+    .tags
+      margin-bottom: 50px
+
+  .aside
+    margin: unset
+    width: 100%
+
+@media screen and (max-width: 599px)
+  .content
+    .metaArticle
+      margin-bottom: 20px
+      font-size: 12px
+
+    .article
+      margin-bottom: 30px
+
+    .tags
+      margin-bottom: 30px

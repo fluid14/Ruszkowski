@@ -7,6 +7,7 @@ import * as styles from './Contact.module.sass';
 import Button from '../../layout/Button/Button';
 
 const ContactComponent = ({
+  className,
   data: {
     prismicSettings: { data },
   },
@@ -19,7 +20,7 @@ const ContactComponent = ({
     email,
   } = data;
   return (
-    <Section>
+    <Section className={className}>
       <SectionTitle center shadowText="kontakt">
         {'<h4>BĄDŹMY w <strong>kontakcie</strong></h4>'}
       </SectionTitle>
@@ -79,6 +80,7 @@ const Contact = (props) => (
 );
 
 ContactComponent.propTypes = {
+  className: PropTypes.string,
   data: PropTypes.shape({
     prismicSettings: PropTypes.shape({
       data: PropTypes.shape({
@@ -90,6 +92,10 @@ ContactComponent.propTypes = {
       }).isRequired,
     }),
   }).isRequired,
+};
+
+ContactComponent.defaultProps = {
+  className: '',
 };
 
 export default Contact;

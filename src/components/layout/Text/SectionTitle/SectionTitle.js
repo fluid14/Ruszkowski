@@ -10,10 +10,12 @@ const SectionTitle = ({
   left,
   right,
   transformNone,
+  className,
 }) => (
   <div className={styles.sectionTitleWrap}>
     <div
       className={cx(
+        className,
         styles.sectionTitle,
         { [styles.center]: center },
         { [styles.left]: left },
@@ -27,6 +29,7 @@ const SectionTitle = ({
 );
 
 SectionTitle.propTypes = {
+  className: PropTypes.string,
   children: PropTypes.string.isRequired,
   shadowText: PropTypes.string,
   center: PropTypes.bool,
@@ -36,6 +39,7 @@ SectionTitle.propTypes = {
 };
 
 SectionTitle.defaultProps = {
+  className: '',
   shadowText: '',
   center: false,
   left: false,

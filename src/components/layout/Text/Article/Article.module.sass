@@ -9,9 +9,6 @@
     font-weight: $light
     line-height: 1.6
 
-    &:nth-last-child(1)
-      margin-bottom: 0 !important
-
   &.xl
     p
       font-size: 24px
@@ -26,13 +23,25 @@
   .imgWrap
     position: relative
     margin-bottom: 50px
-    @include overlay(#000)
+    border-radius: 4px
+    @include overlay($second, .5, 0, unset)
 
 @media screen and (max-width: 1599px)
   .article
     &.xl
       p
         font-size: 20px
+
+    .imgWrap
+      margin-bottom: 35px
+
+@media screen and (max-width: 992px)
+  .article
+    p
+      margin-bottom: 30px
+
+    .imgWrap
+      margin-bottom: 30px
 
 @media screen and (max-width: 767px)
   .article
@@ -45,3 +54,14 @@
     &.l
       p
         font-size: 16px
+
+    .imgWrap
+      margin-bottom: 20px
+
+@media screen and (max-width: 599px)
+  .article
+    p
+      margin-bottom: 20px
+
+    .imgWrap
+      margin-bottom: 15px
