@@ -10,8 +10,12 @@ import * as styles from './article.module.sass';
 import Article from '../../components/layout/Text/Article/Article';
 import Contact from '../../components/shared/Contact/Contact';
 import Tags from '../../components/shared/Tags/Tags';
+import ArticleListAside from '../../components/shared/ArticleListAside/ArticleListAside';
 
-const ArticlePage = ({ pageContext: { lang }, data: { prismicArticle } }) => {
+const ArticlePage = ({
+  pageContext: { lang },
+  data: { prismicArticle, allPrismicArticle },
+}) => {
   const {
     tags,
     first_publication_date: firstPublicationDate,
@@ -21,6 +25,8 @@ const ArticlePage = ({ pageContext: { lang }, data: { prismicArticle } }) => {
       body: article,
     },
   } = prismicArticle;
+
+  const { edges: articles } = allPrismicArticle;
 
   return (
     <>
@@ -43,7 +49,13 @@ const ArticlePage = ({ pageContext: { lang }, data: { prismicArticle } }) => {
               <Tags tags={tags} dark />
             </section>
           </div>
-          <aside className={styles.aside} />
+          <aside className={styles.aside}>
+            <h4>
+              Inne <strong>wpisy</strong>
+            </h4>
+            <ArticleListAside articles={articles} />
+            <Tags tags={tags} dark />
+          </aside>
         </main>
         <Contact className="wrap" />
       </Theme>
@@ -89,6 +101,26 @@ export const query = graphql`
       tags
       first_publication_date
     }
+    allPrismicArticle(filter: { lang: { eq: $lang } }, limit: 3) {
+      edges {
+        node {
+          id
+          data {
+            article_title {
+              text
+            }
+            article_miniature {
+              fluid {
+                ...GatsbyImgixFluid
+              }
+              alt
+            }
+          }
+          first_publication_date
+          url
+        }
+      }
+    }
   }
 `;
 
@@ -109,6 +141,11 @@ ArticlePage.propTypes = {
       }).isRequired,
       first_publication_date: PropTypes.string.isRequired,
       tags: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+    }).isRequired,
+    allPrismicArticle: PropTypes.shape({
+      edges: PropTypes.shape({
+        nodes: PropTypes.shape.isRequired,
+      }).isRequired,
     }).isRequired,
   }).isRequired,
 };
