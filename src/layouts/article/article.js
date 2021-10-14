@@ -14,7 +14,7 @@ import ArticleListAside from '../../components/shared/ArticleListAside/ArticleLi
 
 const ArticlePage = ({
   pageContext: { lang },
-  data: { prismicArticle, allPrismicArticle },
+  data: { prismicArticle, allPrismicArticle, prismicPage },
 }) => {
   const {
     tags,
@@ -28,13 +28,19 @@ const ArticlePage = ({
 
   const { edges: articles } = allPrismicArticle;
 
+  const {
+    data: {
+      article_list_aside_title: { html: articleListAsideTitle },
+    },
+  } = prismicPage;
+
   return (
     <>
       <Theme lang={lang}>
         <Header title="<h1>Blog</h1>" bgc={bannerImg} bgcAlt={bannerAlt} />
         <main className={cx('wrap', styles.main)}>
-          <div className={styles.content}>
-            <Section className={styles.article}>
+          <div className={styles.headers}>
+            <div className={styles.articleTitleWrap}>
               <SectionTitle transformNone className={styles.title}>
                 {title}
               </SectionTitle>
@@ -43,19 +49,34 @@ const ArticlePage = ({
                   {new Date(firstPublicationDate).toLocaleDateString()}
                 </p>
               </div>
-              <Article object>{article}</Article>
-            </Section>
-            <section className={styles.tags}>
-              <Tags tags={tags} dark />
-            </section>
+            </div>
+
+            <div
+              className={styles.asideTitle}
+              dangerouslySetInnerHTML={{ __html: articleListAsideTitle }}
+            />
           </div>
-          <aside className={styles.aside}>
-            <h4>
-              Inne <strong>wpisy</strong>
-            </h4>
-            <ArticleListAside articles={articles} />
-            <Tags tags={tags} dark />
-          </aside>
+
+          <div className={styles.body}>
+            <div className={styles.content}>
+              <Article object>{article}</Article>
+              <section className={styles.tags}>
+                <Tags tags={tags} dark />
+              </section>
+            </div>
+
+            <aside className={styles.aside}>
+              <div
+                className={styles.asideTitle}
+                dangerouslySetInnerHTML={{ __html: articleListAsideTitle }}
+              />
+              <ArticleListAside
+                className={styles.articleListAside}
+                articles={articles}
+              />
+              <Tags tags={tags} dark />
+            </aside>
+          </div>
         </main>
         <Contact className="wrap" />
       </Theme>
@@ -65,6 +86,13 @@ const ArticlePage = ({
 
 export const query = graphql`
   query ArticleQuery($id: String, $lang: String) {
+    prismicPage(lang: { eq: $lang }) {
+      data {
+        article_list_aside_title {
+          html
+        }
+      }
+    }
     prismicArticle(id: { eq: $id }, lang: { eq: $lang }) {
       data {
         article_title {
@@ -129,6 +157,13 @@ ArticlePage.propTypes = {
     lang: PropTypes.string.isRequired,
   }).isRequired,
   data: PropTypes.shape({
+    prismicPage: PropTypes.shape({
+      data: PropTypes.shape({
+        article_list_aside_title: PropTypes.shape({
+          html: PropTypes.string.isRequired,
+        }).isRequired,
+      }).isRequired,
+    }).isRequired,
     prismicArticle: PropTypes.shape({
       data: PropTypes.shape({
         article_title: PropTypes.shape({ html: PropTypes.string.isRequired })

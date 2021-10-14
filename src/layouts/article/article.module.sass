@@ -1,78 +1,134 @@
 @import './src/styles/config'
 
 .main
-  display: flex
-  align-items: flex-start
-  justify-content: flex-start
+  margin-top: -257px
+  .headers,
+  .body
+    display: grid
+    grid-template-columns: 750px minmax(370px, 1fr)
+    grid-column-gap: 30px
 
-.content
-  width: 100%
-  max-width: 750px
+  .headers
+    margin: 0
 
-  .article
-    margin-bottom: 125px
-    position: relative
-    margin-top: -262px
-    z-index: 2
+    .articleTitleWrap
+      .title
+        margin-bottom: 35px
 
-    .title
-      margin-bottom: 35px
+      .metaArticle
+        display: flex
+        align-items: center
+        justify-content: flex-end
+        color: $second
+        margin-bottom: 80px
 
-  .metaArticle
-    display: flex
-    align-items: center
-    justify-content: flex-end
-    color: $second
-    margin-bottom: 80px
-    font-size: 14px
-    font-weight: $light
-    text-align: right
+        .data
+          font-size: 14px
+          font-weight: $light
+          text-align: right
 
-  .tags
-    margin-bottom: 230px
 
-.aside
-  flex-grow: 1
-  margin-top: -17px
-  margin-left: 30px
+  .body
+    display: grid
 
-@media screen and (max-width: 1599px)
-  .content
+    .content
+      width: 100%
+
+      .article
+        margin-bottom: 125px
+        position: relative
+        margin-top: -262px
+        z-index: 2
+
     .tags
-      margin-bottom: 200px
+      margin-top: 120px
+      margin-bottom: 230px
+
+    .aside
+      .articleListAside
+        margin-bottom: 55px
+
+    .asideTitle
+      display: none
+
+  .asideTitle
+    display: flex
+    align-items: flex-end
+    justify-content: center
+    margin-bottom: 49px
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p
+      color: $gray
+      font-weight: 300
+      text-align: center
+      letter-spacing: 6.4px
+      line-height: 1.2
 
 @media screen and (max-width: 1266px)
-  .content
-    max-width: 59.2vw
+  .main
+    .headers,
+    .body
+      grid-template-columns: calc(100vw - 80px - 370px - 30px) 370px
 
 @media screen and (max-width: 992px)
   .main
-    flex-direction: column
+    .headers,
+    .body
+      grid-template-columns: 100%
+      grid-column-gap: unset
 
-  .content
-    max-width: 100%
+    .headers
+      margin: 0
 
-    .article
-      margin-bottom: 50px
+      .articleTitleWrap
+        .title
+          margin-bottom: 35px
 
-    .metaArticle
-      margin-bottom: 40px
+        .metaArticle
+          margin-bottom: 40px
 
-    .tags
-      margin-bottom: 50px
+      .asideTitle
+        display: none
 
-  .aside
-    margin: unset
-    width: 100%
+    .body
+      display: grid
+
+      .tags
+        margin-top: 40px
+        margin-bottom: 80px
+
+      .aside
+        margin-bottom: 80px
+
+        .articleListAside
+          margin-bottom: 55px
+
+      .asideTitle
+        display: flex
 
 @media screen and (max-width: 599px)
-  .content
-    .metaArticle
-      margin-bottom: 20px
-      font-size: 12px
+  .main
+    .headers
+      .articleTitleWrap
+        .title
+          margin-bottom: 25px
 
-    .article
-      margin-bottom: 30px
+        .metaArticle
+          margin-bottom: 20px
 
-    .tags
-      margin-bottom: 30px
+    .body
+      .tags
+        margin-top: 40px
+        margin-bottom: 60px
+
+      .aside
+        margin-bottom: 60px
+
+        .articleListAside
+          margin-bottom: 40px

@@ -3,10 +3,11 @@ import PropTypes from 'prop-types';
 import { Link } from 'gatsby';
 import BackgroundImage from 'gatsby-background-image';
 import slugify from 'slugify';
+import cx from 'classnames';
 import * as styles from './ArticleListAside.module.sass';
 
-const ArticleListAside = ({ articles }) => (
-  <ul className={styles.articleListWrap}>
+const ArticleListAside = ({ className, articles }) => (
+  <ul className={cx(className, styles.articleListWrap)}>
     {articles.map((item) => {
       const {
         node: {
@@ -52,6 +53,7 @@ const ArticleListAside = ({ articles }) => (
 );
 
 ArticleListAside.propTypes = {
+  className: PropTypes.string,
   articles: PropTypes.shape({
     node: PropTypes.shape({
       node: PropTypes.shape({
@@ -70,6 +72,10 @@ ArticleListAside.propTypes = {
       }).isRequired,
     }).isRequired,
   }).isRequired,
+};
+
+ArticleListAside.defaultProps = {
+  className: '',
 };
 
 export default ArticleListAside;

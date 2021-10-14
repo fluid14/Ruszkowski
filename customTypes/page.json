@@ -37,6 +37,13 @@
         "multi": "heading1,heading2,heading3,heading4,heading5,heading6,strong",
         "label": "Ostatnie wpisy tytuł"
       }
+    },
+    "article_list_aside_title": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading1, heading2, heading3, heading4, heading5, heading6, strong, em",
+        "label": "article_list_aside_title"
+      }
     }
   },
   "Ustawienia": {
