@@ -14,7 +14,7 @@ import ArticleListAside from '../../components/shared/ArticleListAside/ArticleLi
 
 const ArticlePage = ({
   pageContext: { lang },
-  data: { prismicArticle, allPrismicArticle, prismicPage },
+  data: { prismicArticle, allPrismicArticle, prismicBlogPage },
 }) => {
   const {
     tags,
@@ -30,9 +30,9 @@ const ArticlePage = ({
 
   const {
     data: {
-      article_list_aside_title: { html: articleListAsideTitle },
+      article_list_aside: { html: articleListAsideTitle },
     },
-  } = prismicPage;
+  } = prismicBlogPage;
 
   return (
     <>
@@ -86,9 +86,9 @@ const ArticlePage = ({
 
 export const query = graphql`
   query ArticleQuery($id: String, $lang: String) {
-    prismicPage(lang: { eq: $lang }) {
+    prismicBlogPage(lang: { eq: $lang }) {
       data {
-        article_list_aside_title {
+        article_list_aside {
           html
         }
       }
@@ -157,9 +157,9 @@ ArticlePage.propTypes = {
     lang: PropTypes.string.isRequired,
   }).isRequired,
   data: PropTypes.shape({
-    prismicPage: PropTypes.shape({
+    prismicBlogPage: PropTypes.shape({
       data: PropTypes.shape({
-        article_list_aside_title: PropTypes.shape({
+        article_list_aside: PropTypes.shape({
           html: PropTypes.string.isRequired,
         }).isRequired,
       }).isRequired,

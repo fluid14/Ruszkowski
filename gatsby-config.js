@@ -23,6 +23,7 @@ module.exports = {
           navigation: require('./customTypes/navigation.json'),
           settings: require('./customTypes/settings.json'),
           main_page: require('./customTypes/main_page.json'),
+          realizations_page: require('./customTypes/realizations_page.json'),
         },
       },
     },
