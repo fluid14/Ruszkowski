@@ -47,6 +47,7 @@ const Article = ({ children, xl, l, className, object }) => (
 
 Article.propTypes = {
   children: PropTypes.oneOfType([
+    PropTypes.any,
     PropTypes.string,
     PropTypes.node,
     PropTypes.arrayOf(
