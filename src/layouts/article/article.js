@@ -178,9 +178,11 @@ ArticlePage.propTypes = {
       tags: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
     }).isRequired,
     allPrismicArticle: PropTypes.shape({
-      edges: PropTypes.shape({
-        nodes: PropTypes.shape.isRequired,
-      }).isRequired,
+      edges: PropTypes.arrayOf(
+        PropTypes.shape({
+          nodes: PropTypes.shape.isRequired,
+        }).isRequired
+      ).isRequired,
     }).isRequired,
   }).isRequired,
 };

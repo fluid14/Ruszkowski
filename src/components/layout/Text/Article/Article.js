@@ -25,13 +25,16 @@ const Article = ({ children, xl, l, className, object }) => (
       >
         {children.map(({ slice_type: type, items }) => {
           if (type === 'paragraf') {
-            return items.map((item) => (
-              <div dangerouslySetInnerHTML={{ __html: item.paragraph.html }} />
+            return items.map((item, i) => (
+              <div
+                key={i}
+                dangerouslySetInnerHTML={{ __html: item.paragraph.html }}
+              />
             ));
           }
           if (type === 'zdjecie') {
-            return items.map((item) => (
-              <div className={styles.imgWrap}>
+            return items.map((item, i) => (
+              <div key={i} className={styles.imgWrap}>
                 <GatsbyImage fluid={item.photo.fluid} alt={item.photo.alt} />
               </div>
             ));
@@ -45,6 +48,7 @@ const Article = ({ children, xl, l, className, object }) => (
 Article.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.string,
+    PropTypes.node,
     PropTypes.arrayOf(
       PropTypes.shape({
         slice_type: PropTypes.string.isRequired,

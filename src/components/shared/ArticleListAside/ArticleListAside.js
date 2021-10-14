@@ -54,24 +54,26 @@ const ArticleListAside = ({ className, articles }) => (
 
 ArticleListAside.propTypes = {
   className: PropTypes.string,
-  articles: PropTypes.shape({
-    node: PropTypes.shape({
+  articles: PropTypes.arrayOf(
+    PropTypes.shape({
       node: PropTypes.shape({
-        id: PropTypes.string.isRequired,
-        data: PropTypes.shape({
-          article_title: PropTypes.shape({
-            text: PropTypes.string.isRequired,
+        node: PropTypes.shape({
+          id: PropTypes.string.isRequired,
+          data: PropTypes.shape({
+            article_title: PropTypes.shape({
+              text: PropTypes.string.isRequired,
+            }).isRequired,
+            article_miniature: PropTypes.shape({
+              alt: PropTypes.string.isRequired,
+              fluid: PropTypes.shape.isRequired,
+            }).isRequired,
           }).isRequired,
-          article_miniature: PropTypes.shape({
-            alt: PropTypes.string.isRequired,
-            fluid: PropTypes.shape.isRequired,
-          }).isRequired,
-        }).isRequired,
-        first_publication_date: PropTypes.string.isRequired,
-        url: PropTypes.string.isRequired,
-      }).isRequired,
-    }).isRequired,
-  }).isRequired,
+          first_publication_date: PropTypes.string.isRequired,
+          url: PropTypes.string.isRequired,
+        }),
+      }),
+    })
+  ).isRequired,
 };
 
 ArticleListAside.defaultProps = {
