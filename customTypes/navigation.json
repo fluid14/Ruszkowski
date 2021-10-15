@@ -8,7 +8,13 @@
             "type": "Link",
             "config": {
               "select": "document",
-              "customtypes": ["article", "page"],
+              "customtypes": [
+                "article",
+                "page",
+                "blog_page",
+                "realizations_page",
+                "main_page"
+              ],
               "label": "Link"
             }
           },

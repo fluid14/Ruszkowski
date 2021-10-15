@@ -33,6 +33,13 @@ exports.createPages = async ({ graphql, actions }) => {
           id
         }
       }
+      allPrismicRealizationsPage {
+        nodes {
+          url
+          lang
+          id
+        }
+      }
     }
   `);
 
@@ -69,6 +76,17 @@ exports.createPages = async ({ graphql, actions }) => {
       context: {
         id: article.id,
         lang: article.lang,
+      },
+    });
+  });
+
+  query.data.allPrismicRealizationsPage.nodes.forEach((realizations) => {
+    createPage({
+      path: realizations.url,
+      component: path.resolve(`./src/layouts/realizations/realizations.js`),
+      context: {
+        id: realizations.id,
+        lang: realizations.lang,
       },
     });
   });

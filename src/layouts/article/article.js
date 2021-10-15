@@ -37,7 +37,11 @@ const ArticlePage = ({
   return (
     <>
       <Theme lang={lang}>
-        <Header title="<h1>Blog</h1>" bgc={bannerImg} bgcAlt={bannerAlt} />
+        <Header
+          title="<h1>Realizations</h1>"
+          bgc={bannerImg}
+          bgcAlt={bannerAlt}
+        />
         <main className={cx('wrap', styles.main)}>
           <div className={styles.headers}>
             <div className={styles.articleTitleWrap}>

@@ -1,3 +1,83 @@
 {
-  "Main": {}
+  "Main": {
+    "banner_title": {
+      "type": "StructuredText",
+      "config": {
+        "multi": "heading1, heading2, heading3, heading4, heading5, heading6, strong",
+        "label": "Tytuł wyświetlany na banerze"
+      }
+    },
+    "banner": {
+      "type": "Image",
+      "config": {
+        "constraint": {},
+        "thumbnails": [],
+        "label": "Banner"
+      }
+    },
+    "body": {
+      "type": "Slices",
+      "fieldset": "Slice zone",
+      "config": {
+        "labels": null,
+        "choices": {
+          "wspo_praca": {
+            "type": "Slice",
+            "fieldset": "Współpraca",
+            "description": "Współpracujmy - nasza specjalność",
+            "icon": "account_circle",
+            "display": "list",
+            "non-repeat": {
+              "cooperation_title": {
+                "type": "StructuredText",
+                "config": {
+                  "multi": "paragraph, heading1, heading2, heading3, heading4, heading5, heading6, strong",
+                  "label": "Tytuł - Współpracujmy"
+                }
+              },
+              "cooperation_description": {
+                "type": "StructuredText",
+                "config": {
+                  "multi": "paragraph, strong, em",
+                  "label": "Opis - Współpracujmy"
+                }
+              },
+              "cooperation_photo": {
+                "type": "Image",
+                "config": {
+                  "constraint": {},
+                  "thumbnails": [],
+                  "label": "Zdjęcie - Współpracujmy"
+                }
+              },
+              "our_speciality": {
+                "type": "StructuredText",
+                "config": {
+                  "multi": "paragraph, strong, em",
+                  "label": "Tytuł - Nasza specjalność"
+                }
+              }
+            },
+            "repeat": {
+              "our_speciality_icon": {
+                "type": "Image",
+                "config": {
+                  "constraint": {},
+                  "thumbnails": [],
+                  "label": "Ikona - nasza specjalność"
+                }
+              },
+              "out_speciality_description": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "heading6",
+                  "label": "Opis - nasza specjalność"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }
