@@ -5,10 +5,6 @@ import cx from 'classnames';
 import Theme from '../../theme/Theme';
 import Header from '../../components/shared/Header/Header';
 import * as styles from './realizations.module.sass';
-import SectionTitle from '../../components/layout/Text/SectionTitle/SectionTitle';
-import Article from '../../components/layout/Text/Article/Article';
-import Section from '../../components/shared/Section/Section';
-import ArticleList from '../../components/Article/ArticleList/ArticleList';
 import Contact from '../../components/shared/Contact/Contact';
 import Cooperation from '../../components/sections/Cooperation/Cooperation';
 import RealizationsList from '../../components/sections/RealizationsList/RealizationsList';
@@ -41,7 +37,13 @@ const Realizations = ({ data }) => {
                 );
 
               case 'realizacje':
-                return <RealizationsList data={slice} />;
+                return (
+                  <RealizationsList
+                    className={styles.realizationsList}
+                    data={slice}
+                    realizations={data.allPrismicRelization}
+                  />
+                );
 
               default:
                 return null;
@@ -112,6 +114,31 @@ export const query = graphql`
         }
       }
     }
+    allPrismicRelization(filter: { lang: { eq: $lang } }) {
+      totalCount
+      nodes {
+        id
+        data {
+          description {
+            text
+          }
+          gallery {
+            photo {
+              fluid {
+                src
+              }
+              alt
+            }
+          }
+          investor {
+            text
+          }
+          place {
+            text
+          }
+        }
+      }
+    }
   }
 `;
 
@@ -137,6 +164,9 @@ Realizations.propTypes = {
         ),
       }).isRequired,
     }),
+    allPrismicRelization: PropTypes.shape({
+      nodes: PropTypes.shape.isRequired,
+    }).isRequired,
   }).isRequired,
 };
 

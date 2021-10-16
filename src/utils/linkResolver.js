@@ -13,7 +13,9 @@ exports.linkResolver = (doc) => {
     }
 
     case 'realizations_page': {
-      return doc.lang === 'pl' ? '/' : `/${mapLang(doc.lang)}`;
+      return doc.lang === 'pl'
+        ? '/realizations'
+        : `/${mapLang(doc.lang)}/realizations`;
     }
 
     default:

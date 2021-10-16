@@ -3,7 +3,7 @@
     "banner_title": {
       "type": "StructuredText",
       "config": {
-        "single": "heading1",
+        "single": "heading1, heading2, heading3, heading4, heading5, heading6",
         "label": "Tytuł bannera",
         "placeholder": "Tytuł wyświetlany na banerze"
       }
@@ -19,7 +19,7 @@
     "description_title": {
       "type": "StructuredText",
       "config": {
-        "multi": "heading2,strong",
+        "multi": "heading1, heading2, heading3, heading4, heading5, heading6, strong",
         "label": "Tytuł opisu"
       }
     },
@@ -33,14 +33,14 @@
     "last_article_title": {
       "type": "StructuredText",
       "config": {
-        "single": "heading3,strong",
+        "single": "heading1, heading2, heading3, heading4, heading5, heading6, strong",
         "label": "Ostatnie wpisy tytuł"
       }
     },
     "article_list_aside": {
       "type": "StructuredText",
       "config": {
-        "single": "heading1,heading2,heading3,heading4,heading5,heading6,strong",
+        "single": "heading1, heading2, heading3, heading4, heading5, heading6, strong",
         "label": "Lista artykułów tytuł"
       }
     }

@@ -24,6 +24,7 @@ module.exports = {
           settings: require('./customTypes/settings.json'),
           main_page: require('./customTypes/main_page.json'),
           realizations_page: require('./customTypes/realizations_page.json'),
+          relization: require('./customTypes/relization.json'),
         },
       },
     },

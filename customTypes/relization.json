@@ -1,0 +1,41 @@
+{
+  "Main": {
+    "investor": {
+      "type": "StructuredText",
+      "config": {
+        "single": "paragraph",
+        "label": "Inwestor"
+      }
+    },
+    "place": {
+      "type": "StructuredText",
+      "config": {
+        "single": "paragraph",
+        "label": "Miejsce"
+      }
+    },
+    "description": {
+      "type": "StructuredText",
+      "config": {
+        "multi": "paragraph",
+        "label": "Zakres"
+      }
+    },
+    "gallery": {
+      "type": "Group",
+      "config": {
+        "fields": {
+          "photo": {
+            "type": "Image",
+            "config": {
+              "constraint": {},
+              "thumbnails": [],
+              "label": "Zdjęcie"
+            }
+          }
+        },
+        "label": "Galeria"
+      }
+    }
+  }
+}
