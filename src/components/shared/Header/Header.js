@@ -6,8 +6,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebookF, faInstagram } from '@fortawesome/free-brands-svg-icons';
 import * as styles from './Header.module.sass';
 
-const Header = ({ title, bgc, bgcAlt }) => (
-  <header className={styles.header}>
+const Header = ({ className, title, bgc, bgcAlt }) => (
+  <header className={cx(className, styles.header)}>
     <div className={styles.socials}>
       <a className={styles.socialIcon} href="instagram.com" target="_blank">
         <FontAwesomeIcon icon={faInstagram} />
@@ -29,10 +29,15 @@ const Header = ({ title, bgc, bgcAlt }) => (
   </header>
 );
 
-export default Header;
-
 Header.propTypes = {
+  className: PropTypes.string,
   title: PropTypes.string.isRequired,
   bgc: PropTypes.any.isRequired,
   bgcAlt: PropTypes.string.isRequired,
 };
+
+Header.defaultProps = {
+  className: '',
+};
+
+export default Header;

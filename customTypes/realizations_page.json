@@ -3,7 +3,7 @@
     "banner_title": {
       "type": "StructuredText",
       "config": {
-        "multi": "heading1, heading2, heading3, heading4, heading5, heading6, strong",
+        "multi": "heading1,heading2,heading3,heading4,heading5,heading6,strong",
         "label": "Tytuł wyświetlany na banerze"
       }
     },
@@ -31,14 +31,14 @@
               "cooperation_title": {
                 "type": "StructuredText",
                 "config": {
-                  "multi": "paragraph, heading1, heading2, heading3, heading4, heading5, heading6, strong",
+                  "multi": "paragraph,heading1,heading2,heading3,heading4,heading5,heading6,strong",
                   "label": "Tytuł - Współpracujmy"
                 }
               },
               "cooperation_description": {
                 "type": "StructuredText",
                 "config": {
-                  "multi": "paragraph, strong, em",
+                  "multi": "paragraph,strong,em",
                   "label": "Opis - Współpracujmy"
                 }
               },
@@ -53,7 +53,7 @@
               "our_speciality": {
                 "type": "StructuredText",
                 "config": {
-                  "multi": "paragraph, strong, em",
+                  "multi": "heading1,heading2,heading3,heading4,heading5,heading6,strong",
                   "label": "Tytuł - Nasza specjalność"
                 }
               }
@@ -75,6 +75,23 @@
                 }
               }
             }
+          },
+          "realizacje": {
+            "type": "Slice",
+            "fieldset": "Realizacje",
+            "description": "Lista realizacji",
+            "icon": "dashboard",
+            "display": "list",
+            "non-repeat": {
+              "realizations_list_title": {
+                "type": "StructuredText",
+                "config": {
+                  "multi": "heading1, heading2, heading3, heading4, heading5, heading6, strong",
+                  "label": "Tytuł - Lista realizacji"
+                }
+              }
+            },
+            "repeat": {}
           }
         }
       }

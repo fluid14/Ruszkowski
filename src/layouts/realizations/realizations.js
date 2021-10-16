@@ -1,6 +1,7 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 import PropTypes from 'prop-types';
+import cx from 'classnames';
 import Theme from '../../theme/Theme';
 import Header from '../../components/shared/Header/Header';
 import * as styles from './realizations.module.sass';
@@ -9,11 +10,15 @@ import Article from '../../components/layout/Text/Article/Article';
 import Section from '../../components/shared/Section/Section';
 import ArticleList from '../../components/Article/ArticleList/ArticleList';
 import Contact from '../../components/shared/Contact/Contact';
+import Cooperation from '../../components/sections/Cooperation/Cooperation';
+import RealizationsList from '../../components/sections/RealizationsList/RealizationsList';
 
 const Realizations = ({ data }) => {
+  console.log(data);
   const {
     banner: { alt: bannerAlt, fluid: bannerImg },
     banner_title: { html: bannerTitle },
+    body,
   } = data.prismicRealizationsPage.data;
 
   const { lang } = data.prismicRealizationsPage;
@@ -21,19 +26,27 @@ const Realizations = ({ data }) => {
   return (
     <>
       <Theme lang={lang}>
-        <Header title={bannerTitle} bgc={bannerImg} bgcAlt={bannerAlt} />
-        <main className="wrap">
-          {/* <Section className={styles.description}> */}
-          {/*  <SectionTitle>{blogDescriptionTitle}</SectionTitle> */}
-          {/*  <Article xl>{blogDescription}</Article> */}
-          {/* </Section> */}
+        <Header
+          className={styles.header}
+          title={bannerTitle}
+          bgc={bannerImg}
+          bgcAlt={bannerAlt}
+        />
+        <main className={cx(styles.realizationsPage, 'wrap')}>
+          {body.map((slice) => {
+            switch (slice.slice_type) {
+              case 'wspo_praca':
+                return (
+                  <Cooperation className={styles.cooperation} data={slice} />
+                );
 
-          {/* <Section> */}
-          {/*  <SectionTitle center shadowText="Wpisy z bloga"> */}
-          {/*    {lastArticleTitle} */}
-          {/*  </SectionTitle> */}
-          {/*  <ArticleList articles={articles} totalCount={totalCount} /> */}
-          {/* </Section> */}
+              case 'realizacje':
+                return <RealizationsList data={slice} />;
+
+              default:
+                return null;
+            }
+          })}
           <Contact />
         </main>
       </Theme>
@@ -56,6 +69,47 @@ export const query = graphql`
         banner_title {
           html
         }
+        body {
+          ... on PrismicRealizationsPageDataBodyWspoPraca {
+            slice_type
+            primary {
+              cooperation_description {
+                html
+              }
+              cooperation_photo {
+                fluid {
+                  ...GatsbyImgixFluid
+                }
+                alt
+              }
+              cooperation_title {
+                html
+              }
+              our_speciality {
+                html
+              }
+            }
+            items {
+              our_speciality_icon {
+                alt
+                fluid {
+                  ...GatsbyImgixFluid
+                }
+              }
+              out_speciality_description {
+                text
+              }
+            }
+          }
+          ... on PrismicRealizationsPageDataBodyRealizacje {
+            slice_type
+            primary {
+              realizations_list_title {
+                html
+              }
+            }
+          }
+        }
       }
     }
   }
@@ -76,6 +130,11 @@ Realizations.propTypes = {
         banner_title: PropTypes.shape({
           html: PropTypes.string.isRequired,
         }).isRequired,
+        body: PropTypes.arrayOf(
+          PropTypes.shape({
+            slice_type: PropTypes.string.isRequired,
+          }).isRequired
+        ),
       }).isRequired,
     }),
   }).isRequired,
