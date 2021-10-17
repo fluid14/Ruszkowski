@@ -34,7 +34,7 @@ const ContactComponent = ({
   return (
     <Section className={className}>
       <SectionTitle center shadowText="kontakt">
-        {title}
+        {title || `<h4>BĄDŹMY <strong>W KONTAKCIE</strong></h4>`}
       </SectionTitle>
       {(() => {
         switch (formType) {
@@ -105,7 +105,43 @@ const ContactComponent = ({
             );
 
           default:
-            return null;
+            return (
+              <div className={cx(styles.contactWrap)}>
+                <div className={styles.contactInfo}>
+                  <a href={`tel: ${phoneNumber}`} className={styles.phone}>
+                    {phoneNumber}
+                  </a>
+                  <a href={`mailto: ${email}`} className={styles.email}>
+                    {email}
+                  </a>
+                  <p>
+                    PL. {zipCode} {city},
+                  </p>
+                  <p>{street},</p>
+                </div>
+
+                <div className="formWrap">
+                  <form className="contactForm">
+                    <div className="inputWrap">
+                      <div className="inputsWrap">
+                        <input type="text" placeholder="Imię" />
+                        <input type="email" placeholder="Email" />
+                      </div>
+                      <div className="inputsWrap">
+                        <input type="text" placeholder="Telefon" />
+                        <input type="text" placeholder="Miasto" />
+                      </div>
+                      <textarea
+                        placeholder={`Twoja wiadomość ${messagePlaceholder}`}
+                      />
+                    </div>
+                    <Button type="submit" send>
+                      Wyślij
+                    </Button>
+                  </form>
+                </div>
+              </div>
+            );
         }
       })()}
     </Section>
@@ -152,11 +188,16 @@ ContactComponent.propTypes = {
     message_placeholder: PropTypes.shape({
       text: PropTypes.string,
     }).isRequired,
-  }).isRequired,
+  }),
 };
 
 ContactComponent.defaultProps = {
   className: '',
+  slice: {
+    form_type: null,
+    form_title: { html: null },
+    message_placeholder: { text: null },
+  },
 };
 
 export default Contact;
