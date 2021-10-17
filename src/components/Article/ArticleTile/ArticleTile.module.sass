@@ -49,6 +49,46 @@
     padding-top: 44px
     margin-top: 20px
 
+.realizationWrap
+  .imgWrap
+
+    div
+      height: 100%
+
+  .descriptionWrap
+    justify-content: flex-end
+    color: $gray
+    padding-top: 95px
+
+    .realizationInfoWrap,
+    .descriptionInfoWrap
+      margin-bottom: 20px
+
+      .title
+        font-size: 18px
+        font-weight: 300
+        line-height: 1
+        margin-bottom: 5px
+
+      .value,
+      .descriptionTitle
+        font-size: 24px
+        color: $main
+        font-weight: 300
+
+      .descriptionTitle
+        margin-bottom: 5px
+
+      .text
+        font-weight: 300
+        margin: 0
+
+        p
+          margin: 0
+
+    .descriptionInfoWrap
+      margin: 0
+
 @media screen and (max-width: 1266px)
   .articleTileWrap
     .imgWrap
@@ -73,6 +113,18 @@
     .descriptionWrap
       padding: 35px
 
+  .realizationWrap
+    .descriptionWrap
+
+      .realizationInfoWrap,
+      .descriptionInfoWrap
+        .title
+          font-size: 16px
+
+        .value,
+        .descriptionTitle
+          font-size: 22px
+
 @media screen and (max-width: 767px)
   .articleTileWrap
     flex-direction: column
@@ -80,6 +132,21 @@
     .imgWrap
       height: 40vw
       min-height: 185px
+
+  .realizationWrap
+    .descriptionWrap
+
+      .realizationInfoWrap,
+      .descriptionInfoWrap
+        .title
+          font-size: 16px
+
+        .value,
+        .descriptionTitle
+          font-size: 20px
+
+      .tileFooter
+        padding: 0
 
 @media screen and (max-width: 599px)
   .articleTileWrap

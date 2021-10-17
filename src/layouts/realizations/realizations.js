@@ -109,6 +109,15 @@ export const query = graphql`
               realizations_list_title {
                 html
               }
+              investor_title {
+                text
+              }
+              place_title {
+                text
+              }
+              scope_title {
+                text
+              }
             }
           }
         }
@@ -120,7 +129,7 @@ export const query = graphql`
         id
         data {
           description {
-            text
+            html
           }
           gallery {
             photo {

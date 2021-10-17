@@ -12,13 +12,20 @@ const RealizationsList = ({
   const {
     primary: {
       realizations_list_title: { html: title },
+      investor_title: { text: investor },
+      place_title: { text: place },
+      scope_title: { text: scope },
     },
   } = data;
 
   return (
     <Section className={styles.realizationListWrap}>
       <SectionTitle center>{title}</SectionTitle>
-      <ArticleList realizations={realizations} totalCount={totalCount} />
+      <ArticleList
+        realizations={realizations}
+        titles={{ investor, place, scope }}
+        totalCount={totalCount}
+      />
     </Section>
   );
 };
@@ -28,6 +35,15 @@ RealizationsList.propTypes = {
     primary: PropTypes.shape({
       realizations_list_title: PropTypes.shape({
         html: PropTypes.string.isRequired,
+      }).isRequired,
+      investor_title: PropTypes.shape({
+        text: PropTypes.string.isRequired,
+      }).isRequired,
+      place_title: PropTypes.shape({
+        text: PropTypes.string.isRequired,
+      }).isRequired,
+      scope_title: PropTypes.shape({
+        text: PropTypes.string.isRequired,
       }).isRequired,
     }).isRequired,
   }).isRequired,

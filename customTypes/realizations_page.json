@@ -19,14 +19,13 @@
       "type": "Slices",
       "fieldset": "Slice zone",
       "config": {
-        "labels": null,
+        "labels": {},
         "choices": {
           "wspo_praca": {
             "type": "Slice",
             "fieldset": "Współpraca",
             "description": "Współpracujmy - nasza specjalność",
             "icon": "account_circle",
-            "display": "list",
             "non-repeat": {
               "cooperation_title": {
                 "type": "StructuredText",
@@ -86,8 +85,29 @@
               "realizations_list_title": {
                 "type": "StructuredText",
                 "config": {
-                  "multi": "heading1, heading2, heading3, heading4, heading5, heading6, strong",
+                  "multi": "heading1,heading2,heading3,heading4,heading5,heading6,strong",
                   "label": "Tytuł - Lista realizacji"
+                }
+              },
+              "investor_title": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "heading6",
+                  "label": "Tytuł - Inwestor"
+                }
+              },
+              "place_title": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "heading6",
+                  "label": "Tytuł - Miejsce"
+                }
+              },
+              "scope_title": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "heading6",
+                  "label": "Tytuł - Zakres"
                 }
               }
             },
