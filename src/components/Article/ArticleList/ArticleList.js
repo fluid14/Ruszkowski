@@ -4,7 +4,7 @@ import * as styles from './ArticleList.module.sass';
 import ArticleTile from '../ArticleTile/ArticleTile';
 import Button from '../../layout/Button/Button';
 
-const ArticleList = ({ articles, realizations, totalCount, titles }) => {
+const ArticleList = ({ lang, articles, realizations, totalCount, titles }) => {
   const [count, setCount] = useState(2);
   const addArticles = () => {
     setCount(count + 2);
@@ -18,6 +18,7 @@ const ArticleList = ({ articles, realizations, totalCount, titles }) => {
             return (
               <ArticleTile
                 key={article.id}
+                lang={lang}
                 className={styles.articleTile}
                 article={article}
               />
@@ -33,6 +34,7 @@ const ArticleList = ({ articles, realizations, totalCount, titles }) => {
             return (
               <ArticleTile
                 key={realization.id}
+                lang={lang}
                 className={styles.articleTile}
                 article={realization}
                 titles={titles}
@@ -52,6 +54,7 @@ const ArticleList = ({ articles, realizations, totalCount, titles }) => {
 };
 
 ArticleList.propTypes = {
+  lang: PropTypes.string.isRequired,
   articles: PropTypes.arrayOf,
   realizations: PropTypes.arrayOf,
   totalCount: PropTypes.number.isRequired,

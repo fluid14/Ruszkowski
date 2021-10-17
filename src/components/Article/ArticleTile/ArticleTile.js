@@ -11,8 +11,8 @@ import Tags from '../../shared/Tags/Tags';
 import Article from '../../layout/Text/Article/Article';
 import 'swiper/css/bundle';
 
-const ArticleTile = ({ article, realization, className, titles }) => {
-  console.log(article);
+const ArticleTile = ({ lang, article, realization, className, titles }) => {
+  console.log(lang);
 
   return (
     (!realization && (
@@ -97,6 +97,7 @@ const ArticleTile = ({ article, realization, className, titles }) => {
 };
 
 ArticleTile.propTypes = {
+  lang: PropTypes.string.isRequired,
   realization: PropTypes.bool,
   article: PropTypes.shape({
     data: PropTypes.shape({

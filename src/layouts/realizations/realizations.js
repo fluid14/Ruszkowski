@@ -41,15 +41,18 @@ const Realizations = ({ data }) => {
                   <RealizationsList
                     className={styles.realizationsList}
                     data={slice}
+                    lang={lang}
                     realizations={data.allPrismicRelization}
                   />
                 );
+
+              case 'formularz_kontaktowy':
+                return <Contact slice={slice.primary} />;
 
               default:
                 return null;
             }
           })}
-          <Contact />
         </main>
       </Theme>
     </>
@@ -72,6 +75,18 @@ export const query = graphql`
           html
         }
         body {
+          ... on PrismicRealizationsPageDataBodyFormularzKontaktowy {
+            primary {
+              form_title {
+                html
+              }
+              form_type
+              message_placeholder {
+                text
+              }
+            }
+            slice_type
+          }
           ... on PrismicRealizationsPageDataBodyWspoPraca {
             slice_type
             primary {
@@ -168,6 +183,9 @@ Realizations.propTypes = {
         }).isRequired,
         body: PropTypes.arrayOf(
           PropTypes.shape({
+            primary: PropTypes.shape({
+              slice_type: PropTypes.string.isRequired,
+            }).isRequired,
             slice_type: PropTypes.string.isRequired,
           }).isRequired
         ),

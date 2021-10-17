@@ -41,13 +41,15 @@
     "facebook": {
       "type": "Link",
       "config": {
-        "label": "Facebook"
+        "label": "Facebook",
+        "select": null
       }
     },
     "instagram": {
       "type": "Link",
       "config": {
-        "label": "Instagram"
+        "label": "Instagram",
+        "select": null
       }
     },
     "footer_links": {
@@ -63,11 +65,98 @@
           "footer_link": {
             "type": "Link",
             "config": {
-              "label": "Link"
+              "label": "Link",
+              "select": null
             }
           }
         },
         "label": "Stopka - Linki"
+      }
+    }
+  },
+  "Tłumaczenia": {
+    "translation_investor": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading6",
+        "label": "Inwestor"
+      }
+    },
+    "translation_place": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading6",
+        "label": "Miejsce"
+      }
+    },
+    "translations_zakres": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading6",
+        "label": "Zakres"
+      }
+    },
+    "translations_more_content": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading6",
+        "label": "Więcej treści"
+      }
+    },
+    "translation_more_realizations": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading6",
+        "label": "Więcej realizacji"
+      }
+    },
+    "translation_name": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading6",
+        "label": "Imię"
+      }
+    },
+    "translation_surname": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading6",
+        "label": "Nazwisko"
+      }
+    },
+    "translation_telephone": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading6",
+        "label": "Telefon"
+      }
+    },
+    "translation_city": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading6",
+        "label": "Miasto"
+      }
+    },
+    "translation_your_message": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading6",
+        "label": "Twoja wiadomość"
+      }
+    },
+    "translation_send": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading6",
+        "label": "Wyślij"
+      }
+    },
+    "translation_read_more": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading6",
+        "label": "Czytaj więcej"
       }
     }
   }

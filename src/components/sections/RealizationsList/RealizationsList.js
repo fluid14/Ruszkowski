@@ -6,6 +6,7 @@ import * as styles from './RealizationsList.module.sass';
 import ArticleList from '../../Article/ArticleList/ArticleList';
 
 const RealizationsList = ({
+  lang,
   data,
   realizations: { totalCount, nodes: realizations },
 }) => {
@@ -22,6 +23,7 @@ const RealizationsList = ({
     <Section className={styles.realizationListWrap}>
       <SectionTitle center>{title}</SectionTitle>
       <ArticleList
+        lang={lang}
         realizations={realizations}
         titles={{ investor, place, scope }}
         totalCount={totalCount}
@@ -31,6 +33,7 @@ const RealizationsList = ({
 };
 
 RealizationsList.propTypes = {
+  lang: PropTypes.string.isRequired,
   data: PropTypes.shape({
     primary: PropTypes.shape({
       realizations_list_title: PropTypes.shape({
