@@ -12,6 +12,7 @@ import Contact from '../../components/shared/Contact/Contact';
 
 const Blog = ({ data }) => {
   const {
+    body,
     banner: { alt: bannerAlt, fluid: bannerImg },
     banner_title: { html: bannerTitle },
     description_title: { html: blogDescriptionTitle },
@@ -38,7 +39,15 @@ const Blog = ({ data }) => {
             </SectionTitle>
             <ArticleList articles={articles} totalCount={totalCount} />
           </Section>
-          <Contact />
+          {body.map(({ slice_type: sliceType, primary }) => {
+            switch (sliceType) {
+              case 'formularz_kontaktowy':
+                return <Contact slice={primary} />;
+
+              default:
+                return null;
+            }
+          })}
         </main>
       </Theme>
     </>
@@ -51,6 +60,20 @@ export const query = graphql`
       type
       lang
       data {
+        body {
+          ... on PrismicBlogPageDataBodyFormularzKontaktowy {
+            slice_type
+            primary {
+              form_type
+              form_title {
+                html
+              }
+              message_placeholder {
+                text
+              }
+            }
+          }
+        }
         banner {
           alt
           fluid {
@@ -100,6 +123,12 @@ Blog.propTypes = {
     prismicBlogPage: PropTypes.shape({
       lang: PropTypes.string.isRequired,
       data: PropTypes.shape({
+        body: PropTypes.arrayOf(
+          PropTypes.shape({
+            slice_type: PropTypes.string.isRequired,
+            primary: PropTypes.shape().isRequired,
+          }).isRequired
+        ).isRequired,
         banner: PropTypes.shape({
           alt: PropTypes.string.isRequired,
           fluid: PropTypes.oneOfType([
