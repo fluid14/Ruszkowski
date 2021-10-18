@@ -11,13 +11,11 @@ import ArticleList from '../../components/Article/ArticleList/ArticleList';
 import Contact from '../../components/shared/Contact/Contact';
 
 const Blog = ({ data }) => {
+  console.log(data);
   const {
     body,
     banner: { alt: bannerAlt, fluid: bannerImg },
     banner_title: { html: bannerTitle },
-    description_title: { html: blogDescriptionTitle },
-    description: { html: blogDescription },
-    last_article_title: { html: lastArticleTitle },
   } = data.prismicBlogPage.data;
 
   const { lang } = data.prismicBlogPage;
@@ -28,23 +26,32 @@ const Blog = ({ data }) => {
       <Theme lang={lang}>
         <Header title={bannerTitle} bgc={bannerImg} bgcAlt={bannerAlt} />
         <main className="wrap">
-          <Section className={styles.description}>
-            <SectionTitle>{blogDescriptionTitle}</SectionTitle>
-            <Article xl>{blogDescription}</Article>
-          </Section>
-
-          <Section>
-            <SectionTitle center shadowText="Wpisy z bloga">
-              {lastArticleTitle}
-            </SectionTitle>
-            <ArticleList
-              lang={lang}
-              articles={articles}
-              totalCount={totalCount}
-            />
-          </Section>
           {body.map(({ slice_type: sliceType, primary }, i) => {
             switch (sliceType) {
+              case 'opis_z_tytu_em':
+                return (
+                  <Section key={i} className={styles.description}>
+                    <SectionTitle>
+                      {primary.description_title.html}
+                    </SectionTitle>
+                    <Article xl>{primary.description.html}</Article>
+                  </Section>
+                );
+
+              case 'ostatnie_artyku_y':
+                return (
+                  <Section key={i}>
+                    <SectionTitle center shadowText="Wpisy z bloga">
+                      {primary.last_article_title.html}
+                    </SectionTitle>
+                    <ArticleList
+                      lang={lang}
+                      articles={articles}
+                      totalCount={totalCount}
+                    />
+                  </Section>
+                );
+
               case 'formularz_kontaktowy':
                 return <Contact key={i} slice={primary} />;
 
@@ -77,6 +84,27 @@ export const query = graphql`
               }
             }
           }
+          ... on PrismicBlogPageDataBodyOpisZTytuEm {
+            id
+            slice_type
+            primary {
+              description {
+                html
+              }
+              description_title {
+                html
+              }
+            }
+          }
+          ... on PrismicBlogPageDataBodyOstatnieArtykuY {
+            id
+            slice_type
+            primary {
+              last_article_title {
+                html
+              }
+            }
+          }
         }
         banner {
           alt
@@ -84,16 +112,7 @@ export const query = graphql`
             ...GatsbyImgixFluid
           }
         }
-        description_title {
-          html
-        }
-        description {
-          html
-        }
         banner_title {
-          html
-        }
-        last_article_title {
           html
         }
       }
@@ -130,7 +149,17 @@ Blog.propTypes = {
         body: PropTypes.arrayOf(
           PropTypes.shape({
             slice_type: PropTypes.string.isRequired,
-            primary: PropTypes.shape().isRequired,
+            primary: PropTypes.shape({
+              description_title: PropTypes.shape({
+                html: PropTypes.string,
+              }),
+              description: PropTypes.shape({
+                html: PropTypes.string,
+              }),
+              last_article_title: PropTypes.shape({
+                html: PropTypes.string,
+              }),
+            }).isRequired,
           }).isRequired
         ).isRequired,
         banner: PropTypes.shape({
@@ -140,16 +169,7 @@ Blog.propTypes = {
             PropTypes.arrayOf(PropTypes.shape({})),
           ]),
         }).isRequired,
-        description_title: PropTypes.shape({
-          html: PropTypes.string.isRequired,
-        }).isRequired,
-        description: PropTypes.shape({
-          html: PropTypes.string.isRequired,
-        }).isRequired,
         banner_title: PropTypes.shape({
-          html: PropTypes.string.isRequired,
-        }).isRequired,
-        last_article_title: PropTypes.shape({
           html: PropTypes.string.isRequired,
         }).isRequired,
       }).isRequired,

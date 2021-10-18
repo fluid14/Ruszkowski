@@ -16,27 +16,6 @@
         "label": "Banner"
       }
     },
-    "description_title": {
-      "type": "StructuredText",
-      "config": {
-        "multi": "heading1,heading2,heading3,heading4,heading5,heading6,strong",
-        "label": "Tytuł opisu"
-      }
-    },
-    "description": {
-      "type": "StructuredText",
-      "config": {
-        "multi": "paragraph,strong,em",
-        "label": "Opis"
-      }
-    },
-    "last_article_title": {
-      "type": "StructuredText",
-      "config": {
-        "single": "heading1,heading2,heading3,heading4,heading5,heading6,strong",
-        "label": "Ostatnie wpisy tytuł"
-      }
-    },
     "article_list_aside": {
       "type": "StructuredText",
       "config": {
@@ -80,6 +59,45 @@
                 "config": {
                   "multi": "paragraph",
                   "label": "Placeholder wiadomości"
+                }
+              }
+            },
+            "repeat": {}
+          },
+          "opis_z_tytu_em": {
+            "type": "Slice",
+            "fieldset": "Opis z tytułem",
+            "description": "Opis z tytułem",
+            "icon": "description",
+            "non-repeat": {
+              "description_title": {
+                "type": "StructuredText",
+                "config": {
+                  "multi": "heading1,heading2,heading3,heading4,heading5,heading6,strong",
+                  "label": "Tytuł opisu"
+                }
+              },
+              "description": {
+                "type": "StructuredText",
+                "config": {
+                  "multi": "paragraph,strong,em",
+                  "label": "Opis"
+                }
+              }
+            },
+            "repeat": {}
+          },
+          "ostatnie_artyku_y": {
+            "type": "Slice",
+            "fieldset": "Ostatnie artykuły",
+            "description": "Ostatnie artykuły",
+            "icon": "last_page",
+            "non-repeat": {
+              "last_article_title": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "heading1,heading2,heading3,heading4,heading5,heading6,strong",
+                  "label": "Ostatnie wpisy tytuł"
                 }
               }
             },

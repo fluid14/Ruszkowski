@@ -87,7 +87,17 @@ const ContactComponent = ({
               <input type="text" placeholder="Telefon" />
               <input type="text" placeholder="Miasto" />
             </div>
-            <textarea placeholder="Twoja wiadomość" />
+            <div className={styles.textareaWrap}>
+              <label htmlFor="message" className={styles.label}>
+                Twoja wiadomość
+              </label>
+              <textarea
+                name="message"
+                id="message"
+                className={styles.textarea}
+                placeholder={messagePlaceholder}
+              />
+            </div>{' '}
           </div>
           <Button type="submit" send>
             Wyślij

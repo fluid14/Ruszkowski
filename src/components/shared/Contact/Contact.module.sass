@@ -10,24 +10,11 @@
       max-width: unset
 
       .textareaWrap
-        position: relative
         width: 100%
         max-width: 750px
 
-        .label
-          position: absolute
-          top: 20px
-          left: 22px
-          color: $gray
-
         .textarea
           max-width: unset
-          height: 100%
-          padding-top: 50px
-
-          &::placeholder
-            font-size: 12px
-            color: $gray9
 
   .contactInfo
     display: flex
@@ -53,6 +40,26 @@
       letter-spacing: 5.12px
       font-weight: $bold
 
+  .textareaWrap
+    position: relative
+    width: 100%
+    max-width: 350px
+
+    .label
+      position: absolute
+      top: 20px
+      left: 22px
+      color: $gray
+
+    .textarea
+      max-width: unset
+      height: 100%
+      padding-top: 50px
+
+      &::placeholder
+        font-size: 12px
+        color: $gray9
+
 @media screen and (max-width: 992px)
   .contactWrap
     flex-direction: column
@@ -68,3 +75,6 @@
         .textareaWrap
           .textarea
             min-height: 130px
+
+    .textareaWrap
+      max-width: unset
