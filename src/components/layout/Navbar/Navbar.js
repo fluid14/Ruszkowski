@@ -83,8 +83,8 @@ const NavbarComponent = ({
         </button>
         <ul className={cx(styles.mainMenu, { [styles.active]: isMenuActive })}>
           {navigation &&
-            navigation.map((nav) => (
-              <li className={styles.menuItem} key={nav.link}>
+            navigation.map((nav, i) => (
+              <li className={styles.menuItem} key={i}>
                 <Link to={nav.link.url}>{nav.link_title.text}</Link>
               </li>
             ))}

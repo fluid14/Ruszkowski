@@ -9,8 +9,25 @@
     .formWrap
       max-width: unset
 
-      .textarea
+      .textareaWrap
+        position: relative
+        width: 100%
         max-width: 750px
+
+        .label
+          position: absolute
+          top: 20px
+          left: 22px
+          color: $gray
+
+        .textarea
+          max-width: unset
+          height: 100%
+          padding-top: 50px
+
+          &::placeholder
+            font-size: 12px
+            color: $gray9
 
   .contactInfo
     display: flex
@@ -43,3 +60,11 @@
     .contactInfo
       margin-right: unset
       margin-bottom: 30px
+
+@media screen and (max-width: 767px)
+  .contactWrap
+    &.basic
+      .formWrap
+        .textareaWrap
+          .textarea
+            min-height: 130px

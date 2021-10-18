@@ -10,7 +10,6 @@ import Cooperation from '../../components/sections/Cooperation/Cooperation';
 import RealizationsList from '../../components/sections/RealizationsList/RealizationsList';
 
 const Realizations = ({ data }) => {
-  console.log(data);
   const {
     banner: { alt: bannerAlt, fluid: bannerImg },
     banner_title: { html: bannerTitle },

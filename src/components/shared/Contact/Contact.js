@@ -28,8 +28,74 @@ const ContactComponent = ({
     message_placeholder: { text: messagePlaceholder },
   } = slice;
 
-  console.log(slice);
-  console.log(formType);
+  const basic = () => (
+    <div className={cx(styles.contactWrap, styles.basic)}>
+      <div className={cx(styles.formWrap, 'formWrap')}>
+        <form className="contactForm">
+          <div className="inputWrap">
+            <div className="inputsWrap">
+              <input type="text" placeholder="Imię" />
+              <input type="email" placeholder="Email" />
+            </div>
+            <div className="inputsWrap">
+              <input type="text" placeholder="Telefon" />
+              <input type="text" placeholder="Miasto" />
+            </div>
+            <div className={styles.textareaWrap}>
+              <label htmlFor="message" className={styles.label}>
+                Twoja wiadomość
+              </label>
+              <textarea
+                name="message"
+                id="message"
+                className={styles.textarea}
+                placeholder={messagePlaceholder}
+              />
+            </div>
+          </div>
+          <Button type="submit" send>
+            Wyślij
+          </Button>
+        </form>
+      </div>
+    </div>
+  );
+
+  const withContactInfo = () => (
+    <div className={cx(styles.contactWrap)}>
+      <div className={styles.contactInfo}>
+        <a href={`tel: ${phoneNumber}`} className={styles.phone}>
+          {phoneNumber}
+        </a>
+        <a href={`mailto: ${email}`} className={styles.email}>
+          {email}
+        </a>
+        <p>
+          PL. {zipCode} {city},
+        </p>
+        <p>{street},</p>
+      </div>
+
+      <div className="formWrap">
+        <form className="contactForm">
+          <div className="inputWrap">
+            <div className="inputsWrap">
+              <input type="text" placeholder="Imię" />
+              <input type="email" placeholder="Email" />
+            </div>
+            <div className="inputsWrap">
+              <input type="text" placeholder="Telefon" />
+              <input type="text" placeholder="Miasto" />
+            </div>
+            <textarea placeholder="Twoja wiadomość" />
+          </div>
+          <Button type="submit" send>
+            Wyślij
+          </Button>
+        </form>
+      </div>
+    </div>
+  );
 
   return (
     <Section className={className}>
@@ -39,109 +105,13 @@ const ContactComponent = ({
       {(() => {
         switch (formType) {
           case 'Z informacjami kontakowymi':
-            return (
-              <div className={cx(styles.contactWrap)}>
-                <div className={styles.contactInfo}>
-                  <a href={`tel: ${phoneNumber}`} className={styles.phone}>
-                    {phoneNumber}
-                  </a>
-                  <a href={`mailto: ${email}`} className={styles.email}>
-                    {email}
-                  </a>
-                  <p>
-                    PL. {zipCode} {city},
-                  </p>
-                  <p>{street},</p>
-                </div>
-
-                <div className="formWrap">
-                  <form className="contactForm">
-                    <div className="inputWrap">
-                      <div className="inputsWrap">
-                        <input type="text" placeholder="Imię" />
-                        <input type="email" placeholder="Email" />
-                      </div>
-                      <div className="inputsWrap">
-                        <input type="text" placeholder="Telefon" />
-                        <input type="text" placeholder="Miasto" />
-                      </div>
-                      <textarea
-                        placeholder={`Twoja wiadomość ${messagePlaceholder}`}
-                      />
-                    </div>
-                    <Button type="submit" send>
-                      Wyślij
-                    </Button>
-                  </form>
-                </div>
-              </div>
-            );
+            return withContactInfo();
 
           case 'Podstawowy':
-            return (
-              <div className={cx(styles.contactWrap, styles.basic)}>
-                <div className={cx(styles.formWrap, 'formWrap')}>
-                  <form className="contactForm">
-                    <div className="inputWrap">
-                      <div className="inputsWrap">
-                        <input type="text" placeholder="Imię" />
-                        <input type="email" placeholder="Email" />
-                      </div>
-                      <div className="inputsWrap">
-                        <input type="text" placeholder="Telefon" />
-                        <input type="text" placeholder="Miasto" />
-                      </div>
-                      <textarea
-                        className={styles.textarea}
-                        placeholder={`Twoja wiadomość ${messagePlaceholder}`}
-                      />
-                    </div>
-                    <Button type="submit" send>
-                      Wyślij
-                    </Button>
-                  </form>
-                </div>
-              </div>
-            );
+            return basic();
 
           default:
-            return (
-              <div className={cx(styles.contactWrap)}>
-                <div className={styles.contactInfo}>
-                  <a href={`tel: ${phoneNumber}`} className={styles.phone}>
-                    {phoneNumber}
-                  </a>
-                  <a href={`mailto: ${email}`} className={styles.email}>
-                    {email}
-                  </a>
-                  <p>
-                    PL. {zipCode} {city},
-                  </p>
-                  <p>{street},</p>
-                </div>
-
-                <div className="formWrap">
-                  <form className="contactForm">
-                    <div className="inputWrap">
-                      <div className="inputsWrap">
-                        <input type="text" placeholder="Imię" />
-                        <input type="email" placeholder="Email" />
-                      </div>
-                      <div className="inputsWrap">
-                        <input type="text" placeholder="Telefon" />
-                        <input type="text" placeholder="Miasto" />
-                      </div>
-                      <textarea
-                        placeholder={`Twoja wiadomość ${messagePlaceholder}`}
-                      />
-                    </div>
-                    <Button type="submit" send>
-                      Wyślij
-                    </Button>
-                  </form>
-                </div>
-              </div>
-            );
+            return withContactInfo();
         }
       })()}
     </Section>

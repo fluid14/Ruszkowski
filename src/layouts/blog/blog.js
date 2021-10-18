@@ -37,12 +37,16 @@ const Blog = ({ data }) => {
             <SectionTitle center shadowText="Wpisy z bloga">
               {lastArticleTitle}
             </SectionTitle>
-            <ArticleList articles={articles} totalCount={totalCount} />
+            <ArticleList
+              lang={lang}
+              articles={articles}
+              totalCount={totalCount}
+            />
           </Section>
-          {body.map(({ slice_type: sliceType, primary }) => {
+          {body.map(({ slice_type: sliceType, primary }, i) => {
             switch (sliceType) {
               case 'formularz_kontaktowy':
-                return <Contact slice={primary} />;
+                return <Contact key={i} slice={primary} />;
 
               default:
                 return null;

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import PropTypes, { any } from 'prop-types';
 import * as styles from './ArticleList.module.sass';
 import ArticleTile from '../ArticleTile/ArticleTile';
 import Button from '../../layout/Button/Button';
@@ -55,10 +55,10 @@ const ArticleList = ({ lang, articles, realizations, totalCount, titles }) => {
 
 ArticleList.propTypes = {
   lang: PropTypes.string.isRequired,
-  articles: PropTypes.arrayOf,
-  realizations: PropTypes.arrayOf,
+  articles: PropTypes.arrayOf(PropTypes.any),
+  realizations: PropTypes.objectOf(PropTypes.any),
   totalCount: PropTypes.number.isRequired,
-  titles: PropTypes.shape,
+  titles: PropTypes.objectOf(PropTypes.any),
 };
 
 ArticleList.defaultProps = {
