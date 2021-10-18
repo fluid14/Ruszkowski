@@ -31,12 +31,14 @@ const Cooperation = ({ className, data: { primary, items } }) => {
         {items.length > 0 && (
           <ul className={styles.list}>
             {items.map(
-              ({
-                our_speciality_icon: { fluid, alt: itemAlt },
-                out_speciality_description: { text },
-                id,
-              }) => (
-                <li key={id} className={styles.listItem}>
+              (
+                {
+                  our_speciality_icon: { fluid, alt: itemAlt },
+                  out_speciality_description: { text },
+                },
+                i
+              ) => (
+                <li key={i} className={styles.listItem}>
                   <GatsbyImage
                     className={styles.icon}
                     fluid={fluid}

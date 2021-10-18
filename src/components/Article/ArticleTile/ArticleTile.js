@@ -58,7 +58,7 @@ const ArticleTile = ({ lang, article, realization, className, titles }) =>
             navigation
             loop
           >
-            {article.data.gallery.map(({ photo: { alt, fluid }, i }) => (
+            {article.data.gallery.map(({ photo: { alt, fluid } }, i) => (
               <SwiperSlide key={i}>
                 <BackgroundImage
                   Tag="section"
@@ -96,17 +96,16 @@ ArticleTile.propTypes = {
   realization: PropTypes.bool,
   article: PropTypes.shape({
     data: PropTypes.shape({
-      article_title: PropTypes.shape({ text: PropTypes.string.isRequired })
-        .isRequired,
+      article_title: PropTypes.shape({ text: PropTypes.string.isRequired }),
       short_description: PropTypes.shape({
         html: PropTypes.string.isRequired,
-      }).isRequired,
+      }),
       article_miniature: PropTypes.shape.isRequired,
       description: PropTypes.shape({ html: PropTypes.string.isRequired }),
       gallery: PropTypes.arrayOf(
         PropTypes.shape({
           photo: PropTypes.shape({
-            alt: PropTypes.string.isRequired,
+            alt: PropTypes.string,
             fluid: PropTypes.shape.isRequired,
           }),
         })
@@ -121,8 +120,8 @@ ArticleTile.propTypes = {
         text: PropTypes.string.isRequired,
       }),
     }).isRequired,
-    tags: PropTypes.array.isRequired,
-    url: PropTypes.string.isRequired,
+    tags: PropTypes.array,
+    url: PropTypes.string,
   }).isRequired,
   className: PropTypes.string,
   titles: PropTypes.shape({

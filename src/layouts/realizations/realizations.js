@@ -28,16 +28,21 @@ const Realizations = ({ data }) => {
           bgcAlt={bannerAlt}
         />
         <main className={cx(styles.realizationsPage, 'wrap')}>
-          {body.map((slice) => {
+          {body.map((slice, i) => {
             switch (slice.slice_type) {
               case 'wspo_praca':
                 return (
-                  <Cooperation className={styles.cooperation} data={slice} />
+                  <Cooperation
+                    key={i}
+                    className={styles.cooperation}
+                    data={slice}
+                  />
                 );
 
               case 'realizacje':
                 return (
                   <RealizationsList
+                    key={i}
                     className={styles.realizationsList}
                     data={slice}
                     lang={lang}
@@ -46,7 +51,7 @@ const Realizations = ({ data }) => {
                 );
 
               case 'formularz_kontaktowy':
-                return <Contact slice={slice.primary} />;
+                return <Contact key={i} slice={slice.primary} />;
 
               default:
                 return null;
@@ -183,7 +188,7 @@ Realizations.propTypes = {
         body: PropTypes.arrayOf(
           PropTypes.shape({
             primary: PropTypes.shape({
-              slice_type: PropTypes.string.isRequired,
+              slice_type: PropTypes.string,
             }).isRequired,
             slice_type: PropTypes.string.isRequired,
           }).isRequired

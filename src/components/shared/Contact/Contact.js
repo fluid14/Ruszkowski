@@ -151,9 +151,9 @@ ContactComponent.propTypes = {
     }),
   }).isRequired,
   slice: PropTypes.shape({
-    form_type: PropTypes.string.isRequired,
+    form_type: PropTypes.string,
     form_title: PropTypes.shape({
-      html: PropTypes.string.isRequired,
+      html: PropTypes.string,
     }).isRequired,
     message_placeholder: PropTypes.shape({
       text: PropTypes.string,

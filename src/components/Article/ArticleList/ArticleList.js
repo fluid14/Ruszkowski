@@ -56,7 +56,7 @@ const ArticleList = ({ lang, articles, realizations, totalCount, titles }) => {
 ArticleList.propTypes = {
   lang: PropTypes.string.isRequired,
   articles: PropTypes.arrayOf(PropTypes.any),
-  realizations: PropTypes.objectOf(PropTypes.any),
+  realizations: PropTypes.arrayOf(PropTypes.any),
   totalCount: PropTypes.number.isRequired,
   titles: PropTypes.objectOf(PropTypes.any),
 };
