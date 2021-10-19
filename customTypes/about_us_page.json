@@ -1,0 +1,170 @@
+{
+  "Main": {
+    "banner_title": {
+      "type": "StructuredText",
+      "config": {
+        "multi": "heading1, heading2, heading3, heading4, heading5, heading6, strong",
+        "label": "Tytuł wyświetlany w banerze"
+      }
+    },
+    "banner": {
+      "type": "Image",
+      "config": {
+        "constraint": {},
+        "thumbnails": [],
+        "label": "Banner"
+      }
+    },
+    "body": {
+      "type": "Slices",
+      "fieldset": "Slice zone",
+      "config": {
+        "labels": {},
+        "choices": {
+          "opis_z_tytu_em": {
+            "type": "Slice",
+            "fieldset": "Opis z tytułem",
+            "description": "Opis z tytułem",
+            "icon": "description",
+            "non-repeat": {
+              "description_title": {
+                "type": "StructuredText",
+                "config": {
+                  "multi": "heading1,heading2,heading3,heading4,heading5,heading6,strong",
+                  "label": "Tytuł opisu"
+                }
+              },
+              "description": {
+                "type": "StructuredText",
+                "config": {
+                  "multi": "paragraph,strong,em",
+                  "label": "Opis"
+                }
+              }
+            },
+            "repeat": {}
+          },
+          "nasza_specjalnosc": {
+            "type": "Slice",
+            "fieldset": "Nasza specjalność",
+            "description": "Nasza specjalność",
+            "icon": "folder_special",
+            "non-repeat": {
+              "title": {
+                "type": "StructuredText",
+                "config": {
+                  "multi": "heading1, heading2, heading3, heading4, heading5, heading6, strong",
+                  "label": "Tytuł"
+                }
+              }
+            },
+            "repeat": {
+              "icon": {
+                "type": "Image",
+                "config": {
+                  "constraint": {},
+                  "thumbnails": [],
+                  "label": "Ikona"
+                }
+              },
+              "title": {
+                "type": "StructuredText",
+                "config": {
+                  "multi": "paragraph, strong, em",
+                  "label": "Tytuł"
+                }
+              },
+              "description": {
+                "type": "StructuredText",
+                "config": {
+                  "multi": "paragraph, strong, em",
+                  "label": "Opis"
+                }
+              }
+            }
+          },
+          "mapa": {
+            "type": "Slice",
+            "fieldset": "Mapa",
+            "description": "Map",
+            "icon": "map",
+            "non-repeat": {
+              "lat": {
+                "type": "Text",
+                "config": {
+                  "label": "Lat"
+                }
+              },
+              "lng": {
+                "type": "Text",
+                "config": {
+                  "label": "lng"
+                }
+              },
+              "tel": {
+                "type": "Text",
+                "config": {
+                  "label": "Telefon"
+                }
+              },
+              "email": {
+                "type": "Text",
+                "config": {
+                  "label": "Email"
+                }
+              },
+              "adres_1": {
+                "type": "Text",
+                "config": {
+                  "label": "Adres 1"
+                }
+              },
+              "adres_2": {
+                "type": "Text",
+                "config": {
+                  "label": "Adres 2"
+                }
+              }
+            },
+            "repeat": {}
+          },
+          "formularz_kontaktowy": {
+            "type": "Slice",
+            "fieldset": "Formularz kontaktowy",
+            "description": "Formularz kontaktowy",
+            "icon": "message",
+            "non-repeat": {
+              "form_type": {
+                "type": "Select",
+                "config": {
+                  "options": [
+                    "Podstawowy",
+                    "Z informacjami kontakowymi",
+                    "Produktowy"
+                  ],
+                  "default_value": "Podstawowy",
+                  "label": "Rodzaj formularza"
+                }
+              },
+              "form_title": {
+                "type": "StructuredText",
+                "config": {
+                  "multi": "paragraph,heading1,heading2,heading3,heading4,heading5,heading6,strong",
+                  "label": "Tytuł formularza"
+                }
+              },
+              "message_placeholder": {
+                "type": "StructuredText",
+                "config": {
+                  "multi": "paragraph",
+                  "label": "Placeholder wiadomości"
+                }
+              }
+            },
+            "repeat": {}
+          }
+        }
+      }
+    }
+  }
+}

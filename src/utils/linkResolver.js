@@ -18,6 +18,10 @@ exports.linkResolver = (doc) => {
         : `/${mapLang(doc.lang)}/realizations`;
     }
 
+    case 'about_us_page': {
+      return doc.lang === 'pl' ? '/about' : `/${mapLang(doc.lang)}/about`;
+    }
+
     default:
       return doc.lang === 'pl' ? '/' : `/${mapLang(doc.lang)}`;
   }
