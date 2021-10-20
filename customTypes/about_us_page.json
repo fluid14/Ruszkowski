@@ -3,7 +3,7 @@
     "banner_title": {
       "type": "StructuredText",
       "config": {
-        "multi": "heading1, heading2, heading3, heading4, heading5, heading6, strong",
+        "multi": "heading1,heading2,heading3,heading4,heading5,heading6,strong",
         "label": "Tytuł wyświetlany w banerze"
       }
     },
@@ -53,7 +53,7 @@
               "title": {
                 "type": "StructuredText",
                 "config": {
-                  "multi": "heading1, heading2, heading3, heading4, heading5, heading6, strong",
+                  "multi": "heading1,heading2,heading3,heading4,heading5,heading6,strong",
                   "label": "Tytuł"
                 }
               }
@@ -70,14 +70,14 @@
               "title": {
                 "type": "StructuredText",
                 "config": {
-                  "multi": "paragraph, strong, em",
+                  "multi": "paragraph,strong,em",
                   "label": "Tytuł"
                 }
               },
               "description": {
                 "type": "StructuredText",
                 "config": {
-                  "multi": "paragraph, strong, em",
+                  "multi": "paragraph,strong,em",
                   "label": "Opis"
                 }
               }

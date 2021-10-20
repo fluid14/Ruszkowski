@@ -6,52 +6,49 @@ import Theme from '../../theme/Theme';
 import Header from '../../components/shared/Header/Header';
 import * as styles from './aboutUs.module.sass';
 import Contact from '../../components/shared/Contact/Contact';
-import Cooperation from '../../components/sections/Cooperation/Cooperation';
-import RealizationsList from '../../components/sections/RealizationsList/RealizationsList';
+import Section from '../../components/shared/Section/Section';
+import SectionTitle from '../../components/layout/Text/SectionTitle/SectionTitle';
+import Article from '../../components/layout/Text/Article/Article';
+import OurSpeciality from '../../components/sections/OurSpeciality/OurSpeciality';
 
 const AboutUs = ({ data }) => {
+  console.log(data);
   const {
     banner: { alt: bannerAlt, fluid: bannerImg },
     banner_title: { html: bannerTitle },
     body,
-  } = data.prismicRealizationsPage.data;
-
-  const { lang } = data.prismicRealizationsPage;
+  } = data.prismicAboutUsPage.data;
+  //
+  const { lang } = data.prismicAboutUsPage;
 
   return (
     <>
       <Theme lang={lang}>
-        <Header
-          className={styles.header}
-          title={bannerTitle}
-          bgc={bannerImg}
-          bgcAlt={bannerAlt}
-        />
-        <main className={cx(styles.realizationsPage, 'wrap')}>
-          {body.map((slice, i) => {
-            switch (slice.slice_type) {
-              case 'wspo_praca':
+        <Header title={bannerTitle} bgc={bannerImg} bgcAlt={bannerAlt} />
+        <main className={cx(styles.aboutUsPage, 'wrap')}>
+          {body.map(({ slice_type: sliceType, primary, items }, i) => {
+            switch (sliceType) {
+              case 'opis_z_tytu_em':
                 return (
-                  <Cooperation
-                    key={i}
-                    className={styles.cooperation}
-                    data={slice}
-                  />
+                  <Section className={styles.descriptionWrap}>
+                    <SectionTitle
+                      right
+                      transformNone
+                      className={styles.descriptionTitle}
+                    >
+                      {primary.description_title.html}
+                    </SectionTitle>
+                    <Article className={styles.description} xl>
+                      {primary.description.html}
+                    </Article>
+                  </Section>
                 );
 
-              case 'realizacje':
-                return (
-                  <RealizationsList
-                    key={i}
-                    className={styles.realizationsList}
-                    data={slice}
-                    lang={lang}
-                    realizations={data.allPrismicRelization}
-                  />
-                );
+              case 'nasza_specjalnosc':
+                return <OurSpeciality key={i} data={{ primary, items }} />;
 
               case 'formularz_kontaktowy':
-                return <Contact key={i} slice={slice.primary} />;
+                return <Contact key={i} slice={primary} />;
 
               default:
                 return null;
@@ -65,8 +62,7 @@ const AboutUs = ({ data }) => {
 
 export const query = graphql`
   query AboutUsQuery($id: String, $lang: String) {
-    prismicRealizationsPage(id: { eq: $id }, lang: { eq: $lang }) {
-      type
+    prismicAboutUsPage(id: { eq: $id }, lang: { eq: $lang }) {
       lang
       data {
         banner {
@@ -79,7 +75,41 @@ export const query = graphql`
           html
         }
         body {
-          ... on PrismicRealizationsPageDataBodyFormularzKontaktowy {
+          ... on PrismicAboutUsPageDataBodyMapa {
+            slice_type
+            primary {
+              adres_1
+              adres_2
+              email
+              lat
+              lng
+              tel
+            }
+          }
+          ... on PrismicAboutUsPageDataBodyNaszaSpecjalnosc {
+            slice_type
+            primary {
+              title {
+                html
+              }
+            }
+            items {
+              description {
+                html
+              }
+              icon {
+                fluid {
+                  ...GatsbyImgixFluid
+                }
+                alt
+              }
+              title {
+                text
+              }
+            }
+          }
+          ... on PrismicAboutUsPageDataBodyFormularzKontaktowy {
+            slice_type
             primary {
               form_title {
                 html
@@ -89,80 +119,17 @@ export const query = graphql`
                 text
               }
             }
-            slice_type
           }
-          ... on PrismicRealizationsPageDataBodyWspoPraca {
-            slice_type
-            primary {
-              cooperation_description {
-                html
-              }
-              cooperation_photo {
-                fluid {
-                  ...GatsbyImgixFluid
-                }
-                alt
-              }
-              cooperation_title {
-                html
-              }
-              our_speciality {
-                html
-              }
-            }
-            items {
-              our_speciality_icon {
-                alt
-                fluid {
-                  ...GatsbyImgixFluid
-                }
-              }
-              out_speciality_description {
-                text
-              }
-            }
-          }
-          ... on PrismicRealizationsPageDataBodyRealizacje {
+          ... on PrismicAboutUsPageDataBodyOpisZTytuEm {
             slice_type
             primary {
-              realizations_list_title {
+              description_title {
                 html
               }
-              investor_title {
-                text
-              }
-              place_title {
-                text
-              }
-              scope_title {
-                text
+              description {
+                html
               }
             }
-          }
-        }
-      }
-    }
-    allPrismicRelization(filter: { lang: { eq: $lang } }) {
-      totalCount
-      nodes {
-        id
-        data {
-          description {
-            html
-          }
-          gallery {
-            photo {
-              fluid {
-                src
-              }
-              alt
-            }
-          }
-          investor {
-            text
-          }
-          place {
-            text
           }
         }
       }
@@ -172,7 +139,7 @@ export const query = graphql`
 
 AboutUs.propTypes = {
   data: PropTypes.shape({
-    prismicRealizationsPage: PropTypes.shape({
+    prismicAboutUsPage: PropTypes.shape({
       lang: PropTypes.string.isRequired,
       data: PropTypes.shape({
         banner: PropTypes.shape({
@@ -188,6 +155,8 @@ AboutUs.propTypes = {
         body: PropTypes.arrayOf(
           PropTypes.shape({
             primary: PropTypes.shape({
+              description_title: PropTypes.shape({ html: PropTypes.string }),
+              description: PropTypes.shape({ html: PropTypes.string }),
               slice_type: PropTypes.string,
             }).isRequired,
             slice_type: PropTypes.string.isRequired,
@@ -195,9 +164,6 @@ AboutUs.propTypes = {
         ),
       }).isRequired,
     }),
-    allPrismicRelization: PropTypes.shape({
-      nodes: PropTypes.shape.isRequired,
-    }).isRequired,
   }).isRequired,
 };
 
