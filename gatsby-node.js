@@ -40,6 +40,13 @@ exports.createPages = async ({ graphql, actions }) => {
           id
         }
       }
+      allPrismicAboutUsPage {
+        nodes {
+          id
+          url
+          lang
+        }
+      }
     }
   `);
 
@@ -91,14 +98,14 @@ exports.createPages = async ({ graphql, actions }) => {
     });
   });
 
-  // query.data.allPrismicAbousUsPage.nodes.forEach((about) => {
-  //   createPage({
-  //     path: about.url,
-  //     component: path.resolve(`./src/layouts/aboutUs/aboutUs.js`),
-  //     context: {
-  //       id: about.id,
-  //       lang: about.lang,
-  //     },
-  //   });
-  // });
+  query.data.allPrismicAboutUsPage.nodes.forEach((about) => {
+    createPage({
+      path: about.url,
+      component: path.resolve(`./src/layouts/aboutUs/aboutUs.js`),
+      context: {
+        id: about.id,
+        lang: about.lang,
+      },
+    });
+  });
 };
