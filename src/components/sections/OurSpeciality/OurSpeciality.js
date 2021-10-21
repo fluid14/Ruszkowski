@@ -6,15 +6,13 @@ import SectionTitle from '../../layout/Text/SectionTitle/SectionTitle';
 import Section from '../../shared/Section/Section';
 import Article from '../../layout/Text/Article/Article';
 
-const OurSpeciality = ({ data: { primary, items } }) => {
-  console.log(items);
-
+const OurSpeciality = ({ className, data: { primary, items } }) => {
   const {
     title: { html: title },
   } = primary;
 
   return (
-    <Section>
+    <Section className={className}>
       <SectionTitle className={styles.sectionTitle} center>
         {title}
       </SectionTitle>
@@ -41,12 +39,17 @@ const OurSpeciality = ({ data: { primary, items } }) => {
 };
 
 OurSpeciality.propTypes = {
+  className: PropTypes.string,
   data: PropTypes.shape({
     primary: PropTypes.shape({
       title: PropTypes.shape({ text: PropTypes.string }),
     }),
     items: PropTypes.shape,
   }).isRequired,
+};
+
+OurSpeciality.defaultProps = {
+  className: '',
 };
 
 export default OurSpeciality;

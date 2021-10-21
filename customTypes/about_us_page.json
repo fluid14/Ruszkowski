@@ -89,6 +89,13 @@
             "description": "Map",
             "icon": "map",
             "non-repeat": {
+              "title": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "heading1",
+                  "label": "Tytuł"
+                }
+              },
               "lat": {
                 "type": "Text",
                 "config": {
@@ -100,33 +107,39 @@
                 "config": {
                   "label": "lng"
                 }
-              },
-              "tel": {
-                "type": "Text",
-                "config": {
-                  "label": "Telefon"
-                }
-              },
-              "email": {
-                "type": "Text",
-                "config": {
-                  "label": "Email"
-                }
-              },
-              "adres_1": {
-                "type": "Text",
-                "config": {
-                  "label": "Adres 1"
-                }
-              },
-              "adres_2": {
-                "type": "Text",
-                "config": {
-                  "label": "Adres 2"
-                }
               }
             },
-            "repeat": {}
+            "repeat": {
+              "icon": {
+                "type": "Image",
+                "config": {
+                  "constraint": {},
+                  "thumbnails": [],
+                  "label": "Ikona"
+                }
+              },
+              "info_title": {
+                "type": "Text",
+                "config": {
+                  "label": "Tytuł informacji"
+                }
+              },
+              "info": {
+                "type": "StructuredText",
+                "config": {
+                  "multi": "paragraph,em",
+                  "label": "Informacja"
+                }
+              },
+              "type": {
+                "type": "Select",
+                "config": {
+                  "options": ["Telefon", "Email"],
+                  "label": "Typ informacji",
+                  "placeholder": "Tekst"
+                }
+              }
+            }
           },
           "formularz_kontaktowy": {
             "type": "Slice",

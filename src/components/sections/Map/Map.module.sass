@@ -1,0 +1,193 @@
+@import './src/styles/config'
+
+.mapWrap
+  display: flex
+  align-items: stretch
+  justify-content: flex-start
+  position: relative
+  top: 0
+  left: 50%
+  transform: translateX(-50%)
+  background-color: $main
+  width: 100vw
+  max-width: 1920px
+  overflow: hidden
+
+  *
+    font-size: 20px
+    color: $white
+
+  .map
+    width: calc(100vw - 39.9vw)
+    min-height: 590px
+
+  .infosWrap
+    position: relative
+    display: flex
+    flex-grow: 1
+    flex-direction: column
+    justify-content: center
+    padding: 90px
+
+    .sectionTitle
+      position: absolute
+      top: 48%
+      right: 90px
+      transform: rotate(180deg) translateY(50%)
+      font-size: 72px
+      opacity: .1
+      text-transform: uppercase
+      font-weight: 900
+      letter-spacing: 23.15px
+      writing-mode: vertical-lr
+      text-orientation: mixed
+
+    .infoWrap
+      margin-bottom: 40px
+
+      &:nth-last-of-type(1)
+        margin: 0
+
+      .titleWrap
+        display: flex
+        align-items: center
+        margin-bottom: 18px
+
+        .icon
+          width: 100%
+          max-width: 19px
+          max-height: 25px
+          margin-right: 22px
+
+        .infoTitle
+          letter-spacing: 4px
+          text-transform: uppercase
+
+      .info
+        display: block
+        padding-left: 41px
+        line-height: 1.4
+
+@media screen and (max-width: 1599px)
+  .mapWrap
+    .map
+      width: calc(100vw - 39.9vw)
+      min-height: 550px
+
+    .infosWrap
+      padding: 70px
+
+      .sectionTitle
+        right: 70px
+        font-size: 60px
+        letter-spacing: 22px
+
+@media screen and (max-width: 1440px)
+  .mapWrap
+    .map
+      width: 57%
+      min-height: 500px
+
+    .infosWrap
+      .sectionTitle
+        font-size: 55px
+
+@media screen and (max-width: 1200px)
+  .mapWrap
+    .map
+      width: 50%
+      min-height: 450px
+
+    .infosWrap
+      padding: 50px
+
+      .sectionTitle
+        right: 70px
+        font-size: 50px
+        letter-spacing: 20px
+
+@media screen and (max-width: 992px)
+  .mapWrap
+    flex-direction: column-reverse
+
+    *
+      font-size: 18px
+
+    .map
+      width: 100%
+      height: 450px
+
+
+    .infosWrap
+      padding: 40px
+
+      .sectionTitle
+        right: 60px
+        font-size: 30px
+        letter-spacing: 15px
+
+      .infoWrap
+        margin-bottom: 30px
+
+        &:nth-last-of-type(1)
+          margin: 0
+
+        .titleWrap
+          margin-bottom: 12px
+
+          .icon
+            max-width: 15px
+            max-height: 22px
+            margin-right: 17px
+
+          .infoTitle
+            letter-spacing: 3px
+
+        .info
+          display: block
+          padding-left: 35px
+
+@media screen and (max-width: 767px)
+  .mapWrap
+
+    *
+      font-size: 16px
+
+    .map
+      width: 100%
+      height: 350px
+      min-height: unset
+
+
+    .infosWrap
+      padding: 30px
+
+      .sectionTitle
+        right: 50px
+        font-size: 25px
+        letter-spacing: 13px
+
+      .infoWrap
+        margin-bottom: 25px
+
+        &:nth-last-of-type(1)
+          margin: 0
+
+        .titleWrap
+          margin-bottom: 10px
+
+          .icon
+            max-width: 13px
+            margin-right: 13px
+
+          .infoTitle
+            letter-spacing: 3px
+
+        .info
+          padding-left: 28px
+
+@media screen and (max-width: 369px)
+  .mapWrap
+    .infosWrap
+      .sectionTitle
+        right: 40px

@@ -52,6 +52,12 @@
         "select": null
       }
     },
+    "google_maps_api_key": {
+      "type": "Text",
+      "config": {
+        "label": "Google maps API Key"
+      }
+    },
     "footer_links": {
       "type": "Group",
       "config": {

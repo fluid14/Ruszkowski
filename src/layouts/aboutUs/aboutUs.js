@@ -10,6 +10,7 @@ import Section from '../../components/shared/Section/Section';
 import SectionTitle from '../../components/layout/Text/SectionTitle/SectionTitle';
 import Article from '../../components/layout/Text/Article/Article';
 import OurSpeciality from '../../components/sections/OurSpeciality/OurSpeciality';
+import Map from '../../components/sections/Map/Map';
 
 const AboutUs = ({ data }) => {
   console.log(data);
@@ -45,7 +46,22 @@ const AboutUs = ({ data }) => {
                 );
 
               case 'nasza_specjalnosc':
-                return <OurSpeciality key={i} data={{ primary, items }} />;
+                return (
+                  <OurSpeciality
+                    className={styles.ourSpeciality}
+                    key={i}
+                    data={{ primary, items }}
+                  />
+                );
+
+              case 'mapa':
+                return (
+                  <Map
+                    className={styles.map}
+                    key={i}
+                    data={{ primary, items }}
+                  />
+                );
 
               case 'formularz_kontaktowy':
                 return <Contact key={i} slice={primary} />;
@@ -76,14 +92,27 @@ export const query = graphql`
         }
         body {
           ... on PrismicAboutUsPageDataBodyMapa {
+            id
+            items {
+              type
+              info_title
+              info {
+                html
+              }
+              icon {
+                alt
+                fluid {
+                  ...GatsbyImgixFluid
+                }
+              }
+            }
             slice_type
             primary {
-              adres_1
-              adres_2
-              email
               lat
               lng
-              tel
+              title {
+                text
+              }
             }
           }
           ... on PrismicAboutUsPageDataBodyNaszaSpecjalnosc {
