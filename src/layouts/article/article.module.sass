@@ -1,7 +1,9 @@
 @import './src/styles/config'
 
 .main
-  margin-top: -257px
+  position: relative
+  margin-top: -108px
+
   .headers,
   .body
     display: grid
@@ -13,7 +15,10 @@
 
     .articleTitleWrap
       .title
-        margin-bottom: 35px
+        position: absolute
+        top: 0
+        left: 0
+        transform: translateY(calc(-100% - 35px))
 
       .metaArticle
         display: flex
@@ -87,8 +92,6 @@
       margin: 0
 
       .articleTitleWrap
-        .title
-          margin-bottom: 35px
 
         .metaArticle
           margin-bottom: 40px
@@ -117,7 +120,7 @@
     .headers
       .articleTitleWrap
         .title
-          margin-bottom: 25px
+          transform: translateY(calc(-100% - 25px))
 
         .metaArticle
           margin-bottom: 20px
