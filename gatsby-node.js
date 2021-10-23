@@ -47,6 +47,13 @@ exports.createPages = async ({ graphql, actions }) => {
           lang
         }
       }
+      allPrismicProducts {
+        nodes {
+          url
+          lang
+          id
+        }
+      }
     }
   `);
 
@@ -105,6 +112,17 @@ exports.createPages = async ({ graphql, actions }) => {
       context: {
         id: about.id,
         lang: about.lang,
+      },
+    });
+  });
+
+  query.data.allPrismicProducts.nodes.forEach((products) => {
+    createPage({
+      path: products.url,
+      component: path.resolve(`./src/layouts/products/products.js`),
+      context: {
+        id: products.id,
+        lang: products.lang,
       },
     });
   });

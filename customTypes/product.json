@@ -1,0 +1,40 @@
+{
+  "Main": {
+    "miniature_title": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading3",
+        "label": "Tytuł miniatury"
+      }
+    },
+    "miniature_description": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading3",
+        "label": "Opis miniatury"
+      }
+    },
+    "miniature": {
+      "type": "Image",
+      "config": {
+        "constraint": {},
+        "thumbnails": [],
+        "label": "Miniature"
+      }
+    },
+    "product_title": {
+      "type": "StructuredText",
+      "config": {
+        "multi": "paragraph, strong",
+        "label": "Tytuł produktu"
+      }
+    },
+    "description": {
+      "type": "StructuredText",
+      "config": {
+        "multi": "paragraph,strong,em",
+        "label": "Opis"
+      }
+    }
+  }
+}

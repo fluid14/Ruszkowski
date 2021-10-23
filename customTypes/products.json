@@ -1,0 +1,37 @@
+{
+  "Main": {
+    "banner_title": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading1, heading2, heading3, heading4, heading5, heading6",
+        "label": "Tytuł bannera"
+      }
+    },
+    "banner": {
+      "type": "Image",
+      "config": {
+        "constraint": {},
+        "thumbnails": [],
+        "label": "Banner"
+      }
+    },
+    "body": {
+      "type": "Slices",
+      "fieldset": "Slice zone",
+      "config": {
+        "labels": null,
+        "choices": {
+          "produkty": {
+            "type": "Slice",
+            "fieldset": "Produkty",
+            "description": "products",
+            "icon": "format_list_bulleted",
+            "display": "list",
+            "non-repeat": {},
+            "repeat": {}
+          }
+        }
+      }
+    }
+  }
+}

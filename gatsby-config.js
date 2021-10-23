@@ -26,6 +26,8 @@ module.exports = {
           realizations_page: require('./customTypes/realizations_page.json'),
           relization: require('./customTypes/relization.json'),
           about_us_page: require('./customTypes/about_us_page.json'),
+          product: require('./customTypes/product.json'),
+          products: require('./customTypes/products.json'),
         },
       },
     },

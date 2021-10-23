@@ -5,7 +5,7 @@ exports.linkResolver = (doc) => {
       return doc.lang === 'pl' ? '/blog' : `/${mapLang(doc.lang)}/blog`;
     }
     case 'article': {
-      return doc.lang === 'pl' ? '/article' : `/${mapLang(doc.lang)}/article`;
+      return doc.lang === 'pl' ? '/artykul' : `/${mapLang(doc.lang)}/article`;
     }
 
     case 'main_page': {
@@ -14,12 +14,16 @@ exports.linkResolver = (doc) => {
 
     case 'realizations_page': {
       return doc.lang === 'pl'
-        ? '/realizations'
+        ? '/wspolpraca'
         : `/${mapLang(doc.lang)}/realizations`;
     }
 
     case 'about_us_page': {
-      return doc.lang === 'pl' ? '/about' : `/${mapLang(doc.lang)}/about`;
+      return doc.lang === 'pl' ? '/o-nas' : `/${mapLang(doc.lang)}/about`;
+    }
+
+    case 'products': {
+      return doc.lang === 'pl' ? '/produkty' : `/${mapLang(doc.lang)}/products`;
     }
 
     default:

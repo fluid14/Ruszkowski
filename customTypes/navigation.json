@@ -14,7 +14,8 @@
                 "blog_page",
                 "realizations_page",
                 "main_page",
-                "about_us_page"
+                "about_us_page",
+                "products"
               ],
               "label": "Link"
             }
