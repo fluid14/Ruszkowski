@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import BackgroundImage from 'gatsby-background-image';
 import { Link } from 'gatsby';
@@ -7,18 +7,19 @@ import * as styles from './Products.module.sass';
 import Button from '../../layout/Button/Button';
 
 const Products = ({ products }) => {
-  const [allProducts, setProducts] = useState();
+  const [allProducts, setProducts] = useState(products);
 
-  setProducts(...products.map((product) => product.data));
-  console.log(
-    'All products: ',
-    products.map((product) => product.data)
-  );
+  console.log('All products: ', allProducts);
 
-  // const prepareFilters = () =>
-  //   products.forEach(({ tags }) => filters.push(...tags));
+  const filters = [];
+  const prepareFilters = () => {
+    const temp = [...products.map((product) => product.data)];
+    setProducts(temp);
+    products.forEach(({ tags }) => filters.push(...tags));
+    console.log(allProducts);
+  };
 
-  // prepareFilters();
+  prepareFilters();
 
   // const filterPipe = (key) => {
   //   console.log(key);
@@ -40,39 +41,37 @@ const Products = ({ products }) => {
           >
             Wszystko
           </Button>
-          {/* {[...new Set(filters)].map((filter, i) => ( */}
-          {/*  <Button */}
-          {/*    key={i} */}
-          {/*    type="button" */}
-          {/*    className={styles.button} */}
-          {/*    sm */}
-          {/*    onClick={() => filterPipe(filter)} */}
-          {/*  > */}
-          {/*    {filter} */}
-          {/*  </Button> */}
-          {/* ))} */}
+          {[...new Set(filters)].map((filter, i) => (
+            <Button
+              key={i}
+              type="button"
+              className={styles.button}
+              sm
+              // onClick={() => filterPipe(filter)}
+            >
+              {filter}
+            </Button>
+          ))}
         </div>
       </div>
       <div className={styles.productsWrap}>
-        {/* {products.map( */}
-        {/*  ({ */}
-        {/*    data: { */}
-        {/*      miniature_title: { text: title }, */}
-        {/*      miniature_description: { text: description }, */}
-        {/*      miniature: { fluid: miniature }, */}
-        {/*    }, */}
-        {/*  }) => ( */}
-        {/*    <Link to="/" className={styles.product}> */}
-        {/*      <p className={styles.title}>{title}</p> */}
-        {/*      <p className={styles.description}>{description}</p> */}
-        {/*      <BackgroundImage */}
-        {/*        Tag="div" */}
-        {/*        className={styles.miniature} */}
-        {/*        fluid={miniature} */}
-        {/*      /> */}
-        {/*    </Link> */}
-        {/*  ) */}
-        {/* )} */}
+        {allProducts.map(
+          ({
+            miniature_title: { text: title },
+            miniature_description: { text: description },
+            miniature: { fluid: miniature },
+          }) => (
+            <Link to="/" className={styles.product}>
+              <p className={styles.title}>{title}</p>
+              <p className={styles.description}>{description}</p>
+              <BackgroundImage
+                Tag="div"
+                className={styles.miniature}
+                fluid={miniature}
+              />
+            </Link>
+          )
+        )}
       </div>
     </div>
   );
