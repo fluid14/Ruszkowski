@@ -26,12 +26,12 @@ const AboutUs = ({ data }) => {
     <>
       <Theme lang={lang}>
         <Header title={bannerTitle} bgc={bannerImg} bgcAlt={bannerAlt} />
-        <main className={cx(styles.aboutUsPage, 'wrap')}>
+        <main className={cx(styles.aboutUsPage)}>
           {body.map(({ slice_type: sliceType, primary, items }, i) => {
             switch (sliceType) {
               case 'opis_z_tytu_em':
                 return (
-                  <Section className={styles.descriptionWrap}>
+                  <Section className={cx(styles.descriptionWrap, 'wrap')}>
                     <SectionTitle
                       right
                       transformNone
@@ -48,7 +48,7 @@ const AboutUs = ({ data }) => {
               case 'nasza_specjalnosc':
                 return (
                   <OurSpeciality
-                    className={styles.ourSpeciality}
+                    className={cx(styles.ourSpeciality, 'wrap')}
                     key={i}
                     data={{ primary, items }}
                   />
@@ -64,7 +64,7 @@ const AboutUs = ({ data }) => {
                 );
 
               case 'formularz_kontaktowy':
-                return <Contact key={i} slice={primary} />;
+                return <Contact key={i} className="wrap" slice={primary} />;
 
               default:
                 return null;

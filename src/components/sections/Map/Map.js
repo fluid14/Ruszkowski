@@ -7,9 +7,6 @@ import * as styles from './Map.module.sass';
 import Section from '../../shared/Section/Section';
 
 const Map = ({ className, data: { primary, items } }) => {
-  console.log(primary);
-  console.log(items);
-
   const renderMarkers = (map, maps) =>
     new maps.Marker({
       position: { lat: 52.4180184, lng: 17.0883267 },

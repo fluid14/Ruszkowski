@@ -6,66 +6,36 @@ import Theme from '../../theme/Theme';
 import Header from '../../components/shared/Header/Header';
 import * as styles from './products.module.sass';
 import Contact from '../../components/shared/Contact/Contact';
-import Section from '../../components/shared/Section/Section';
-import SectionTitle from '../../components/layout/Text/SectionTitle/SectionTitle';
-import Article from '../../components/layout/Text/Article/Article';
-import OurSpeciality from '../../components/sections/OurSpeciality/OurSpeciality';
-import Map from '../../components/sections/Map/Map';
+import Products from '../../components/sections/Products/Products';
 
-const Products = ({ data }) => {
-  console.log(data);
+const ProductsPage = ({ data }) => {
   const {
     banner: { alt: bannerAlt, fluid: bannerImg },
     banner_title: { html: bannerTitle },
     body,
-  } = data.prismicAboutUsPage.data;
-  //
-  const { lang } = data.prismicAboutUsPage;
+  } = data.prismicProducts.data;
+  const { nodes: products } = data.allPrismicProduct;
+
+  const { lang } = data.prismicProducts;
 
   return (
     <>
       <Theme lang={lang}>
-        <h1>PRODUCTS</h1>
         <Header title={bannerTitle} bgc={bannerImg} bgcAlt={bannerAlt} />
-        <main className={cx(styles.aboutUsPage, 'wrap')}>
-          {body.map(({ slice_type: sliceType, primary, items }, i) => {
+        <main className={cx(styles.productsPage)}>
+          {body.map(({ slice_type: sliceType, primary }, i) => {
             switch (sliceType) {
-              case 'opis_z_tytu_em':
-                return (
-                  <Section className={styles.descriptionWrap}>
-                    <SectionTitle
-                      right
-                      transformNone
-                      className={styles.descriptionTitle}
-                    >
-                      {primary.description_title.html}
-                    </SectionTitle>
-                    <Article className={styles.description} xl>
-                      {primary.description.html}
-                    </Article>
-                  </Section>
-                );
-
-              case 'nasza_specjalnosc':
-                return (
-                  <OurSpeciality
-                    className={styles.ourSpeciality}
-                    key={i}
-                    data={{ primary, items }}
-                  />
-                );
-
-              case 'mapa':
-                return (
-                  <Map
-                    className={styles.map}
-                    key={i}
-                    data={{ primary, items }}
-                  />
-                );
+              case 'produkty':
+                return <Products key={i} products={products} />;
 
               case 'formularz_kontaktowy':
-                return <Contact key={i} slice={primary} />;
+                return (
+                  <Contact
+                    key={i}
+                    className={cx(styles.contact, 'wrap')}
+                    slice={primary}
+                  />
+                );
 
               default:
                 return null;
@@ -78,67 +48,15 @@ const Products = ({ data }) => {
 };
 
 export const query = graphql`
-  query ProductsQuery($id: String, $lang: String) {
-    prismicAboutUsPage(id: { eq: $id }, lang: { eq: $lang }) {
+  query ProductsQuery($lang: String) {
+    prismicProducts(lang: { eq: $lang }) {
       lang
       data {
-        banner {
-          alt
-          fluid {
-            ...GatsbyImgixFluid
-          }
-        }
-        banner_title {
-          html
-        }
         body {
-          ... on PrismicAboutUsPageDataBodyMapa {
-            id
-            items {
-              type
-              info_title
-              info {
-                html
-              }
-              icon {
-                alt
-                fluid {
-                  ...GatsbyImgixFluid
-                }
-              }
-            }
+          ... on PrismicProductsDataBodyProdukty {
             slice_type
-            primary {
-              lat
-              lng
-              title {
-                text
-              }
-            }
           }
-          ... on PrismicAboutUsPageDataBodyNaszaSpecjalnosc {
-            slice_type
-            primary {
-              title {
-                html
-              }
-            }
-            items {
-              description {
-                html
-              }
-              icon {
-                fluid {
-                  ...GatsbyImgixFluid
-                }
-                alt
-              }
-              title {
-                text
-              }
-            }
-          }
-          ... on PrismicAboutUsPageDataBodyFormularzKontaktowy {
+          ... on PrismicProductsDataBodyFormularzKontaktowy {
             slice_type
             primary {
               form_title {
@@ -150,16 +68,38 @@ export const query = graphql`
               }
             }
           }
-          ... on PrismicAboutUsPageDataBodyOpisZTytuEm {
-            slice_type
-            primary {
-              description_title {
-                html
-              }
-              description {
-                html
-              }
+        }
+        banner_title {
+          html
+        }
+        banner {
+          alt
+          fluid {
+            ...GatsbyImgixFluid
+          }
+        }
+      }
+    }
+    allPrismicProduct(filter: { lang: { eq: $lang } }) {
+      nodes {
+        tags
+        data {
+          description {
+            html
+          }
+          miniature {
+            fluid {
+              ...GatsbyImgixFluid
             }
+          }
+          miniature_description {
+            text
+          }
+          miniature_title {
+            text
+          }
+          product_title {
+            html
           }
         }
       }
@@ -167,9 +107,9 @@ export const query = graphql`
   }
 `;
 
-Products.propTypes = {
+ProductsPage.propTypes = {
   data: PropTypes.shape({
-    prismicAboutUsPage: PropTypes.shape({
+    prismicProducts: PropTypes.shape({
       lang: PropTypes.string.isRequired,
       data: PropTypes.shape({
         banner: PropTypes.shape({
@@ -194,7 +134,8 @@ Products.propTypes = {
         ),
       }).isRequired,
     }),
+    allPrismicProduct: PropTypes.shape({ nodes: PropTypes.shape({}) }),
   }).isRequired,
 };
 
-export default Products;
+export default ProductsPage;
