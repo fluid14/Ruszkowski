@@ -6,29 +6,22 @@ import cx from 'classnames';
 import * as styles from './Products.module.sass';
 import Button from '../../layout/Button/Button';
 
-const Products = ({ products }) => {
+const Products = ({ products, totalCount }) => {
   const [allProducts, setProducts] = useState(products);
+  const [count, setCount] = useState(8);
 
-  console.log('All products: ', allProducts);
-
-  const filters = [];
-  const prepareFilters = () => {
-    const temp = [...products.map((product) => product.data)];
-    setProducts(temp);
-    products.forEach(({ tags }) => filters.push(...tags));
-    console.log(allProducts);
+  const addProducts = () => {
+    setCount(count + 2);
   };
 
-  prepareFilters();
+  const filters = [];
+  products.forEach(({ tags }) => filters.push(...tags));
 
-  // const filterPipe = (key) => {
-  //   console.log(key);
-  //   setFilters([]);
-  //   key === 'all'
-  //     ? prepareFilters()
-  //     : setFilters([...products.filter((item) => item.tags.includes(key))]);
-  //   // console.log(filters);
-  // };
+  const filterPipe = (key) => {
+    key !== 'all'
+      ? setProducts([...products.filter((item) => item.tags.includes(key))])
+      : setProducts(products);
+  };
 
   return (
     <div className={styles.productsComponentWrap}>
@@ -37,7 +30,7 @@ const Products = ({ products }) => {
           <Button
             className={styles.button}
             sm
-            // onClick={() => filterPipe('all')}
+            onClick={() => filterPipe('all')}
           >
             Wszystko
           </Button>
@@ -47,7 +40,7 @@ const Products = ({ products }) => {
               type="button"
               className={styles.button}
               sm
-              // onClick={() => filterPipe(filter)}
+              onClick={() => filterPipe(filter)}
             >
               {filter}
             </Button>
@@ -56,28 +49,43 @@ const Products = ({ products }) => {
       </div>
       <div className={styles.productsWrap}>
         {allProducts.map(
-          ({
-            miniature_title: { text: title },
-            miniature_description: { text: description },
-            miniature: { fluid: miniature },
-          }) => (
-            <Link to="/" className={styles.product}>
-              <p className={styles.title}>{title}</p>
-              <p className={styles.description}>{description}</p>
-              <BackgroundImage
-                Tag="div"
-                className={styles.miniature}
-                fluid={miniature}
-              />
-            </Link>
-          )
+          (
+            {
+              data: {
+                miniature_title: { text: title },
+                miniature_description: { text: description },
+                miniature: { fluid: miniature },
+              },
+            },
+            i
+          ) => {
+            if (i < count) {
+              return (
+                <Link to="/" key={i} className={styles.product}>
+                  <p className={styles.title}>{title}</p>
+                  <p className={styles.description}>{description}</p>
+                  <BackgroundImage
+                    Tag="div"
+                    className={styles.miniature}
+                    fluid={miniature}
+                  />
+                </Link>
+              );
+            }
+          }
         )}
       </div>
+      {totalCount > count && (
+        <div className={styles.buttonWrap}>
+          <Button onClick={addProducts}>Więcej produktów</Button>
+        </div>
+      )}
     </div>
   );
 };
 
 Products.propTypes = {
+  totalCount: PropTypes.number.isRequired,
   products: PropTypes.arrayOf(
     PropTypes.shape({
       tags: PropTypes.arrayOf(PropTypes.string),

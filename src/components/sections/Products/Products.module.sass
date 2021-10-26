@@ -4,12 +4,14 @@
   .filterWrap
     background-color: $mainOpacity
     padding:
-      top: 38px
-      bottom: 38px
+      top: 25px
+      bottom: 25px
 
     .wrap
       display: flex
-      justify-content: space-between
+      justify-content: center
+      flex-wrap: wrap
+      gap: 100px
 
     .button
       font-weight: 600 !important
@@ -22,6 +24,7 @@
     .product
       position: relative
       height: 880px
+      max-width: 50vw
       padding: 60px
       @include overlay($gray3, 0.8)
 
@@ -90,8 +93,18 @@
         writing-mode: vertical-lr
         text-orientation: mixed
 
+  .buttonWrap
+    display: flex
+    justify-content: center
+    align-items: center
+    margin-top: 80px
+
 @media screen and (max-width: 1697px)
   .productsComponentWrap
+    .filterWrap
+      .wrap
+        gap: 50px
+
     .productsWrap
       .product
         height: 700px
@@ -112,19 +125,54 @@
           font-size: 16px
           letter-spacing: 13px
 
+    .buttonWrap
+      margin-top: 60px
+
+@media screen and (max-width: 1440px)
+  .productsComponentWrap
+    .filterWrap
+      .wrap
+        gap: 30px
+
+@media screen and (max-width: 1200px)
+  .productsComponentWrap
+    .filterWrap
+      .wrap
+        gap: 20px
+
 @media screen and (max-width: 992px)
   .productsComponentWrap
     .productsWrap
       grid-template-columns: repeat(2, 1fr)
 
+    .buttonWrap
+      margin-top: 50px
+
 @media screen and (max-width: 599px)
   .productsComponentWrap
+    .filterWrap
+      .wrap
+        gap: unset
+        justify-content: flex-start
+
+      .button
+        width: calc(50% - 5px)
+        margin-right: 10px
+        margin-bottom: 15px
+
+        &:nth-child(even)
+          margin-right: 0
+
+        &:nth-last-child(1)
+          margin: 0
+
     .productsWrap
       grid-template-columns: 1fr
 
       .product
         height: 550px
         max-height: 90vh
+        max-width: unset
         padding: 30px
 
         .title
@@ -134,4 +182,7 @@
           bottom: 30px
           left: 30px
           font-size: 14px
+
+    .buttonWrap
+      margin-top: 20px
 

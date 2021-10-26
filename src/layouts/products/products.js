@@ -14,7 +14,7 @@ const ProductsPage = ({ data }) => {
     banner_title: { html: bannerTitle },
     body,
   } = data.prismicProducts.data;
-  const { nodes: products } = data.allPrismicProduct;
+  const { nodes: products, totalCount } = data.allPrismicProduct;
 
   const { lang } = data.prismicProducts;
 
@@ -26,7 +26,13 @@ const ProductsPage = ({ data }) => {
           {body.map(({ slice_type: sliceType, primary }, i) => {
             switch (sliceType) {
               case 'produkty':
-                return <Products key={i} products={products} />;
+                return (
+                  <Products
+                    key={i}
+                    products={products}
+                    totalCount={totalCount}
+                  />
+                );
 
               case 'formularz_kontaktowy':
                 return (
@@ -81,6 +87,7 @@ export const query = graphql`
       }
     }
     allPrismicProduct(filter: { lang: { eq: $lang } }) {
+      totalCount
       nodes {
         tags
         data {
@@ -109,6 +116,7 @@ export const query = graphql`
 
 ProductsPage.propTypes = {
   data: PropTypes.shape({
+    totalCount: PropTypes.number.isRequired,
     prismicProducts: PropTypes.shape({
       lang: PropTypes.string.isRequired,
       data: PropTypes.shape({
