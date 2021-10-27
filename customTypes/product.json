@@ -3,7 +3,7 @@
     "miniature_title": {
       "type": "StructuredText",
       "config": {
-        "single": "heading1, heading2, heading3, heading4, heading5, heading6",
+        "single": "heading1,heading2,heading3,heading4,heading5,heading6",
         "label": "Tytuł miniatury"
       }
     },
@@ -33,7 +33,7 @@
     "product_title": {
       "type": "StructuredText",
       "config": {
-        "multi": "paragraph,strong",
+        "multi": "paragraph,heading1,heading2,heading3,heading4,heading5,heading6,strong,em",
         "label": "Tytuł produktu"
       }
     },
@@ -42,6 +42,98 @@
       "config": {
         "multi": "paragraph,strong,em",
         "label": "Opis"
+      }
+    },
+    "release_date": {
+      "type": "Text",
+      "config": {
+        "label": "Termin realizacji"
+      }
+    },
+    "body": {
+      "type": "Slices",
+      "fieldset": "Slice zone",
+      "config": {
+        "labels": {},
+        "choices": {
+          "lista": {
+            "type": "Slice",
+            "fieldset": "Lista",
+            "description": "lista",
+            "icon": "format_list_bulleted",
+            "non-repeat": {
+              "title": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "paragraph,strong,em",
+                  "label": "Tytuł"
+                }
+              }
+            },
+            "repeat": {
+              "item": {
+                "type": "Text",
+                "config": {
+                  "label": "Klucz"
+                }
+              }
+            }
+          },
+          "opis_z_tytu_em": {
+            "type": "Slice",
+            "fieldset": "Opis z tytułem - paragraf",
+            "description": "Opis z tytułem",
+            "icon": "description",
+            "non-repeat": {
+              "description_title": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "paragraph,strong,em",
+                  "label": "Tytuł opisu"
+                }
+              },
+              "description": {
+                "type": "StructuredText",
+                "config": {
+                  "multi": "paragraph,strong,em",
+                  "label": "Opis"
+                }
+              }
+            },
+            "repeat": {}
+          },
+          "dostepne_materia_y": {
+            "type": "Slice",
+            "fieldset": "Dostępne materiały",
+            "description": "dostępne materiału",
+            "icon": "view_list",
+            "non-repeat": {
+              "title": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "paragraph,strong,em",
+                  "label": "Tytuł"
+                }
+              }
+            },
+            "repeat": {
+              "material_image": {
+                "type": "Image",
+                "config": {
+                  "constraint": {},
+                  "thumbnails": [],
+                  "label": "Zdjęcie materiału"
+                }
+              },
+              "materia__name": {
+                "type": "Text",
+                "config": {
+                  "label": "Nazwa materiału"
+                }
+              }
+            }
+          }
+        }
       }
     }
   }
