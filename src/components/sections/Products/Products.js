@@ -6,12 +6,12 @@ import cx from 'classnames';
 import * as styles from './Products.module.sass';
 import Button from '../../layout/Button/Button';
 
-const Products = ({ products, totalCount }) => {
+const Products = ({ products }) => {
   const [allProducts, setProducts] = useState(products);
   const [count, setCount] = useState(8);
 
   const addProducts = () => {
-    setCount(count + 2);
+    setCount(count + 4);
   };
 
   const filters = [];
@@ -21,6 +21,8 @@ const Products = ({ products, totalCount }) => {
     key !== 'all'
       ? setProducts([...products.filter((item) => item.tags.includes(key))])
       : setProducts(products);
+
+    setCount(8);
   };
 
   return (
@@ -75,7 +77,7 @@ const Products = ({ products, totalCount }) => {
           }
         )}
       </div>
-      {totalCount > count && (
+      {allProducts.length > count && (
         <div className={styles.buttonWrap}>
           <Button onClick={addProducts}>Więcej produktów</Button>
         </div>
@@ -85,7 +87,6 @@ const Products = ({ products, totalCount }) => {
 };
 
 Products.propTypes = {
-  totalCount: PropTypes.number.isRequired,
   products: PropTypes.arrayOf(
     PropTypes.shape({
       tags: PropTypes.arrayOf(PropTypes.string),
