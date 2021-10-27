@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import PropTypes, { any } from 'prop-types';
+import PropTypes from 'prop-types';
 import * as styles from './ArticleList.module.sass';
 import ArticleTile from '../ArticleTile/ArticleTile';
 import Button from '../../layout/Button/Button';

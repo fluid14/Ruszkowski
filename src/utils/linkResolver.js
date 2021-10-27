@@ -1,5 +1,6 @@
 exports.linkResolver = (doc) => {
   const mapLang = (lang) => lang.slice(0, -3);
+  console.log(doc);
   switch (doc.type) {
     case 'blog_page': {
       return doc.lang === 'pl' ? '/blog' : `/${mapLang(doc.lang)}/blog`;
@@ -24,6 +25,10 @@ exports.linkResolver = (doc) => {
 
     case 'products': {
       return doc.lang === 'pl' ? '/produkty' : `/${mapLang(doc.lang)}/products`;
+    }
+
+    case 'product': {
+      return doc.lang === 'pl' ? '/produkt' : `/${mapLang(doc.lang)}/product`;
     }
 
     default:

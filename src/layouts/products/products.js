@@ -83,6 +83,7 @@ export const query = graphql`
     allPrismicProduct(filter: { lang: { eq: $lang } }) {
       nodes {
         tags
+        url
         data {
           description {
             html
@@ -99,7 +100,7 @@ export const query = graphql`
             text
           }
           product_title {
-            html
+            text
           }
         }
       }

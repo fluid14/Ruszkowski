@@ -54,6 +54,18 @@ exports.createPages = async ({ graphql, actions }) => {
           id
         }
       }
+      allPrismicProduct {
+        nodes {
+          url
+          lang
+          id
+          data {
+            product_title {
+              text
+            }
+          }
+        }
+      }
     }
   `);
 
@@ -123,6 +135,21 @@ exports.createPages = async ({ graphql, actions }) => {
       context: {
         id: products.id,
         lang: products.lang,
+      },
+    });
+  });
+
+  query.data.allPrismicProduct.nodes.forEach((product) => {
+    const title = slugify(product.data.product_title.text, {
+      lower: true,
+    });
+
+    createPage({
+      path: `${product.url}/${title}`,
+      component: path.resolve(`./src/layouts/product/product.js`),
+      context: {
+        id: product.id,
+        lang: product.lang,
       },
     });
   });
