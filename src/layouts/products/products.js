@@ -85,9 +85,6 @@ export const query = graphql`
         tags
         url
         data {
-          description {
-            html
-          }
           miniature {
             fluid {
               ...GatsbyImgixFluid

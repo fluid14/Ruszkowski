@@ -37,13 +37,6 @@
         "label": "Tytuł produktu"
       }
     },
-    "description": {
-      "type": "StructuredText",
-      "config": {
-        "multi": "paragraph,strong,em",
-        "label": "Opis"
-      }
-    },
     "release_date": {
       "type": "Text",
       "config": {
@@ -132,6 +125,22 @@
                 }
               }
             }
+          },
+          "opis": {
+            "type": "Slice",
+            "fieldset": "Opis",
+            "description": "opis",
+            "icon": "border_color",
+            "non-repeat": {
+              "description": {
+                "type": "StructuredText",
+                "config": {
+                  "multi": "paragraph, strong, em",
+                  "label": "Opis"
+                }
+              }
+            },
+            "repeat": {}
           }
         }
       }

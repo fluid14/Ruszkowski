@@ -1,0 +1,66 @@
+@import './src/styles/config'
+
+.materialsWrap
+  .title
+    p
+      margin-bottom: 20px
+
+  .materials
+    display: flex
+    align-items: center
+    justify-content: flex-start
+
+    .materialList
+      margin-right: 80px
+
+      .listItem
+        margin-bottom: 13px
+
+        &:nth-last-child(1)
+          margin: 0
+
+      .materialButton
+        position: relative
+        border: none
+        border-radius: 20px
+        max-width: 105px
+        width: 100%
+        font-size: 16px
+        font-family: $montserrat
+        text-transform: uppercase
+        font-weight: 500
+        padding: 6px 17px
+        cursor: pointer
+        color: $brown
+        background-color: transparent
+        overflow: hidden
+
+        &.active
+          color: $silver
+
+        .bgc
+          display: block
+          position: absolute !important
+          top: 0
+          left: 0
+          right: 0
+          bottom: 0
+          width: 100%
+          height: 30px
+          z-index: -1
+
+    .materialSample
+      display: block
+      width: 180px
+      height: 140px
+      border-radius: 4px
+      overflow: hidden
+
+@media screen and (max-width: 599px)
+  .materialsWrap
+    .materials
+      .materialList
+        margin-right: 30px
+
+
+
