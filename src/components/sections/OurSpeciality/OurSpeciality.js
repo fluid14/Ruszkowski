@@ -42,7 +42,7 @@ OurSpeciality.propTypes = {
   className: PropTypes.string,
   data: PropTypes.shape({
     primary: PropTypes.shape({
-      title: PropTypes.shape({ text: PropTypes.string }),
+      title: PropTypes.shape({ html: PropTypes.string }),
     }),
     items: PropTypes.shape,
   }).isRequired,

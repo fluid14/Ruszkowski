@@ -14,7 +14,6 @@ import Contact from '../../components/shared/Contact/Contact';
 import ProductGallery from '../../components/sections/ProductGallery/ProductGallery';
 
 const ProductPage = ({ data }) => {
-  console.log(data);
   const {
     banner: { alt: bannerAlt, fluid: bannerImg },
     miniature_title: { html: bannerTitle, text: productTitle },
@@ -42,6 +41,16 @@ const ProductPage = ({ data }) => {
           <Section className={styles.main}>
             {body.map(({ slice_type: sliceType, primary, items }, i) => {
               switch (sliceType) {
+                case 'opis':
+                  return (
+                    <Article
+                      key={i}
+                      className={cx(styles.descriptionWrap, styles.productWrap)}
+                    >
+                      {primary.description.html}
+                    </Article>
+                  );
+
                 case 'galeria':
                   return (
                     <ProductGallery
@@ -51,18 +60,11 @@ const ProductPage = ({ data }) => {
                     />
                   );
 
-                case 'opis':
-                  return (
-                    <Article key={i} className={styles.descriptionWrap}>
-                      {primary.description.html}
-                    </Article>
-                  );
-
                 case 'lista':
                   return (
                     <List
                       key={i}
-                      className={styles.list}
+                      className={cx(styles.list, styles.productWrap)}
                       title={primary.title}
                       items={items}
                     />
@@ -70,7 +72,13 @@ const ProductPage = ({ data }) => {
 
                 case 'opis_z_tytu_em':
                   return (
-                    <div key={i} className={styles.descriptionWithTitle}>
+                    <div
+                      key={i}
+                      className={cx(
+                        styles.descriptionWithTitle,
+                        styles.productWrap
+                      )}
+                    >
                       <Article>{primary.description_title.html}</Article>
                       <Article>{primary.description.html}</Article>
                     </div>
@@ -80,7 +88,7 @@ const ProductPage = ({ data }) => {
                   return (
                     <Materials
                       key={i}
-                      className={styles.materials}
+                      className={cx(styles.materials, styles.productWrap)}
                       primary={primary}
                       items={woodsType}
                     />
