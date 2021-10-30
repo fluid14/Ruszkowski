@@ -1,5 +1,6 @@
 input,
 textarea,
+select,
 input::placeholder,
 textarea::placeholder
   font-size: 16px
@@ -7,7 +8,8 @@ textarea::placeholder
   font-weight: $light
 
 input,
-textarea
+textarea,
+select
   background-color: $gray7
   border: none
   border-radius: 10px
@@ -17,3 +19,8 @@ textarea
 
   &:focus
     outline: none
+
+select
+  -webkit-appearance: none
+  position: relative
+  background: url(../../../static/assets/arrow_down.png) 93% center / 12px no-repeat $gray7 !important

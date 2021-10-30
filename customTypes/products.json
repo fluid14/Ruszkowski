@@ -15,6 +15,20 @@
         "label": "Banner"
       }
     },
+    "contact_form_title": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading1, heading2, heading3, heading4, heading5, heading6, strong, em",
+        "label": "Tytuł formularza kontaktowego w produkcie"
+      }
+    },
+    "contac_form_placeholder": {
+      "type": "StructuredText",
+      "config": {
+        "single": "paragraph",
+        "label": "Treść wiadomości formularza - Placeholder"
+      }
+    },
     "body": {
       "type": "Slices",
       "fieldset": "Slice zone",

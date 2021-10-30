@@ -24,7 +24,7 @@ const Materials = ({ className, primary, items }) => {
       <div className={styles.materials}>
         <ul className={styles.materialList}>
           {/* eslint-disable-next-line camelcase */}
-          {items.map(({ materia__name: material, material_image }, i) => (
+          {items.map(({ material_name: material, material_image }, i) => (
             <li key={i} className={styles.listItem}>
               <button
                 type="button"

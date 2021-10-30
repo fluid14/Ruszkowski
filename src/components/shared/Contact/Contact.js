@@ -26,7 +26,11 @@ const ContactComponent = ({
     form_type: formType,
     form_title: { html: title },
     message_placeholder: { text: messagePlaceholder },
+    product: productTitle,
+    woodsType,
   } = slice;
+
+  console.log(woodsType);
 
   const basic = () => (
     <div className={cx(styles.contactWrap, styles.basic)}>
@@ -107,6 +111,48 @@ const ContactComponent = ({
     </div>
   );
 
+  const product = () => (
+    <div className={cx(styles.contactWrap, styles.product)}>
+      <div className={cx(styles.formWrap, 'formWrap')}>
+        <form className="contactForm">
+          <div className={cx(styles.inputWrap, 'inputWrap')}>
+            <div className={cx(styles.inputsWrap, 'inputsWrap')}>
+              <input type="text" value={productTitle} />
+              <select name="woodType" id="woodType">
+                <option value="">Rodzaj drewna</option>
+                {woodsType.map(({ material_name: materialName }) => (
+                  <option value={materialName}>{materialName}</option>
+                ))}
+              </select>
+            </div>
+            <div className={cx(styles.inputsWrap, 'inputsWrap')}>
+              <input type="text" placeholder="Imię" />
+              <input type="email" placeholder="Email" />
+            </div>
+            <div className={cx(styles.inputsWrap, 'inputsWrap')}>
+              <input type="text" placeholder="Telefon" />
+              <input type="text" placeholder="Miasto" />
+            </div>
+            <div className={styles.textareaWrap}>
+              <label htmlFor="message" className={styles.label}>
+                Twoja wiadomość
+              </label>
+              <textarea
+                name="message"
+                id="message"
+                className={styles.textarea}
+                placeholder={messagePlaceholder}
+              />
+            </div>
+          </div>
+          <Button type="submit" send>
+            Wyślij
+          </Button>
+        </form>
+      </div>
+    </div>
+  );
+
   return (
     <Section className={className}>
       <SectionTitle center shadowText="kontakt">
@@ -119,6 +165,9 @@ const ContactComponent = ({
 
           case 'Podstawowy':
             return basic();
+
+          case 'product':
+            return product();
 
           default:
             return withContactInfo();
@@ -161,6 +210,16 @@ ContactComponent.propTypes = {
     }),
   }).isRequired,
   slice: PropTypes.shape({
+    woodsType: PropTypes.arrayOf(
+      PropTypes.shape({
+        material_name: PropTypes.string,
+        material_image: PropTypes.shape({
+          alt: PropTypes.string,
+          fluid: PropTypes.shape,
+        }),
+      })
+    ),
+    product: PropTypes.string,
     form_type: PropTypes.string,
     form_title: PropTypes.shape({
       html: PropTypes.string,
@@ -174,6 +233,7 @@ ContactComponent.propTypes = {
 ContactComponent.defaultProps = {
   className: '',
   slice: {
+    product: null,
     form_type: null,
     form_title: { html: null },
     message_placeholder: { text: null },

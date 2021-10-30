@@ -16,6 +16,20 @@
         .textarea
           max-width: unset
 
+  &.product
+    .formWrap
+      max-width: unset
+
+      .textareaWrap
+        width: 100%
+        max-width: 750px
+
+        .textarea
+          max-width: unset
+
+      .inputsWrap
+        min-width: 205px
+
   .contactInfo
     display: flex
     flex-direction: column
@@ -60,9 +74,29 @@
         font-size: 12px
         color: $gray9
 
+@media screen and (max-width: 1259px)
+  .contactWrap
+    &.product
+      .formWrap
+        .inputsWrap
+          min-width: 16.28vw
+
+
 @media screen and (max-width: 992px)
   .contactWrap
     flex-direction: column
+
+    &.product
+      .inputWrap
+        flex-wrap: wrap
+
+        .inputsWrap
+          width: calc((100% - 20px) / 3)
+
+      .textareaWrap,
+      .textarea
+        min-width: 100%
+        min-height: 100px
 
     .contactInfo
       margin-right: unset
@@ -74,7 +108,18 @@
       .formWrap
         .textareaWrap
           .textarea
-            min-height: 130px
+            min-height: 140px
+
+    &.product
+      .inputWrap
+        .inputsWrap
+          width: 100%
+
+      .textareaWrap,
+      .textarea
+        min-width: 100%
+        min-height: 140px
+
 
     .textareaWrap
       max-width: unset

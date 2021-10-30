@@ -43,6 +43,28 @@
         "label": "Termin realizacji"
       }
     },
+    "woods_type": {
+      "type": "Group",
+      "config": {
+        "fields": {
+          "material_image": {
+            "type": "Image",
+            "config": {
+              "constraint": {},
+              "thumbnails": [],
+              "label": "Zdjęcie materiału"
+            }
+          },
+          "material_name": {
+            "type": "Text",
+            "config": {
+              "label": "Nazwa materiału"
+            }
+          }
+        },
+        "label": "Typy drewna"
+      }
+    },
     "body": {
       "type": "Slices",
       "fieldset": "Slice zone",
@@ -109,22 +131,7 @@
                 }
               }
             },
-            "repeat": {
-              "material_image": {
-                "type": "Image",
-                "config": {
-                  "constraint": {},
-                  "thumbnails": [],
-                  "label": "Zdjęcie materiału"
-                }
-              },
-              "materia__name": {
-                "type": "Text",
-                "config": {
-                  "label": "Nazwa materiału"
-                }
-              }
-            }
+            "repeat": {}
           },
           "opis": {
             "type": "Slice",
@@ -135,7 +142,7 @@
               "description": {
                 "type": "StructuredText",
                 "config": {
-                  "multi": "paragraph, strong, em",
+                  "multi": "paragraph,strong,em",
                   "label": "Opis"
                 }
               }
