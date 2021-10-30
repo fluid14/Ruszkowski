@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import BackgroundImage from 'gatsby-background-image';
@@ -8,28 +8,59 @@ import * as styles from './ProductGallery.module.sass';
 import 'swiper/css/bundle';
 
 const ProductGallery = ({ items, className }) => {
-  console.log(items);
+  const [galleryImg, setGalleryImg] = useState(items[0].image);
   return (
     <div className={cx(className, styles.galleryWrap)}>
-      <div className={cx(styles.imgWrap, 'swiperNav', 'gallerySwiper')}>
-        <Swiper
-          direction="vertical"
-          slidesPerView="auto"
-          modules={[Navigation]}
-          navigation
-          loop
-        >
-          {items.map(({ image: { alt, fluid } }, i) => (
-            <SwiperSlide key={i}>
-              <BackgroundImage
-                Tag="div"
-                className={styles.img}
-                fluid={fluid}
-                alt={alt}
-              />
-            </SwiperSlide>
-          ))}
-        </Swiper>
+      <BackgroundImage
+        Tag="div"
+        className={styles.galleryImg}
+        fluid={galleryImg.fluid}
+        alt={galleryImg.alt}
+      />
+      <div className={cx(styles.sliderWrap, 'swiperNav', 'gallerySwiper')}>
+        <div className={styles.sliderDesktop}>
+          <Swiper
+            direction="vertical"
+            slidesPerView="auto"
+            modules={[Navigation]}
+            navigation
+            loop
+          >
+            {items.map(({ image: { alt, fluid }, image }, i) => (
+              <SwiperSlide key={i}>
+                <BackgroundImage
+                  Tag="div"
+                  className={styles.sliderImg}
+                  fluid={fluid}
+                  alt={alt}
+                  onClick={() => setGalleryImg(image)}
+                />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+
+        <div className={styles.sliderMobile}>
+          <Swiper
+            direction="horizontal"
+            slidesPerView="auto"
+            modules={[Navigation]}
+            navigation
+            loop
+          >
+            {items.map(({ image: { alt, fluid }, image }, i) => (
+              <SwiperSlide key={i}>
+                <BackgroundImage
+                  Tag="div"
+                  className={styles.sliderImg}
+                  fluid={fluid}
+                  alt={alt}
+                  onClick={() => setGalleryImg(image)}
+                />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
       </div>
     </div>
   );

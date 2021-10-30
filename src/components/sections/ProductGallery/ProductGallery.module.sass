@@ -1,13 +1,48 @@
 @import './src/styles/config'
 
 .galleryWrap
-  .imgWrap
-    @include overlay($second, 0.5, 0, unset)
-    @include imagePlaceholder()
+  display: flex
+  align-items: flex-start
+  justify-content: space-between
+  max-width: 981px
 
-    .img
+  .sliderMobile
+    display: none
+
+  .galleryImg
+    display: block
+    width: 100%
+    height: 508px
+    max-width: 750px
+    border-radius: 4px
+    overflow: hidden
+    margin-right: 30px
+
+  .sliderWrap
+    .sliderImg
       width: 100%
       height: 100%
       background-position: center center
       background-repeat: no-repeat
       background-size: cover
+      cursor: pointer
+
+@media screen and (max-width: 1060px)
+  .galleryWrap
+    max-width: 100%
+
+    .galleryImg
+      height: 47.92vw
+      max-width: 72vw
+      margin-right: 30px
+
+@media screen and (max-width: 767px)
+  .galleryWrap
+    flex-direction: column
+
+    .sliderDesktop
+      display: none
+
+    .sliderMobile
+      display: flex
+
