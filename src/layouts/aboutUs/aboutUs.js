@@ -13,7 +13,6 @@ import OurSpeciality from '../../components/sections/OurSpeciality/OurSpeciality
 import Map from '../../components/sections/Map/Map';
 
 const AboutUs = ({ data }) => {
-  console.log(data);
   const {
     banner: { alt: bannerAlt, fluid: bannerImg },
     banner_title: { html: bannerTitle },

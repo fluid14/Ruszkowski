@@ -30,8 +30,6 @@ const ContactComponent = ({
     woodsType,
   } = slice;
 
-  console.log(woodsType);
-
   const basic = () => (
     <div className={cx(styles.contactWrap, styles.basic)}>
       <div className={cx(styles.formWrap, 'formWrap')}>

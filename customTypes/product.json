@@ -69,7 +69,7 @@
       "type": "Slices",
       "fieldset": "Slice zone",
       "config": {
-        "labels": {},
+        "labels": null,
         "choices": {
           "lista": {
             "type": "Slice",
@@ -148,6 +148,24 @@
               }
             },
             "repeat": {}
+          },
+          "galeria": {
+            "type": "Slice",
+            "fieldset": "Galeria",
+            "description": "gallery",
+            "icon": "image",
+            "display": "list",
+            "non-repeat": {},
+            "repeat": {
+              "image": {
+                "type": "Image",
+                "config": {
+                  "constraint": {},
+                  "thumbnails": [],
+                  "label": "Zdjęcie"
+                }
+              }
+            }
           }
         }
       }

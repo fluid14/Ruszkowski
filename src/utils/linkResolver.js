@@ -1,6 +1,5 @@
 exports.linkResolver = (doc) => {
   const mapLang = (lang) => lang.slice(0, -3);
-  console.log(doc);
   switch (doc.type) {
     case 'blog_page': {
       return doc.lang === 'pl' ? '/blog' : `/${mapLang(doc.lang)}/blog`;

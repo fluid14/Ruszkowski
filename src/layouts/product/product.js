@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { graphql } from 'gatsby';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
@@ -11,6 +11,7 @@ import List from '../../components/sections/List/List';
 import Section from '../../components/shared/Section/Section';
 import Materials from '../../components/sections/Materials/Materials';
 import Contact from '../../components/shared/Contact/Contact';
+import ProductGallery from '../../components/sections/ProductGallery/ProductGallery';
 
 const ProductPage = ({ data }) => {
   console.log(data);
@@ -41,6 +42,15 @@ const ProductPage = ({ data }) => {
           <Section className={styles.main}>
             {body.map(({ slice_type: sliceType, primary, items }, i) => {
               switch (sliceType) {
+                case 'galeria':
+                  return (
+                    <ProductGallery
+                      key={i}
+                      className={styles.productGalleryWrap}
+                      items={items}
+                    />
+                  );
+
                 case 'opis':
                   return (
                     <Article key={i} className={styles.descriptionWrap}>
@@ -129,6 +139,18 @@ export const query = graphql`
           material_name
         }
         body {
+          ... on PrismicProductDataBodyGaleria {
+            id
+            slice_type
+            items {
+              image {
+                alt
+                fluid {
+                  ...GatsbyImgixFluid
+                }
+              }
+            }
+          }
           ... on PrismicProductDataBodyOpis {
             id
             slice_type
@@ -231,6 +253,10 @@ ProductPage.propTypes = {
             slice_type: PropTypes.string,
             items: PropTypes.arrayOf({
               item: PropTypes.string,
+              image: PropTypes.shape({
+                alt: PropTypes.string,
+                fluid: PropTypes.shape,
+              }),
             }),
             primary: PropTypes.shape({
               title: PropTypes.shape({

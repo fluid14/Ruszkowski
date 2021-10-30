@@ -11,7 +11,6 @@ import ArticleList from '../../components/Article/ArticleList/ArticleList';
 import Contact from '../../components/shared/Contact/Contact';
 
 const Blog = ({ data }) => {
-  console.log(data);
   const {
     body,
     banner: { alt: bannerAlt, fluid: bannerImg },
