@@ -5,6 +5,7 @@ import cx from 'classnames';
 import * as styles from './LanguageSwitcher.module.sass';
 
 const LanguageSwitcherComponent = ({
+  className,
   lang,
   data: {
     allPrismicSettings: { nodes },
@@ -19,7 +20,7 @@ const LanguageSwitcherComponent = ({
     mapLang(language) === 'PL' ? '/' : `/${mapLang(language).toLowerCase()}`;
 
   return (
-    <ul className={styles.languageSwitcherWrap}>
+    <ul className={cx(className, styles.languageSwitcherWrap)}>
       <li className={cx(styles.item, styles.active)}>
         <Link to={formatLang(lang)}>{mapLang(lang)}</Link>
       </li>
@@ -55,6 +56,7 @@ const LanguageSwitcher = (props) => (
 );
 
 LanguageSwitcherComponent.propTypes = {
+  className: PropTypes.string,
   lang: PropTypes.string.isRequired,
   data: PropTypes.shape({
     prismicPage: PropTypes.shape({ lang: PropTypes.string.isRequired })
@@ -68,6 +70,10 @@ LanguageSwitcherComponent.propTypes = {
       ).isRequired,
     }).isRequired,
   }).isRequired,
+};
+
+LanguageSwitcherComponent.defaultProps = {
+  className: '',
 };
 
 export default LanguageSwitcher;

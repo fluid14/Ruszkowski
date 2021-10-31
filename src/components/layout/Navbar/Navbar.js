@@ -2,12 +2,15 @@ import React, { useEffect, useRef, useState } from 'react';
 import { graphql, Link, StaticQuery } from 'gatsby';
 import cx from 'classnames';
 import PropTypes from 'prop-types';
+import GatsbyImage from 'gatsby-image';
 import * as styles from './Navbar.module.sass';
 import LanguageSwitcher from '../LanguageSwitcher/LanguageSwitcher';
+import { translate } from '../../../utils/translate';
 
 const NavbarComponent = ({
   lang,
   data: {
+    allPrismicSettings: { nodes: settings },
     allPrismicNavigation: { nodes },
   },
 }) => {
@@ -59,17 +62,21 @@ const NavbarComponent = ({
     >
       <div className={styles.logoWrap}>
         <Link to="/" title="Strona główna">
-          <img
+          <GatsbyImage
             className={styles.logo}
-            src="./images/logo_ruszkowski.png"
-            alt="Ruszkowski.biz"
+            alt={translate(lang, settings).logo.alt}
+            fluid={translate(lang, settings).logo.fluid}
           />
         </Link>
       </div>
       <div className={styles.main}>
-        <a className={styles.phone} href="tel: +48 692 615 555">
-          +48 692 615 555
+        <a
+          className={styles.phone}
+          href={`tel: ${translate(lang, settings).phone_number}`}
+        >
+          {translate(lang, settings).phone_number}
         </a>
+
         <button
           type="button"
           className={cx(styles.burger, { [styles.active]: isMenuActive })}
@@ -83,17 +90,21 @@ const NavbarComponent = ({
           {navigation &&
             navigation.map((nav, i) => (
               <li className={styles.menuItem} key={i}>
-                <Link to={nav.link.url}>{nav.link_title.text}</Link>
+                <Link to={nav.link.url} activeClassName="active">
+                  {nav.link_title.text}
+                </Link>
               </li>
             ))}
           <li className={cx(styles.menuItem, styles.menuPhone)}>
             <a className={styles.phone} href="tel: +48 692 615 555">
-              +48 692 615 555
+              translate
             </a>
+          </li>
+          <li className={cx(styles.menuItem)}>
+            <LanguageSwitcher lang={lang} />
           </li>
         </ul>
       </div>
-      <LanguageSwitcher lang={lang} />
     </nav>
   );
 };
@@ -102,6 +113,20 @@ const Navbar = (props) => (
   <StaticQuery
     query={graphql`
       query NavigationQuery {
+        allPrismicSettings {
+          nodes {
+            lang
+            data {
+              phone_number
+              logo {
+                alt
+                fluid {
+                  ...GatsbyImgixFluid
+                }
+              }
+            }
+          }
+        }
         allPrismicNavigation {
           nodes {
             lang
@@ -127,6 +152,18 @@ const Navbar = (props) => (
 NavbarComponent.propTypes = {
   lang: PropTypes.string.isRequired,
   data: PropTypes.shape({
+    allPrismicSettings: PropTypes.shape({
+      nodes: PropTypes.arrayOf(
+        PropTypes.shape({
+          lang: PropTypes.string,
+          data: PropTypes.shape({
+            logo: PropTypes.shape,
+            alt: PropTypes.string,
+            phone_number: PropTypes.string,
+          }),
+        })
+      ),
+    }),
     allPrismicNavigation: PropTypes.shape({
       nodes: PropTypes.arrayOf(
         PropTypes.shape({
