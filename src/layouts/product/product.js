@@ -1,5 +1,5 @@
 import React from 'react';
-import { graphql } from 'gatsby';
+import { graphql, Link } from 'gatsby';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import Theme from '../../theme/Theme';
@@ -12,6 +12,7 @@ import Section from '../../components/shared/Section/Section';
 import Materials from '../../components/sections/Materials/Materials';
 import Contact from '../../components/shared/Contact/Contact';
 import ProductGallery from '../../components/sections/ProductGallery/ProductGallery';
+import Button from '../../components/layout/Button/Button';
 
 const ProductPage = ({ data }) => {
   const {
@@ -28,7 +29,14 @@ const ProductPage = ({ data }) => {
     contact_form_title: contactTitle,
   } = data.prismicProducts.data;
 
+  const { url } = data.prismicProducts;
+
   const { lang } = data.prismicProduct;
+
+  const { nodes: allTags } = data.allPrismicProduct;
+
+  const filters = [];
+  allTags.forEach(({ tags }) => filters.push(...tags));
 
   return (
     <>
@@ -103,6 +111,15 @@ const ProductPage = ({ data }) => {
               Termin realizacji: {releaseDate}
             </p>
           </Section>
+          <Section className={styles.asideTypes}>
+            {[...new Set(filters)].map((filter, i) => (
+              <Link to={`${url}?type=${filter}#products`}>
+                <Button key={i} type="button" className={styles.button} sm>
+                  {filter}
+                </Button>
+              </Link>
+            ))}
+          </Section>
           <Contact
             slice={{
               form_type: 'product',
@@ -120,6 +137,11 @@ const ProductPage = ({ data }) => {
 
 export const query = graphql`
   query ProductQuery($id: String, $lang: String) {
+    allPrismicProduct(filter: { lang: { eq: $lang } }) {
+      nodes {
+        tags
+      }
+    }
     prismicProduct(id: { eq: $id }, lang: { eq: $lang }) {
       lang
       data {
@@ -205,6 +227,7 @@ export const query = graphql`
       }
     }
     prismicProducts {
+      url
       data {
         contac_form_placeholder {
           text
@@ -219,6 +242,11 @@ export const query = graphql`
 
 ProductPage.propTypes = {
   data: PropTypes.shape({
+    allPrismicProduct: PropTypes.shape({
+      nodes: PropTypes.shape({
+        tags: PropTypes.arrayOf(PropTypes.string),
+      }),
+    }).isRequired,
     prismicProducts: PropTypes.shape({
       data: PropTypes.shape({
         contac_form_placeholder: PropTypes.shape,

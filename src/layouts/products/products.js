@@ -9,7 +9,9 @@ import Contact from '../../components/shared/Contact/Contact';
 import Products from '../../components/sections/Products/Products';
 
 const ProductsPage = ({ data, location }) => {
-  console.log(location.search);
+  const urlSearchParams = new URLSearchParams(location.search);
+  const { type } = Object.fromEntries(urlSearchParams.entries());
+
   const {
     banner: { alt: bannerAlt, fluid: bannerImg },
     banner_title: { html: bannerTitle },
@@ -23,11 +25,13 @@ const ProductsPage = ({ data, location }) => {
     <>
       <Theme lang={lang}>
         <Header title={bannerTitle} bgc={bannerImg} bgcAlt={bannerAlt} />
-        <main className={cx(styles.productsPage)}>
+        <main className={cx(styles.productsPage)} id="products">
           {body.map(({ slice_type: sliceType, primary }, i) => {
             switch (sliceType) {
               case 'produkty':
-                return <Products key={i} products={products} />;
+                return (
+                  <Products key={i} products={products} defaultType={type} />
+                );
 
               case 'formularz_kontaktowy':
                 return (
@@ -107,6 +111,9 @@ export const query = graphql`
 `;
 
 ProductsPage.propTypes = {
+  location: PropTypes.shape({
+    search: PropTypes.string,
+  }),
   data: PropTypes.shape({
     prismicProducts: PropTypes.shape({
       lang: PropTypes.string.isRequired,
@@ -135,6 +142,10 @@ ProductsPage.propTypes = {
     }),
     allPrismicProduct: PropTypes.shape({ nodes: PropTypes.shape({}) }),
   }).isRequired,
+};
+
+ProductsPage.defaultProps = {
+  location: null,
 };
 
 export default ProductsPage;

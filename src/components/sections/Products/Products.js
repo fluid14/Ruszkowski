@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import BackgroundImage from 'gatsby-background-image';
 import { Link } from 'gatsby';
@@ -7,9 +7,21 @@ import slugify from 'slugify';
 import * as styles from './Products.module.sass';
 import Button from '../../layout/Button/Button';
 
-const Products = ({ products }) => {
+const Products = ({ products, defaultType }) => {
   const [allProducts, setProducts] = useState(products);
   const [count, setCount] = useState(8);
+
+  useEffect(() => {
+    if (defaultType) {
+      setProducts([
+        ...products.filter((item) =>
+          item.tags
+            .map((tag) => tag.toUpperCase())
+            .includes(defaultType.toUpperCase())
+        ),
+      ]);
+    }
+  }, []);
 
   const addProducts = () => {
     setCount(count + 4);
@@ -20,7 +32,13 @@ const Products = ({ products }) => {
 
   const filterPipe = (key) => {
     key !== 'all'
-      ? setProducts([...products.filter((item) => item.tags.includes(key))])
+      ? setProducts([
+          ...products.filter((item) =>
+            item.tags
+              .map((tag) => tag.toUpperCase())
+              .includes(key.toUpperCase())
+          ),
+        ])
       : setProducts(products);
 
     setCount(8);
@@ -96,6 +114,7 @@ const Products = ({ products }) => {
 };
 
 Products.propTypes = {
+  defaultType: PropTypes.string,
   products: PropTypes.arrayOf(
     PropTypes.shape({
       tags: PropTypes.arrayOf(PropTypes.string),
@@ -113,6 +132,10 @@ Products.propTypes = {
       }),
     })
   ).isRequired,
+};
+
+Products.defaultProps = {
+  defaultType: null,
 };
 
 export default Products;
