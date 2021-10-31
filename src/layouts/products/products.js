@@ -8,13 +8,14 @@ import * as styles from './products.module.sass';
 import Contact from '../../components/shared/Contact/Contact';
 import Products from '../../components/sections/Products/Products';
 
-const ProductsPage = ({ data }) => {
+const ProductsPage = ({ data, location }) => {
+  console.log(location.search);
   const {
     banner: { alt: bannerAlt, fluid: bannerImg },
     banner_title: { html: bannerTitle },
     body,
   } = data.prismicProducts.data;
-  const { nodes: products, totalCount } = data.allPrismicProduct;
+  const { nodes: products } = data.allPrismicProduct;
 
   const { lang } = data.prismicProducts;
 

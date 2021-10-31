@@ -88,5 +88,33 @@
         top: unset
         bottom: 0
 
+@media screen and (max-width: 767px)
+  .gallerySwiper
+    .swiper
+      width: 100%
+      height: 15vw
+
+      .swiper-slide
+        width: calc(((100% - 20px) / 3))
+        max-height: 15vw
+        margin-bottom: 0
+        margin-right: 10px
+
+    &.swiperNav
+      .swiper-button-prev,
+      .swiper-button-next
+        width: 55px
+        height: unset !important
+        transform: rotate(0) translateY(-50%)
+        top: 50%
+
+      .swiper-button-prev
+        left: 0
+
+      .swiper-button-next
+        right: 0
+        bottom: unset
+        left: unset
+
 
 
