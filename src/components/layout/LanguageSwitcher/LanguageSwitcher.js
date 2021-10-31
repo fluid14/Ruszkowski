@@ -1,34 +1,37 @@
 import * as React from 'react';
-import { graphql, navigate, StaticQuery } from 'gatsby';
+import { graphql, Link, StaticQuery } from 'gatsby';
 import PropTypes from 'prop-types';
+import cx from 'classnames';
+import * as styles from './LanguageSwitcher.module.sass';
 
 const LanguageSwitcherComponent = ({
   lang,
   data: {
-    allPrismicPage: { nodes },
+    allPrismicSettings: { nodes },
   },
 }) => {
-  const handleLangChange = (event) => {
-    navigate(event.target.value);
-  };
-
   const mapLang = (language) =>
     language.length > 2
       ? language.slice(0, -3).toUpperCase()
       : language.toUpperCase();
 
+  const formatLang = (language) =>
+    mapLang(language) === 'PL' ? '/' : `/${mapLang(language).toLowerCase()}`;
+
   return (
-    <select value={lang} onChange={handleLangChange}>
-      <option value={lang}>{mapLang(lang)}</option>
+    <ul className={styles.languageSwitcherWrap}>
+      <li className={cx(styles.item, styles.active)}>
+        <Link to={formatLang(lang)}>{mapLang(lang)}</Link>
+      </li>
       {nodes.map(
         (altLang, index) =>
           altLang.lang !== lang && (
-            <option value={altLang.url} key={`alt-lang-${index}`}>
-              {mapLang(altLang.lang)}
-            </option>
+            <li key={`alt-lang-${index}`} className={styles.item}>
+              <Link to={formatLang(altLang.lang)}>{mapLang(altLang.lang)}</Link>
+            </li>
           )
       )}
-    </select>
+    </ul>
   );
 };
 
@@ -36,7 +39,7 @@ const LanguageSwitcher = (props) => (
   <StaticQuery
     query={graphql`
       query LanguageSwitcherQuery {
-        allPrismicPage {
+        allPrismicSettings {
           nodes {
             lang
             url
@@ -56,7 +59,7 @@ LanguageSwitcherComponent.propTypes = {
   data: PropTypes.shape({
     prismicPage: PropTypes.shape({ lang: PropTypes.string.isRequired })
       .isRequired,
-    allPrismicPage: PropTypes.shape({
+    allPrismicSettings: PropTypes.shape({
       nodes: PropTypes.arrayOf(
         PropTypes.shape({
           lang: PropTypes.string.isRequired,

@@ -70,8 +70,6 @@ const NavbarComponent = ({
         <a className={styles.phone} href="tel: +48 692 615 555">
           +48 692 615 555
         </a>
-        <LanguageSwitcher lang={lang} />
-
         <button
           type="button"
           className={cx(styles.burger, { [styles.active]: isMenuActive })}
@@ -95,6 +93,7 @@ const NavbarComponent = ({
           </li>
         </ul>
       </div>
+      <LanguageSwitcher lang={lang} />
     </nav>
   );
 };
