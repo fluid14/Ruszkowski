@@ -51,7 +51,7 @@ const Realizations = ({ data }) => {
                 );
 
               case 'formularz_kontaktowy':
-                return <Contact key={i} slice={slice.primary} />;
+                return <Contact key={i} slice={slice.primary} lang={lang} />;
 
               default:
                 return null;

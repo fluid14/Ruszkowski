@@ -66,7 +66,14 @@ const AboutUs = ({ data }) => {
                 );
 
               case 'formularz_kontaktowy':
-                return <Contact key={i} className="wrap" slice={primary} />;
+                return (
+                  <Contact
+                    key={i}
+                    className="wrap"
+                    slice={primary}
+                    lang={lang}
+                  />
+                );
 
               default:
                 return null;

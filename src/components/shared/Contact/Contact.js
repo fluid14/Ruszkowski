@@ -1,27 +1,22 @@
 import React from 'react';
-import { graphql, StaticQuery } from 'gatsby';
+import { graphql, Link, StaticQuery } from 'gatsby';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import Section from '../Section/Section';
 import SectionTitle from '../../layout/Text/SectionTitle/SectionTitle';
 import * as styles from './Contact.module.sass';
 import Button from '../../layout/Button/Button';
+import { translate } from '../../../utils/translate';
 
 const ContactComponent = ({
+  lang,
   slice,
   className,
   data: {
-    prismicSettings: { data },
+    allPrismicSettings: { nodes: settings },
   },
 }) => {
-  const {
-    city,
-    zip_code: zipCode,
-    phone_number: phoneNumber,
-    street,
-    email,
-  } = data;
-
+  console.log(settings);
   const {
     form_type: formType,
     form_title: { html: title },
@@ -36,16 +31,27 @@ const ContactComponent = ({
         <form className="contactForm">
           <div className="inputWrap">
             <div className="inputsWrap">
-              <input type="text" placeholder="Imię" />
+              <input
+                type="text"
+                placeholder={translate(lang, settings).translation_name.text}
+              />
               <input type="email" placeholder="Email" />
             </div>
             <div className="inputsWrap">
-              <input type="text" placeholder="Telefon" />
-              <input type="text" placeholder="Miasto" />
+              <input
+                type="text"
+                placeholder={
+                  translate(lang, settings).translation_telephone.text
+                }
+              />
+              <input
+                type="text"
+                placeholder={translate(lang, settings).translation_city.text}
+              />
             </div>
             <div className={styles.textareaWrap}>
               <label htmlFor="message" className={styles.label}>
-                Twoja wiadomość
+                {translate(lang, settings).translation_your_message.text}
               </label>
               <textarea
                 name="message"
@@ -56,7 +62,7 @@ const ContactComponent = ({
             </div>
           </div>
           <Button type="submit" send>
-            Wyślij
+            {translate(lang, settings).translation_send.text}
           </Button>
         </form>
       </div>
@@ -66,32 +72,50 @@ const ContactComponent = ({
   const withContactInfo = () => (
     <div className={cx(styles.contactWrap)}>
       <div className={styles.contactInfo}>
-        <a href={`tel: ${phoneNumber}`} className={styles.phone}>
-          {phoneNumber}
+        <a
+          href={`tel: ${translate(lang, settings).phone_number}`}
+          className={styles.phone}
+        >
+          {translate(lang, settings).phone_number}
         </a>
-        <a href={`mailto: ${email}`} className={styles.email}>
-          {email}
+        <a
+          href={`mailto: ${translate(lang, settings).email}`}
+          className={styles.email}
+        >
+          {translate(lang, settings).email}
         </a>
         <p>
-          PL. {zipCode} {city},
+          PL. {translate(lang, settings).zip_code}&nbsp;
+          {translate(lang, settings).city},
         </p>
-        <p>{street},</p>
+        <p>{translate(lang, settings).street},</p>
       </div>
 
       <div className="formWrap">
         <form className="contactForm">
           <div className="inputWrap">
             <div className="inputsWrap">
-              <input type="text" placeholder="Imię" />
+              <input
+                type="text"
+                placeholder={translate(lang, settings).translation_name.text}
+              />
               <input type="email" placeholder="Email" />
             </div>
             <div className="inputsWrap">
-              <input type="text" placeholder="Telefon" />
-              <input type="text" placeholder="Miasto" />
+              <input
+                type="text"
+                placeholder={
+                  translate(lang, settings).translation_telephone.text
+                }
+              />
+              <input
+                type="text"
+                placeholder={translate(lang, settings).translation_city.text}
+              />
             </div>
             <div className={styles.textareaWrap}>
               <label htmlFor="message" className={styles.label}>
-                Twoja wiadomość
+                {translate(lang, settings).translation_your_message.text}
               </label>
               <textarea
                 name="message"
@@ -99,10 +123,10 @@ const ContactComponent = ({
                 className={styles.textarea}
                 placeholder={messagePlaceholder}
               />
-            </div>{' '}
+            </div>
           </div>
           <Button type="submit" send>
-            Wyślij
+            {translate(lang, settings).translation_send.text}
           </Button>
         </form>
       </div>
@@ -126,16 +150,28 @@ const ContactComponent = ({
               </select>
             </div>
             <div className={cx(styles.inputsWrap, 'inputsWrap')}>
-              <input type="text" placeholder="Imię" />
+              <input
+                type="text"
+                placeholder={translate(lang, settings).translation_name.text}
+              />
               <input type="email" placeholder="Email" />
             </div>
             <div className={cx(styles.inputsWrap, 'inputsWrap')}>
-              <input type="text" placeholder="Telefon" />
-              <input type="text" placeholder="Miasto" />
+              <input
+                type="text"
+                placeholder={
+                  translate(lang, settings).translation_telephone.text
+                }
+              />
+              <input
+                type="text"
+                placeholder={translate(lang, settings).translation_city.text}
+              />
             </div>
             <div className={styles.textareaWrap}>
               <label htmlFor="message" className={styles.label}>
-                Twoja wiadomość
+                placeholder=
+                {translate(lang, settings).translation_your_message.text}
               </label>
               <textarea
                 name="message"
@@ -146,7 +182,7 @@ const ContactComponent = ({
             </div>
           </div>
           <Button type="submit" send>
-            Wyślij
+            placeholder={translate(lang, settings).translation_send.text}
           </Button>
         </form>
       </div>
@@ -156,7 +192,7 @@ const ContactComponent = ({
   return (
     <Section className={className}>
       <SectionTitle center shadowText="kontakt">
-        {title || `<h4>BĄDŹMY <strong>W KONTAKCIE</strong></h4>`}
+        {title}
       </SectionTitle>
       {(() => {
         switch (formType) {
@@ -181,13 +217,34 @@ const Contact = (props) => (
   <StaticQuery
     query={graphql`
       query ContactQuery {
-        prismicSettings {
-          data {
-            city
-            email
-            phone_number
-            street
-            zip_code
+        allPrismicSettings {
+          nodes {
+            lang
+            data {
+              translation_send {
+                text
+              }
+              translation_city {
+                text
+              }
+              translation_name {
+                text
+              }
+              translation_surname {
+                text
+              }
+              translation_telephone {
+                text
+              }
+              translation_your_message {
+                text
+              }
+              city
+              email
+              phone_number
+              street
+              zip_code
+            }
           }
         }
       }
@@ -197,16 +254,25 @@ const Contact = (props) => (
 );
 
 ContactComponent.propTypes = {
+  lang: PropTypes.string.isRequired,
   className: PropTypes.string,
   data: PropTypes.shape({
-    prismicSettings: PropTypes.shape({
-      data: PropTypes.shape({
-        city: PropTypes.string.isRequired,
-        email: PropTypes.string.isRequired,
-        phone_number: PropTypes.string.isRequired,
-        street: PropTypes.string.isRequired,
-        zip_code: PropTypes.string.isRequired,
-      }).isRequired,
+    allPrismicSettings: PropTypes.shape({
+      nodes: PropTypes.arrayOf(
+        PropTypes.shape({
+          translation_send: PropTypes.shape({ text: PropTypes.string }),
+          translation_city: PropTypes.shape({ text: PropTypes.string }),
+          translation_name: PropTypes.shape({ text: PropTypes.string }),
+          translation_surname: PropTypes.shape({ text: PropTypes.string }),
+          translation_telephone: PropTypes.shape({ text: PropTypes.string }),
+          translation_your_message: PropTypes.shape({ text: PropTypes.string }),
+          city: PropTypes.string.isRequired,
+          email: PropTypes.string.isRequired,
+          phone_number: PropTypes.string.isRequired,
+          street: PropTypes.string.isRequired,
+          zip_code: PropTypes.string.isRequired,
+        })
+      ),
     }),
   }).isRequired,
   slice: PropTypes.shape({

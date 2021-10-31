@@ -52,7 +52,7 @@ const Blog = ({ data }) => {
                 );
 
               case 'formularz_kontaktowy':
-                return <Contact key={i} slice={primary} />;
+                return <Contact key={i} slice={primary} lang={lang} />;
 
               default:
                 return null;

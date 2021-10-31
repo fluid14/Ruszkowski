@@ -59,8 +59,7 @@ LanguageSwitcherComponent.propTypes = {
   className: PropTypes.string,
   lang: PropTypes.string.isRequired,
   data: PropTypes.shape({
-    prismicPage: PropTypes.shape({ lang: PropTypes.string.isRequired })
-      .isRequired,
+    prismicPage: PropTypes.shape({ lang: PropTypes.string.isRequired }),
     allPrismicSettings: PropTypes.shape({
       nodes: PropTypes.arrayOf(
         PropTypes.shape({

@@ -78,7 +78,7 @@ const ArticlePage = ({
             </aside>
           </div>
         </main>
-        <Contact className="wrap" />
+        <Contact className="wrap" lang={lang} />
       </Theme>
     </>
   );

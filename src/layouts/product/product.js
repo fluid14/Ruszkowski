@@ -121,6 +121,7 @@ const ProductPage = ({ data }) => {
             ))}
           </Section>
           <Contact
+            lang={lang}
             slice={{
               form_type: 'product',
               form_title: contactTitle,

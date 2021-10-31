@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'gatsby';
+import { graphql, Link, useStaticQuery } from 'gatsby';
 import cx from 'classnames';
 import BackgroundImage from 'gatsby-background-image';
 import slugify from 'slugify';
@@ -10,86 +10,105 @@ import * as styles from './ArticleTile.module.sass';
 import Tags from '../../shared/Tags/Tags';
 import Article from '../../layout/Text/Article/Article';
 import 'swiper/css/bundle';
+import { translate } from '../../../utils/translate';
 
-const ArticleTile = ({ lang, article, realization, className, titles }) =>
-  (!realization && (
-    <>
-      <div className={cx(className, styles.articleTileWrap)}>
-        <div className={styles.imgWrap}>
-          <BackgroundImage
-            Tag="section"
-            className={styles.img}
-            fluid={article.data.article_miniature.fluid}
-          />
-        </div>
-        <div className={styles.descriptionWrap}>
-          <Tags tags={article.tags} className={styles.tags} />
-          <Article className={styles.text} l>
-            {article.data.short_description.html}
-          </Article>
-          <div className={styles.tileFooter}>
-            <Link
-              to={`${article.url}/${slugify(article.data.article_title.text, {
-                lower: true,
-              })}`}
-              className="link uppercase more"
-            >
-              Czytaj więcej
-            </Link>
+const ArticleTile = ({ lang, article, realization, className, titles }) => {
+  const settings = useStaticQuery(graphql`
+    query ArticleTitleQuery {
+      allPrismicSettings {
+        nodes {
+          lang
+          data {
+            translation_read_more {
+              text
+            }
+          }
+        }
+      }
+    }
+  `).allPrismicSettings.nodes;
+
+  return (
+    (!realization && (
+      <>
+        <div className={cx(className, styles.articleTileWrap)}>
+          <div className={styles.imgWrap}>
+            <BackgroundImage
+              Tag="section"
+              className={styles.img}
+              fluid={article.data.article_miniature.fluid}
+            />
           </div>
-        </div>
-      </div>
-    </>
-  )) ||
-  (realization && (
-    <>
-      <div
-        className={cx(
-          className,
-          styles.articleTileWrap,
-          styles.realizationWrap
-        )}
-      >
-        <div className={cx(styles.imgWrap, 'swiperNav')}>
-          <Swiper
-            direction="horizontal"
-            slidesPerView="auto"
-            modules={[Navigation]}
-            navigation
-            loop
-          >
-            {article.data.gallery.map(({ photo: { alt, fluid } }, i) => (
-              <SwiperSlide key={i}>
-                <BackgroundImage
-                  Tag="section"
-                  className={styles.img}
-                  fluid={fluid}
-                  alt={alt}
-                />
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        </div>
-        <div className={styles.descriptionWrap}>
-          <div className={styles.realizationInfoWrap}>
-            <p className={styles.title}>{titles.investor}</p>
-            <p className={styles.value}>{article.data.investor.text}</p>
-          </div>
-          <div className={styles.realizationInfoWrap}>
-            <p className={styles.title}>{titles.place}</p>
-            <p className={styles.value}>{article.data.place.text}</p>
-          </div>
-          <div className={styles.descriptionInfoWrap}>
-            <p className={styles.descriptionTitle}>{titles.scope}</p>
+          <div className={styles.descriptionWrap}>
+            <Tags tags={article.tags} className={styles.tags} />
             <Article className={styles.text} l>
-              {article.data.description.html}
+              {article.data.short_description.html}
             </Article>
+            <div className={styles.tileFooter}>
+              <Link
+                to={`${article.url}/${slugify(article.data.article_title.text, {
+                  lower: true,
+                })}`}
+                className="link uppercase more"
+              >
+                {translate(lang, settings).translation_read_more.text}
+              </Link>
+            </div>
           </div>
-          <div className={styles.tileFooter} />
         </div>
-      </div>
-    </>
-  ));
+      </>
+    )) ||
+    (realization && (
+      <>
+        <div
+          className={cx(
+            className,
+            styles.articleTileWrap,
+            styles.realizationWrap
+          )}
+        >
+          <div className={cx(styles.imgWrap, 'swiperNav')}>
+            <Swiper
+              direction="horizontal"
+              slidesPerView="auto"
+              modules={[Navigation]}
+              navigation
+              loop
+            >
+              {article.data.gallery.map(({ photo: { alt, fluid } }, i) => (
+                <SwiperSlide key={i}>
+                  <BackgroundImage
+                    Tag="section"
+                    className={styles.img}
+                    fluid={fluid}
+                    alt={alt}
+                  />
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
+          <div className={styles.descriptionWrap}>
+            <div className={styles.realizationInfoWrap}>
+              <p className={styles.title}>{titles.investor}</p>
+              <p className={styles.value}>{article.data.investor.text}</p>
+            </div>
+            <div className={styles.realizationInfoWrap}>
+              <p className={styles.title}>{titles.place}</p>
+              <p className={styles.value}>{article.data.place.text}</p>
+            </div>
+            <div className={styles.descriptionInfoWrap}>
+              <p className={styles.descriptionTitle}>{titles.scope}</p>
+              <Article className={styles.text} l>
+                {article.data.description.html}
+              </Article>
+            </div>
+            <div className={styles.tileFooter} />
+          </div>
+        </div>
+      </>
+    ))
+  );
+};
 
 ArticleTile.propTypes = {
   lang: PropTypes.string.isRequired,

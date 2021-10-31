@@ -39,6 +39,7 @@ const ProductsPage = ({ data, location }) => {
                     key={i}
                     className={cx(styles.contact, 'wrap')}
                     slice={primary}
+                    lang={lang}
                   />
                 );
 
