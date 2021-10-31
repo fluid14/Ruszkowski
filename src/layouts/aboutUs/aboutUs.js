@@ -30,7 +30,10 @@ const AboutUs = ({ data }) => {
             switch (sliceType) {
               case 'opis_z_tytu_em':
                 return (
-                  <Section className={cx(styles.descriptionWrap, 'wrap')}>
+                  <Section
+                    key={i}
+                    className={cx(styles.descriptionWrap, 'wrap')}
+                  >
                     <SectionTitle
                       right
                       transformNone

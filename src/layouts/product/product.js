@@ -41,7 +41,7 @@ const ProductPage = ({ data }) => {
   return (
     <>
       <Theme lang={lang}>
-        <Header title={bannerTitle} bgc={bannerImg} bgcAlt={bannerAlt} />
+        <Header title={bannerTitle} bgc={bannerImg} bgcAlt={bannerAlt || ''} />
         <main className={cx(styles.productPage, 'wrap')}>
           <SectionTitle className={styles.productTitle} transformNone>
             {title}
@@ -113,8 +113,8 @@ const ProductPage = ({ data }) => {
           </Section>
           <Section className={styles.asideTypes}>
             {[...new Set(filters)].map((filter, i) => (
-              <Link to={`${url}?type=${filter}#products`}>
-                <Button key={i} type="button" className={styles.button} sm>
+              <Link key={i} to={`${url}?type=${filter}#products`}>
+                <Button type="button" className={styles.button} sm>
                   {filter}
                 </Button>
               </Link>
@@ -243,11 +243,14 @@ export const query = graphql`
 ProductPage.propTypes = {
   data: PropTypes.shape({
     allPrismicProduct: PropTypes.shape({
-      nodes: PropTypes.shape({
-        tags: PropTypes.arrayOf(PropTypes.string),
-      }),
+      nodes: PropTypes.arrayOf(
+        PropTypes.shape({
+          tags: PropTypes.arrayOf(PropTypes.string),
+        })
+      ),
     }).isRequired,
     prismicProducts: PropTypes.shape({
+      url: PropTypes.string.isRequired,
       data: PropTypes.shape({
         contac_form_placeholder: PropTypes.shape,
         contact_form_title: PropTypes.shape,

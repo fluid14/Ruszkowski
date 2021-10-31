@@ -30,13 +30,16 @@ const Map = ({ className, data: { primary, items } }) => {
       </div>
       <div className={styles.infosWrap}>
         {items.map(
-          ({
-            info: { html: infoText },
-            info_title: infoTitle,
-            icon: { fluid, alt },
-            type,
-          }) => (
-            <div className={styles.infoWrap}>
+          (
+            {
+              info: { html: infoText },
+              info_title: infoTitle,
+              icon: { fluid, alt },
+              type,
+            },
+            i
+          ) => (
+            <div key={i} className={styles.infoWrap}>
               <div className={styles.titleWrap}>
                 <GatsbyImage className={styles.icon} fluid={fluid} alt={alt} />
                 <p className={styles.infoTitle}>{infoTitle}</p>

@@ -118,8 +118,10 @@ const ContactComponent = ({
               <input type="text" value={productTitle} />
               <select name="woodType" id="woodType">
                 <option value="">Rodzaj drewna</option>
-                {woodsType.map(({ material_name: materialName }) => (
-                  <option value={materialName}>{materialName}</option>
+                {woodsType.map(({ material_name: materialName }, i) => (
+                  <option key={i} value={materialName}>
+                    {materialName}
+                  </option>
                 ))}
               </select>
             </div>

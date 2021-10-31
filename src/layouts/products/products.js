@@ -134,13 +134,13 @@ ProductsPage.propTypes = {
               description_title: PropTypes.shape({ html: PropTypes.string }),
               description: PropTypes.shape({ html: PropTypes.string }),
               slice_type: PropTypes.string,
-            }).isRequired,
-            slice_type: PropTypes.string.isRequired,
-          }).isRequired
+            }),
+            slice_type: PropTypes.string,
+          })
         ),
-      }).isRequired,
+      }),
     }),
-    allPrismicProduct: PropTypes.shape({ nodes: PropTypes.shape({}) }),
+    allPrismicProduct: PropTypes.shape({ nodes: PropTypes.array }),
   }).isRequired,
 };
 
