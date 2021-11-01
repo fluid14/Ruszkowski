@@ -16,7 +16,6 @@ const ContactComponent = ({
     allPrismicSettings: { nodes: settings },
   },
 }) => {
-  console.log(settings);
   const {
     form_type: formType,
     form_title: { html: title },
@@ -266,15 +265,15 @@ ContactComponent.propTypes = {
           translation_surname: PropTypes.shape({ text: PropTypes.string }),
           translation_telephone: PropTypes.shape({ text: PropTypes.string }),
           translation_your_message: PropTypes.shape({ text: PropTypes.string }),
-          city: PropTypes.string.isRequired,
-          email: PropTypes.string.isRequired,
-          phone_number: PropTypes.string.isRequired,
-          street: PropTypes.string.isRequired,
-          zip_code: PropTypes.string.isRequired,
+          city: PropTypes.string,
+          email: PropTypes.string,
+          phone_number: PropTypes.string,
+          street: PropTypes.string,
+          zip_code: PropTypes.string,
         })
       ),
     }),
-  }).isRequired,
+  }),
   slice: PropTypes.shape({
     woodsType: PropTypes.arrayOf(
       PropTypes.shape({

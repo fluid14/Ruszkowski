@@ -30,7 +30,12 @@ const ProductsPage = ({ data, location }) => {
             switch (sliceType) {
               case 'produkty':
                 return (
-                  <Products key={i} products={products} defaultType={type} />
+                  <Products
+                    key={i}
+                    products={products}
+                    defaultType={type}
+                    lang={lang}
+                  />
                 );
 
               case 'formularz_kontaktowy':

@@ -35,15 +35,6 @@ RealizationsList.propTypes = {
       realizations_list_title: PropTypes.shape({
         html: PropTypes.string.isRequired,
       }).isRequired,
-      investor_title: PropTypes.shape({
-        text: PropTypes.string.isRequired,
-      }).isRequired,
-      place_title: PropTypes.shape({
-        text: PropTypes.string.isRequired,
-      }).isRequired,
-      scope_title: PropTypes.shape({
-        text: PropTypes.string.isRequired,
-      }).isRequired,
     }).isRequired,
   }).isRequired,
   realizations: PropTypes.shape({

@@ -1,14 +1,34 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { graphql, useStaticQuery } from 'gatsby';
 import * as styles from './ArticleList.module.sass';
 import ArticleTile from '../ArticleTile/ArticleTile';
 import Button from '../../layout/Button/Button';
+import { translate } from '../../../utils/translate';
 
 const ArticleList = ({ lang, articles, realizations, totalCount }) => {
   const [count, setCount] = useState(2);
   const addArticles = () => {
     setCount(count + 2);
   };
+
+  const settings = useStaticQuery(graphql`
+    query ArticleListQuery {
+      allPrismicSettings {
+        nodes {
+          lang
+          data {
+            translations_more_content {
+              text
+            }
+            translation_more_realizations {
+              text
+            }
+          }
+        }
+      }
+    }
+  `).allPrismicSettings.nodes;
 
   return (
     <div className={styles.articleList}>
@@ -45,7 +65,11 @@ const ArticleList = ({ lang, articles, realizations, totalCount }) => {
         })}
       {totalCount > count && (
         <div className={styles.buttonWrap}>
-          <Button onClick={addArticles}>Więcej treści</Button>
+          <Button onClick={addArticles}>
+            {realizations
+              ? translate(lang, settings).translation_more_realizations.text
+              : translate(lang, settings).translations_more_content.text}
+          </Button>
         </div>
       )}
     </div>

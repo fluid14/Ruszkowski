@@ -1,15 +1,34 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import BackgroundImage from 'gatsby-background-image';
-import { Link } from 'gatsby';
+import { graphql, Link, useStaticQuery } from 'gatsby';
 import cx from 'classnames';
 import slugify from 'slugify';
 import * as styles from './Products.module.sass';
 import Button from '../../layout/Button/Button';
+import { translate } from '../../../utils/translate';
 
-const Products = ({ products, defaultType }) => {
+const Products = ({ products, defaultType, lang }) => {
   const [allProducts, setProducts] = useState(products);
   const [count, setCount] = useState(8);
+
+  const settings = useStaticQuery(graphql`
+    query ProductsSettingsQuery {
+      allPrismicSettings {
+        nodes {
+          lang
+          data {
+            translation_all {
+              text
+            }
+            translation_more_products {
+              text
+            }
+          }
+        }
+      }
+    }
+  `).allPrismicSettings.nodes;
 
   useEffect(() => {
     if (defaultType) {
@@ -53,7 +72,7 @@ const Products = ({ products, defaultType }) => {
             sm
             onClick={() => filterPipe('all')}
           >
-            Wszystko
+            {translate(lang, settings).translation_all.text}
           </Button>
           {[...new Set(filters)].map((filter, i) => (
             <Button
@@ -106,7 +125,9 @@ const Products = ({ products, defaultType }) => {
       </div>
       {allProducts.length > count && (
         <div className={styles.buttonWrap}>
-          <Button onClick={addProducts}>Więcej produktów</Button>
+          <Button onClick={addProducts}>
+            {translate(lang, settings).translation_more_products.text}
+          </Button>
         </div>
       )}
     </div>
@@ -114,6 +135,7 @@ const Products = ({ products, defaultType }) => {
 };
 
 Products.propTypes = {
+  lang: PropTypes.string.isRequired,
   defaultType: PropTypes.string,
   products: PropTypes.arrayOf(
     PropTypes.shape({

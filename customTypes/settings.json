@@ -116,6 +116,13 @@
         "label": "Więcej realizacji"
       }
     },
+    "translation_more_products": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading6",
+        "label": "Więcej produktów"
+      }
+    },
     "translation_name": {
       "type": "StructuredText",
       "config": {
@@ -163,6 +170,13 @@
       "config": {
         "single": "heading6",
         "label": "Czytaj więcej"
+      }
+    },
+    "translation_all": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading6",
+        "label": "Wszystko"
       }
     }
   }
