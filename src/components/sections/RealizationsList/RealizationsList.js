@@ -13,9 +13,6 @@ const RealizationsList = ({
   const {
     primary: {
       realizations_list_title: { html: title },
-      investor_title: { text: investor },
-      place_title: { text: place },
-      scope_title: { text: scope },
     },
   } = data;
 
@@ -25,7 +22,6 @@ const RealizationsList = ({
       <ArticleList
         lang={lang}
         realizations={realizations}
-        titles={{ investor, place, scope }}
         totalCount={totalCount}
       />
     </Section>

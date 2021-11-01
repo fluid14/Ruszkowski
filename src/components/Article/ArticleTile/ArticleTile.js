@@ -12,7 +12,7 @@ import Article from '../../layout/Text/Article/Article';
 import 'swiper/css/bundle';
 import { translate } from '../../../utils/translate';
 
-const ArticleTile = ({ lang, article, realization, className, titles }) => {
+const ArticleTile = ({ lang, article, realization, className }) => {
   const settings = useStaticQuery(graphql`
     query ArticleTitleQuery {
       allPrismicSettings {
@@ -20,6 +20,15 @@ const ArticleTile = ({ lang, article, realization, className, titles }) => {
           lang
           data {
             translation_read_more {
+              text
+            }
+            translation_investor {
+              text
+            }
+            translation_place {
+              text
+            }
+            translations_zakres {
               text
             }
           }
@@ -89,15 +98,21 @@ const ArticleTile = ({ lang, article, realization, className, titles }) => {
           </div>
           <div className={styles.descriptionWrap}>
             <div className={styles.realizationInfoWrap}>
-              <p className={styles.title}>{titles.investor}</p>
+              <p className={styles.title}>
+                {translate(lang, settings).translation_investor.text}
+              </p>
               <p className={styles.value}>{article.data.investor.text}</p>
             </div>
             <div className={styles.realizationInfoWrap}>
-              <p className={styles.title}>{titles.place}</p>
+              <p className={styles.title}>
+                {translate(lang, settings).translation_place.text}
+              </p>
               <p className={styles.value}>{article.data.place.text}</p>
             </div>
             <div className={styles.descriptionInfoWrap}>
-              <p className={styles.descriptionTitle}>{titles.scope}</p>
+              <p className={styles.descriptionTitle}>
+                {translate(lang, settings).translations_zakres.text}
+              </p>
               <Article className={styles.text} l>
                 {article.data.description.html}
               </Article>
@@ -129,31 +144,16 @@ ArticleTile.propTypes = {
           }),
         })
       ),
-      investor: PropTypes.shape({
-        text: PropTypes.string.isRequired,
-      }),
-      place: PropTypes.shape({
-        text: PropTypes.string.isRequired,
-      }),
-      scope: PropTypes.shape({
-        text: PropTypes.string.isRequired,
-      }),
     }).isRequired,
     tags: PropTypes.array,
     url: PropTypes.string,
   }).isRequired,
   className: PropTypes.string,
-  titles: PropTypes.shape({
-    investor: PropTypes.string,
-    place: PropTypes.string,
-    scope: PropTypes.string,
-  }),
 };
 
 ArticleTile.defaultProps = {
   className: '',
   realization: false,
-  titles: null,
 };
 
 export default ArticleTile;
