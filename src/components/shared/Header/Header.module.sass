@@ -22,7 +22,7 @@ $marginTop: 115px
     background-color: $gray5
     width: 365px
     height: 399px
-    z-index: 4
+    z-index: 5
     padding: 85px
 
     &::before
@@ -34,6 +34,32 @@ $marginTop: 115px
       background-color: $gray2
       height: 52px
       width: 1px
+
+    &.small
+      width: 188px
+      height: 100%
+      top: unset
+      bottom: 0
+      padding-bottom: 160px
+
+      &::before
+        top: unset
+        bottom: 250px
+        left: 50%
+        transform: translateX(-50%)
+
+      .socialsTitle
+        white-space: nowrap
+        color: $white
+        font-size: 11px
+        line-height: 1
+        text-transform: uppercase
+        letter-spacing: 12px
+        writing-mode: vertical-lr
+        text-orientation: mixed
+        transform: rotate(180deg) translateX(22%)
+        margin-bottom: 81px
+        opacity: .7
 
     .socialIcon
       font-size: 18px
@@ -56,7 +82,7 @@ $marginTop: 115px
     flex-direction: column
     align-items: flex-end
     position: relative
-    z-index: 3
+    z-index: 4
     color: $white
     padding-top: calc(18.5vw - #{$marginTop})
 
@@ -64,6 +90,46 @@ $marginTop: 115px
       text-align: right
       transform: translateX(9%)
       margin: 0
+
+  .sliderWrap
+    position: absolute
+    top: 0
+    left: 0
+    z-index: 4
+    display: flex
+
+    .sliderContent
+      display: flex
+      flex-direction: column
+      align-items: flex-end
+      z-index: 4
+      width: 100%
+      padding-top: 30px
+      user-select: none
+
+      .sliderTitle
+        letter-spacing: 16px
+        text-align: right
+        margin: 0 -16px 45px 0
+        padding: 0
+
+      .sliderDescription
+        color: $white
+        text-align: right
+        padding: 0
+        margin: 0 0 40px 0
+        max-width: 570px
+
+        p
+          margin: 0
+
+    .img
+      position: absolute !important
+      top: 0
+      left: 0
+      width: 100%
+      height: 100%
+      @include overlay($black, .4, normal)
 
 @media screen and (max-width: 1599px)
   .header
@@ -77,6 +143,65 @@ $marginTop: 115px
         left: 40px
         height: 45px
         width: 1px
+
+      &.small
+        width: 140px
+        height: 100%
+        top: unset
+        bottom: 0
+        padding-bottom: 160px
+
+        &::before
+          top: unset
+          bottom: 250px
+          left: 50%
+          transform: translateX(-50%)
+
+        .socialsTitle
+          white-space: nowrap
+          color: $white
+          font-size: 11px
+          line-height: 1
+          text-transform: uppercase
+          letter-spacing: 12px
+          writing-mode: vertical-lr
+          text-orientation: mixed
+          transform: rotate(180deg) translateX(22%)
+          margin-bottom: 81px
+          opacity: .7
+          vertical-align: center
+
+    .sliderWrap
+      position: absolute
+      top: 0
+      left: 0
+      z-index: 4
+      display: flex
+
+      .sliderContent
+        display: flex
+        flex-direction: column
+        align-items: flex-end
+        z-index: 4
+        width: 100%
+        padding-top: 30px
+        user-select: none
+
+        .sliderTitle
+          letter-spacing: 16px
+          text-align: right
+          margin: 0 -16px 45px 0
+          padding: 0
+
+        .sliderDescription
+          color: $white
+          text-align: right
+          padding: 0
+          margin: 0 0 40px 0
+          max-width: 570px
+
+          p
+            margin: 0
 
 @media screen and (max-width: 1199px)
   .header

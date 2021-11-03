@@ -1,10 +1,147 @@
 {
   "Main": {
-    "text": {
-      "type": "StructuredText",
+    "header_slider": {
+      "type": "Group",
       "config": {
-        "single": "heading1, heading2, heading3, heading4, heading5, heading6",
-        "label": "text"
+        "fields": {
+          "image": {
+            "type": "Image",
+            "config": {
+              "constraint": {},
+              "thumbnails": [],
+              "label": "Zdjęcie"
+            }
+          },
+          "title": {
+            "type": "StructuredText",
+            "config": {
+              "single": "heading1,heading2,heading3,heading4,heading5,heading6,strong",
+              "label": "Tytuł"
+            }
+          },
+          "description": {
+            "type": "StructuredText",
+            "config": {
+              "multi": "paragraph,strong,em",
+              "label": "Opis"
+            }
+          },
+          "link": {
+            "type": "Link",
+            "config": {
+              "select": "document",
+              "customtypes": [
+                "article",
+                "relization",
+                "realizations_page",
+                "blog_page",
+                "about_us_page",
+                "product"
+              ],
+              "label": "link"
+            }
+          }
+        },
+        "label": "Header Slider"
+      }
+    },
+    "body": {
+      "type": "Slices",
+      "fieldset": "Slice zone",
+      "config": {
+        "labels": {},
+        "choices": {
+          "formularz_kontaktowy": {
+            "type": "Slice",
+            "fieldset": "Formularz kontaktowy",
+            "description": "Formularz kontaktowy",
+            "icon": "message",
+            "non-repeat": {
+              "form_type": {
+                "type": "Select",
+                "config": {
+                  "options": [
+                    "Podstawowy",
+                    "Z informacjami kontakowymi",
+                    "Produktowy"
+                  ],
+                  "default_value": "Podstawowy",
+                  "label": "Rodzaj formularza"
+                }
+              },
+              "form_title": {
+                "type": "StructuredText",
+                "config": {
+                  "multi": "paragraph,heading1,heading2,heading3,heading4,heading5,heading6,strong",
+                  "label": "Tytuł formularza"
+                }
+              },
+              "message_placeholder": {
+                "type": "StructuredText",
+                "config": {
+                  "multi": "paragraph",
+                  "label": "Placeholder wiadomości"
+                }
+              }
+            },
+            "repeat": {}
+          },
+          "wspo_praca": {
+            "type": "Slice",
+            "fieldset": "Współpraca",
+            "description": "Współpracujmy - nasza specjalność",
+            "icon": "account_circle",
+            "display": "list",
+            "non-repeat": {
+              "cooperation_title": {
+                "type": "StructuredText",
+                "config": {
+                  "multi": "paragraph,heading1,heading2,heading3,heading4,heading5,heading6,strong",
+                  "label": "Tytuł - Współpracujmy"
+                }
+              },
+              "cooperation_description": {
+                "type": "StructuredText",
+                "config": {
+                  "multi": "paragraph,strong,em",
+                  "label": "Opis - Współpracujmy"
+                }
+              },
+              "cooperation_photo": {
+                "type": "Image",
+                "config": {
+                  "constraint": {},
+                  "thumbnails": [],
+                  "label": "Zdjęcie - Współpracujmy"
+                }
+              },
+              "our_speciality": {
+                "type": "StructuredText",
+                "config": {
+                  "multi": "heading1,heading2,heading3,heading4,heading5,heading6,strong",
+                  "label": "Tytuł - Nasza specjalność"
+                }
+              }
+            },
+            "repeat": {
+              "our_speciality_icon": {
+                "type": "Image",
+                "config": {
+                  "constraint": {},
+                  "thumbnails": [],
+                  "label": "Ikona - nasza specjalność"
+                }
+              },
+              "out_speciality_description": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "heading6",
+                  "label": "Opis - nasza specjalność"
+                }
+              }
+            }
+          }
+        }
       }
     }
   }
