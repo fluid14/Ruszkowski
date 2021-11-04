@@ -1,89 +1,35 @@
 @import './src/styles/config'
 
 .cooperationWrap
-  display: flex
-  align-items: flex-start
-  justify-content: space-between
-  color: $gray
+  .sectionTitle
+    margin-bottom: 110px
 
-  div
-    margin-right: 40px
-
-    &:nth-last-child(1)
-      margin: 0
-
-  .descriptionWrap
-    .title
-      margin-bottom: 65px
-
-    .description
-      max-width: 378px
-
-  .specialityWrap
-    .title
-      margin-bottom: 37px
-
-    .list
-      .listItem
-        margin-bottom: 35px
-
-        .icon
-          width: 100%
-          max-width: 47px
-          max-height: 33px
-          margin-bottom: 10px
-
-        .itemTitle
-          font-size: 18px
-          font-weight: 400
-          line-height: 30px
-          letter-spacing: 3.6px
-          text-transform: uppercase
-
-  .photoWrap
-    width: 392px
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4)
-
-@media screen and (max-width: 1266px)
-  .cooperationWrap
-    flex-wrap: wrap
+  .contentWrap
+    display: flex
+    align-items: flex-start
+    justify-content: space-between
+    color: $gray
 
     div
-      margin-right: 30px
+      margin-right: 40px
 
       &:nth-last-child(1)
         margin: 0
 
     .descriptionWrap
-      width: 100%
-      margin-bottom: 40px
-
       .title
-        margin-bottom: 45px
+        margin-bottom: 65px
 
       .description
-        max-width: 80%
+        max-width: 378px
 
     .specialityWrap
-      margin-right: 0
-      max-width: calc(100% - 392px)
-
       .title
         margin-bottom: 37px
 
       .list
-        display: flex
-        flex-wrap: wrap
-        max-width: 80%
-
         .listItem
-          display: flex
-          flex-direction: column
-          justify-content: flex-end
-          align-items: flex-start
           margin-bottom: 35px
-          margin-right: 35px
-
 
           .icon
             width: 100%
@@ -91,63 +37,133 @@
             max-height: 33px
             margin-bottom: 10px
 
-@media screen and (max-width: 992px)
-  .cooperationWrap
-    .descriptionWrap
-      .title
-        margin-bottom: 35px
-
-      .description
-        max-width: 100%
-
-    .specialityWrap
-      margin-right: 0
-      max-width: calc(100% - 320px)
-
-      .title
-        margin-bottom: 30px
-
-      .list
-        max-width: 100%
-
-        .listItem
-          margin-bottom: 30px
-
           .itemTitle
-            font-size: 16px
+            font-size: 18px
+            font-weight: 400
+            line-height: 30px
+            letter-spacing: 3.6px
+            text-transform: uppercase
 
     .photoWrap
-      width: 320px
+      width: 392px
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4)
+
+@media screen and (max-width: 1266px)
+  .cooperationWrap
+    .sectionTitle
+      margin-bottom: 80px
+
+    .contentWrap
+      flex-wrap: wrap
+
+      div
+        margin-right: 30px
+
+        &:nth-last-child(1)
+          margin: 0
+
+      .descriptionWrap
+        width: 100%
+        margin-bottom: 40px
+
+        .title
+          margin-bottom: 45px
+
+        .description
+          max-width: 80%
+
+      .specialityWrap
+        margin-right: 0
+        max-width: calc(100% - 392px)
+
+        .title
+          margin-bottom: 37px
+
+        .list
+          display: flex
+          flex-wrap: wrap
+          max-width: 80%
+
+          .listItem
+            display: flex
+            flex-direction: column
+            justify-content: flex-end
+            align-items: flex-start
+            margin-bottom: 35px
+            margin-right: 35px
+
+
+            .icon
+              width: 100%
+              max-width: 47px
+              max-height: 33px
+              margin-bottom: 10px
+
+@media screen and (max-width: 992px)
+  .cooperationWrap
+    .sectionTitle
+      margin-bottom: 60px
+
+    .contentWrap
+      .descriptionWrap
+        .title
+          margin-bottom: 35px
+
+        .description
+          max-width: 100%
+
+      .specialityWrap
+        margin-right: 0
+        max-width: calc(100% - 320px)
+
+        .title
+          margin-bottom: 30px
+
+        .list
+          max-width: 100%
+
+          .listItem
+            margin-bottom: 30px
+
+            .itemTitle
+              font-size: 16px
+
+      .photoWrap
+        width: 320px
 
 @media screen and (max-width: 767px)
   .cooperationWrap
-    flex-direction: column
+    .sectionTitle
+      margin-bottom: 60px
 
-    .descriptionWrap
-      margin-bottom: 20px
+    .contentWrap
+      flex-direction: column
 
-      .title
-        margin-bottom: 25px
+      .descriptionWrap
+        margin-bottom: 20px
 
-    .specialityWrap
-      max-width: 100%
-      margin-bottom: 20px
+        .title
+          margin-bottom: 25px
 
-      .title
-        margin-bottom: 30px
-
-      .list
+      .specialityWrap
         max-width: 100%
+        margin-bottom: 20px
 
-        .listItem
-          width: 100%
+        .title
           margin-bottom: 30px
 
-          .icon
-            width: 100%
-            max-width: 40px
-            max-height: 28px
-            margin-bottom: 5px
+        .list
+          max-width: 100%
 
-    .photoWrap
-      width: 100%
+          .listItem
+            width: 100%
+            margin-bottom: 30px
+
+            .icon
+              width: 100%
+              max-width: 40px
+              max-height: 28px
+              margin-bottom: 5px
+
+      .photoWrap
+        width: 100%

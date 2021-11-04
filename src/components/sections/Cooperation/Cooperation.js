@@ -5,8 +5,9 @@ import cx from 'classnames';
 import Section from '../../shared/Section/Section';
 import * as styles from './Cooperation.module.sass';
 import Article from '../../layout/Text/Article/Article';
+import SectionTitle from '../../layout/Text/SectionTitle/SectionTitle';
 
-const Cooperation = ({ className, data: { primary, items } }) => {
+const Cooperation = ({ className, title, data: { primary, items } }) => {
   const {
     cooperation_title: { html: cooperationTitle },
     cooperation_description: { html: description },
@@ -16,49 +17,57 @@ const Cooperation = ({ className, data: { primary, items } }) => {
 
   return (
     <Section className={cx(className, styles.cooperationWrap)}>
-      <div className={styles.descriptionWrap}>
-        <div
-          className={styles.title}
-          dangerouslySetInnerHTML={{ __html: cooperationTitle }}
-        />
-        <Article className={styles.description}>{description}</Article>
-      </div>
-      <div className={styles.specialityWrap}>
-        <div
-          className={styles.title}
-          dangerouslySetInnerHTML={{ __html: specialityTitle }}
-        />
-        {items.length > 0 && (
-          <ul className={styles.list}>
-            {items.map(
-              (
-                {
-                  our_speciality_icon: { fluid, alt: itemAlt },
-                  out_speciality_description: { text },
-                },
-                i
-              ) => (
-                <li key={i} className={styles.listItem}>
-                  <GatsbyImage
-                    className={styles.icon}
-                    fluid={fluid}
-                    alt={itemAlt}
-                  />
-                  <p className={styles.itemTitle}>{text}</p>
-                </li>
-              )
-            )}
-          </ul>
-        )}
-      </div>
-      <div className={styles.photoWrap}>
-        <GatsbyImage className={styles.photo} fluid={photo} alt={alt} />
+      {title && (
+        <SectionTitle className={styles.sectionTitle} center>
+          {title}
+        </SectionTitle>
+      )}
+      <div className={styles.contentWrap}>
+        <div className={styles.descriptionWrap}>
+          <div
+            className={styles.title}
+            dangerouslySetInnerHTML={{ __html: cooperationTitle }}
+          />
+          <Article className={styles.description}>{description}</Article>
+        </div>
+        <div className={styles.specialityWrap}>
+          <div
+            className={styles.title}
+            dangerouslySetInnerHTML={{ __html: specialityTitle }}
+          />
+          {items.length > 0 && (
+            <ul className={styles.list}>
+              {items.map(
+                (
+                  {
+                    our_speciality_icon: { fluid, alt: itemAlt },
+                    out_speciality_description: { text },
+                  },
+                  i
+                ) => (
+                  <li key={i} className={styles.listItem}>
+                    <GatsbyImage
+                      className={styles.icon}
+                      fluid={fluid}
+                      alt={itemAlt}
+                    />
+                    <p className={styles.itemTitle}>{text}</p>
+                  </li>
+                )
+              )}
+            </ul>
+          )}
+        </div>
+        <div className={styles.photoWrap}>
+          <GatsbyImage className={styles.photo} fluid={photo} alt={alt} />
+        </div>
       </div>
     </Section>
   );
 };
 
 Cooperation.propTypes = {
+  title: PropTypes.string,
   className: PropTypes.string,
   data: PropTypes.shape({
     slice_type: PropTypes.string.isRequired,
@@ -92,6 +101,7 @@ Cooperation.propTypes = {
 };
 
 Cooperation.defaultProps = {
+  title: null,
   className: '',
 };
 

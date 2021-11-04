@@ -1,0 +1,61 @@
+@import './src/styles/config'
+
+.designWithUsWrap
+  .sectionTitle
+    margin-bottom: 110px
+
+  .contentWrap
+    display: flex
+    justify-content: space-between
+    align-items: stretch
+
+    .img
+      width: 665px
+      margin-right: 50px
+
+    .descriptionWrap
+      display: flex
+      flex-direction: column
+      align-items: center
+      max-width: 390px
+
+      .descriptionTitle
+        margin-bottom: 50px
+        width: 100%
+
+      .description
+        margin-bottom: 40px
+
+@media screen and (max-width: 992px)
+  .designWithUsWrap
+    .sectionTitle
+      margin-bottom: 80px
+
+    .contentWrap
+      justify-content: center
+
+      .img
+        display: none
+
+      .descriptionWrap
+        display: flex
+        flex-direction: column
+        align-items: center
+        max-width: 600px
+
+        .descriptionTitle
+          margin-bottom: 40px
+
+        .description
+          margin-bottom: 40px
+
+@media screen and (max-width: 767px)
+  .designWithUsWrap
+    .sectionTitle
+      margin-bottom: 50px
+
+    .contentWrap
+      .descriptionWrap
+        .descriptionTitle,
+        .description
+          margin-bottom: 30px

@@ -93,6 +93,13 @@
             "icon": "account_circle",
             "display": "list",
             "non-repeat": {
+              "section_title": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "heading1,heading2,heading3,heading4,heading5,heading6,strong",
+                  "label": "Tytuł sekcji"
+                }
+              },
               "cooperation_title": {
                 "type": "StructuredText",
                 "config": {
@@ -140,6 +147,66 @@
                 }
               }
             }
+          },
+          "opis_ze_zdjeciem_i_linkiem": {
+            "type": "Slice",
+            "fieldset": "Opis ze zdjęciem i linkiem",
+            "description": "opis ze zdjęciem i linkiem",
+            "icon": "border_color",
+            "non-repeat": {
+              "section_title": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "heading1,heading2,heading3,heading4,heading5,heading6,strong",
+                  "label": "Tytuł sekcji"
+                }
+              },
+              "image": {
+                "type": "Image",
+                "config": {
+                  "constraint": {},
+                  "thumbnails": [],
+                  "label": "Zdjecie"
+                }
+              },
+              "descripion_title": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "heading1,heading2,heading3,heading4,heading5,heading6,strong",
+                  "label": "Tytuł opisu"
+                }
+              },
+              "description": {
+                "type": "StructuredText",
+                "config": {
+                  "multi": "paragraph,strong,em",
+                  "label": "Opis"
+                }
+              },
+              "link_title": {
+                "type": "Text",
+                "config": {
+                  "label": "Tekst linku"
+                }
+              },
+              "link": {
+                "type": "Link",
+                "config": {
+                  "select": "document",
+                  "customtypes": [
+                    "article",
+                    "relization",
+                    "realizations_page",
+                    "blog_page",
+                    "about_us_page",
+                    "product",
+                    "products"
+                  ],
+                  "label": "Link"
+                }
+              }
+            },
+            "repeat": {}
           }
         }
       }

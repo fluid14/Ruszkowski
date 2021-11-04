@@ -6,6 +6,8 @@ import Theme from '../../theme/Theme';
 import * as styles from './index.module.sass';
 import Contact from '../../components/shared/Contact/Contact';
 import Header from '../../components/shared/Header/Header';
+import Cooperation from '../../components/sections/Cooperation/Cooperation';
+import DesignWithUs from '../../components/sections/DesignWithUs/DesignWithUs';
 
 const Index = ({ data }) => {
   const {
@@ -13,12 +15,33 @@ const Index = ({ data }) => {
     data: { header_slider: headerSlider, body },
   } = data.prismicMainPage;
 
+  console.log(data);
+
   return (
     <Theme lang={lang}>
       <Header slides={headerSlider} slider />
       <main className={cx(styles.mainPage)} id="mainPage">
-        {body.map(({ slice_type: sliceType, primary }, i) => {
+        {body.map((slice, i) => {
+          const { slice_type: sliceType, primary, items } = slice;
           switch (sliceType) {
+            case 'opis_ze_zdjeciem_i_linkiem':
+              return (
+                <DesignWithUs
+                  key={i}
+                  className={cx(styles.cooperation, 'wrap')}
+                  data={primary}
+                />
+              );
+            case 'wspo_praca':
+              return (
+                <Cooperation
+                  key={i}
+                  className={cx(styles.cooperation, 'wrap')}
+                  data={slice}
+                  title={primary.section_title.html}
+                />
+              );
+
             case 'formularz_kontaktowy':
               return (
                 <Contact
@@ -44,6 +67,66 @@ export const query = graphql`
       lang
       data {
         body {
+          ... on PrismicMainPageDataBodyOpisZeZdjeciemILinkiem {
+            id
+            slice_type
+            primary {
+              link_title
+              descripion_title {
+                html
+              }
+              description {
+                html
+              }
+              image {
+                alt
+                fluid {
+                  ...GatsbyImgixFluid
+                }
+              }
+              link {
+                url
+              }
+              section_title {
+                html
+              }
+            }
+          }
+          ... on PrismicMainPageDataBodyWspoPraca {
+            id
+            items {
+              our_speciality_icon {
+                fluid {
+                  ...GatsbyImgixFluid
+                }
+                alt
+              }
+              out_speciality_description {
+                text
+              }
+            }
+            primary {
+              section_title {
+                html
+              }
+              cooperation_description {
+                html
+              }
+              cooperation_photo {
+                fluid {
+                  ...GatsbyImgixFluid
+                }
+                alt
+              }
+              cooperation_title {
+                html
+              }
+              our_speciality {
+                html
+              }
+            }
+            slice_type
+          }
           ... on PrismicMainPageDataBodyFormularzKontaktowy {
             id
             slice_type
@@ -102,6 +185,7 @@ Index.propTypes = {
           PropTypes.shape({
             slice_type: PropTypes.string,
             primary: PropTypes.shape({
+              section_title: PropTypes.shape({ html: PropTypes.string }),
               form_title: PropTypes.shape({
                 html: PropTypes.string,
               }),

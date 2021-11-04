@@ -13,9 +13,7 @@ import PageOrnament from '../../layout/PageOrnament/PageOrnament';
 import Button from '../../layout/Button/Button';
 import Article from '../../layout/Text/Article/Article';
 
-const Header = ({ className, title, bgc, bgcAlt, slides, slider }) => {
-  console.log(slides);
-  return (
+const Header = ({ className, title, bgc, bgcAlt, slides, slider }) => (
     (!slider && (
       <header className={cx(className, styles.header)}>
         <div className={styles.socials}>
@@ -99,7 +97,6 @@ const Header = ({ className, title, bgc, bgcAlt, slides, slider }) => {
       </header>
     ))
   );
-};
 
 Header.propTypes = {
   className: PropTypes.string,
