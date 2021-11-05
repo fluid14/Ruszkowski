@@ -76,7 +76,7 @@ Cooperation.propTypes = {
         html: PropTypes.string.isRequired,
       }).isRequired,
       cooperation_photo: PropTypes.shape({
-        alt: PropTypes.string.isRequired,
+        alt: PropTypes.string,
         fluid: PropTypes.shape.isRequired,
       }).isRequired,
       cooperation_title: PropTypes.shape({
@@ -89,7 +89,7 @@ Cooperation.propTypes = {
     items: PropTypes.arrayOf(
       PropTypes.shape({
         our_speciality_icon: PropTypes.shape({
-          alt: PropTypes.string.isRequired,
+          alt: PropTypes.string,
           fluid: PropTypes.shape.isRequired,
         }).isRequired,
         out_speciality_description: PropTypes.shape({

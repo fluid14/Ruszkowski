@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import BackgroundImage from 'gatsby-background-image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebookF, faInstagram } from '@fortawesome/free-brands-svg-icons';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { EffectFade, Navigation } from 'swiper';
+import { Navigation } from 'swiper';
 import { Link } from 'gatsby';
 import * as styles from './Header.module.sass';
 import 'swiper/css/bundle';
@@ -13,7 +13,10 @@ import PageOrnament from '../../layout/PageOrnament/PageOrnament';
 import Button from '../../layout/Button/Button';
 import Article from '../../layout/Text/Article/Article';
 
-const Header = ({ className, title, bgc, bgcAlt, slides, slider }) => (
+const Header = ({ className, title, bgc, bgcAlt, slides, slider }) => {
+  const [currCount, setCurrCount] = useState(1);
+
+  return (
     (!slider && (
       <header className={cx(className, styles.header)}>
         <div className={styles.socials}>
@@ -39,8 +42,24 @@ const Header = ({ className, title, bgc, bgcAlt, slides, slider }) => (
     )) ||
     (slider && (
       <header className={cx(className, styles.header)}>
-        <div className={cx(styles.socials, styles.counter)}>
-          <p>counter</p>
+        <div className={cx(styles.socials)} />
+        <div className={styles.counterWrap}>
+          <p className={styles.currCount}>{currCount}</p>
+          <p className={styles.allCount}>
+            /{' '}
+            {slides.length.toString.length < 2
+              ? `0${slides.length}`
+              : slides.length}
+          </p>
+        </div>
+        <p className={styles.ghostTitle}>Ruszkowski</p>
+        <div className={styles.swiperNavigation}>
+          <button type="button" className={cx(styles.prev, 'prev')}>
+            PREV
+          </button>
+          <button type="button" className={cx(styles.next, 'next')}>
+            NEXT
+          </button>
         </div>
         <div className={cx(styles.socials, styles.small)}>
           <p className={styles.socialsTitle}>Meble industrialne</p>
@@ -56,6 +75,17 @@ const Header = ({ className, title, bgc, bgcAlt, slides, slider }) => (
             direction="horizontal"
             slidesPerView="auto"
             modules={[Navigation]}
+            navigation={{
+              prevEl: '.prev',
+              nextEl: '.next',
+            }}
+            onTransitionEnd={(swiper) =>
+              setCurrCount(
+                swiper.realIndex.toString().length < 2
+                  ? `0${swiper.realIndex + 1}`
+                  : swiper.realIndex + 1
+              )
+            }
             loop
           >
             {slides.map(
@@ -97,6 +127,7 @@ const Header = ({ className, title, bgc, bgcAlt, slides, slider }) => (
       </header>
     ))
   );
+};
 
 Header.propTypes = {
   className: PropTypes.string,
