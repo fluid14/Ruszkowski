@@ -1,0 +1,90 @@
+@import './src/styles/config'
+
+.productsSliderWrap
+  .sectionTitle
+    margin-bottom: 115px
+
+  .sliderWrap
+    position: relative
+
+    .swiperNavigation
+      .prev,
+      .next
+        position: absolute
+        top: 40%
+        left: 60px
+        border: none
+        background-color: transparent
+        font-size: 16px
+        color: $white
+        line-height: 1
+        letter-spacing: 5.12px
+        text-transform: uppercase
+        padding: 0 30px
+        z-index: 5
+        cursor: pointer
+
+        &:hover::before
+          transform: translate(15%, -50%)
+
+        &::before
+          content: ''
+          display: block
+          position: absolute
+          top: 50%
+          right: 0
+          transform: translate(0, -50%)
+          width: 20px
+          height: 16px
+          background: url(../../../../static/assets/arrow_white.svg) center center / 20px no-repeat
+          transition: .3s ease
+
+      .next
+        left: unset
+        right: 60px
+
+      .prev
+        &:hover::before
+          transform: translate(-15%, -50%) rotate(180deg)
+
+        &::before
+          right: unset
+          left: 0
+          transform: translate(0, -50%) rotate(180deg)
+
+@media screen and (max-width: 1599px)
+  .productsSliderWrap
+    .sectionTitle
+      margin-bottom: 100px
+
+    .sliderWrap
+      .swiperNavigation
+        .prev,
+        .next
+          position: absolute
+          left: 50px
+
+        .next
+          left: unset
+          right: 50px
+
+@media screen and (max-width: 599px)
+  .productsSliderWrap
+    padding-bottom: 50px
+    .sectionTitle
+      margin-bottom: 40px
+
+    .sliderWrap
+      .swiperNavigation
+        .prev,
+        .next
+          top: calc(100% + 20px)
+          left: 30px
+          font-size: 12px
+
+          &::before
+            background-size: 16px
+
+        .next
+          left: unset
+          right: 30px

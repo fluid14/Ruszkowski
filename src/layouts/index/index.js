@@ -8,6 +8,7 @@ import Contact from '../../components/shared/Contact/Contact';
 import Header from '../../components/shared/Header/Header';
 import Cooperation from '../../components/sections/Cooperation/Cooperation';
 import DesignWithUs from '../../components/sections/DesignWithUs/DesignWithUs';
+import ProductsSlider from '../../components/sections/ProductsSlider/ProductsSlider';
 
 const Index = ({ data }) => {
   const {
@@ -42,6 +43,17 @@ const Index = ({ data }) => {
                 />
               );
 
+            case 'slider_produktow':
+              return (
+                <ProductsSlider
+                  key={i}
+                  lang={lang}
+                  className={styles.productsSlider}
+                  data={primary}
+                  items={items}
+                />
+              );
+
             case 'formularz_kontaktowy':
               return (
                 <Contact
@@ -67,6 +79,42 @@ export const query = graphql`
       lang
       data {
         body {
+          ... on PrismicMainPageDataBodySliderProduktow {
+            id
+            slice_type
+            primary {
+              title {
+                html
+              }
+            }
+            items {
+              produkt {
+                document {
+                  ... on PrismicProduct {
+                    id
+                    url
+                    data {
+                      miniature {
+                        alt
+                        fluid {
+                          src
+                        }
+                      }
+                      product_title {
+                        text
+                      }
+                      miniature_title {
+                        text
+                      }
+                      miniature_description {
+                        text
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
           ... on PrismicMainPageDataBodyOpisZeZdjeciemILinkiem {
             id
             slice_type

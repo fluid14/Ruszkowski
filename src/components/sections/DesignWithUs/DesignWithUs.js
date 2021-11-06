@@ -11,7 +11,6 @@ import Article from '../../layout/Text/Article/Article';
 import Button from '../../layout/Button/Button';
 
 const DesignWithUs = ({ className, data }) => {
-  console.log(data);
   const {
     section_title: { html: sectionTitle },
     image: { fluid, alt },

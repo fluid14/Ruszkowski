@@ -16,82 +16,9 @@
     .button
       font-weight: 600 !important
 
-
   .productsWrap
     display: grid
     grid-template-columns: repeat(auto-fit, minMax(420px, 1fr))
-
-    .product
-      position: relative
-      height: 880px
-      max-width: 50vw
-      padding: 60px
-      @include overlay($gray3, 0.8)
-
-      &::after
-        transition: .7s ease
-
-      &::before
-        content: ''
-        display: block
-        position: absolute
-        top: 50%
-        left: 50%
-        transform: translate(-50%, -50%)
-        width: 145px
-        height: 145px
-        border-radius: 100%
-        background: url('../../../../static/assets/magnificer.png') center center / 40px no-repeat $mainOpacity
-        opacity: 0
-        transition: .8s ease
-
-      &:hover
-        .title,
-        .description
-          opacity: 0
-
-        &::before
-          opacity: 1
-
-        &::after
-          opacity: 0
-
-      .miniature
-        position: absolute !important
-        top: 0
-        left: 0
-        bottom: 0
-        right: 0
-        width: 100%
-        height: 100%
-        opacity: 1 !important
-
-      .title,
-      .description
-        position: relative
-        z-index: 3
-        color: $gray
-        transition: .5s ease
-
-      .title
-        font-size: 25px
-        text-transform: uppercase
-        line-height: 1
-        letter-spacing: 1.5px
-        font-weight: 400
-        font-family: $oswald
-
-      .description
-        position: absolute
-        bottom: 60px
-        left: 60px
-        transform: rotate(-180deg)
-        font-size: 18px
-        letter-spacing: 14.07px
-        line-height: 1
-        text-transform: uppercase
-        writing-mode: vertical-lr
-        text-orientation: mixed
 
   .buttonWrap
     display: flex
@@ -104,26 +31,6 @@
     .filterWrap
       .wrap
         gap: 50px
-
-    .productsWrap
-      .product
-        height: 700px
-        padding: 50px
-
-        &::before
-          width: 125px
-          height: 125px
-          background-size: 35px
-
-        .title
-          font-size: 23px
-          letter-spacing: 1.4px
-
-        .description
-          bottom: 50px
-          left: 50px
-          font-size: 16px
-          letter-spacing: 13px
 
     .buttonWrap
       margin-top: 60px
@@ -168,20 +75,6 @@
 
     .productsWrap
       grid-template-columns: 1fr
-
-      .product
-        height: 550px
-        max-height: 90vh
-        max-width: unset
-        padding: 30px
-
-        .title
-          font-size: 22px
-
-        .description
-          bottom: 30px
-          left: 30px
-          font-size: 14px
 
     .buttonWrap
       margin-top: 20px

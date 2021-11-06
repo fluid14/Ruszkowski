@@ -24,7 +24,12 @@ const ProductsPage = ({ data, location }) => {
   return (
     <>
       <Theme lang={lang}>
-        <Header title={bannerTitle} bgc={bannerImg} bgcAlt={bannerAlt} />
+        <Header
+          title={bannerTitle}
+          lang={lang}
+          bgc={bannerImg}
+          bgcAlt={bannerAlt}
+        />
         <main className={cx(styles.productsPage)} id="products">
           {body.map(({ slice_type: sliceType, primary }, i) => {
             switch (sliceType) {

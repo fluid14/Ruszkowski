@@ -23,6 +23,12 @@ const Header = ({ lang, className, title, bgc, bgcAlt, slides, slider }) => {
         nodes {
           lang
           data {
+            prev {
+              text
+            }
+            next {
+              text
+            }
             translation_read_more {
               text
             }
@@ -87,10 +93,10 @@ const Header = ({ lang, className, title, bgc, bgcAlt, slides, slider }) => {
         <p className={styles.ghostTitle}>Ruszkowski</p>
         <div className={styles.swiperNavigation}>
           <button type="button" className={cx(styles.prev, 'prev')}>
-            PREV
+            {translate(lang, settings).prev.text}
           </button>
           <button type="button" className={cx(styles.next, 'next')}>
-            NEXT
+            {translate(lang, settings).next.text}
           </button>
         </div>
         <div className={cx(styles.socials, styles.small)}>

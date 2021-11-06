@@ -24,7 +24,12 @@ const AboutUs = ({ data }) => {
   return (
     <>
       <Theme lang={lang}>
-        <Header title={bannerTitle} bgc={bannerImg} bgcAlt={bannerAlt} />
+        <Header
+          title={bannerTitle}
+          lang={lang}
+          bgc={bannerImg}
+          bgcAlt={bannerAlt}
+        />
         <main className={cx(styles.aboutUsPage)}>
           {body.map(({ slice_type: sliceType, primary, items }, i) => {
             switch (sliceType) {

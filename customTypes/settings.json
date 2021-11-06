@@ -178,6 +178,20 @@
         "single": "heading6",
         "label": "Wszystko"
       }
+    },
+    "prev": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading6",
+        "label": "Cofnij"
+      }
+    },
+    "next": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading6",
+        "label": "Dalej"
+      }
     }
   }
 }

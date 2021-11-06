@@ -49,7 +49,7 @@
       "type": "Slices",
       "fieldset": "Slice zone",
       "config": {
-        "labels": {},
+        "labels": null,
         "choices": {
           "formularz_kontaktowy": {
             "type": "Slice",
@@ -207,6 +207,32 @@
               }
             },
             "repeat": {}
+          },
+          "slider_produktow": {
+            "type": "Slice",
+            "fieldset": "Slider produktów",
+            "description": "slider produktów",
+            "icon": "slideshow",
+            "display": "list",
+            "non-repeat": {
+              "title": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "heading1, heading2, heading3, heading4, heading5, heading6, strong",
+                  "label": "Tytuł"
+                }
+              }
+            },
+            "repeat": {
+              "produkt": {
+                "type": "Link",
+                "config": {
+                  "select": "document",
+                  "customtypes": ["product"],
+                  "label": "Produkt"
+                }
+              }
+            }
           }
         }
       }

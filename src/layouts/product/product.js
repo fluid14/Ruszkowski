@@ -41,7 +41,12 @@ const ProductPage = ({ data }) => {
   return (
     <>
       <Theme lang={lang}>
-        <Header title={bannerTitle} bgc={bannerImg} bgcAlt={bannerAlt || ''} />
+        <Header
+          title={bannerTitle}
+          lang={lang}
+          bgc={bannerImg}
+          bgcAlt={bannerAlt || ''}
+        />
         <main className={cx(styles.productPage, 'wrap')}>
           <SectionTitle className={styles.productTitle} transformNone>
             {title}

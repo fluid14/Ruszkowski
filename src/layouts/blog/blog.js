@@ -23,7 +23,12 @@ const Blog = ({ data }) => {
   return (
     <>
       <Theme lang={lang}>
-        <Header title={bannerTitle} bgc={bannerImg} bgcAlt={bannerAlt} />
+        <Header
+          title={bannerTitle}
+          lang={lang}
+          bgc={bannerImg}
+          bgcAlt={bannerAlt}
+        />
         <main className="wrap">
           {body.map(({ slice_type: sliceType, primary }, i) => {
             switch (sliceType) {

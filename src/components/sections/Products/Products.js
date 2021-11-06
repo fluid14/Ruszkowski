@@ -108,13 +108,13 @@ const Products = ({ products, defaultType, lang }) => {
                     lower: true,
                   })}`}
                   key={i}
-                  className={styles.product}
+                  className="productTile"
                 >
-                  <p className={styles.title}>{title}</p>
-                  <p className={styles.description}>{description}</p>
+                  <p className="productTitle">{title}</p>
+                  <p className="productDescription">{description}</p>
                   <BackgroundImage
                     Tag="div"
-                    className={styles.miniature}
+                    className="productMiniature"
                     fluid={miniature}
                   />
                 </Link>

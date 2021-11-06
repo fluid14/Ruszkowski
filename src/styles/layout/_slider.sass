@@ -100,6 +100,17 @@
       top: 50%
       left: 400px
 
+.productsSwiper
+  width: 100%
+
+  .swiper-slide
+    width: 25%
+
+@media screen and (max-width: 1200px)
+  .productsSwiper
+    .swiper-slide
+      width: 33.33%
+
 
 @media screen and (max-width: 1060px)
   .gallerySwiper
@@ -128,6 +139,11 @@
       .swiper-button-next
         top: unset
         bottom: 0
+
+@media screen and (max-width: 992px)
+  .productsSwiper
+    .swiper-slide
+      width: 50%
 
 @media screen and (max-width: 767px)
   .gallerySwiper
@@ -163,6 +179,10 @@
       .swiper-slide
         justify-content: flex-end
         padding-right: 20px
+
+  .productsSwiper
+    .swiper-slide
+      width: 100%
 
 
 

@@ -26,6 +26,7 @@ const Realizations = ({ data }) => {
           title={bannerTitle}
           bgc={bannerImg}
           bgcAlt={bannerAlt}
+          lang={lang}
         />
         <main className={cx(styles.realizationsPage, 'wrap')}>
           {body.map((slice, i) => {
