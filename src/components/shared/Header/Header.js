@@ -6,15 +6,31 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebookF, faInstagram } from '@fortawesome/free-brands-svg-icons';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper';
-import { Link } from 'gatsby';
+import { graphql, Link, useStaticQuery } from 'gatsby';
 import * as styles from './Header.module.sass';
 import 'swiper/css/bundle';
 import PageOrnament from '../../layout/PageOrnament/PageOrnament';
 import Button from '../../layout/Button/Button';
 import Article from '../../layout/Text/Article/Article';
+import { translate } from '../../../utils/translate';
 
-const Header = ({ className, title, bgc, bgcAlt, slides, slider }) => {
+const Header = ({ lang, className, title, bgc, bgcAlt, slides, slider }) => {
   const [currCount, setCurrCount] = useState(1);
+
+  const settings = useStaticQuery(graphql`
+    query HeaderQuery {
+      allPrismicSettings {
+        nodes {
+          lang
+          data {
+            translation_read_more {
+              text
+            }
+          }
+        }
+      }
+    }
+  `).allPrismicSettings.nodes;
 
   return (
     (!slider && (
@@ -108,8 +124,8 @@ const Header = ({ className, title, bgc, bgcAlt, slides, slider }) => {
                       {slideDescription}
                     </Article>
                     <Link to={link}>
-                      <Button onClick={() => {}} send>
-                        Czytaj więcej
+                      <Button className={styles.button} onClick={() => {}} send>
+                        {translate(lang, settings).translation_read_more.text}
                       </Button>
                     </Link>
                   </div>
@@ -130,6 +146,7 @@ const Header = ({ className, title, bgc, bgcAlt, slides, slider }) => {
 };
 
 Header.propTypes = {
+  lang: PropTypes.string.isRequired,
   className: PropTypes.string,
   title: PropTypes.string,
   bgc: PropTypes.any,

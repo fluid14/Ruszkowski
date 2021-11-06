@@ -19,7 +19,7 @@ const Index = ({ data }) => {
 
   return (
     <Theme lang={lang}>
-      <Header slides={headerSlider} slider />
+      <Header slides={headerSlider} lang={lang} slider />
       <main className={cx(styles.mainPage)} id="mainPage">
         {body.map((slice, i) => {
           const { slice_type: sliceType, primary, items } = slice;
