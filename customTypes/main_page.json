@@ -218,7 +218,7 @@
               "title": {
                 "type": "StructuredText",
                 "config": {
-                  "single": "heading1, heading2, heading3, heading4, heading5, heading6, strong",
+                  "single": "heading1,heading2,heading3,heading4,heading5,heading6,strong",
                   "label": "Tytuł"
                 }
               }
@@ -230,6 +230,32 @@
                   "select": "document",
                   "customtypes": ["product"],
                   "label": "Produkt"
+                }
+              }
+            }
+          },
+          "o_tym_piszemy": {
+            "type": "Slice",
+            "fieldset": "O tym piszemy",
+            "description": "O tym piszemy",
+            "icon": "blur_linear",
+            "display": "list",
+            "non-repeat": {
+              "title": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "heading1, heading2, heading3, heading4, heading5, heading6, strong",
+                  "label": "Tytuł"
+                }
+              }
+            },
+            "repeat": {
+              "article": {
+                "type": "Link",
+                "config": {
+                  "select": "document",
+                  "customtypes": ["article"],
+                  "label": "Artykuł"
                 }
               }
             }

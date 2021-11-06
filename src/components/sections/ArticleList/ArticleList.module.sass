@@ -1,0 +1,29 @@
+@import './src/styles/config'
+
+.articleList
+  .articleListWrap
+    display: grid
+    grid-template-columns: repeat(3, 1fr)
+
+    .article
+      position: relative
+      height: 590px
+
+      .miniature
+        position: absolute
+        top: 0
+        left: 0
+        width: 100%
+        height: 100%
+        background-position: center center
+        background-repeat: no-repeat
+        background-size: cover
+
+      .description
+        position: absolute
+        top: 55px
+        left: 30px
+        z-index: 2
+        background-color: $gray2
+        padding: 20px 10px
+        max-width: 250px

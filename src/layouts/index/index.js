@@ -9,6 +9,7 @@ import Header from '../../components/shared/Header/Header';
 import Cooperation from '../../components/sections/Cooperation/Cooperation';
 import DesignWithUs from '../../components/sections/DesignWithUs/DesignWithUs';
 import ProductsSlider from '../../components/sections/ProductsSlider/ProductsSlider';
+import ArticleList from '../../components/sections/ArticleList/ArticleList';
 
 const Index = ({ data }) => {
   const {
@@ -54,6 +55,17 @@ const Index = ({ data }) => {
                 />
               );
 
+            case 'o_tym_piszemy':
+              return (
+                <ArticleList
+                  key={i}
+                  lang={lang}
+                  className={styles.productsSlider}
+                  data={primary}
+                  items={items}
+                />
+              );
+
             case 'formularz_kontaktowy':
               return (
                 <Contact
@@ -79,6 +91,38 @@ export const query = graphql`
       lang
       data {
         body {
+          ... on PrismicMainPageDataBodyOTymPiszemy {
+            id
+            slice_type
+            primary {
+              title {
+                html
+              }
+            }
+            items {
+              article {
+                document {
+                  ... on PrismicArticle {
+                    id
+                    url
+                    data {
+                      article_miniature {
+                        fluid {
+                          ...GatsbyImgixFluid
+                        }
+                      }
+                      short_description {
+                        text
+                      }
+                      article_title {
+                        text
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
           ... on PrismicMainPageDataBodySliderProduktow {
             id
             slice_type
@@ -97,7 +141,7 @@ export const query = graphql`
                       miniature {
                         alt
                         fluid {
-                          src
+                          ...GatsbyImgixFluid
                         }
                       }
                       product_title {
