@@ -333,13 +333,52 @@ $marginTop: 115px
 @media screen and (max-width: 767px)
   .header
     max-height: 100vh
-    min-height: 450px
+    min-height: 650px
 
     .socials
       padding: 40px 13px
+      width: 220px
+      height: 220px
 
       &::before
         left: 21px
+
+      &.small
+        width: 70px
+        padding-bottom: 30px
+
+        &::before
+          bottom: 125px
+
+    .sliderWrap
+      .sliderContent
+        padding-top: 180px
+
+        .sliderTitle
+          padding-left: 0
+          max-width: calc(100vw - 240px)
+
+          *
+            font-size: 25px !important
+
+        .sliderDescription
+          max-width: calc(100vw - 120px)
+
+    .swiperNavigation
+      top: 190px
+      left: 100px
+      z-index: 99
+
+    .ghostTitle
+      top: 200px
+      font-size: 70px
+
+    .counterWrap
+      left: 75px
+      top: 95px
+
+      .currCount
+        font-size: 50px
 
 @media screen and (max-width: 599px)
   .header
