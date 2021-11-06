@@ -26,6 +26,12 @@ const Header = ({ lang, className, title, bgc, bgcAlt, slides, slider }) => {
             translation_read_more {
               text
             }
+            instagram {
+              url
+            }
+            facebook {
+              url
+            }
           }
         }
       }
@@ -36,10 +42,20 @@ const Header = ({ lang, className, title, bgc, bgcAlt, slides, slider }) => {
     (!slider && (
       <header className={cx(className, styles.header)}>
         <div className={styles.socials}>
-          <a className={styles.socialIcon} href="instagram.com" target="_blank">
+          <a
+            className={styles.socialIcon}
+            href={translate(lang, settings).instagram.url}
+            target="_blank"
+            rel="noreferrer"
+          >
             <FontAwesomeIcon icon={faInstagram} />
           </a>
-          <a className={styles.socialIcon} href="facebook.com" target="_blank">
+          <a
+            className={styles.socialIcon}
+            href={translate(lang, settings).facebook.url}
+            target="_blank"
+            rel="noreferrer"
+          >
             <FontAwesomeIcon icon={faFacebookF} />
           </a>
         </div>
@@ -79,10 +95,20 @@ const Header = ({ lang, className, title, bgc, bgcAlt, slides, slider }) => {
         </div>
         <div className={cx(styles.socials, styles.small)}>
           <p className={styles.socialsTitle}>Meble industrialne</p>
-          <a className={styles.socialIcon} href="instagram.com" target="_blank">
+          <a
+            className={styles.socialIcon}
+            href={translate(lang, settings).instagram.url}
+            target="_blank"
+            rel="noreferrer"
+          >
             <FontAwesomeIcon icon={faInstagram} />
           </a>
-          <a className={styles.socialIcon} href="facebook.com" target="_blank">
+          <a
+            className={styles.socialIcon}
+            href={translate(lang, settings).facebook.url}
+            target="_blank"
+            rel="noreferrer"
+          >
             <FontAwesomeIcon icon={faFacebookF} />
           </a>
         </div>
