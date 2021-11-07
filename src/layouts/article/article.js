@@ -38,7 +38,7 @@ const ArticlePage = ({
     <>
       <Theme lang={lang}>
         <Header
-          title="<h1>Products</h1>"
+          title="<h1>Blog</h1>"
           lang={lang}
           bgc={bannerImg}
           bgcAlt={bannerAlt}
