@@ -62,7 +62,7 @@
           font-weight: 300
           color: $white
           line-height: 2
-          @include cutText(2)
+          @include cutText(3)
 
       .ghostText
         position: absolute
@@ -83,3 +83,34 @@
 
   .button
     margin: 0 auto
+
+@media screen and (max-width: 992px)
+  .articleList
+    .articleListWrap
+      grid-template-columns: repeat(2, 1fr)
+
+@media screen and (max-width: 767px)
+  .articleList
+    .articleListWrap
+      grid-template-columns: 1fr
+      margin-bottom: 30px
+
+      .article
+        height: 520px
+
+        .description
+          top: 20px
+          left: 20px
+          padding: 10px 20px 20px 10px
+          max-width: calc(100% - 100px)
+
+          .text
+            font-size: 16px
+
+        .ghostText
+          position: absolute
+          bottom: 20px
+          right: 10px
+          font-size: 60px
+          letter-spacing: 20px
+

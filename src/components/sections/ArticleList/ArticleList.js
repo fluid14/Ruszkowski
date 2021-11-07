@@ -35,8 +35,6 @@ const ArticleList = ({ lang, data, items }) => {
     }
   `).allPrismicSettings.nodes;
 
-  console.log(settings);
-
   return (
     <Section className={cx(styles.articleList, 'wrap')}>
       <SectionTitle center>{title}</SectionTitle>
@@ -58,7 +56,6 @@ const ArticleList = ({ lang, data, items }) => {
             },
             i
           ) => {
-            console.log(i, count);
             if (i < count) {
               return (
                 <Link
