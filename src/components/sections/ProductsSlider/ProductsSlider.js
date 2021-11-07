@@ -17,6 +17,8 @@ const ProductsSlider = ({ lang, data, items }) => {
     title: { html: title },
   } = data;
 
+  console.log(items);
+
   const settings = useStaticQuery(graphql`
     query ProductsSliderQuery {
       allPrismicSettings {

@@ -17,8 +17,6 @@ const Index = ({ data }) => {
     data: { header_slider: headerSlider, body },
   } = data.prismicMainPage;
 
-  console.log(data);
-
   return (
     <Theme lang={lang}>
       <Header slides={headerSlider} lang={lang} slider />

@@ -11,9 +11,14 @@ import Button from '../../layout/Button/Button';
 import { translate } from '../../../utils/translate';
 
 const ArticleList = ({ lang, data, items }) => {
-  const [count, setCount] = useState(3);
+  let countInitialState = 3;
+  if (window.screen.availWidth <= 992) {
+    countInitialState = 2;
+  }
+
+  const [count, setCount] = useState(countInitialState);
   const addArticles = () => {
-    setCount(count + 3);
+    setCount(count + countInitialState);
   };
 
   const {
@@ -62,6 +67,7 @@ const ArticleList = ({ lang, data, items }) => {
                   to={`${url}/${slugify(articleTitle, {
                     lower: true,
                   })}`}
+                  key={i}
                   className={styles.article}
                 >
                   <div className={styles.description}>

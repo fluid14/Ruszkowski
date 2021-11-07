@@ -9,8 +9,21 @@ import Button from '../../layout/Button/Button';
 import { translate } from '../../../utils/translate';
 
 const Products = ({ products, defaultType, lang }) => {
+  let countInitialState = 8;
+  if (window.screen.availWidth <= 1679) {
+    countInitialState = 6;
+  }
+
+  if (window.screen.availWidth <= 1260) {
+    countInitialState = 4;
+  }
+
+  if (window.screen.availWidth <= 599) {
+    countInitialState = 2;
+  }
+
   const [allProducts, setProducts] = useState(products);
-  const [count, setCount] = useState(8);
+  const [count, setCount] = useState(countInitialState);
 
   const settings = useStaticQuery(graphql`
     query ProductsSettingsQuery {
@@ -43,7 +56,7 @@ const Products = ({ products, defaultType, lang }) => {
   }, []);
 
   const addProducts = () => {
-    setCount(count + 4);
+    setCount(count + countInitialState / 2);
   };
 
   const filters = [];
