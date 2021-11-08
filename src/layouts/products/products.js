@@ -75,6 +75,9 @@ export const query = graphql`
           ... on PrismicProductsDataBodyFormularzKontaktowy {
             slice_type
             primary {
+              shadow_title {
+                text
+              }
               form_title {
                 html
               }

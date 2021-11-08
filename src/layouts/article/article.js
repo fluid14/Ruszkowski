@@ -2,7 +2,6 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
-import Section from '../../components/shared/Section/Section';
 import SectionTitle from '../../components/layout/Text/SectionTitle/SectionTitle';
 import Theme from '../../theme/Theme';
 import Header from '../../components/shared/Header/Header';
@@ -11,10 +10,16 @@ import Article from '../../components/layout/Text/Article/Article';
 import Contact from '../../components/shared/Contact/Contact';
 import Tags from '../../components/shared/Tags/Tags';
 import ArticleListAside from '../../components/shared/ArticleListAside/ArticleListAside';
+import { translate } from '../../utils/translate';
 
 const ArticlePage = ({
   pageContext: { lang },
-  data: { prismicArticle, allPrismicArticle, prismicBlogPage },
+  data: {
+    prismicArticle,
+    allPrismicArticle,
+    prismicBlogPage,
+    allPrismicSettings,
+  },
 }) => {
   const {
     tags,
@@ -25,6 +30,8 @@ const ArticlePage = ({
       body: article,
     },
   } = prismicArticle;
+
+  const settings = allPrismicSettings.nodes;
 
   const { edges: articles } = allPrismicArticle;
 
@@ -83,7 +90,12 @@ const ArticlePage = ({
             </aside>
           </div>
         </main>
-        <Contact className="wrap" lang={lang} />
+        <Contact
+          className="wrap"
+          shadowText={translate(lang, settings).translation_contact.text}
+          sectionTitle={translate(lang, settings).translation_in_touch.text}
+          lang={lang}
+        />
       </Theme>
     </>
   );
@@ -91,6 +103,19 @@ const ArticlePage = ({
 
 export const query = graphql`
   query ArticleQuery($id: String, $lang: String) {
+    allPrismicSettings {
+      nodes {
+        lang
+        data {
+          translation_contact {
+            text
+          }
+          translation_in_touch {
+            text
+          }
+        }
+      }
+    }
     prismicBlogPage(lang: { eq: $lang }) {
       data {
         article_list_aside {
@@ -162,6 +187,14 @@ ArticlePage.propTypes = {
     lang: PropTypes.string.isRequired,
   }).isRequired,
   data: PropTypes.shape({
+    allPrismicSettings: PropTypes.shape({
+      nodes: PropTypes.arrayOf(
+        PropTypes.shape({
+          translation_orders: PropTypes.string,
+          translation_in_touch: PropTypes.string,
+        })
+      ),
+    }),
     prismicBlogPage: PropTypes.shape({
       data: PropTypes.shape({
         article_list_aside: PropTypes.shape({

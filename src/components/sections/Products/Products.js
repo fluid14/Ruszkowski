@@ -10,6 +10,7 @@ import { translate } from '../../../utils/translate';
 
 const Products = ({ products, defaultType, lang }) => {
   let countInitialState = 8;
+
   if (window.screen.availWidth <= 1679) {
     countInitialState = 6;
   }

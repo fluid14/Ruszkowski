@@ -12,13 +12,16 @@ const RealizationsList = ({
 }) => {
   const {
     primary: {
+      shadow_title: { text: shadowTitle },
       realizations_list_title: { html: title },
     },
   } = data;
 
   return (
     <Section className={styles.realizationListWrap}>
-      <SectionTitle center>{title}</SectionTitle>
+      <SectionTitle shadowText={shadowTitle} center>
+        {title}
+      </SectionTitle>
       <ArticleList
         lang={lang}
         realizations={realizations}
@@ -33,9 +36,12 @@ RealizationsList.propTypes = {
   data: PropTypes.shape({
     primary: PropTypes.shape({
       realizations_list_title: PropTypes.shape({
-        html: PropTypes.string.isRequired,
-      }).isRequired,
-    }).isRequired,
+        html: PropTypes.string,
+      }),
+      shadow_title: PropTypes.shape({
+        text: PropTypes.string,
+      }),
+    }),
   }).isRequired,
   realizations: PropTypes.shape({
     totalCount: PropTypes.number.isRequired,

@@ -45,7 +45,7 @@ const Blog = ({ data }) => {
               case 'ostatnie_artyku_y':
                 return (
                   <Section key={i}>
-                    <SectionTitle center shadowText="Wpisy z bloga">
+                    <SectionTitle center shadowText={primary.shadow_title.text}>
                       {primary.last_article_title.html}
                     </SectionTitle>
                     <ArticleList
@@ -80,6 +80,9 @@ export const query = graphql`
             slice_type
             primary {
               form_type
+              shadow_title {
+                text
+              }
               form_title {
                 html
               }
@@ -104,6 +107,9 @@ export const query = graphql`
             id
             slice_type
             primary {
+              shadow_title {
+                text
+              }
               last_article_title {
                 html
               }

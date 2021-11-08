@@ -34,6 +34,13 @@
                   "label": "Tytuł - Współpracujmy"
                 }
               },
+              "shadow_title": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "heading6",
+                  "label": "Cień tytułu"
+                }
+              },
               "cooperation_description": {
                 "type": "StructuredText",
                 "config": {
@@ -89,25 +96,11 @@
                   "label": "Tytuł - Lista realizacji"
                 }
               },
-              "investor_title": {
+              "shadow_title": {
                 "type": "StructuredText",
                 "config": {
                   "single": "heading6",
-                  "label": "Tytuł - Inwestor"
-                }
-              },
-              "place_title": {
-                "type": "StructuredText",
-                "config": {
-                  "single": "heading6",
-                  "label": "Tytuł - Miejsce"
-                }
-              },
-              "scope_title": {
-                "type": "StructuredText",
-                "config": {
-                  "single": "heading6",
-                  "label": "Tytuł - Zakres"
+                  "label": "Cień tytułu"
                 }
               }
             },
@@ -136,6 +129,13 @@
                 "config": {
                   "multi": "paragraph,heading1,heading2,heading3,heading4,heading5,heading6,strong",
                   "label": "Tytuł formularza"
+                }
+              },
+              "shadow_title": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "heading6",
+                  "label": "Cień tytułu"
                 }
               },
               "message_placeholder": {

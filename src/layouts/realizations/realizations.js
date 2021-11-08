@@ -82,6 +82,9 @@ export const query = graphql`
         body {
           ... on PrismicRealizationsPageDataBodyFormularzKontaktowy {
             primary {
+              shadow_title {
+                text
+              }
               form_title {
                 html
               }
@@ -95,6 +98,9 @@ export const query = graphql`
           ... on PrismicRealizationsPageDataBodyWspoPraca {
             slice_type
             primary {
+              shadow_title {
+                text
+              }
               cooperation_description {
                 html
               }
@@ -126,8 +132,14 @@ export const query = graphql`
           ... on PrismicRealizationsPageDataBodyRealizacje {
             slice_type
             primary {
+              shadow_title {
+                text
+              }
               realizations_list_title {
                 html
+              }
+              shadow_title {
+                text
               }
             }
           }

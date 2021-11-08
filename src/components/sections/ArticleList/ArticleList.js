@@ -106,6 +106,9 @@ ArticleList.propTypes = {
   lang: PropTypes.string.isRequired,
   data: PropTypes.shape({
     title: PropTypes.shape({ html: PropTypes.string }),
+    shadow_title: PropTypes.shape({
+      text: PropTypes.string,
+    }),
   }).isRequired,
   items: PropTypes.arrayOf(
     PropTypes.shape({
@@ -113,9 +116,6 @@ ArticleList.propTypes = {
         document: PropTypes.shape({
           url: PropTypes.string,
           data: PropTypes.shape({
-            shadow_title: PropTypes.shape({
-              text: PropTypes.string,
-            }),
             article_title: PropTypes.shape({
               text: PropTypes.string,
             }),

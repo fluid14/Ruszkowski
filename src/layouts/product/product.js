@@ -1,5 +1,5 @@
 import React from 'react';
-import { graphql, Link } from 'gatsby';
+import { graphql, Link, useStaticQuery } from 'gatsby';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import Theme from '../../theme/Theme';
@@ -13,6 +13,7 @@ import Materials from '../../components/sections/Materials/Materials';
 import Contact from '../../components/shared/Contact/Contact';
 import ProductGallery from '../../components/sections/ProductGallery/ProductGallery';
 import Button from '../../components/layout/Button/Button';
+import { translate } from '../../utils/translate';
 
 const ProductPage = ({ data }) => {
   const {
@@ -23,6 +24,8 @@ const ProductPage = ({ data }) => {
     woods_type: woodsType,
     body,
   } = data.prismicProduct.data;
+
+  const settings = data.allPrismicSettings.nodes;
 
   const {
     contac_form_placeholder: contactPlaceholder,
@@ -127,6 +130,7 @@ const ProductPage = ({ data }) => {
           </Section>
           <Contact
             lang={lang}
+            shadowText={translate(lang, settings).translation_orders.text}
             slice={{
               form_type: 'product',
               form_title: contactTitle,
@@ -143,6 +147,16 @@ const ProductPage = ({ data }) => {
 
 export const query = graphql`
   query ProductQuery($id: String, $lang: String) {
+    allPrismicSettings {
+      nodes {
+        lang
+        data {
+          translation_orders {
+            text
+          }
+        }
+      }
+    }
     allPrismicProduct(filter: { lang: { eq: $lang } }) {
       nodes {
         tags
@@ -248,19 +262,26 @@ export const query = graphql`
 
 ProductPage.propTypes = {
   data: PropTypes.shape({
+    allPrismicSettings: PropTypes.shape({
+      nodes: PropTypes.arrayOf(
+        PropTypes.shape({
+          translation_orders: PropTypes.string,
+        })
+      ),
+    }),
     allPrismicProduct: PropTypes.shape({
       nodes: PropTypes.arrayOf(
         PropTypes.shape({
           tags: PropTypes.arrayOf(PropTypes.string),
         })
       ),
-    }).isRequired,
+    }),
     prismicProducts: PropTypes.shape({
-      url: PropTypes.string.isRequired,
+      url: PropTypes.string,
       data: PropTypes.shape({
         contac_form_placeholder: PropTypes.shape,
         contact_form_title: PropTypes.shape,
-      }).isRequired,
+      }),
     }),
     prismicProduct: PropTypes.shape({
       lang: PropTypes.string.isRequired,

@@ -18,7 +18,7 @@ const AboutUs = ({ data }) => {
     banner_title: { html: bannerTitle },
     body,
   } = data.prismicAboutUsPage.data;
-  //
+
   const { lang } = data.prismicAboutUsPage;
 
   return (
@@ -154,6 +154,9 @@ export const query = graphql`
           ... on PrismicAboutUsPageDataBodyFormularzKontaktowy {
             slice_type
             primary {
+              shadow_title {
+                text
+              }
               form_title {
                 html
               }
@@ -199,6 +202,7 @@ AboutUs.propTypes = {
           PropTypes.shape({
             primary: PropTypes.shape({
               description_title: PropTypes.shape({ html: PropTypes.string }),
+              shadow_title: PropTypes.shape({ text: PropTypes.string }),
               description: PropTypes.shape({ html: PropTypes.string }),
               slice_type: PropTypes.string,
             }).isRequired,

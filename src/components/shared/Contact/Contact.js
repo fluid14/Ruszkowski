@@ -12,6 +12,8 @@ const ContactComponent = ({
   lang,
   slice,
   className,
+  shadowText,
+  sectionTitle,
   data: {
     allPrismicSettings: { nodes: settings },
   },
@@ -190,8 +192,12 @@ const ContactComponent = ({
 
   return (
     <Section className={className}>
-      <SectionTitle className={styles.sectionTitle} center shadowText="kontakt">
-        {title}
+      <SectionTitle
+        className={styles.sectionTitle}
+        center
+        shadowText={shadowText || slice.shadow_title?.text}
+      >
+        {sectionTitle ? `<h4>${sectionTitle}</h4>` : title}
       </SectionTitle>
       {(() => {
         switch (formType) {
@@ -255,6 +261,8 @@ const Contact = (props) => (
 ContactComponent.propTypes = {
   lang: PropTypes.string.isRequired,
   className: PropTypes.string,
+  shadowText: PropTypes.string,
+  sectionTitle: PropTypes.string,
   data: PropTypes.shape({
     allPrismicSettings: PropTypes.shape({
       nodes: PropTypes.arrayOf(
@@ -273,7 +281,7 @@ ContactComponent.propTypes = {
         })
       ),
     }),
-  }),
+  }).isRequired,
   slice: PropTypes.shape({
     woodsType: PropTypes.arrayOf(
       PropTypes.shape({
@@ -288,15 +296,20 @@ ContactComponent.propTypes = {
     form_type: PropTypes.string,
     form_title: PropTypes.shape({
       html: PropTypes.string,
-    }).isRequired,
+    }),
     message_placeholder: PropTypes.shape({
       text: PropTypes.string,
-    }).isRequired,
+    }),
+    shadow_title: PropTypes.shape({
+      text: PropTypes.string,
+    }),
   }),
 };
 
 ContactComponent.defaultProps = {
   className: '',
+  shadowText: null,
+  sectionTitle: null,
   slice: {
     product: null,
     form_type: null,

@@ -192,6 +192,27 @@
         "single": "heading6",
         "label": "Dalej"
       }
+    },
+    "translation_orders": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading6",
+        "label": "Zamówienia"
+      }
+    },
+    "translation_contact": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading6",
+        "label": "Kontakt"
+      }
+    },
+    "translation_in_touch": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading6",
+        "label": "Bądźmy w kontakcie"
+      }
     }
   }
 }

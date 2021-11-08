@@ -16,18 +16,18 @@ const Cooperation = ({ className, title, data: { primary, items } }) => {
     shadow_title: { text: shadowTitle },
   } = primary;
 
+  console.log(shadowTitle);
+
   return (
     <Section className={cx(className, styles.cooperationWrap)}>
-      {title && (
-        <SectionTitle
-          className={styles.sectionTitle}
-          shadowText={shadowTitle}
-          shadowTextClass={styles.sectionShadowTitle}
-          center
-        >
-          {title}
-        </SectionTitle>
-      )}
+      <SectionTitle
+        className={styles.sectionTitle}
+        shadowText={shadowTitle}
+        shadowTextClass={cx(styles.sectionShadowTitle)}
+        center
+      >
+        {title}
+      </SectionTitle>
       <div className={styles.contentWrap}>
         <div className={styles.descriptionWrap}>
           <div

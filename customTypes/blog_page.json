@@ -54,6 +54,13 @@
                   "label": "Tytuł formularza"
                 }
               },
+              "shadow_title": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "heading6",
+                  "label": "Cień tytułu"
+                }
+              },
               "message_placeholder": {
                 "type": "StructuredText",
                 "config": {
@@ -98,6 +105,13 @@
                 "config": {
                   "single": "heading1,heading2,heading3,heading4,heading5,heading6,strong",
                   "label": "Ostatnie wpisy tytuł"
+                }
+              },
+              "shadow_title": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "heading6",
+                  "label": "Cień tytuły"
                 }
               }
             },

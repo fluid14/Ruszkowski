@@ -18,7 +18,7 @@
     "contact_form_title": {
       "type": "StructuredText",
       "config": {
-        "single": "heading1, heading2, heading3, heading4, heading5, heading6, strong, em",
+        "single": "heading1,heading2,heading3,heading4,heading5,heading6,strong,em",
         "label": "Tytuł formularza kontaktowego w produkcie"
       }
     },
@@ -67,6 +67,13 @@
                 "config": {
                   "multi": "paragraph,heading1,heading2,heading3,heading4,heading5,heading6,strong",
                   "label": "Tytuł formularza"
+                }
+              },
+              "shadow_title": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "heading6",
+                  "label": "Cień tytułu"
                 }
               },
               "message_placeholder": {

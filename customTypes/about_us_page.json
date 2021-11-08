@@ -166,6 +166,13 @@
                   "label": "Tytuł formularza"
                 }
               },
+              "shadow_title": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "heading6",
+                  "label": "Cień tytułu"
+                }
+              },
               "message_placeholder": {
                 "type": "StructuredText",
                 "config": {
