@@ -16,8 +16,6 @@ const Cooperation = ({ className, title, data: { primary, items } }) => {
     shadow_title: { text: shadowTitle },
   } = primary;
 
-  console.log(shadowTitle);
-
   return (
     <Section className={cx(className, styles.cooperationWrap)}>
       <SectionTitle

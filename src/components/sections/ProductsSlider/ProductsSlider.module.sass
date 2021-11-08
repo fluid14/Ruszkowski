@@ -1,14 +1,11 @@
 @import './src/styles/config'
 
 .productsSliderWrap
-  .sectionTitle
-    margin-bottom: 115px
-
   .sectionShadowTitle
     top: 100%
     left: unset
     right: 10%
-    transform: translateY(0)
+    transform: translateY(-25%)
 
   .sliderWrap
     position: relative
@@ -60,8 +57,8 @@
 
 @media screen and (max-width: 1599px)
   .productsSliderWrap
-    .sectionTitle
-      margin-bottom: 100px
+    .sectionShadowTitle
+      transform: translateY(-35%)
 
     .sliderWrap
       .swiperNavigation
@@ -80,17 +77,11 @@
       top: 100%
       left: unset
       right: 5%
-      transform: unset
+      transform: translateY(-25%)
 
 @media screen and (max-width: 599px)
   .productsSliderWrap
     padding-bottom: 50px
-
-    .sectionTitle
-      margin-bottom: 40px
-
-    .sectionShadowTitle
-      top: 0
 
     .sliderWrap
       .swiperNavigation
