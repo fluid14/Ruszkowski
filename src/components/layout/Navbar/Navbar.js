@@ -97,7 +97,7 @@ const NavbarComponent = ({
             ))}
           <li className={cx(styles.menuItem, styles.menuPhone)}>
             <a className={styles.phone} href="tel: +48 692 615 555">
-              translate
+              {translate(lang, settings).phone_number}
             </a>
           </li>
           <li className={cx(styles.menuItem)}>
