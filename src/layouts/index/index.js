@@ -28,7 +28,7 @@ const Index = ({ data }) => {
               return (
                 <DesignWithUs
                   key={i}
-                  className={cx(styles.cooperation, 'wrap')}
+                  className={cx(styles.designWithUs, 'wrap')}
                   data={primary}
                 />
               );
@@ -58,7 +58,7 @@ const Index = ({ data }) => {
                 <ArticleList
                   key={i}
                   lang={lang}
-                  className={styles.productsSlider}
+                  className={styles.articleSlider}
                   data={primary}
                   items={items}
                 />

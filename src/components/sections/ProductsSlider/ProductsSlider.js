@@ -12,7 +12,7 @@ import SectionTitle from '../../layout/Text/SectionTitle/SectionTitle';
 import 'swiper/css/bundle';
 import { translate } from '../../../utils/translate';
 
-const ProductsSlider = ({ lang, data, items }) => {
+const ProductsSlider = ({ className, lang, data, items }) => {
   const {
     title: { html: title },
     shadow_title: { text: shadowTitle },
@@ -37,7 +37,7 @@ const ProductsSlider = ({ lang, data, items }) => {
   `).allPrismicSettings.nodes;
 
   return (
-    <Section className={styles.productsSliderWrap}>
+    <Section className={cx(className, styles.productsSliderWrap)}>
       <SectionTitle
         shadowText={shadowTitle}
         shadowTextClass={styles.sectionShadowTitle}
@@ -110,9 +110,13 @@ const ProductsSlider = ({ lang, data, items }) => {
 
 ProductsSlider.propTypes = {
   lang: PropTypes.string.isRequired,
+  className: PropTypes.string,
   data: PropTypes.shape({
     title: PropTypes.shape({
       html: PropTypes.string,
+    }),
+    shadow_title: PropTypes.shape({
+      text: PropTypes.string,
     }),
   }).isRequired,
   items: PropTypes.arrayOf(
@@ -138,6 +142,10 @@ ProductsSlider.propTypes = {
       }),
     })
   ).isRequired,
+};
+
+ProductsSlider.defaultProps = {
+  className: '',
 };
 
 export default ProductsSlider;

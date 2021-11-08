@@ -10,7 +10,7 @@ import Section from '../../shared/Section/Section';
 import Button from '../../layout/Button/Button';
 import { translate } from '../../../utils/translate';
 
-const ArticleList = ({ lang, data, items }) => {
+const ArticleList = ({ className, lang, data, items }) => {
   let countInitialState = 3;
   if (window.screen.availWidth <= 992) {
     countInitialState = 2;
@@ -42,7 +42,7 @@ const ArticleList = ({ lang, data, items }) => {
   `).allPrismicSettings.nodes;
 
   return (
-    <Section className={cx(styles.articleList, 'wrap')}>
+    <Section className={cx(className, styles.articleList, 'wrap')}>
       <SectionTitle
         shadowText={shadowTitle}
         shadowTextClass={styles.sectionShadowTitle}
@@ -103,6 +103,7 @@ const ArticleList = ({ lang, data, items }) => {
 };
 
 ArticleList.propTypes = {
+  className: PropTypes.string,
   lang: PropTypes.string.isRequired,
   data: PropTypes.shape({
     title: PropTypes.shape({ html: PropTypes.string }),
@@ -132,6 +133,10 @@ ArticleList.propTypes = {
       }),
     })
   ).isRequired,
+};
+
+ArticleList.defaultProps = {
+  className: '',
 };
 
 export default ArticleList;
