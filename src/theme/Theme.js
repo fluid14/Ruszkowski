@@ -16,10 +16,12 @@ const ThemeComponent = ({
   },
 }) => (
   <>
-    <Navbar lang={lang} />
-    <PageOrnament />
-    <main>{children}</main>
-    <Footer lang={lang} logo={logo} links={footerLinks} />
+    <main className="pageWrap">
+      <Navbar lang={lang} />
+      <PageOrnament />
+      <main>{children}</main>
+      <Footer lang={lang} logo={logo} links={footerLinks} />
+    </main>
   </>
 );
 

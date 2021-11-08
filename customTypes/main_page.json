@@ -49,7 +49,7 @@
       "type": "Slices",
       "fieldset": "Slice zone",
       "config": {
-        "labels": null,
+        "labels": {},
         "choices": {
           "formularz_kontaktowy": {
             "type": "Slice",
@@ -76,6 +76,13 @@
                   "label": "Tytuł formularza"
                 }
               },
+              "shadow_title": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "heading6",
+                  "label": "Cień tytułu"
+                }
+              },
               "message_placeholder": {
                 "type": "StructuredText",
                 "config": {
@@ -91,13 +98,19 @@
             "fieldset": "Współpraca",
             "description": "Współpracujmy - nasza specjalność",
             "icon": "account_circle",
-            "display": "list",
             "non-repeat": {
               "section_title": {
                 "type": "StructuredText",
                 "config": {
                   "single": "heading1,heading2,heading3,heading4,heading5,heading6,strong",
                   "label": "Tytuł sekcji"
+                }
+              },
+              "shadow_title": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "heading6",
+                  "label": "Cień tytułu"
                 }
               },
               "cooperation_title": {
@@ -161,6 +174,13 @@
                   "label": "Tytuł sekcji"
                 }
               },
+              "shadow_title": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "heading6",
+                  "label": "Cień tytułu"
+                }
+              },
               "image": {
                 "type": "Image",
                 "config": {
@@ -213,13 +233,19 @@
             "fieldset": "Slider produktów",
             "description": "slider produktów",
             "icon": "slideshow",
-            "display": "list",
             "non-repeat": {
               "title": {
                 "type": "StructuredText",
                 "config": {
                   "single": "heading1,heading2,heading3,heading4,heading5,heading6,strong",
                   "label": "Tytuł"
+                }
+              },
+              "shadow_title": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "heading6",
+                  "label": "Cień tytułu"
                 }
               }
             },
@@ -239,13 +265,19 @@
             "fieldset": "O tym piszemy",
             "description": "O tym piszemy",
             "icon": "blur_linear",
-            "display": "list",
             "non-repeat": {
               "title": {
                 "type": "StructuredText",
                 "config": {
-                  "single": "heading1, heading2, heading3, heading4, heading5, heading6, strong",
+                  "single": "heading1,heading2,heading3,heading4,heading5,heading6,strong",
                   "label": "Tytuł"
+                }
+              },
+              "shadow_title": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "heading6",
+                  "label": "Cień tytułu"
                 }
               }
             },

@@ -13,12 +13,18 @@ const Cooperation = ({ className, title, data: { primary, items } }) => {
     cooperation_description: { html: description },
     cooperation_photo: { fluid: photo, alt },
     our_speciality: { html: specialityTitle },
+    shadow_title: { text: shadowTitle },
   } = primary;
 
   return (
     <Section className={cx(className, styles.cooperationWrap)}>
       {title && (
-        <SectionTitle className={styles.sectionTitle} center>
+        <SectionTitle
+          className={styles.sectionTitle}
+          shadowText={shadowTitle}
+          shadowTextClass={styles.sectionShadowTitle}
+          center
+        >
           {title}
         </SectionTitle>
       )}
@@ -72,20 +78,23 @@ Cooperation.propTypes = {
   data: PropTypes.shape({
     slice_type: PropTypes.string.isRequired,
     primary: PropTypes.shape({
+      shadow_title: PropTypes.shape({
+        text: PropTypes.string,
+      }),
       cooperation_description: PropTypes.shape({
-        html: PropTypes.string.isRequired,
-      }).isRequired,
+        html: PropTypes.string,
+      }),
       cooperation_photo: PropTypes.shape({
         alt: PropTypes.string,
-        fluid: PropTypes.shape.isRequired,
-      }).isRequired,
+        fluid: PropTypes.shape,
+      }),
       cooperation_title: PropTypes.shape({
-        html: PropTypes.string.isRequired,
-      }).isRequired,
+        html: PropTypes.string,
+      }),
       our_speciality: PropTypes.shape({
-        html: PropTypes.string.isRequired,
-      }).isRequired,
-    }).isRequired,
+        html: PropTypes.string,
+      }),
+    }),
     items: PropTypes.arrayOf(
       PropTypes.shape({
         our_speciality_icon: PropTypes.shape({

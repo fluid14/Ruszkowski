@@ -11,11 +11,11 @@ const SectionTitle = ({
   right,
   transformNone,
   className,
+  shadowTextClass,
 }) => (
-  <div className={styles.sectionTitleWrap}>
+  <div className={cx(className, styles.sectionTitleWrap)}>
     <div
       className={cx(
-        className,
         styles.sectionTitle,
         { [styles.center]: center },
         { [styles.left]: left },
@@ -24,12 +24,15 @@ const SectionTitle = ({
       )}
       dangerouslySetInnerHTML={{ __html: children }}
     />
-    {/* {shadowText && <p className={styles.shadowText}>{shadowText}</p>} */}
+    {shadowText && (
+      <p className={cx(shadowTextClass, styles.shadowText)}>{shadowText}</p>
+    )}
   </div>
 );
 
 SectionTitle.propTypes = {
   className: PropTypes.string,
+  shadowTextClass: PropTypes.string,
   children: PropTypes.string.isRequired,
   shadowText: PropTypes.string,
   center: PropTypes.bool,
@@ -40,6 +43,7 @@ SectionTitle.propTypes = {
 
 SectionTitle.defaultProps = {
   className: '',
+  shadowTextClass: '',
   shadowText: '',
   center: false,
   left: false,

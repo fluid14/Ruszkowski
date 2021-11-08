@@ -15,9 +15,8 @@ import { translate } from '../../../utils/translate';
 const ProductsSlider = ({ lang, data, items }) => {
   const {
     title: { html: title },
+    shadow_title: { text: shadowTitle },
   } = data;
-
-  console.log(items);
 
   const settings = useStaticQuery(graphql`
     query ProductsSliderQuery {
@@ -39,7 +38,12 @@ const ProductsSlider = ({ lang, data, items }) => {
 
   return (
     <Section className={styles.productsSliderWrap}>
-      <SectionTitle className={styles.sectionTitle} center>
+      <SectionTitle
+        shadowText={shadowTitle}
+        shadowTextClass={styles.sectionShadowTitle}
+        className={styles.sectionTitle}
+        center
+      >
         {title}
       </SectionTitle>
       <div className={cx(styles.sliderWrap, 'swiperNav', 'productsSwiper')}>

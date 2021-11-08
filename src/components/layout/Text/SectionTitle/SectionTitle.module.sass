@@ -2,7 +2,6 @@
 
 .sectionTitleWrap
   position: relative
-  //overflow-x: hidden
 
   .sectionTitle
     margin-bottom: 75px
@@ -23,12 +22,12 @@
   .shadowText
     position: absolute
     top: 0
-    left: 35%
+    left: 52%
     transform: translateY(-50%)
     font-size: 173px
     font-weight: $black
     white-space: nowrap
-    opacity: .01
+    opacity: .02
     color: $gray
 
 @media screen and (max-width: 1599px)
@@ -36,25 +35,24 @@
     .sectionTitle
       margin-bottom: 60px
 
-    .shadowText
-      font-size: 130px
 
 @media screen and (max-width: 1199px)
   .sectionTitleWrap
     .sectionTitle
       margin-bottom: 50px
 
+@media screen and (max-width: 992px)
+  .sectionTitleWrap
     .shadowText
-      font-size: 80px
+      font-size: 100px
+      transform: translate(-10%, -30%)
+
 
 @media screen and (max-width: 767px)
   .sectionTitleWrap
     .sectionTitle
       margin-bottom: 40px
 
-    .shadowText
-      left: 50%
-      transform: translate(-50%, -50%)
 
 @media screen and (max-width: 599px)
   .sectionTitleWrap
@@ -63,6 +61,7 @@
 
     .shadowText
       font-size: 70px
+      transform: translate(-10%, 0)
 
 @media screen and (max-width: 359px)
   .sectionTitleWrap

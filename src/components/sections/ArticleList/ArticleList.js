@@ -23,6 +23,7 @@ const ArticleList = ({ lang, data, items }) => {
 
   const {
     title: { html: title },
+    shadow_title: { text: shadowTitle },
   } = data;
 
   const settings = useStaticQuery(graphql`
@@ -42,7 +43,13 @@ const ArticleList = ({ lang, data, items }) => {
 
   return (
     <Section className={cx(styles.articleList, 'wrap')}>
-      <SectionTitle center>{title}</SectionTitle>
+      <SectionTitle
+        shadowText={shadowTitle}
+        shadowTextClass={styles.sectionShadowTitle}
+        center
+      >
+        {title}
+      </SectionTitle>
       <div className={styles.articleListWrap}>
         {items.map(
           (
@@ -106,6 +113,9 @@ ArticleList.propTypes = {
         document: PropTypes.shape({
           url: PropTypes.string,
           data: PropTypes.shape({
+            shadow_title: PropTypes.shape({
+              text: PropTypes.string,
+            }),
             article_title: PropTypes.shape({
               text: PropTypes.string,
             }),

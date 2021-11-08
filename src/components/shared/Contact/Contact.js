@@ -190,7 +190,7 @@ const ContactComponent = ({
 
   return (
     <Section className={className}>
-      <SectionTitle center shadowText="kontakt">
+      <SectionTitle className={styles.sectionTitle} center shadowText="kontakt">
         {title}
       </SectionTitle>
       {(() => {

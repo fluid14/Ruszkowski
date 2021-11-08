@@ -96,6 +96,9 @@ export const query = graphql`
               title {
                 html
               }
+              shadow_title {
+                text
+              }
             }
             items {
               article {
@@ -128,6 +131,9 @@ export const query = graphql`
             primary {
               title {
                 html
+              }
+              shadow_title {
+                text
               }
             }
             items {
@@ -163,6 +169,9 @@ export const query = graphql`
             slice_type
             primary {
               link_title
+              shadow_title {
+                text
+              }
               descripion_title {
                 html
               }
@@ -197,6 +206,9 @@ export const query = graphql`
               }
             }
             primary {
+              shadow_title {
+                text
+              }
               section_title {
                 html
               }
@@ -222,6 +234,9 @@ export const query = graphql`
             id
             slice_type
             primary {
+              shadow_title {
+                text
+              }
               form_title {
                 html
               }

@@ -4,6 +4,12 @@
   .sectionTitle
     margin-bottom: 115px
 
+  .sectionShadowTitle
+    top: 100%
+    left: unset
+    right: 10%
+    transform: translateY(0)
+
   .sliderWrap
     position: relative
 
@@ -68,11 +74,23 @@
           left: unset
           right: 50px
 
+@media screen and (max-width: 992px)
+  .productsSliderWrap
+    .sectionShadowTitle
+      top: 100%
+      left: unset
+      right: 5%
+      transform: unset
+
 @media screen and (max-width: 599px)
   .productsSliderWrap
     padding-bottom: 50px
+
     .sectionTitle
       margin-bottom: 40px
+
+    .sectionShadowTitle
+      top: 0
 
     .sliderWrap
       .swiperNavigation

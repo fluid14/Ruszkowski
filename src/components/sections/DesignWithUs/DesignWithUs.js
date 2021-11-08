@@ -1,7 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
 import PropTypes from 'prop-types';
-import BackgroundImage from 'gatsby-background-image';
 import { Link } from 'gatsby';
 import GatsbyImage from 'gatsby-image';
 import * as styles from './DesignWithUs.module.sass';
@@ -18,10 +17,16 @@ const DesignWithUs = ({ className, data }) => {
     description: { html: description },
     link: { url: link },
     link_title: linkTitle,
+    shadow_title: { text: shadowTitle },
   } = data;
   return (
     <Section className={cx(className, styles.designWithUsWrap)}>
-      <SectionTitle className={styles.sectionTitle} center>
+      <SectionTitle
+        className={styles.sectionTitle}
+        shadowTextClass={styles.sectionShadowTitle}
+        shadowText={shadowTitle}
+        center
+      >
         {sectionTitle}
       </SectionTitle>
       <div className={styles.contentWrap}>
@@ -45,6 +50,9 @@ const DesignWithUs = ({ className, data }) => {
 DesignWithUs.propTypes = {
   className: PropTypes.string,
   data: PropTypes.shape({
+    shadow_title: PropTypes.shape({
+      text: PropTypes.string,
+    }),
     link_title: PropTypes.string,
     descripion_title: PropTypes.shape({
       html: PropTypes.string,

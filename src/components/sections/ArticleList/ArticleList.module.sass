@@ -1,6 +1,12 @@
 @import './src/styles/config'
 
 .articleList
+  .sectionShadowTitle
+    top: unset
+    bottom: 0
+    left: calc(((100vw - 1440px) / 2) * -1)
+    transform: translateY(70%)
+
   .articleListWrap
     display: grid
     grid-template-columns: repeat(3, 1fr)
@@ -91,6 +97,12 @@
 
 @media screen and (max-width: 767px)
   .articleList
+    .sectionShadowTitle
+      top: unset
+      bottom: 0
+      left: 70%
+      transform: translate(-50%, 50%)
+
     .articleListWrap
       grid-template-columns: 1fr
       margin-bottom: 30px
