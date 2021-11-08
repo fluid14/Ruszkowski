@@ -8,7 +8,7 @@ import * as styles from './Products.module.sass';
 import Button from '../../layout/Button/Button';
 import { translate } from '../../../utils/translate';
 
-const Products = ({ products, defaultType, lang }) => {
+const Products = ({ className, products, defaultType, lang }) => {
   let countInitialState = 8;
 
   if (window.screen.availWidth <= 1679) {
@@ -78,7 +78,7 @@ const Products = ({ products, defaultType, lang }) => {
   };
 
   return (
-    <div className={styles.productsComponentWrap}>
+    <div className={cx(className, styles.productsComponentWrap)}>
       <div className={cx(styles.filterWrap)}>
         <div className={cx(styles.wrap, 'wrap')}>
           <Button
@@ -149,6 +149,7 @@ const Products = ({ products, defaultType, lang }) => {
 };
 
 Products.propTypes = {
+  className: PropTypes.string,
   lang: PropTypes.string.isRequired,
   defaultType: PropTypes.string,
   products: PropTypes.arrayOf(
@@ -171,6 +172,7 @@ Products.propTypes = {
 };
 
 Products.defaultProps = {
+  className: '',
   defaultType: null,
 };
 
