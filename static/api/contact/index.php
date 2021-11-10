@@ -18,16 +18,14 @@ if( empty($_POST['firstName']) && empty($_POST['email']) ) {
 }
 
 if ($_POST){
-    //@important: Please change this before using
     http_response_code(200);
-    $subject = 'Formularz kontaktowy: ' . $_POST['firstName'];
+    $subject = 'Formularz kontaktowy: ' . $_POST['name'];
     $from = 'noreply@ruszkowski.biz';
     $message = 'Wiadomość: ' . $_POST['message'] . 'Email: ' . $_POST['email'];
     //Actual sending email
     $sendEmail = new Sender($adminEmail, $from, $subject, $message);
     $sendEmail->send();
 } else {
- // tell the user about error
  echo json_encode(
      [
         "sent" => false,

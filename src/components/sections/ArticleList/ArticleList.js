@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import { graphql, Link, useStaticQuery } from 'gatsby';
@@ -12,11 +12,16 @@ import { translate } from '../../../utils/translate';
 
 const ArticleList = ({ className, lang, data, items }) => {
   let countInitialState = 3;
-  if (window.screen.availWidth <= 992) {
-    countInitialState = 2;
-  }
-
   const [count, setCount] = useState(countInitialState);
+
+  useEffect(() => {
+    if (window.screen.availWidth <= 992) {
+      countInitialState = 2;
+    }
+
+    setCount(countInitialState);
+  });
+
   const addArticles = () => {
     setCount(count + countInitialState);
   };

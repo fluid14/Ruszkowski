@@ -3,7 +3,7 @@ import { graphql, StaticQuery } from 'gatsby';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import { Formik } from 'formik';
-import axios from "axios";
+import axios from 'axios';
 import Section from '../Section/Section';
 import SectionTitle from '../../layout/Text/SectionTitle/SectionTitle';
 import * as styles from './Contact.module.sass';
@@ -28,6 +28,31 @@ const ContactComponent = ({
     woodsType,
   } = slice;
 
+  const sendMessage = (values) => {
+    axios({
+      method: 'post',
+      url: '../../api/contact/index.php',
+      headers: { 'content-type': 'application/json' },
+      data: { ...values },
+    })
+      .then((res) => {
+        if (res.err) {
+          console.log(
+            'Przepraszamy. Wystąpił błąd podczas próby wysłania wiadomości.'
+          );
+        } else {
+          console.log(
+            'Dziękujemy za wiadomość. Odpowiemy najszybciej jak to będzie możliwe :)'
+          );
+        }
+      })
+      .catch(() => {
+        console.log(
+          'Przepraszamy. Nie udało się wysłać wiadomości. Spróbuj ponownie później.'
+        );
+      });
+  };
+
   const basic = () => (
     <div className={cx(styles.contactWrap, styles.basic)}>
       <div className={cx(styles.formWrap, 'formWrap')}>
@@ -39,31 +64,8 @@ const ContactComponent = ({
             city: '',
             message: '',
           }}
-          onSubmit={(values, { setSubmitting }) => {
-            axios({
-              method: 'post',
-              url: '../../api/contact/index.php',
-              headers: { 'content-type': 'application/json' },
-              data: { ...values },
-            })
-              .then((res) => {
-                if (res.err) {
-                  alert(
-                    'Przepraszamy. Wystąpił błąd podczas próby wysłania wiadomości.'
-                  );
-                } else {
-                  alert(
-                    'Dziękujemy za wiadomość. Odpowiemy najszybciej jak to będzie możliwe :)'
-                  );
-                }
-                setSubmitting(false);
-              })
-              .catch(() => {
-                alert(
-                  'Przepraszamy. Nie udało się wysłać wiadomości. Spróbuj ponownie później.'
-                );
-                setSubmitting(false);
-              });
+          onSubmit={(values) => {
+            sendMessage(values);
           }}
         >
           {({ values, handleChange, handleBlur, handleSubmit }) => (
