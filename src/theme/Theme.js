@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { graphql, StaticQuery } from 'gatsby';
 import PropTypes from 'prop-types';
 import Navbar from '../components/layout/Navbar/Navbar';
 import PageOrnament from '../components/layout/PageOrnament/PageOrnament';
 import 'normalize.css';
 import Footer from '../components/layout/Footer/Footer';
+import AOS from 'aos/dist/aos';
+import 'aos/dist/aos.css';
 
 const ThemeComponent = ({
   children,
@@ -14,16 +16,21 @@ const ThemeComponent = ({
       data: { logo, footer_links: footerLinks },
     },
   },
-}) => (
-  <>
-    <main className="pageWrap">
-      <Navbar lang={lang} />
-      <PageOrnament />
-      <main>{children}</main>
-      <Footer lang={lang} logo={logo} links={footerLinks} />
-    </main>
-  </>
-);
+}) => {
+  useEffect(() => {
+    AOS.init();
+  });
+  return (
+    <>
+      <main className="pageWrap">
+        <Navbar lang={lang} />
+        <PageOrnament />
+        <main>{children}</main>
+        <Footer lang={lang} logo={logo} links={footerLinks} />
+      </main>
+    </>
+  );
+};
 
 const Theme = (props) => (
   <StaticQuery

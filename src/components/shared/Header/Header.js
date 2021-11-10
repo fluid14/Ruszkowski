@@ -155,11 +155,17 @@ const Header = ({ lang, className, title, bgc, bgcAlt, slides, slider }) => {
                     <Article className={styles.sliderDescription}>
                       {slideDescription}
                     </Article>
-                    <Link to={link}>
-                      <Button className={styles.button} onClick={() => {}} send>
-                        {translate(lang, settings).translation_read_more.text}
-                      </Button>
-                    </Link>
+                    {link && (
+                      <Link to={link}>
+                        <Button
+                          className={styles.button}
+                          onClick={() => {}}
+                          send
+                        >
+                          {translate(lang, settings).translation_read_more.text}
+                        </Button>
+                      </Link>
+                    )}
                   </div>
                   <BackgroundImage
                     Tag="section"

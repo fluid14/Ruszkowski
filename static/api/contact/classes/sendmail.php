@@ -67,7 +67,6 @@ class Sender
         $from = $this->sendFrom;
         $subject = $this->subject;
         $message = $this->message;
-        //$headers = $this->headers;
         $headers = 'From: '.$this->getFrom() . "\r\n" .
             'Reply-To: '.$this->getFrom() . "\r\n" .
             'X-Mailer: PHP/' . phpversion();

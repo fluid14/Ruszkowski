@@ -95,6 +95,8 @@ const ArticleList = ({ className, lang, data, items }) => {
                 </Link>
               );
             }
+
+            return null;
           }
         )}
       </div>

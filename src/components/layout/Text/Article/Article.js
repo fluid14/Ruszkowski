@@ -39,6 +39,8 @@ const Article = ({ children, xl, l, className, object }) => (
               </div>
             ));
           }
+
+          return null;
         })}
       </article>
     )}

@@ -13,22 +13,6 @@ const Products = ({ className, products, defaultType, lang }) => {
   const [allProducts, setProducts] = useState(products);
   const [count, setCount] = useState(countInitialState);
 
-  useEffect(() => {
-    if (window.screen.availWidth <= 1679) {
-      countInitialState = 6;
-    }
-
-    if (window.screen.availWidth <= 1260) {
-      countInitialState = 4;
-    }
-
-    if (window.screen.availWidth <= 599) {
-      countInitialState = 2;
-    }
-
-    setCount(countInitialState);
-  });
-
   const settings = useStaticQuery(graphql`
     query ProductsSettingsQuery {
       allPrismicSettings {
@@ -48,6 +32,20 @@ const Products = ({ className, products, defaultType, lang }) => {
   `).allPrismicSettings.nodes;
 
   useEffect(() => {
+    if (window.screen.availWidth <= 1679) {
+      countInitialState = 6;
+    }
+
+    if (window.screen.availWidth <= 1260) {
+      countInitialState = 4;
+    }
+
+    if (window.screen.availWidth <= 599) {
+      countInitialState = 2;
+    }
+
+    setCount(countInitialState);
+
     if (defaultType) {
       setProducts([
         ...products.filter((item) =>
@@ -137,6 +135,8 @@ const Products = ({ className, products, defaultType, lang }) => {
                 </Link>
               );
             }
+
+            return null;
           }
         )}
       </div>
