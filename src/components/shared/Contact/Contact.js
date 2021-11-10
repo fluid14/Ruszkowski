@@ -31,7 +31,7 @@ const ContactComponent = ({
   const sendMessage = (values) => {
     axios({
       method: 'post',
-      url: '../../api/contact/index.php',
+      url: '../../../api/contact/index.php',
       headers: { 'content-type': 'application/json' },
       data: { ...values },
     })
