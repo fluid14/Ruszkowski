@@ -1,7 +1,9 @@
 import React from 'react';
-import { graphql, Link, StaticQuery } from 'gatsby';
+import { graphql, StaticQuery } from 'gatsby';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
+import { Formik } from 'formik';
+import axios from "axios";
 import Section from '../Section/Section';
 import SectionTitle from '../../layout/Text/SectionTitle/SectionTitle';
 import * as styles from './Contact.module.sass';
@@ -29,43 +31,112 @@ const ContactComponent = ({
   const basic = () => (
     <div className={cx(styles.contactWrap, styles.basic)}>
       <div className={cx(styles.formWrap, 'formWrap')}>
-        <form className="contactForm">
-          <div className="inputWrap">
-            <div className="inputsWrap">
-              <input
-                type="text"
-                placeholder={translate(lang, settings).translation_name.text}
-              />
-              <input type="email" placeholder="Email" />
-            </div>
-            <div className="inputsWrap">
-              <input
-                type="text"
-                placeholder={
-                  translate(lang, settings).translation_telephone.text
+        <Formik
+          initialValues={{
+            email: '',
+            name: '',
+            phone: '',
+            city: '',
+            message: '',
+          }}
+          onSubmit={(values, { setSubmitting }) => {
+            axios({
+              method: 'post',
+              url: '../../api/contact/index.php',
+              headers: { 'content-type': 'application/json' },
+              data: { ...values },
+            })
+              .then((res) => {
+                if (res.err) {
+                  alert(
+                    'Przepraszamy. Wystąpił błąd podczas próby wysłania wiadomości.'
+                  );
+                } else {
+                  alert(
+                    'Dziękujemy za wiadomość. Odpowiemy najszybciej jak to będzie możliwe :)'
+                  );
                 }
-              />
-              <input
-                type="text"
-                placeholder={translate(lang, settings).translation_city.text}
-              />
-            </div>
-            <div className={styles.textareaWrap}>
-              <label htmlFor="message" className={styles.label}>
-                {translate(lang, settings).translation_your_message.text}
-              </label>
-              <textarea
-                name="message"
-                id="message"
-                className={styles.textarea}
-                placeholder={messagePlaceholder}
-              />
-            </div>
-          </div>
-          <Button type="submit" send>
-            {translate(lang, settings).translation_send.text}
-          </Button>
-        </form>
+                setSubmitting(false);
+              })
+              .catch(() => {
+                alert(
+                  'Przepraszamy. Nie udało się wysłać wiadomości. Spróbuj ponownie później.'
+                );
+                setSubmitting(false);
+              });
+          }}
+        >
+          {({ values, handleChange, handleBlur, handleSubmit }) => (
+            <form className="contactForm" onSubmit={handleSubmit}>
+              <div className="inputWrap">
+                <div className="inputsWrap">
+                  <input
+                    type="text"
+                    placeholder={
+                      translate(lang, settings).translation_name.text
+                    }
+                    name="name"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.name}
+                    required
+                  />
+                  <input
+                    type="email"
+                    placeholder="Email"
+                    name="email"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.email}
+                    required
+                  />
+                </div>
+                <div className="inputsWrap">
+                  <input
+                    type="text"
+                    placeholder={
+                      translate(lang, settings).translation_telephone.text
+                    }
+                    name="phone"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.phone}
+                    required
+                  />
+                  <input
+                    type="text"
+                    placeholder={
+                      translate(lang, settings).translation_city.text
+                    }
+                    name="city"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.city}
+                    required
+                  />
+                </div>
+                <div className={styles.textareaWrap}>
+                  <label htmlFor="message" className={styles.label}>
+                    {translate(lang, settings).translation_your_message.text}
+                  </label>
+                  <textarea
+                    id="message"
+                    className={styles.textarea}
+                    placeholder={messagePlaceholder}
+                    name="message"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.message}
+                    required
+                  />
+                </div>
+              </div>
+              <Button type="submit" send>
+                {translate(lang, settings).translation_send.text}
+              </Button>
+            </form>
+          )}
+        </Formik>
       </div>
     </div>
   );
@@ -93,43 +164,102 @@ const ContactComponent = ({
       </div>
 
       <div className="formWrap">
-        <form className="contactForm">
-          <div className="inputWrap">
-            <div className="inputsWrap">
-              <input
-                type="text"
-                placeholder={translate(lang, settings).translation_name.text}
-              />
-              <input type="email" placeholder="Email" />
-            </div>
-            <div className="inputsWrap">
-              <input
-                type="text"
-                placeholder={
-                  translate(lang, settings).translation_telephone.text
-                }
-              />
-              <input
-                type="text"
-                placeholder={translate(lang, settings).translation_city.text}
-              />
-            </div>
-            <div className={styles.textareaWrap}>
-              <label htmlFor="message" className={styles.label}>
-                {translate(lang, settings).translation_your_message.text}
-              </label>
-              <textarea
-                name="message"
-                id="message"
-                className={styles.textarea}
-                placeholder={messagePlaceholder}
-              />
-            </div>
-          </div>
-          <Button type="submit" send>
-            {translate(lang, settings).translation_send.text}
-          </Button>
-        </form>
+        <Formik
+          initialValues={{
+            email: '',
+            name: '',
+            phone: '',
+            city: '',
+            message: '',
+          }}
+          onSubmit={(values, { setSubmitting }) => {
+            setTimeout(() => {
+              alert(JSON.stringify(values, null, 2));
+              setSubmitting(false);
+            }, 400);
+          }}
+        >
+          {({
+            values,
+            handleChange,
+            handleBlur,
+            handleSubmit,
+            isSubmitting,
+          }) => (
+            <form
+              className="contactForm"
+              autoComplete="off"
+              onSubmit={handleSubmit}
+            >
+              <div className="inputWrap">
+                <div className="inputsWrap">
+                  <input
+                    type="text"
+                    placeholder={
+                      translate(lang, settings).translation_name.text
+                    }
+                    name="name"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.name}
+                    required
+                  />
+                  <input
+                    type="email"
+                    placeholder="Email"
+                    name="email"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.email}
+                    required
+                  />
+                </div>
+                <div className="inputsWrap">
+                  <input
+                    type="text"
+                    name="phone"
+                    placeholder={
+                      translate(lang, settings).translation_telephone.text
+                    }
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.phone}
+                    required
+                  />
+                  <input
+                    type="text"
+                    name="city"
+                    placeholder={
+                      translate(lang, settings).translation_city.text
+                    }
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.city}
+                    required
+                  />
+                </div>
+                <div className={styles.textareaWrap}>
+                  <label htmlFor="message" className={styles.label}>
+                    {translate(lang, settings).translation_your_message.text}
+                  </label>
+                  <textarea
+                    name="message"
+                    id="message"
+                    className={styles.textarea}
+                    placeholder={messagePlaceholder}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.message}
+                    required
+                  />
+                </div>
+              </div>
+              <Button type="submit" send disabled={isSubmitting}>
+                {translate(lang, settings).translation_send.text}
+              </Button>
+            </form>
+          )}
+        </Formik>
       </div>
     </div>
   );
@@ -137,55 +267,118 @@ const ContactComponent = ({
   const product = () => (
     <div className={cx(styles.contactWrap, styles.product)}>
       <div className={cx(styles.formWrap, 'formWrap')}>
-        <form className="contactForm">
-          <div className={cx(styles.inputWrap, 'inputWrap')}>
-            <div className={cx(styles.inputsWrap, 'inputsWrap')}>
-              <input type="text" value={productTitle} />
-              <select name="woodType" id="woodType">
-                <option value="">Rodzaj drewna</option>
-                {woodsType.map(({ material_name: materialName }, i) => (
-                  <option key={i} value={materialName}>
-                    {materialName}
-                  </option>
-                ))}
-              </select>
-            </div>
-            <div className={cx(styles.inputsWrap, 'inputsWrap')}>
-              <input
-                type="text"
-                placeholder={translate(lang, settings).translation_name.text}
-              />
-              <input type="email" placeholder="Email" />
-            </div>
-            <div className={cx(styles.inputsWrap, 'inputsWrap')}>
-              <input
-                type="text"
-                placeholder={
-                  translate(lang, settings).translation_telephone.text
-                }
-              />
-              <input
-                type="text"
-                placeholder={translate(lang, settings).translation_city.text}
-              />
-            </div>
-            <div className={styles.textareaWrap}>
-              <label htmlFor="message" className={styles.label}>
-                placeholder=
-                {translate(lang, settings).translation_your_message.text}
-              </label>
-              <textarea
-                name="message"
-                id="message"
-                className={styles.textarea}
-                placeholder={messagePlaceholder}
-              />
-            </div>
-          </div>
-          <Button type="submit" send>
-            placeholder={translate(lang, settings).translation_send.text}
-          </Button>
-        </form>
+        <Formik
+          initialValues={{
+            email: '',
+            name: '',
+            phone: '',
+            city: '',
+            message: '',
+            value: productTitle,
+          }}
+          onSubmit={(values, { setSubmitting }) => {
+            setTimeout(() => {
+              alert(JSON.stringify(values, null, 2));
+              setSubmitting(false);
+            }, 400);
+          }}
+        >
+          {({ values, handleChange, handleBlur, handleSubmit }) => (
+            <form className="contactForm" onSubmit={handleSubmit}>
+              <div className={cx(styles.inputWrap, 'inputWrap')}>
+                <div className={cx(styles.inputsWrap, 'inputsWrap')}>
+                  <input
+                    type="text"
+                    name="value"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.value}
+                    disabled
+                  />
+                  <select
+                    name="woodType"
+                    id="woodType"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.woodType}
+                    required
+                  >
+                    <option value="">Rodzaj drewna</option>
+                    {woodsType.map(({ material_name: materialName }, i) => (
+                      <option key={i} value={materialName}>
+                        {materialName}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+                <div className={cx(styles.inputsWrap, 'inputsWrap')}>
+                  <input
+                    type="text"
+                    placeholder={
+                      translate(lang, settings).translation_name.text
+                    }
+                    name="name"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.name}
+                    required
+                  />
+                  <input
+                    type="email"
+                    placeholder="Email"
+                    name="email"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.email}
+                    required
+                  />
+                </div>
+                <div className={cx(styles.inputsWrap, 'inputsWrap')}>
+                  <input
+                    type="text"
+                    placeholder={
+                      translate(lang, settings).translation_telephone.text
+                    }
+                    name="phone"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.phone}
+                    required
+                  />
+                  <input
+                    type="text"
+                    placeholder={
+                      translate(lang, settings).translation_city.text
+                    }
+                    name="city"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.city}
+                    required
+                  />
+                </div>
+                <div className={styles.textareaWrap}>
+                  <label htmlFor="message" className={styles.label}>
+                    {translate(lang, settings).translation_your_message.text}
+                  </label>
+                  <textarea
+                    name="message"
+                    id="message"
+                    className={styles.textarea}
+                    placeholder={messagePlaceholder}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.message}
+                    required
+                  />
+                </div>
+              </div>
+              <Button type="submit" send>
+                {translate(lang, settings).translation_send.text}
+              </Button>
+            </form>
+          )}
+        </Formik>
       </div>
     </div>
   );
