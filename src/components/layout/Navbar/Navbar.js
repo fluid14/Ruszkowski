@@ -100,9 +100,9 @@ const NavbarComponent = ({
               {translate(lang, settings).phone_number}
             </a>
           </li>
-          <li className={cx(styles.menuItem)}>
-            <LanguageSwitcher lang={lang} />
-          </li>
+          {/* <li className={cx(styles.menuItem)}> */}
+          {/*  <LanguageSwitcher lang={lang} /> */}
+          {/* </li> */}
         </ul>
       </div>
     </nav>
