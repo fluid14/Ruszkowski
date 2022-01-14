@@ -50,7 +50,7 @@ function SEO({ description, lang, title }) {
           property: `og:type`,
           content: `website`,
         },
-      ].concat(meta)}
+      ]}
     />
   );
 }
