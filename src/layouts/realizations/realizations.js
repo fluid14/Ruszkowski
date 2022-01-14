@@ -12,7 +12,7 @@ import RealizationsList from '../../components/sections/RealizationsList/Realiza
 const Realizations = ({ data }) => {
   const {
     banner: { alt: bannerAlt, fluid: bannerImg },
-    banner_title: { html: bannerTitle },
+    banner_title: { html: bannerTitle, text: textTitle },
     body,
   } = data.prismicRealizationsPage.data;
 
@@ -20,7 +20,7 @@ const Realizations = ({ data }) => {
 
   return (
     <>
-      <Theme lang={lang}>
+      <Theme lang={lang} title={textTitle}>
         <Header
           className={styles.header}
           title={bannerTitle}
@@ -78,6 +78,7 @@ export const query = graphql`
         }
         banner_title {
           html
+          text
         }
         body {
           ... on PrismicRealizationsPageDataBodyFormularzKontaktowy {
@@ -188,6 +189,7 @@ Realizations.propTypes = {
         }).isRequired,
         banner_title: PropTypes.shape({
           html: PropTypes.string.isRequired,
+          text: PropTypes.string.isRequired,
         }).isRequired,
         body: PropTypes.arrayOf(
           PropTypes.shape({

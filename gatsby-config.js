@@ -5,7 +5,10 @@ require('dotenv').config();
 module.exports = {
   siteMetadata: {
     siteUrl: 'https://ruszkowski.biz',
-    title: 'Ruszkowski',
+    title: `Ruszkowski`,
+    description: `Come and enjoy an experience of a lifetime! Watch whales with us!`,
+    author: `@wojt.ekchm, @spring.studio`,
+    keywords: `whales, marine life, trip, recreation`,
   },
   plugins: [
     {

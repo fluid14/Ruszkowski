@@ -25,7 +25,7 @@ const ArticlePage = ({
     tags,
     first_publication_date: firstPublicationDate,
     data: {
-      article_title: { html: title },
+      article_title: { html: title, text: textTitle },
       article_miniature: { alt: bannerAlt, fluid: bannerImg },
       body: article,
     },
@@ -43,7 +43,7 @@ const ArticlePage = ({
 
   return (
     <>
-      <Theme lang={lang}>
+      <Theme lang={lang} title={textTitle}>
         <Header
           title="<h1>Blog</h1>"
           lang={lang}
@@ -127,6 +127,7 @@ export const query = graphql`
       data {
         article_title {
           html
+          text
         }
         article_miniature {
           alt
@@ -204,8 +205,10 @@ ArticlePage.propTypes = {
     }).isRequired,
     prismicArticle: PropTypes.shape({
       data: PropTypes.shape({
-        article_title: PropTypes.shape({ html: PropTypes.string.isRequired })
-          .isRequired,
+        article_title: PropTypes.shape({
+          html: PropTypes.string.isRequired,
+          text: PropTypes.string.isRequired,
+        }).isRequired,
         article_miniature: PropTypes.shape({
           fluid: PropTypes.shape.isRequired,
           alt: PropTypes.string.isRequired,

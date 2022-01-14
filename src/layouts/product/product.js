@@ -19,7 +19,7 @@ const ProductPage = ({ data }) => {
   const {
     banner: { alt: bannerAlt, fluid: bannerImg },
     miniature_title: { html: bannerTitle, text: productTitle },
-    product_title: { html: title },
+    product_title: { html: title, text: textTitle },
     release_date: releaseDate,
     woods_type: woodsType,
     body,
@@ -43,7 +43,7 @@ const ProductPage = ({ data }) => {
 
   return (
     <>
-      <Theme lang={lang}>
+      <Theme lang={lang} title={textTitle}>
         <Header
           title={bannerTitle}
           lang={lang}
@@ -168,6 +168,7 @@ export const query = graphql`
         release_date
         product_title {
           html
+          text
         }
         miniature_title {
           html
@@ -300,6 +301,7 @@ ProductPage.propTypes = {
         }).isRequired,
         product_title: PropTypes.shape({
           html: PropTypes.string.isRequired,
+          text: PropTypes.string.isRequired,
         }).isRequired,
         woods_type: PropTypes.arrayOf(
           PropTypes.shape({

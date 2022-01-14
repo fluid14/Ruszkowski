@@ -8,6 +8,7 @@ import 'normalize.css';
 import Footer from '../components/layout/Footer/Footer';
 import { motion } from 'framer-motion';
 import { translate } from '../utils/translate';
+import SEO from '../components/shared/SEO/SEO';
 
 const blackBox = {
   initial: {
@@ -47,8 +48,10 @@ const ThemeComponent = ({
       data: { logo, footer_links: footerLinks },
     },
   },
+  title,
 }) => (
   <>
+    <SEO lang={lang} title={title} />
     <motion.div
       className="preload"
       initial="initial"
@@ -128,6 +131,7 @@ const Theme = (props) => (
 );
 
 ThemeComponent.propTypes = {
+  title: PropTypes.string,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
@@ -142,6 +146,10 @@ ThemeComponent.propTypes = {
       }).isRequired,
     }).isRequired,
   }).isRequired,
+};
+
+ThemeComponent.defaultProps = {
+  title: 'Ruszkowski',
 };
 
 export default Theme;

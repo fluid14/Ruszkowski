@@ -22,7 +22,7 @@ const Blog = ({ data }) => {
   const { nodes: articles, totalCount } = data.allPrismicArticle;
   return (
     <>
-      <Theme lang={lang}>
+      <Theme lang={lang} title="Blog">
         <Header
           title={bannerTitle}
           lang={lang}

@@ -14,7 +14,7 @@ const ProductsPage = ({ data, location }) => {
 
   const {
     banner: { alt: bannerAlt, fluid: bannerImg },
-    banner_title: { html: bannerTitle },
+    banner_title: { html: bannerTitle, text: textTitle },
     body,
   } = data.prismicProducts.data;
   const { nodes: products } = data.allPrismicProduct;
@@ -23,7 +23,7 @@ const ProductsPage = ({ data, location }) => {
 
   return (
     <>
-      <Theme lang={lang}>
+      <Theme lang={lang} title={textTitle}>
         <Header
           title={bannerTitle}
           lang={lang}
@@ -90,6 +90,7 @@ export const query = graphql`
         }
         banner_title {
           html
+          text
         }
         banner {
           alt
@@ -141,6 +142,7 @@ ProductsPage.propTypes = {
         }).isRequired,
         banner_title: PropTypes.shape({
           html: PropTypes.string.isRequired,
+          text: PropTypes.string.isRequired,
         }).isRequired,
         body: PropTypes.arrayOf(
           PropTypes.shape({
