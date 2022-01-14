@@ -1,12 +1,25 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { graphql, StaticQuery } from 'gatsby';
 import PropTypes from 'prop-types';
 import Navbar from '../components/layout/Navbar/Navbar';
 import PageOrnament from '../components/layout/PageOrnament/PageOrnament';
 import 'normalize.css';
 import Footer from '../components/layout/Footer/Footer';
-import AOS from 'aos/dist/aos';
-import 'aos/dist/aos.css';
+import { motion } from 'framer-motion';
+
+const blackBox = {
+  initial: {
+    bottom: 0,
+    height: '100vh',
+  },
+  animate: {
+    height: 0,
+  },
+  exit: {
+    bottom: 0,
+    height: '100vh',
+  },
+};
 
 const ThemeComponent = ({
   children,
@@ -16,21 +29,27 @@ const ThemeComponent = ({
       data: { logo, footer_links: footerLinks },
     },
   },
-}) => {
-  useEffect(() => {
-    AOS.init();
-  });
-  return (
-    <>
-      <main className="pageWrap">
-        <Navbar lang={lang} />
-        <PageOrnament />
-        <main>{children}</main>
-        <Footer lang={lang} logo={logo} links={footerLinks} />
-      </main>
-    </>
-  );
-};
+}) => (
+  <>
+    <motion.div
+      className="preload"
+      initial="initial"
+      animate="animate"
+      exit="exit"
+      variants={blackBox}
+      transition={{
+        duration: 1.5,
+        ease: [0.87, 0, 0.13, 1],
+      }}
+    />
+    <main className="pageWrap">
+      <Navbar lang={lang} />
+      <PageOrnament />
+      <main>{children}</main>
+      <Footer lang={lang} logo={logo} links={footerLinks} />
+    </main>
+  </>
+);
 
 const Theme = (props) => (
   <StaticQuery
