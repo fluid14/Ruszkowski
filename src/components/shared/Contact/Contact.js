@@ -176,8 +176,33 @@ const ContactComponent = ({
           }}
           onSubmit={(values, { setSubmitting }) => {
             setTimeout(() => {
-              alert(JSON.stringify(values, null, 2));
-              setSubmitting(false);
+              axios({
+                method: 'post',
+                url: '../../api/contact/index.php',
+                headers: { 'content-type': 'application/json' },
+                data: { ...values },
+              })
+                .then((res) => {
+                  console.log(res);
+                  // if (res.err) {
+                  //     setText(
+                  //         'Przepraszamy. Wystąpił błąd podczas próby wysłania wiadomości.',
+                  //     );
+                  // } else {
+                  //     setText(
+                  //         'Dziękujemy za wiadomość. Odpowiemy najszybciej jak to będzie możliwe :)',
+                  //     );
+                  // }
+
+                  setSubmitting(false);
+                })
+                .catch(() => {
+                  setText(
+                    'Przepraszamy. Nie udało się wysłać wiadomości. Spróbuj ponownie później.'
+                  );
+                  showInfo();
+                  setSubmitting(false);
+                });
             }, 400);
           }}
         >
@@ -281,7 +306,6 @@ const ContactComponent = ({
           onSubmit={(values, { setSubmitting }) => {
             setTimeout(() => {
               alert(JSON.stringify(values, null, 2));
-              setSubmitting(false);
             }, 400);
           }}
         >
