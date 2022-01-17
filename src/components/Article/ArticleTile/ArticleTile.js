@@ -40,7 +40,10 @@ const ArticleTile = ({ lang, article, realization, className }) => {
   return (
     (!realization && (
       <>
-        <div className={cx(className, styles.articleTileWrap)}>
+        <div
+          className={cx(className, styles.articleTileWrap)}
+          data-aos="fade-up"
+        >
           <div className={styles.imgWrap}>
             <BackgroundImage
               Tag="section"
@@ -50,7 +53,7 @@ const ArticleTile = ({ lang, article, realization, className }) => {
           </div>
           <div className={styles.descriptionWrap}>
             <Tags tags={article.tags} className={styles.tags} />
-            <Article className={styles.text} l>
+            <Article className={styles.text} l animate={false}>
               {article.data.short_description.html}
             </Article>
             <div className={styles.tileFooter}>
@@ -75,6 +78,7 @@ const ArticleTile = ({ lang, article, realization, className }) => {
             styles.articleTileWrap,
             styles.realizationWrap
           )}
+          data-aos="fade-up"
         >
           <div className={cx(styles.imgWrap, 'swiperNav')}>
             <Swiper
@@ -113,7 +117,7 @@ const ArticleTile = ({ lang, article, realization, className }) => {
               <p className={styles.descriptionTitle}>
                 {translate(lang, settings).translations_zakres.text}
               </p>
-              <Article className={styles.text} l>
+              <Article className={styles.text} l animate={false}>
                 {article.data.description.html}
               </Article>
             </div>
