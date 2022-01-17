@@ -25,7 +25,7 @@ const Materials = ({ className, primary, items }) => {
         <ul className={styles.materialList}>
           {/* eslint-disable-next-line camelcase */}
           {items.map(({ material_name: material, material_image }, i) => (
-            <li key={i} className={styles.listItem}>
+            <li key={i} className={styles.listItem} data-aos="fade-in">
               <button
                 type="button"
                 className={cx(styles.materialButton, {

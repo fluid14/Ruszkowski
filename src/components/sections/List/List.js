@@ -10,6 +10,7 @@ const List = ({ className, title: { html: title }, items }) => (
     <div
       className={styles.listTitle}
       dangerouslySetInnerHTML={{ __html: title }}
+      data-aos="fade-in"
     />
     <ul>
       {items.map(({ item }, i) => (

@@ -115,7 +115,7 @@ const ProductPage = ({ data }) => {
               }
             })}
 
-            <p className={styles.releaseDate}>
+            <p className={styles.releaseDate} data-aos="fade-in">
               Termin realizacji: {releaseDate}
             </p>
           </Section>

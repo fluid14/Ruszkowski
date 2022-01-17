@@ -53,7 +53,11 @@ const ArticlePage = ({
         <main className={cx('wrap', styles.main)}>
           <div className={styles.headers}>
             <div className={styles.articleTitleWrap}>
-              <SectionTitle transformNone className={styles.title}>
+              <SectionTitle
+                transformNone
+                className={styles.title}
+                animate={false}
+              >
                 {title}
               </SectionTitle>
               <div className={styles.metaArticle}>

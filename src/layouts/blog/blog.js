@@ -38,7 +38,9 @@ const Blog = ({ data }) => {
                     <SectionTitle>
                       {primary.description_title.html}
                     </SectionTitle>
-                    <Article xl>{primary.description.html}</Article>
+                    <Article xl animate={false}>
+                      {primary.description.html}
+                    </Article>
                   </Section>
                 );
 
