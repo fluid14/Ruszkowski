@@ -178,7 +178,7 @@ const ContactComponent = ({
             setTimeout(() => {
               axios({
                 method: 'post',
-                url: '../../api/contact/index.php',
+                url: '../../api/contact/ 8index.php',
                 headers: { 'content-type': 'application/json' },
                 data: { ...values },
               })

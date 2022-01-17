@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { graphql, StaticQuery } from 'gatsby';
 import PropTypes from 'prop-types';
 import GatsbyImage from 'gatsby-image';
@@ -9,6 +9,7 @@ import Footer from '../components/layout/Footer/Footer';
 import { motion } from 'framer-motion';
 import { translate } from '../utils/translate';
 import SEO from '../components/shared/SEO/SEO';
+import 'aos/dist/aos.css';
 
 const blackBox = {
   initial: {
@@ -49,47 +50,67 @@ const ThemeComponent = ({
     },
   },
   title,
-}) => (
-  <>
-    <SEO lang={lang} title={title} />
-    <motion.div
-      className="preload"
-      initial="initial"
-      animate="animate"
-      exit="exit"
-      variants={blackBox}
-      transition={{
-        duration: 1.5,
-        ease: [0.87, 0, 0.13, 1],
-      }}
-    >
+}) => {
+  let AOS;
+  useEffect(() => {
+    /**
+     * Server-side rendering does not provide the 'document' object
+     * therefore this import is required either in useEffect or componentDidMount as they
+     * are exclusively executed on a client
+     */
+    const AOS = require('aos');
+    AOS.init();
+    console.log(AOS);
+  }, []);
+
+  useEffect(() => {
+    if (AOS) {
+      AOS.refresh();
+    }
+  });
+
+  return (
+    <>
+      <SEO lang={lang} title={title} />
       <motion.div
-        className="preloadLogoWrap"
+        className="preload"
         initial="initial"
         animate="animate"
         exit="exit"
-        variants={logoVar}
+        variants={blackBox}
         transition={{
-          duration: 0.2,
-          delay: 0.5,
-          ease: 'easeInOut',
+          duration: 1.5,
+          ease: [0.87, 0, 0.13, 1],
         }}
       >
-        <GatsbyImage
-          className="preloadLogo"
-          alt={translate(lang, settings).logo.alt}
-          fluid={translate(lang, settings).logo.fluid}
-        />
+        <motion.div
+          className="preloadLogoWrap"
+          initial="initial"
+          animate="animate"
+          exit="exit"
+          variants={logoVar}
+          transition={{
+            duration: 0.2,
+            delay: 0.5,
+            ease: 'easeInOut',
+          }}
+        >
+          <GatsbyImage
+            className="preloadLogo"
+            alt={translate(lang, settings).logo.alt}
+            fluid={translate(lang, settings).logo.fluid}
+          />
+        </motion.div>
       </motion.div>
-    </motion.div>
-    <main className="pageWrap">
-      <Navbar lang={lang} />
-      <PageOrnament />
-      <main>{children}</main>
-      <Footer lang={lang} logo={logo} links={footerLinks} />
-    </main>
-  </>
-);
+      <main className="pageWrap">
+        <Navbar lang={lang} />
+        <PageOrnament />
+        <main>{children}</main>
+        <Footer lang={lang} logo={logo} links={footerLinks} />
+      </main>
+    </>
+  );
+};
 
 const Theme = (props) => (
   <StaticQuery
