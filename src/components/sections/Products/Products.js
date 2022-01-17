@@ -7,6 +7,7 @@ import slugify from 'slugify';
 import * as styles from './Products.module.sass';
 import Button from '../../layout/Button/Button';
 import { translate } from '../../../utils/translate';
+import useWindowWidth from '../../../utils/windowWidth';
 
 const Products = ({ className, products, defaultType, lang }) => {
   let countInitialState = 8;
@@ -32,6 +33,10 @@ const Products = ({ className, products, defaultType, lang }) => {
   `).allPrismicSettings.nodes;
 
   useEffect(() => {
+    if (window.screen.availWidth <= 2200) {
+      countInitialState = 12;
+    }
+
     if (window.screen.availWidth <= 1679) {
       countInitialState = 6;
     }
@@ -124,6 +129,12 @@ const Products = ({ className, products, defaultType, lang }) => {
                   })}`}
                   key={i}
                   className="productTile"
+                  data-aos="fade-up"
+                  data-aos-delay={
+                    countInitialState / 2 + 1 >= i
+                      ? 300 * i
+                      : 300 / (i - countInitialState)
+                  }
                 >
                   <p className="productTitle">{title}</p>
                   <p className="productDescription">{description}</p>

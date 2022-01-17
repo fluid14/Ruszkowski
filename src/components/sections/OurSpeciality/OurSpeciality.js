@@ -31,7 +31,7 @@ const OurSpeciality = ({ className, data: { primary, items } }) => {
               key={i}
               className={styles.specialityItem}
               data-aos="fade-up"
-              data-aos-delay={useWindowWidth() > 992 ? 300 * i : null}
+              data-aos-delay={useWindowWidth() >= 992 ? 300 * i : null}
             >
               <GatsbyImage className={styles.icon} fluid={fluid} alt={alt} />
               <h2 className={styles.title}>{itemTitle}</h2>
