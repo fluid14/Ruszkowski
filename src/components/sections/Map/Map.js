@@ -14,7 +14,7 @@ const Map = ({ className, data: { primary, items } }) => {
     });
 
   return (
-    <Section className={cx(className, styles.mapWrap)}>
+    <Section className={cx(className, styles.mapWrap)} data-aos="fade-up">
       <div className={styles.map}>
         <GoogleMapReact
           bootstrapURLKeys={{

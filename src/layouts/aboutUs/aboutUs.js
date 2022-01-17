@@ -43,10 +43,11 @@ const AboutUs = ({ data }) => {
                       right
                       transformNone
                       className={styles.descriptionTitle}
+                      animate={false}
                     >
                       {primary.description_title.html}
                     </SectionTitle>
-                    <Article className={styles.description} xl>
+                    <Article className={styles.description} xl animate={false}>
                       {primary.description.html}
                     </Article>
                   </Section>

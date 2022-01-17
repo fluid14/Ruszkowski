@@ -55,7 +55,7 @@ const ThemeComponent = ({
   useEffect(() => {
     AOS = require('aos');
     AOS.init({
-      once: false,
+      once: true,
       offset: 200,
       duration: 1000,
       anchorPlacement: 'center-bottom',

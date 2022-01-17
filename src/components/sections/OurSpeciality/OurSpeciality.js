@@ -5,6 +5,7 @@ import * as styles from './OurSpeciality.module.sass';
 import SectionTitle from '../../layout/Text/SectionTitle/SectionTitle';
 import Section from '../../shared/Section/Section';
 import Article from '../../layout/Text/Article/Article';
+import useWindowWidth from '../../../utils/windowWidth';
 
 const OurSpeciality = ({ className, data: { primary, items } }) => {
   const {
@@ -26,7 +27,12 @@ const OurSpeciality = ({ className, data: { primary, items } }) => {
             },
             i
           ) => (
-            <div key={i} className={styles.specialityItem}>
+            <div
+              key={i}
+              className={styles.specialityItem}
+              data-aos="fade-up"
+              data-aos-delay={useWindowWidth() > 992 ? 300 * i : null}
+            >
               <GatsbyImage className={styles.icon} fluid={fluid} alt={alt} />
               <h2 className={styles.title}>{itemTitle}</h2>
               <Article className={styles.article}>{description}</Article>
