@@ -81,6 +81,9 @@ const ArticleList = ({ className, lang, data, items }) => {
                   })}`}
                   key={i}
                   className={styles.article}
+                  data-aos="fade-up"
+                  data-aos-anchor-placement="top-bottom"
+                  data-aos-delay={300 * i}
                 >
                   <div className={styles.description}>
                     <p className={styles.text}>{shortDescription}</p>

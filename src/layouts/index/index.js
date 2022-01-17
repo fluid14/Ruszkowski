@@ -79,7 +79,6 @@ const Index = ({ data }) => {
           }
         })}
       </main>
-      <h1 data-aos="fade-up">TEST</h1>
     </Theme>
   );
 };

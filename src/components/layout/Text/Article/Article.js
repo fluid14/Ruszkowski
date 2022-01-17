@@ -4,7 +4,7 @@ import cx from 'classnames';
 import GatsbyImage from 'gatsby-image';
 import * as styles from './Article.module.sass';
 
-const Article = ({ children, xl, l, className, object }) => (
+const Article = ({ children, xl, l, className, object, animate }) => (
   <>
     {!object && (
       <article
@@ -13,6 +13,7 @@ const Article = ({ children, xl, l, className, object }) => (
           [styles.l]: l,
         })}
         dangerouslySetInnerHTML={{ __html: children }}
+        data-aos={animate === true ? 'fade-in' : null}
       />
     )}
 
@@ -29,12 +30,17 @@ const Article = ({ children, xl, l, className, object }) => (
               <div
                 key={i}
                 dangerouslySetInnerHTML={{ __html: item.paragraph.html }}
+                data-aos={animate === true ? 'fade-in' : null}
               />
             ));
           }
           if (type === 'zdjecie') {
             return items.map((item, i) => (
-              <div key={i} className={styles.imgWrap}>
+              <div
+                key={i}
+                className={styles.imgWrap}
+                data-aos={animate === true ? 'fade-in' : null}
+              >
                 <GatsbyImage fluid={item.photo.fluid} alt={item.photo.alt} />
               </div>
             ));
@@ -73,6 +79,7 @@ Article.propTypes = {
   l: PropTypes.bool,
   className: PropTypes.string,
   object: PropTypes.bool,
+  animate: PropTypes.bool,
 };
 
 Article.defaultProps = {
@@ -80,6 +87,7 @@ Article.defaultProps = {
   l: false,
   className: '',
   object: false,
+  animate: true,
 };
 
 export default Article;

@@ -415,6 +415,7 @@ const ContactComponent = ({
         className={styles.sectionTitle}
         center
         shadowText={shadowText || slice.shadow_title?.text}
+        animate={false}
       >
         {sectionTitle ? `<h4>${sectionTitle}</h4>` : title}
       </SectionTitle>

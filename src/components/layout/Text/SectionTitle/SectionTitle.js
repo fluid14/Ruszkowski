@@ -12,9 +12,12 @@ const SectionTitle = ({
   transformNone,
   className,
   shadowTextClass,
+  animate,
 }) => (
   <div className={cx(className, styles.sectionTitleWrap)}>
     <div
+      data-aos={animate === true ? 'fade-in' : null}
+      data-aos-duration="1000"
       className={cx(
         styles.sectionTitle,
         { [styles.center]: center },
@@ -25,7 +28,7 @@ const SectionTitle = ({
       dangerouslySetInnerHTML={{ __html: children }}
     />
     {shadowText && (
-      <p className={cx(shadowTextClass, styles.shadowText)}>{shadowText}</p>
+      <p className={cx(shadowTextClass, styles.shadowText)}>{shadowText} </p>
     )}
   </div>
 );
@@ -39,6 +42,7 @@ SectionTitle.propTypes = {
   left: PropTypes.bool,
   right: PropTypes.bool,
   transformNone: PropTypes.bool,
+  animate: PropTypes.bool,
 };
 
 SectionTitle.defaultProps = {
@@ -49,6 +53,7 @@ SectionTitle.defaultProps = {
   left: false,
   right: false,
   transformNone: false,
+  animate: true,
 };
 
 export default SectionTitle;

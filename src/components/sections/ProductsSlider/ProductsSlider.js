@@ -46,7 +46,10 @@ const ProductsSlider = ({ className, lang, data, items }) => {
       >
         {title}
       </SectionTitle>
-      <div className={cx(styles.sliderWrap, 'swiperNav', 'productsSwiper')}>
+      <div
+        className={cx(styles.sliderWrap, 'swiperNav', 'productsSwiper')}
+        data-aos="fade-up"
+      >
         <div className={styles.swiperNavigation}>
           <button type="button" className={cx(styles.prev, 'prev')}>
             {translate(lang, settings).prev.text}

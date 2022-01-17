@@ -30,13 +30,15 @@ const DesignWithUs = ({ className, data }) => {
         {sectionTitle}
       </SectionTitle>
       <div className={styles.contentWrap}>
-        <GatsbyImage className={styles.img} fluid={fluid} alt={alt} />
+        <div data-aos="fade-up">
+          <GatsbyImage className={styles.img} fluid={fluid} alt={alt} />
+        </div>
         <div className={styles.descriptionWrap}>
           <Article className={styles.descriptionTitle}>
             {descriptionTitle}
           </Article>
           <Article className={styles.description}>{description}</Article>
-          <Link to={link}>
+          <Link to={link} data-aos="fade-in">
             <Button onClick={() => {}} send>
               {linkTitle}
             </Button>

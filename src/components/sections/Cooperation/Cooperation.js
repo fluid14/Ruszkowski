@@ -27,14 +27,20 @@ const Cooperation = ({ className, title, data: { primary, items } }) => {
         {title}
       </SectionTitle>
       <div className={styles.contentWrap}>
-        <div className={styles.descriptionWrap}>
+        <div className={styles.descriptionWrap} data-aos="fade-up">
           <div
             className={styles.title}
             dangerouslySetInnerHTML={{ __html: cooperationTitle }}
           />
-          <Article className={styles.description}>{description}</Article>
+          <Article className={styles.description} animate={false}>
+            {description}
+          </Article>
         </div>
-        <div className={styles.specialityWrap}>
+        <div
+          className={styles.specialityWrap}
+          data-aos="fade-up"
+          data-aos-delay="300"
+        >
           <div
             className={styles.title}
             dangerouslySetInnerHTML={{ __html: specialityTitle }}
@@ -62,7 +68,11 @@ const Cooperation = ({ className, title, data: { primary, items } }) => {
             </ul>
           )}
         </div>
-        <div className={styles.photoWrap}>
+        <div
+          className={styles.photoWrap}
+          data-aos="fade-up"
+          data-aos-delay="600"
+        >
           <GatsbyImage className={styles.photo} fluid={photo} alt={alt} />
         </div>
       </div>

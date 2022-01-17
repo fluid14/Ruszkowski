@@ -71,7 +71,9 @@ const ArticlePage = ({
 
           <div className={styles.body}>
             <div className={styles.content}>
-              <Article object>{article}</Article>
+              <Article object animate={false}>
+                {article}
+              </Article>
               <section className={styles.tags}>
                 <Tags tags={tags} dark />
               </section>
