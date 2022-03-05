@@ -37,7 +37,7 @@ const ProductPage = ({ data }) => {
 
   const { nodes: allTags } = data.allPrismicProduct;
 
-  let woodsType = null;
+  let woodsType = [];
 
   const filters = [];
   allTags.forEach(({ tags }) => filters.push(...tags));

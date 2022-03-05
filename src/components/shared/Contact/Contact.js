@@ -330,11 +330,12 @@ const ContactComponent = ({
                     required
                   >
                     <option value="">Rodzaj drewna</option>
-                    {woodsType.map(({ material_name: materialName }, i) => (
-                      <option key={i} value={materialName}>
-                        {materialName}
-                      </option>
-                    ))}
+                    {woodsType.length > 0 &&
+                      woodsType.map(({ material_name: materialName }, i) => (
+                        <option key={i} value={materialName}>
+                          {materialName}
+                        </option>
+                      ))}
                   </select>
                 </div>
                 <div className={cx(styles.inputsWrap, 'inputsWrap')}>
