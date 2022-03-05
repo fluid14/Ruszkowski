@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { graphql, Link } from 'gatsby';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
@@ -21,7 +21,6 @@ const ProductPage = ({ data }) => {
     miniature_title: { html: bannerTitle, text: productTitle },
     product_title: { html: title, text: textTitle },
     release_date: releaseDate,
-    woods_type: woodsType,
     body,
   } = data.prismicProduct.data;
 
@@ -37,6 +36,8 @@ const ProductPage = ({ data }) => {
   const { lang } = data.prismicProduct;
 
   const { nodes: allTags } = data.allPrismicProduct;
+
+  let woodsType = null;
 
   const filters = [];
   allTags.forEach(({ tags }) => filters.push(...tags));
@@ -56,6 +57,9 @@ const ProductPage = ({ data }) => {
           </SectionTitle>
           <Section className={styles.main}>
             {body.map(({ slice_type: sliceType, primary, items }, i) => {
+              if (sliceType === 'dostepne_materia_y') {
+                woodsType = items;
+              }
               switch (sliceType) {
                 case 'opis':
                   return (
@@ -106,7 +110,7 @@ const ProductPage = ({ data }) => {
                       key={i}
                       className={cx(styles.materials, styles.productWrap)}
                       primary={primary}
-                      items={woodsType}
+                      items={items}
                     />
                   );
 
@@ -180,15 +184,6 @@ export const query = graphql`
           }
           alt
         }
-        woods_type {
-          material_image {
-            fluid {
-              ...GatsbyImgixFluid
-            }
-            alt
-          }
-          material_name
-        }
         body {
           ... on PrismicProductDataBodyGaleria {
             id
@@ -214,6 +209,15 @@ export const query = graphql`
           ... on PrismicProductDataBodyDostepneMateriaY {
             id
             slice_type
+            items {
+              material_image {
+                fluid {
+                  ...GatsbyImgixFluid
+                }
+                alt
+              }
+              material_name
+            }
             primary {
               title {
                 html
