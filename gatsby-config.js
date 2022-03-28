@@ -6,9 +6,9 @@ module.exports = {
   siteMetadata: {
     siteUrl: 'https://ruszkowski.biz',
     title: `Ruszkowski`,
-    description: `Come and enjoy an experience of a lifetime! Watch whales with us!`,
+    description: `Meble industrialne z litego drewna dębowego. Stoły, stoliki i akcesoria do wyposażenia wnętrz polskiej produkcji. Producent mebli w Swarzędzu.`,
     author: `@wojt.ekchm, @spring.studio`,
-    keywords: `whales, marine life, trip, recreation`,
+    keywords: `Meble industrialne, Ściany z drewna, Stoły z litego drewna, Loftowe kwietniki, Meble z naturalnego drewna`,
   },
   plugins: [
     {

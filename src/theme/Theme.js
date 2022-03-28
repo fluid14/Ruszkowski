@@ -50,6 +50,8 @@ const ThemeComponent = ({
     },
   },
   title,
+  description,
+  keywords,
 }) => {
   let AOS;
   useEffect(() => {
@@ -70,7 +72,12 @@ const ThemeComponent = ({
 
   return (
     <>
-      <SEO lang={lang} title={title} />
+      <SEO
+        lang={lang}
+        title={title}
+        keywords={keywords}
+        description={description}
+      />
       <motion.div
         className="preload"
         initial="initial"
@@ -151,6 +158,8 @@ const Theme = (props) => (
 );
 
 ThemeComponent.propTypes = {
+  description: PropTypes.string,
+  keywords: PropTypes.string,
   title: PropTypes.string,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
@@ -170,6 +179,8 @@ ThemeComponent.propTypes = {
 
 ThemeComponent.defaultProps = {
   title: 'Ruszkowski',
+  description: '',
+  keywords: '',
 };
 
 export default Theme;

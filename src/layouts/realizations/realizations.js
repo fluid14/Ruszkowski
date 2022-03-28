@@ -10,17 +10,25 @@ import Cooperation from '../../components/sections/Cooperation/Cooperation';
 import RealizationsList from '../../components/sections/RealizationsList/RealizationsList';
 
 const Realizations = ({ data }) => {
+  console.log(data);
   const {
     banner: { alt: bannerAlt, fluid: bannerImg },
     banner_title: { html: bannerTitle, text: textTitle },
     body,
+    keywords,
+    description,
   } = data.prismicRealizationsPage.data;
 
   const { lang } = data.prismicRealizationsPage;
 
   return (
     <>
-      <Theme lang={lang} title={textTitle}>
+      <Theme
+        lang={lang}
+        title={textTitle}
+        description={description}
+        keywords={keywords}
+      >
         <Header
           className={styles.header}
           title={bannerTitle}
@@ -70,6 +78,8 @@ export const query = graphql`
       type
       lang
       data {
+        description
+        keywords
         banner {
           alt
           fluid {
@@ -194,6 +204,8 @@ Realizations.propTypes = {
     prismicRealizationsPage: PropTypes.shape({
       lang: PropTypes.string.isRequired,
       data: PropTypes.shape({
+        descriptionSEO: PropTypes.string,
+        keywords: PropTypes.string,
         banner: PropTypes.shape({
           alt: PropTypes.string.isRequired,
           fluid: PropTypes.oneOfType([
@@ -216,7 +228,13 @@ Realizations.propTypes = {
       }).isRequired,
     }),
     allPrismicRelization: PropTypes.shape({
-      nodes: PropTypes.shape.isRequired,
+      nodes: PropTypes.shape({
+        data: PropTypes.shape({
+          data: PropTypes.shape({
+            description: PropTypes.shape({ html: PropTypes.string }),
+          }),
+        }),
+      }).isRequired,
     }).isRequired,
   }).isRequired,
 };

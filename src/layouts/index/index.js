@@ -2,6 +2,7 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
+import { Breadcrumb } from 'gatsby-plugin-breadcrumb';
 import Theme from '../../theme/Theme';
 import * as styles from './index.module.sass';
 import Contact from '../../components/shared/Contact/Contact';
@@ -11,15 +12,23 @@ import DesignWithUs from '../../components/sections/DesignWithUs/DesignWithUs';
 import ProductsSlider from '../../components/sections/ProductsSlider/ProductsSlider';
 import ArticleList from '../../components/sections/ArticleList/ArticleList';
 
-const Index = ({ data }) => {
+const Index = ({ location, data }) => {
   const {
     lang,
-    data: { header_slider: headerSlider, body },
+    data: { header_slider: headerSlider, body, keywords, description },
   } = data.prismicMainPage;
+
+  console.log(location);
 
   return (
     <Theme lang={lang}>
-      <Header slides={headerSlider} lang={lang} slider />
+      <Header
+        slides={headerSlider}
+        lang={lang}
+        slider
+        description={description}
+        keywords={keywords}
+      />
       <main className={cx(styles.mainPage)} id="mainPage">
         {body.map((slice, i) => {
           const { slice_type: sliceType, primary, items } = slice;
@@ -88,6 +97,8 @@ export const query = graphql`
     prismicMainPage(lang: { eq: $lang }) {
       lang
       data {
+        description
+        keywords
         body {
           ... on PrismicMainPageDataBodyOTymPiszemy {
             id
@@ -270,10 +281,13 @@ export const query = graphql`
 `;
 
 Index.propTypes = {
+  location: PropTypes.shape().isRequired,
   data: PropTypes.shape({
     prismicMainPage: PropTypes.shape({
       lang: PropTypes.string.isRequired,
       data: PropTypes.shape({
+        description: PropTypes.string,
+        keywords: PropTypes.string,
         header_slider: PropTypes.arrayOf(
           PropTypes.shape({
             description: PropTypes.shape({

@@ -46,5 +46,19 @@
         "label": "title"
       }
     }
+  },
+  "SEO": {
+    "description": {
+      "type": "Text",
+      "config": {
+        "label": "Opis"
+      }
+    },
+    "keywords": {
+      "type": "Text",
+      "config": {
+        "label": "Keywords (po przecinku)"
+      }
+    }
   }
 }

@@ -29,6 +29,8 @@ const ProductPage = ({ data }) => {
   const {
     contac_form_placeholder: contactPlaceholder,
     contact_form_title: contactTitle,
+    keywords,
+    description,
   } = data.prismicProducts.data;
 
   const { url } = data.prismicProducts;
@@ -44,7 +46,12 @@ const ProductPage = ({ data }) => {
 
   return (
     <>
-      <Theme lang={lang} title={textTitle}>
+      <Theme
+        lang={lang}
+        title={textTitle}
+        description={description}
+        keywords={keywords}
+      >
         <Header
           title={bannerTitle}
           lang={lang}
@@ -169,6 +176,8 @@ export const query = graphql`
     prismicProduct(id: { eq: $id }, lang: { eq: $lang }) {
       lang
       data {
+        description
+        keywords
         release_date
         product_title {
           html
@@ -292,6 +301,8 @@ ProductPage.propTypes = {
     prismicProduct: PropTypes.shape({
       lang: PropTypes.string.isRequired,
       data: PropTypes.shape({
+        description: PropTypes.string,
+        keywords: PropTypes.string,
         release_date: PropTypes.string.isRequired,
         banner: PropTypes.shape({
           alt: PropTypes.string.isRequired,

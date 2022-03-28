@@ -28,6 +28,8 @@ const ArticlePage = ({
       article_title: { html: title, text: textTitle },
       article_miniature: { alt: bannerAlt, fluid: bannerImg },
       body: article,
+      description,
+      keywords,
     },
   } = prismicArticle;
 
@@ -43,7 +45,12 @@ const ArticlePage = ({
 
   return (
     <>
-      <Theme lang={lang} title={textTitle}>
+      <Theme
+        lang={lang}
+        title={textTitle}
+        description={description}
+        keywords={keywords}
+      >
         <Header
           title="<h1>Blog</h1>"
           lang={lang}
@@ -124,6 +131,8 @@ export const query = graphql`
     }
     prismicBlogPage(lang: { eq: $lang }) {
       data {
+        description
+        keywords
         article_list_aside {
           html
         }
@@ -131,6 +140,8 @@ export const query = graphql`
     }
     prismicArticle(id: { eq: $id }, lang: { eq: $lang }) {
       data {
+        description
+        keywords
         article_title {
           html
           text
@@ -204,6 +215,8 @@ ArticlePage.propTypes = {
     }),
     prismicBlogPage: PropTypes.shape({
       data: PropTypes.shape({
+        description: PropTypes.string,
+        keywords: PropTypes.string,
         article_list_aside: PropTypes.shape({
           html: PropTypes.string.isRequired,
         }).isRequired,
@@ -211,6 +224,8 @@ ArticlePage.propTypes = {
     }).isRequired,
     prismicArticle: PropTypes.shape({
       data: PropTypes.shape({
+        description: PropTypes.string,
+        keywords: PropTypes.string,
         article_title: PropTypes.shape({
           html: PropTypes.string.isRequired,
           text: PropTypes.string.isRequired,

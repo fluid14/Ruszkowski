@@ -15,6 +15,8 @@ const Blog = ({ data }) => {
     body,
     banner: { alt: bannerAlt, fluid: bannerImg },
     banner_title: { html: bannerTitle },
+    keywords,
+    description,
   } = data.prismicBlogPage.data;
 
   const { lang } = data.prismicBlogPage;
@@ -22,7 +24,12 @@ const Blog = ({ data }) => {
   const { nodes: articles, totalCount } = data.allPrismicArticle;
   return (
     <>
-      <Theme lang={lang} title="Blog">
+      <Theme
+        lang={lang}
+        title="Blog"
+        description={description}
+        keywords={keywords}
+      >
         <Header
           title={bannerTitle}
           lang={lang}
@@ -77,6 +84,8 @@ export const query = graphql`
       type
       lang
       data {
+        description
+        keywords
         body {
           ... on PrismicBlogPageDataBodyFormularzKontaktowy {
             slice_type
@@ -158,6 +167,8 @@ Blog.propTypes = {
     prismicBlogPage: PropTypes.shape({
       lang: PropTypes.string.isRequired,
       data: PropTypes.shape({
+        description: PropTypes.string,
+        keywords: PropTypes.string,
         body: PropTypes.arrayOf(
           PropTypes.shape({
             slice_type: PropTypes.string.isRequired,
