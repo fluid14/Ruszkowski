@@ -123,6 +123,14 @@
                 "config": {
                   "label": "Nazwa materiału"
                 }
+              },
+              "material_type": {
+                "type": "Select",
+                "config": {
+                  "options": ["drewno", "metal"],
+                  "default_value": "drewno",
+                  "label": "Typ materiału"
+                }
               }
             }
           },

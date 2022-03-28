@@ -96,16 +96,12 @@
                   "label": "Tytuł"
                 }
               },
-              "lat": {
-                "type": "Text",
+              "image": {
+                "type": "Image",
                 "config": {
-                  "label": "Lat"
-                }
-              },
-              "lng": {
-                "type": "Text",
-                "config": {
-                  "label": "lng"
+                  "constraint": {},
+                  "thumbnails": [],
+                  "label": "Zdjęcie"
                 }
               }
             },

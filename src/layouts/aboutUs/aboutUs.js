@@ -68,6 +68,7 @@ const AboutUs = ({ data }) => {
                     className={styles.map}
                     key={i}
                     data={{ primary, items }}
+                    lang={lang}
                   />
                 );
 
@@ -124,8 +125,12 @@ export const query = graphql`
             }
             slice_type
             primary {
-              lat
-              lng
+              image {
+                alt
+                fluid {
+                  ...GatsbyImgixFluid
+                }
+              }
               title {
                 text
               }

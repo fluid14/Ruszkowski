@@ -210,6 +210,7 @@ export const query = graphql`
             id
             slice_type
             items {
+              material_type
               material_image {
                 fluid {
                   ...GatsbyImgixFluid

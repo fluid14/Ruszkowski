@@ -6,50 +6,101 @@ import * as styles from './Materials.module.sass';
 import Article from '../../layout/Text/Article/Article';
 
 const Materials = ({ className, primary, items }) => {
-  const [activeSample, setSample] = useState(0);
-  const [sampleImg, setSampleImg] = useState(items[0].material_image);
+  console.log(items);
+  const woods = items.filter((item) => item.material_type === 'drewno');
+  const metals = items.filter((item) => item.material_type === 'metal');
+
+  const [activeSampleWood, setSampleWood] = useState(0);
+  const [activeSampleMetal, setSampleMetal] = useState(0);
+  const [sampleImgWood, setSampleImgWood] = useState(
+    woods.length > 0 ? woods[0].material_image : null
+  );
+  const [sampleImgMetal, setSampleImgMetal] = useState(
+    metals.length > 0 ? metals[0].material_image : null
+  );
 
   const {
     title: { html: title },
   } = primary;
 
-  const changeSample = (i, img) => {
-    setSample(i);
-    setSampleImg(img);
+  const changeSampleWood = (i, img) => {
+    setSampleWood(i);
+    setSampleImgWood(img);
+  };
+
+  const changeSampleMetal = (i, img) => {
+    setSampleMetal(i);
+    setSampleImgMetal(img);
   };
 
   return (
     <div className={cx(className, styles.materialsWrap)}>
       <Article className={styles.title}>{title}</Article>
-      <div className={styles.materials}>
-        <ul className={styles.materialList}>
-          {/* eslint-disable-next-line camelcase */}
-          {items.map(({ material_name: material, material_image }, i) => (
-            <li key={i} className={styles.listItem} data-aos="fade-in">
-              <button
-                type="button"
-                className={cx(styles.materialButton, {
-                  [styles.active]: i === activeSample,
-                })}
-                onClick={() => changeSample(i, material_image)}
-              >
-                {material}
-                <BackgroundImage
-                  Tag="span"
-                  className={styles.bgc}
-                  alt={material_image.alt}
-                  fluid={material_image.fluid}
-                />
-              </button>
-            </li>
-          ))}
-        </ul>
-        <BackgroundImage
-          Tag="div"
-          className={styles.materialSample}
-          alt={sampleImg.alt}
-          fluid={sampleImg.fluid}
-        />
+      <div className={styles.materialsBoth}>
+        {woods.length > 0 && (
+          <div className={styles.materials}>
+            <ul className={styles.materialList}>
+              {/* eslint-disable-next-line camelcase */}
+              {woods.map(({ material_name: material, material_image }, i) => (
+                <li key={i} className={styles.listItem} data-aos="fade-in">
+                  <button
+                    type="button"
+                    className={cx(styles.materialButton, {
+                      [styles.active]: i === activeSampleWood,
+                    })}
+                    onClick={() => changeSampleWood(i, material_image)}
+                  >
+                    {material}
+                    <BackgroundImage
+                      Tag="span"
+                      className={styles.bgc}
+                      alt={material_image.alt}
+                      fluid={material_image.fluid}
+                    />
+                  </button>
+                </li>
+              ))}
+            </ul>
+            <BackgroundImage
+              Tag="div"
+              className={styles.materialSample}
+              alt={sampleImgWood?.alt}
+              fluid={sampleImgWood?.fluid}
+            />
+          </div>
+        )}
+        {metals.length > 0 && (
+          <div className={styles.materials}>
+            <ul className={styles.materialList}>
+              {/* eslint-disable-next-line camelcase */}
+              {metals.map(({ material_name: material, material_image }, i) => (
+                <li key={i} className={styles.listItem} data-aos="fade-in">
+                  <button
+                    type="button"
+                    className={cx(styles.materialButton, {
+                      [styles.active]: i === activeSampleMetal,
+                    })}
+                    onClick={() => changeSampleMetal(i, material_image)}
+                  >
+                    {material}
+                    <BackgroundImage
+                      Tag="span"
+                      className={styles.bgc}
+                      alt={material_image.alt}
+                      fluid={material_image.fluid}
+                    />
+                  </button>
+                </li>
+              ))}
+            </ul>
+            <BackgroundImage
+              Tag="div"
+              className={styles.materialSample}
+              alt={sampleImgMetal?.alt}
+              fluid={sampleImgMetal?.fluid}
+            />
+          </div>
+        )}
       </div>
     </div>
   );
