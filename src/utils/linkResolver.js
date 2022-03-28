@@ -14,7 +14,7 @@ exports.linkResolver = (doc) => {
 
     case 'realizations_page': {
       return doc.lang === 'pl'
-        ? '/wspolpraca'
+        ? '/realizacje'
         : `/${mapLang(doc.lang)}/realizations`;
     }
 
