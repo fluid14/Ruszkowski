@@ -36,6 +36,14 @@
         },
         "label": "Galeria"
       }
+    },
+    "linked_article": {
+      "type": "Link",
+      "config": {
+        "select": "document",
+        "customtypes": ["article", "product"],
+        "label": "Podpięty artykuł"
+      }
     }
   }
 }

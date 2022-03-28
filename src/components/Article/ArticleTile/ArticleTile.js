@@ -13,6 +13,7 @@ import 'swiper/css/bundle';
 import { translate } from '../../../utils/translate';
 
 const ArticleTile = ({ lang, article, realization, className }) => {
+  console.log(article);
   const settings = useStaticQuery(graphql`
     query ArticleTitleQuery {
       allPrismicSettings {
@@ -121,7 +122,23 @@ const ArticleTile = ({ lang, article, realization, className }) => {
                 {article.data.description.html}
               </Article>
             </div>
-            <div className={styles.tileFooter} />
+            <div className={styles.tileFooter}>
+              {article.data.linked_article?.url &&
+                article.data.linked_article.document.data.article_title && (
+                  <Link
+                    to={`${article.data.linked_article.url}/${slugify(
+                      article.data.linked_article.document.data.article_title
+                        .text,
+                      {
+                        lower: true,
+                      }
+                    )}`}
+                    className="link uppercase more"
+                  >
+                    {translate(lang, settings).translation_read_more.text}
+                  </Link>
+                )}
+            </div>
           </div>
         </div>
       </>
@@ -134,6 +151,15 @@ ArticleTile.propTypes = {
   realization: PropTypes.bool,
   article: PropTypes.shape({
     data: PropTypes.shape({
+      linked_article: PropTypes.shape({
+        slug: PropTypes.string,
+        url: PropTypes.string,
+        document: PropTypes.shape({
+          data: PropTypes.shape({
+            article_title: PropTypes.shape({ text: PropTypes.string }),
+          }),
+        }),
+      }),
       article_title: PropTypes.shape({ text: PropTypes.string.isRequired }),
       short_description: PropTypes.shape({
         html: PropTypes.string.isRequired,
@@ -158,6 +184,7 @@ ArticleTile.propTypes = {
 ArticleTile.defaultProps = {
   className: '',
   realization: false,
+  article: { data: { linked_article: { slug: '', url: '' } } },
 };
 
 export default ArticleTile;

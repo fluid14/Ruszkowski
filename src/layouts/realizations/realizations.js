@@ -152,6 +152,20 @@ export const query = graphql`
       nodes {
         id
         data {
+          linked_article {
+            url
+            slug
+            document {
+              ... on PrismicArticle {
+                id
+                data {
+                  article_title {
+                    text
+                  }
+                }
+              }
+            }
+          }
           description {
             html
           }
