@@ -74,15 +74,14 @@ const Header = ({
           >
             <FontAwesomeIcon icon={faFacebookF} />
           </a>
-          {breadcrumbLocation?.location && breadcrumbLocation.url && (
-            <Breadcrumb
-              location={breadcrumbLocation?.location}
-              useAutoGen
-              crumbLabel={breadcrumbLocation.url
-                .replace('/', ' ')
-                .replace('-', ' ')}
-            />
-          )}
+          {/* {breadcrumbLocation?.location && breadcrumbLocation.url && ( */}
+          {/*  <Breadcrumb */}
+          {/*    location={breadcrumbLocation?.location} */}
+          {/*    crumbLabel={breadcrumbLocation.url */}
+          {/*      .replace('/', ' ') */}
+          {/*      .replace('-', ' ')} */}
+          {/*  /> */}
+          {/* )} */}
         </div>
         <div
           className={cx(styles.headerWrap, 'wrap')}
