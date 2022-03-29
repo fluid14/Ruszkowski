@@ -21,7 +21,7 @@ const ProductsPage = ({ data, location }) => {
   } = data.prismicProducts.data;
   const { nodes: products } = data.allPrismicProduct;
 
-  const { lang } = data.prismicProducts;
+  const { lang, url } = data.prismicProducts;
 
   return (
     <>
@@ -36,6 +36,7 @@ const ProductsPage = ({ data, location }) => {
           lang={lang}
           bgc={bannerImg}
           bgcAlt={bannerAlt}
+          breadcrumbLocation={{ location, url }}
         />
         <main className={cx(styles.productsPage)} id="products">
           {body.map(({ slice_type: sliceType, primary }, i) => {
@@ -74,6 +75,7 @@ export const query = graphql`
   query ProductsQuery($lang: String) {
     prismicProducts(lang: { eq: $lang }) {
       lang
+      url
       data {
         description
         keywords
@@ -141,6 +143,7 @@ ProductsPage.propTypes = {
   data: PropTypes.shape({
     prismicProducts: PropTypes.shape({
       lang: PropTypes.string.isRequired,
+      url: PropTypes.string.isRequired,
       data: PropTypes.shape({
         description: PropTypes.string,
         keywords: PropTypes.string,

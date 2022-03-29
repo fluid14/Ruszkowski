@@ -12,7 +12,7 @@ import Article from '../../components/layout/Text/Article/Article';
 import OurSpeciality from '../../components/sections/OurSpeciality/OurSpeciality';
 import Map from '../../components/sections/Map/Map';
 
-const AboutUs = ({ data }) => {
+const AboutUs = ({ data, location }) => {
   const {
     banner: { alt: bannerAlt, fluid: bannerImg },
     banner_title: { html: bannerTitle, text: textTitle },
@@ -21,7 +21,7 @@ const AboutUs = ({ data }) => {
     keywords,
   } = data.prismicAboutUsPage.data;
 
-  const { lang } = data.prismicAboutUsPage;
+  const { lang, url } = data.prismicAboutUsPage;
 
   return (
     <>
@@ -36,6 +36,7 @@ const AboutUs = ({ data }) => {
           lang={lang}
           bgc={bannerImg}
           bgcAlt={bannerAlt}
+          breadcrumbLocation={{ location, url }}
         />
         <main className={cx(styles.aboutUsPage)}>
           {body.map(({ slice_type: sliceType, primary, items }, i) => {
@@ -103,6 +104,7 @@ export const query = graphql`
   query AboutUsQuery($id: String, $lang: String) {
     prismicAboutUsPage(id: { eq: $id }, lang: { eq: $lang }) {
       lang
+      url
       data {
         description
         keywords
@@ -200,9 +202,11 @@ export const query = graphql`
 `;
 
 AboutUs.propTypes = {
+  location: PropTypes.shape.isRequired,
   data: PropTypes.shape({
     prismicAboutUsPage: PropTypes.shape({
       lang: PropTypes.string.isRequired,
+      url: PropTypes.string.isRequired,
       data: PropTypes.shape({
         description: PropTypes.string,
         keywords: PropTypes.string,

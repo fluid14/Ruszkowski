@@ -9,8 +9,7 @@ import Contact from '../../components/shared/Contact/Contact';
 import Cooperation from '../../components/sections/Cooperation/Cooperation';
 import RealizationsList from '../../components/sections/RealizationsList/RealizationsList';
 
-const Realizations = ({ data }) => {
-  console.log(data);
+const Realizations = ({ data, location }) => {
   const {
     banner: { alt: bannerAlt, fluid: bannerImg },
     banner_title: { html: bannerTitle, text: textTitle },
@@ -19,7 +18,7 @@ const Realizations = ({ data }) => {
     description,
   } = data.prismicRealizationsPage.data;
 
-  const { lang } = data.prismicRealizationsPage;
+  const { lang, url } = data.prismicRealizationsPage;
 
   return (
     <>
@@ -35,6 +34,7 @@ const Realizations = ({ data }) => {
           bgc={bannerImg}
           bgcAlt={bannerAlt}
           lang={lang}
+          breadcrumbLocation={{ location, url }}
         />
         <main className={cx(styles.realizationsPage, 'wrap')}>
           {body.map((slice, i) => {
@@ -77,6 +77,7 @@ export const query = graphql`
     prismicRealizationsPage(id: { eq: $id }, lang: { eq: $lang }) {
       type
       lang
+      url
       data {
         description
         keywords
@@ -200,11 +201,13 @@ export const query = graphql`
 `;
 
 Realizations.propTypes = {
+  location: PropTypes.shape.isRequired,
   data: PropTypes.shape({
     prismicRealizationsPage: PropTypes.shape({
       lang: PropTypes.string.isRequired,
+      url: PropTypes.string.isRequired,
       data: PropTypes.shape({
-        descriptionSEO: PropTypes.string,
+        description: PropTypes.string,
         keywords: PropTypes.string,
         banner: PropTypes.shape({
           alt: PropTypes.string.isRequired,

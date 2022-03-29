@@ -10,7 +10,7 @@ import Section from '../../components/shared/Section/Section';
 import ArticleList from '../../components/Article/ArticleList/ArticleList';
 import Contact from '../../components/shared/Contact/Contact';
 
-const Blog = ({ data }) => {
+const Blog = ({ data, location }) => {
   const {
     body,
     banner: { alt: bannerAlt, fluid: bannerImg },
@@ -19,7 +19,7 @@ const Blog = ({ data }) => {
     description,
   } = data.prismicBlogPage.data;
 
-  const { lang } = data.prismicBlogPage;
+  const { lang, url } = data.prismicBlogPage;
 
   const { nodes: articles, totalCount } = data.allPrismicArticle;
   return (
@@ -35,6 +35,7 @@ const Blog = ({ data }) => {
           lang={lang}
           bgc={bannerImg}
           bgcAlt={bannerAlt}
+          breadcrumbLocation={{ location, url }}
         />
         <main className="wrap">
           {body.map(({ slice_type: sliceType, primary }, i) => {
@@ -83,6 +84,7 @@ export const query = graphql`
     prismicBlogPage(id: { eq: $id }, lang: { eq: $lang }) {
       type
       lang
+      url
       data {
         description
         keywords
@@ -163,8 +165,10 @@ export const query = graphql`
 `;
 
 Blog.propTypes = {
+  location: PropTypes.shape.isRequired,
   data: PropTypes.shape({
     prismicBlogPage: PropTypes.shape({
+      location: PropTypes.string.isRequired,
       lang: PropTypes.string.isRequired,
       data: PropTypes.shape({
         description: PropTypes.string,

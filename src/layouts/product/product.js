@@ -15,7 +15,7 @@ import ProductGallery from '../../components/sections/ProductGallery/ProductGall
 import Button from '../../components/layout/Button/Button';
 import { translate } from '../../utils/translate';
 
-const ProductPage = ({ data }) => {
+const ProductPage = ({ data, location }) => {
   const {
     banner: { alt: bannerAlt, fluid: bannerImg },
     miniature_title: { html: bannerTitle, text: productTitle },
@@ -57,6 +57,7 @@ const ProductPage = ({ data }) => {
           lang={lang}
           bgc={bannerImg}
           bgcAlt={bannerAlt || ''}
+          breadcrumbLocation={{ location, url }}
         />
         <main className={cx(styles.productPage, 'wrap')}>
           <SectionTitle className={styles.productTitle} transformNone>
@@ -276,6 +277,7 @@ export const query = graphql`
 `;
 
 ProductPage.propTypes = {
+  location: PropTypes.shape.isRequired,
   data: PropTypes.shape({
     allPrismicSettings: PropTypes.shape({
       nodes: PropTypes.arrayOf(
@@ -296,6 +298,8 @@ ProductPage.propTypes = {
       data: PropTypes.shape({
         contac_form_placeholder: PropTypes.shape,
         contact_form_title: PropTypes.shape,
+        description: PropTypes.string,
+        keywords: PropTypes.string,
       }),
     }),
     prismicProduct: PropTypes.shape({

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import BackgroundImage from 'gatsby-background-image';
@@ -7,6 +7,7 @@ import { faFacebookF, faInstagram } from '@fortawesome/free-brands-svg-icons';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper';
 import { graphql, Link, useStaticQuery } from 'gatsby';
+import { Breadcrumb } from 'gatsby-plugin-breadcrumb';
 import * as styles from './Header.module.sass';
 import 'swiper/css/bundle';
 import PageOrnament from '../../layout/PageOrnament/PageOrnament';
@@ -14,7 +15,16 @@ import Button from '../../layout/Button/Button';
 import Article from '../../layout/Text/Article/Article';
 import { translate } from '../../../utils/translate';
 
-const Header = ({ lang, className, title, bgc, bgcAlt, slides, slider }) => {
+const Header = ({
+  lang,
+  className,
+  title,
+  bgc,
+  bgcAlt,
+  slides,
+  slider,
+  breadcrumbLocation,
+}) => {
   const [currCount, setCurrCount] = useState(1);
 
   const settings = useStaticQuery(graphql`
@@ -64,6 +74,15 @@ const Header = ({ lang, className, title, bgc, bgcAlt, slides, slider }) => {
           >
             <FontAwesomeIcon icon={faFacebookF} />
           </a>
+          {breadcrumbLocation?.location && breadcrumbLocation.url && (
+            <Breadcrumb
+              location={breadcrumbLocation?.location}
+              useAutoGen
+              crumbLabel={breadcrumbLocation.url
+                .replace('/', ' ')
+                .replace('-', ' ')}
+            />
+          )}
         </div>
         <div
           className={cx(styles.headerWrap, 'wrap')}
@@ -191,6 +210,10 @@ Header.propTypes = {
   bgcAlt: PropTypes.string,
   slider: PropTypes.bool,
   slides: PropTypes.shape,
+  breadcrumbLocation: PropTypes.shape({
+    location: PropTypes.shape,
+    url: PropTypes.string,
+  }),
 };
 
 Header.defaultProps = {

@@ -13,6 +13,7 @@ import ArticleListAside from '../../components/shared/ArticleListAside/ArticleLi
 import { translate } from '../../utils/translate';
 
 const ArticlePage = ({
+  location,
   pageContext: { lang },
   data: {
     prismicArticle,
@@ -23,6 +24,7 @@ const ArticlePage = ({
 }) => {
   const {
     tags,
+    url,
     first_publication_date: firstPublicationDate,
     data: {
       article_title: { html: title, text: textTitle },
@@ -56,6 +58,7 @@ const ArticlePage = ({
           lang={lang}
           bgc={bannerImg}
           bgcAlt={bannerAlt}
+          breadcrumbLocation={{ location, url }}
         />
         <main className={cx('wrap', styles.main)}>
           <div className={styles.headers}>
@@ -139,6 +142,7 @@ export const query = graphql`
       }
     }
     prismicArticle(id: { eq: $id }, lang: { eq: $lang }) {
+      url
       data {
         description
         keywords
@@ -201,6 +205,7 @@ export const query = graphql`
 `;
 
 ArticlePage.propTypes = {
+  location: PropTypes.shape.isRequired,
   pageContext: PropTypes.shape({
     lang: PropTypes.string.isRequired,
   }).isRequired,
@@ -223,6 +228,7 @@ ArticlePage.propTypes = {
       }).isRequired,
     }).isRequired,
     prismicArticle: PropTypes.shape({
+      url: PropTypes.string.isRequired,
       data: PropTypes.shape({
         description: PropTypes.string,
         keywords: PropTypes.string,

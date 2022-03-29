@@ -1,0 +1,37 @@
+.breadcrumb
+  position: absolute
+  bottom: 0
+  left: 0
+  padding: 20px 20px 20px 85px
+
+  &__item
+    font-size: 14px
+    color: $gray2
+    text-transform: uppercase
+
+    a
+      color: $gray2
+      margin-left: 5px
+
+      &.breadcrumb__link__active
+        color: $main !important
+
+@media screen and (max-width: 1599px)
+  .breadcrumb
+    padding-left: 34px
+
+@media screen and (max-width: 1199px)
+  .breadcrumb
+    padding-left: 23px
+
+@media screen and (max-width: 767px)
+  .breadcrumb
+    padding-left: 13px
+
+    &__item
+      font-size: 12px
+
+@media screen and (max-width: 599px)
+  .breadcrumb
+    display: none
+
