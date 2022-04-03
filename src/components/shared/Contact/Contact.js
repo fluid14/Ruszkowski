@@ -293,7 +293,7 @@ const ContactComponent = ({
             phone: '',
             city: '',
             message: '',
-            value: productTitle,
+            productName: productTitle,
           }}
           onSubmit={(values, { setSubmitting }) => {
             sendMessage(values, setSubmitting);
@@ -308,7 +308,7 @@ const ContactComponent = ({
                     name="productName"
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    value={values.value}
+                    value={values.productName}
                     disabled
                   />
                   <select
