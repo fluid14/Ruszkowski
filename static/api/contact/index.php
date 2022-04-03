@@ -18,7 +18,6 @@ if( empty($_POST['name']) && empty($_POST['email']) ) {
 }
 
 if ($_POST){
-    console.log(name)
     http_response_code(200);
     $subject = 'Formularz kontaktowy: ' . $_POST['name'];
     $from = 'noreply@ruszkowski.biz';
@@ -27,6 +26,11 @@ if ($_POST){
     $sendEmail = new Sender($adminEmail, $from, $subject, $message);
     $sendEmail->send();
 } else {
+var_dump( error_get_last() );
+    var_dump( $recipient );
+    var_dump( $subject );
+    var_dump( $email_content );
+    var_dump( $email_headers );
  echo json_encode(
      [
         "sent" => false,
