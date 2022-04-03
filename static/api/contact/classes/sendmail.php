@@ -54,6 +54,7 @@ class Sender
             'Reply-To: '.$this->getFrom() . "\r\n" .
             'X-Mailer: PHP/' . phpversion();
 
+
         $this->headers = $headers;
         return $this;
     }
@@ -69,6 +70,7 @@ class Sender
         $message = $this->message;
         $headers = 'From: '.$this->getFrom() . "\r\n" .
             'Reply-To: '.$this->getFrom() . "\r\n" .
+            "Content-type:text/html;charset=UTF-8" . "\r\n" .
             'X-Mailer: PHP/' . phpversion();
 
         mail($to, $subject, $message, $headers);

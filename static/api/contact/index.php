@@ -21,7 +21,7 @@ if ($_POST){
     http_response_code(200);
     $subject = 'Formularz kontaktowy: ' . $_POST['name'] . ' ' . $_POST['city'];
     $from = 'noreply@ruszkowski.biz';
-    $message = 'Wiadomość: ' . $_POST['message'] . ' ' . 'Email: ' . $_POST['email'] . ' ' . 'Telefon: '. $_POST['phone'] . ' ' . 'Miasto: '. $_POST['city'] . . 'Produkt: '. $_POST['productName'] ' ' . 'Rodzaj drewna: '. $_POST['woodType'];
+    $message = '<b>Wiadomość: </b>' . $_POST['message'] . '<br/>' . '<b>Email: </b>' . $_POST['email'] . '<br/>' . '<b>Telefon: </b>' . $_POST['phone'] . '<br/>' . '<b>Miasto: </b>' . $_POST['city'] . '<br/>' . '<b>Produkt: </b>' . $_POST['productName'] . '<br/>' . '<b>Rodzaj drewna: </b>' . $_POST['woodType'];
     $sendEmail = new Sender($adminEmail, $from, $subject, $message);
     $sendEmail->send();
 } else {
