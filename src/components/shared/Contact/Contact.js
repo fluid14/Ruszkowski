@@ -28,7 +28,8 @@ const ContactComponent = ({
     woodsType,
   } = slice;
 
-  const sendMessage = (values) => {
+  const sendMessage = (values, setSubmitting) => {
+    console.log(values);
     axios({
       method: 'post',
       url: '../../../api/contact/index.php',
@@ -51,6 +52,8 @@ const ContactComponent = ({
           'Przepraszamy. Nie udało się wysłać wiadomości. Spróbuj ponownie później.'
         );
       });
+
+    setSubmitting(false);
   };
 
   const basic = () => (
@@ -64,8 +67,8 @@ const ContactComponent = ({
             city: '',
             message: '',
           }}
-          onSubmit={(values) => {
-            sendMessage(values);
+          onSubmit={(values, { setSubmitting }) => {
+            sendMessage(values, setSubmitting);
           }}
         >
           {({ values, handleChange, handleBlur, handleSubmit }) => (
@@ -175,35 +178,7 @@ const ContactComponent = ({
             message: '',
           }}
           onSubmit={(values, { setSubmitting }) => {
-            setTimeout(() => {
-              axios({
-                method: 'post',
-                url: '../../api/contact/ 8index.php',
-                headers: { 'content-type': 'application/json' },
-                data: { ...values },
-              })
-                .then((res) => {
-                  console.log(res);
-                  // if (res.err) {
-                  //     setText(
-                  //         'Przepraszamy. Wystąpił błąd podczas próby wysłania wiadomości.',
-                  //     );
-                  // } else {
-                  //     setText(
-                  //         'Dziękujemy za wiadomość. Odpowiemy najszybciej jak to będzie możliwe :)',
-                  //     );
-                  // }
-
-                  setSubmitting(false);
-                })
-                .catch(() => {
-                  setText(
-                    'Przepraszamy. Nie udało się wysłać wiadomości. Spróbuj ponownie później.'
-                  );
-                  showInfo();
-                  setSubmitting(false);
-                });
-            }, 400);
+            sendMessage(values, setSubmitting);
           }}
         >
           {({
@@ -304,9 +279,7 @@ const ContactComponent = ({
             value: productTitle,
           }}
           onSubmit={(values, { setSubmitting }) => {
-            setTimeout(() => {
-              alert(JSON.stringify(values, null, 2));
-            }, 400);
+            sendMessage(values, setSubmitting);
           }}
         >
           {({ values, handleChange, handleBlur, handleSubmit }) => (

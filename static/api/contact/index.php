@@ -18,6 +18,7 @@ if( empty($_POST['firstName']) && empty($_POST['email']) ) {
 }
 
 if ($_POST){
+    console.log(name)
     http_response_code(200);
     $subject = 'Formularz kontaktowy: ' . $_POST['name'];
     $from = 'noreply@ruszkowski.biz';
