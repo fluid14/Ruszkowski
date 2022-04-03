@@ -7,7 +7,7 @@ header("Access-Control-Allow-Origin: *");
 $rest_json = file_get_contents("php://input");
 $_POST = json_decode($rest_json, true);
 
-if( empty($_POST['firstName']) && empty($_POST['email']) ) {
+if( empty($_POST['name']) && empty($_POST['email']) ) {
     echo json_encode(
         [
            "sent" => false,
