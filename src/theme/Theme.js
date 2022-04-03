@@ -16,15 +16,18 @@ const blackBox = {
     bottom: 0,
     height: '100vh',
     width: '100vw',
+    transform: 'translateX(0)',
   },
   animate: {
     height: '100vh',
     width: 0,
+    transform: 'translateX(-100vw)',
   },
   exit: {
     bottom: 0,
     height: '100vh',
     width: '100vw',
+    transform: 'translateX(0)',
   },
 };
 
