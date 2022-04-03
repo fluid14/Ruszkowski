@@ -21,7 +21,7 @@ if ($_POST){
     http_response_code(200);
     $subject = 'Formularz kontaktowy: ' . $_POST['name'] . ' ' . $_POST['city'];
     $from = 'noreply@ruszkowski.biz';
-    $message = 'Wiadomość: ' . $_POST['message'] . ' ' . 'Email: ' . $_POST['email'];
+    $message = '<b>Wiadomość: </b>' . $_POST['message'] . '</br> ' . 'Email: ' . $_POST['email'];
     $sendEmail = new Sender($adminEmail, $from, $subject, $message);
     $sendEmail->send();
 } else {

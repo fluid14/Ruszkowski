@@ -39,7 +39,7 @@ const ContactComponent = ({
     axios({
       method: 'post',
       url: '/api/contact/index.php',
-      headers: { 'content-type': 'text/html' },
+      headers: { 'content-type': 'text/html; charset=UTF-8' },
       data: { ...values },
     })
       .then((res) => {
