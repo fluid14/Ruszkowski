@@ -31,7 +31,7 @@ const ContactComponent = ({
   const sendMessage = (values, setSubmitting) => {
     axios({
       method: 'post',
-      url: 'http://ruszkowski.biz/api/contact/index.php',
+      url: '/api/contact/index.php',
       headers: { 'content-type': 'application/json' },
       data: { ...values },
     })
