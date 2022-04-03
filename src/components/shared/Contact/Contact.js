@@ -29,7 +29,6 @@ const ContactComponent = ({
   } = slice;
 
   const sendMessage = (values, setSubmitting) => {
-    console.log(values);
     axios({
       method: 'post',
       url: '../../../api/contact/index.php',
