@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { graphql, StaticQuery } from 'gatsby';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
@@ -28,29 +28,37 @@ const ContactComponent = ({
     woodsType,
   } = slice;
 
+  const [showAfterSendMessage, setShowAfterSendMessage] = useState(false);
+  const [afterSendMessage, setAfterSendMessage] = useState('');
+
+  const showInfo = () => {
+    setShowAfterSendMessage(true);
+  };
+
   const sendMessage = (values, setSubmitting) => {
     axios({
       method: 'post',
       url: '/api/contact/index.php',
-      headers: { 'content-type': 'application/json' },
+      headers: { 'content-type': 'text/html' },
       data: { ...values },
     })
       .then((res) => {
         if (res.err) {
-          console.log(
+          setAfterSendMessage(
             'Przepraszamy. Wystąpił błąd podczas próby wysłania wiadomości.'
           );
         } else {
-          console.log(
-            'Dziękujemy za wiadomość. Odpowiemy najszybciej jak to będzie możliwe :)'
+          setAfterSendMessage(
+            'Dziękujemy za wiadomość. Odpowiemy najszybciej jak to będzie możliwe'
           );
         }
       })
       .catch(() => {
-        console.log(
-          'Przepraszamy. Nie udało się wysłać wiadomości. Spróbuj ponownie później.'
+        setAfterSendMessage(
+          'Przepraszamy. Wystąpił błąd podczas próby wysłania wiadomości.'
         );
-      });
+      })
+      .finally(() => showInfo());
 
     setSubmitting(false);
   };
@@ -135,9 +143,14 @@ const ContactComponent = ({
                   />
                 </div>
               </div>
-              <Button type="submit" send>
-                {translate(lang, settings).translation_send.text}
-              </Button>
+              {showAfterSendMessage && (
+                <p className={styles.afterSendMessage}>{afterSendMessage}</p>
+              )}
+              {!showAfterSendMessage && (
+                <Button type="submit" send>
+                  {translate(lang, settings).translation_send.text}
+                </Button>
+              )}
             </form>
           )}
         </Formik>
@@ -255,9 +268,14 @@ const ContactComponent = ({
                   />
                 </div>
               </div>
-              <Button type="submit" send disabled={isSubmitting}>
-                {translate(lang, settings).translation_send.text}
-              </Button>
+              {showAfterSendMessage && (
+                <p className={styles.afterSendMessage}>{afterSendMessage}</p>
+              )}
+              {!showAfterSendMessage && (
+                <Button type="submit" send disabled={isSubmitting}>
+                  {translate(lang, settings).translation_send.text}
+                </Button>
+              )}
             </form>
           )}
         </Formik>
@@ -372,9 +390,14 @@ const ContactComponent = ({
                   />
                 </div>
               </div>
-              <Button type="submit" send>
-                {translate(lang, settings).translation_send.text}
-              </Button>
+              {showAfterSendMessage && (
+                <p className={styles.afterSendMessage}>{afterSendMessage}</p>
+              )}
+              {!showAfterSendMessage && (
+                <Button type="submit" send>
+                  {translate(lang, settings).translation_send.text}
+                </Button>
+              )}
             </form>
           )}
         </Formik>

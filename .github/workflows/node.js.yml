@@ -32,6 +32,6 @@ jobs:
           REMOTE_HOST: ${{ secrets.SSH_HOST }}
           REMOTE_USER: ${{ secrets.SSH_USERNAME }}
           REMOTE_PORT: 222
-          ARGS: "--delete --exclude=projects"
-          SOURCE: "public/"
-          TARGET: "public_html/site/"
+          ARGS: '--delete --exclude=projects'
+          SOURCE: 'public/'
+          TARGET: 'public_html/site/'

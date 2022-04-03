@@ -19,18 +19,12 @@ if( empty($_POST['name']) && empty($_POST['email']) ) {
 
 if ($_POST){
     http_response_code(200);
-    $subject = 'Formularz kontaktowy: ' . $_POST['name'];
+    $subject = 'Formularz kontaktowy: ' . $_POST['name'] . ' ' . $_POST['city'];
     $from = 'noreply@ruszkowski.biz';
-    $message = 'Wiadomość: ' . $_POST['message'] . 'Email: ' . $_POST['email'];
-    //Actual sending email
+    $message = 'Wiadomość: ' . $_POST['message'] . ' ' . 'Email: ' . $_POST['email'];
     $sendEmail = new Sender($adminEmail, $from, $subject, $message);
     $sendEmail->send();
 } else {
-var_dump( error_get_last() );
-    var_dump( $recipient );
-    var_dump( $subject );
-    var_dump( $email_content );
-    var_dump( $email_headers );
  echo json_encode(
      [
         "sent" => false,
