@@ -305,7 +305,7 @@ const ContactComponent = ({
                 <div className={cx(styles.inputsWrap, 'inputsWrap')}>
                   <input
                     type="text"
-                    name="value"
+                    name="productName"
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values.value}
