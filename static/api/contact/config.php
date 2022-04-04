@@ -1,4 +1,4 @@
 <?php
-$adminEmail = "admin@ruszkowski.biz";
+$adminEmail = "info@ruszkowski.biz";
 $SendMailFailederrorMessage = "Coś poszło nie tak";
 $SendMailEmptyerrorMessage = "Pusty formularz";
