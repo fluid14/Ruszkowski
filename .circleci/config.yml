@@ -14,6 +14,7 @@ jobs:
       - github-actions/repository_dispatch:
           event_type: deploy 
           repo_name: fluid14/Ruszkowski 
+
 workflows:
   example-workflow:
     jobs:
