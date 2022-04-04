@@ -1,0 +1,19 @@
+version: 2.1
+
+orbs:
+  github-actions: movermeyer/github-actions@0.0.5
+
+jobs:
+  example-job:
+    docker:
+      # replace with your preferred image
+      - image: cimg/base:stable
+    steps:
+      - github-actions/repository_dispatch:
+          event_type: deploy
+          repo_name: fluid14/Ruszkowski
+
+workflows:
+  example-workflow:
+    jobs:
+      - example-job
