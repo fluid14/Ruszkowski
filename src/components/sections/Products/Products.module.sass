@@ -10,8 +10,10 @@
     .wrap
       display: flex
       justify-content: center
+      align-items: flex-start
       flex-wrap: wrap
       gap: 100px
+      max-width: 1500px
 
     .button
       font-weight: 600 !important
@@ -58,6 +60,8 @@
 @media screen and (max-width: 599px)
   .productsComponentWrap
     .filterWrap
+      padding-bottom: 3px
+
       .wrap
         gap: unset
         justify-content: flex-start
