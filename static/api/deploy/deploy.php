@@ -8,4 +8,6 @@
                                         ->addHeader('Accept', 'application/vnd.github.everest-preview+json')
                                         ->send();
 
-                    var_dump($response->body);
+                    http_response_code(200);
+                    exit();
+

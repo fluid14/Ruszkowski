@@ -24,6 +24,12 @@ if ($_POST){
     $message = '<b>Wiadomość: </b>' . $_POST['message'] . '<br/>' . '<b>Email: </b>' . $_POST['email'] . '<br/>' . '<b>Telefon: </b>' . $_POST['phone'] . '<br/>' . '<b>Miasto: </b>' . $_POST['city'] . '<br/>' . '<b>Produkt: </b>' . $_POST['productName'] . '<br/>' . '<b>Rodzaj drewna: </b>' . $_POST['woodType'];
     $sendEmail = new Sender($adminEmail, $from, $subject, $message);
     $sendEmail->send();
+
+    $subjectResp = 'Dziękujemy za kontakt! || Ruszkowski';
+    $fromResp = 'noreply@ruszkowski.biz';
+    $messageResp = 'Dziękujemy za kontakt z nami.' . '<br/>' . 'Odpowiemy na Twoją wiadomość najszybciej jak to możliwe.'  . '<br/>' . 'Pozdrawiamy!';
+    $sendEmailResp = new Sender($_POST['email'], $fromResp, $subjectResp, $messageResp);
+    $sendEmailResp->send();
 } else {
  echo json_encode(
      [
