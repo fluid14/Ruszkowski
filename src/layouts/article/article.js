@@ -25,7 +25,7 @@ const ArticlePage = ({
   const {
     tags,
     url,
-    first_publication_date: firstPublicationDate,
+    last_publication_date: lastPublicationDate,
     data: {
       article_title: { html: title, text: textTitle },
       article_miniature: { alt: bannerAlt, fluid: bannerImg },
@@ -72,7 +72,7 @@ const ArticlePage = ({
               </SectionTitle>
               <div className={styles.metaArticle}>
                 <p className={styles.data}>
-                  {new Date(firstPublicationDate).toLocaleDateString()}
+                  {new Date(lastPublicationDate).toLocaleDateString()}
                 </p>
               </div>
             </div>
@@ -179,7 +179,7 @@ export const query = graphql`
         }
       }
       tags
-      first_publication_date
+      last_publication_date
     }
     allPrismicArticle(filter: { lang: { eq: $lang } }, limit: 3) {
       edges {
@@ -196,7 +196,7 @@ export const query = graphql`
               alt
             }
           }
-          first_publication_date
+          last_publication_date
           url
         }
       }
@@ -242,7 +242,7 @@ ArticlePage.propTypes = {
         }).isRequired,
         body: PropTypes.shape.isRequired,
       }).isRequired,
-      first_publication_date: PropTypes.string.isRequired,
+      last_publication_date: PropTypes.string.isRequired,
       tags: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
     }).isRequired,
     allPrismicArticle: PropTypes.shape({
