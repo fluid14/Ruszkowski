@@ -175,9 +175,9 @@ const ContactComponent = ({
         </a>
         <p>
           PL. {translate(lang, settings).zip_code}&nbsp;
-          {translate(lang, settings).city},
+          {translate(lang, settings).city}
         </p>
-        <p>{translate(lang, settings).street},</p>
+        <p>{translate(lang, settings).street}</p>
       </div>
 
       <div className="formWrap">
