@@ -2,11 +2,11 @@ import React, { useEffect } from 'react';
 import { graphql, StaticQuery } from 'gatsby';
 import PropTypes from 'prop-types';
 import GatsbyImage from 'gatsby-image';
+import { motion } from 'framer-motion';
 import Navbar from '../components/layout/Navbar/Navbar';
 import PageOrnament from '../components/layout/PageOrnament/PageOrnament';
 import 'normalize.css';
 import Footer from '../components/layout/Footer/Footer';
-import { motion } from 'framer-motion';
 import { translate } from '../utils/translate';
 import SEO from '../components/shared/SEO/SEO';
 import 'aos/dist/aos.css';
@@ -16,18 +16,15 @@ const blackBox = {
     bottom: 0,
     height: '100vh',
     width: '100vw',
-    transform: 'translateX(0)',
   },
   animate: {
     height: '100vh',
     width: 0,
-    transform: 'translateX(-100vw)',
   },
   exit: {
     bottom: 0,
     height: '100vh',
     width: '100vw',
-    transform: 'translateX(0)',
   },
 };
 
