@@ -35,3 +35,4 @@ jobs:
           ARGS: '--delete --exclude=projects'
           SOURCE: 'public/'
           TARGET: 'public_html/site/'
+          SCRIPT_BEFORE: ls
