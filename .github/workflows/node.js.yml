@@ -34,5 +34,5 @@ jobs:
           REMOTE_PORT: 222
           ARGS: '--delete --exclude=projects'
           SOURCE: 'public/'
-          TARGET: 'public_html/site/'
+          TARGET: 'domains/ruszkowski.biz/public_html/site/'
           SCRIPT_BEFORE: ls
